@@ -4,34 +4,32 @@ import { SafeAreaView, Card, CardTitle, CardContent, CardAction, CardButton, Car
 import {Picker} from '@react-native-picker/picker';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {globalStyles} from './styles/global';
 //import Icon from 'react-native-ionicons';
 
-
-
 const win = Dimensions.get('window');
+
 const AnnouncementPageStudent = () => {
   return (
-
-   
-  <View>
+  <View style={globalStyles.wholePageContainer} >
   
       {/*<ImageBackground style={styles.reddesign} source={require("./assets/reddesign.png")} /> */} 
     <LinearGradient style={styles.lgAnnouncement} colors= {['#232526', '#232526']}>
       
-    <View style={styles.pageContainer}>
-    <LinearGradient style={styles.pageHeaderContainer} colors= {['#c31432', '#8e0000']}>
+    <View style={globalStyles.pageContainer}>
+    <LinearGradient style={globalStyles.pageHeaderContainer} colors= {['#c31432', '#8e0000']}>
 
         <View>
-          <Image source={require('./assets/aics.png')} style ={styles.aicsLogo} />
+          <Image source={require('./assets/aics.png')} style ={globalStyles.aicsLogo} />
         </View>
           
-          <View style={styles.menuBarContainer}></View>
-          <Icon name="bars" color="#900" type= 'ionicons' style={styles.menuBar} size={22}/>
+          <View style={globalStyles.menuBarContainer}></View>
+          <Icon name="bars" color="#900" type= 'ionicons' style={globalStyles.menuBar} size={22}/>
   
       
-      <View style={styles.announcementHeaderContainer}>
-        <Text style={styles.announcementTitle}>Announcements</Text>
-        <Text style={styles.announcementSubtitle}>This section allows you to view the official College of Information and Computing Sciences Announcements</Text>
+      <View style={globalStyles.textHeaderContainer}>
+        <Text style={globalStyles.textTitle}>Announcements</Text>
+        <Text style={globalStyles.textSubtitle}>This section allows you to view the official College of Information and Computing Sciences Announcements</Text>
       </View >
 
       </LinearGradient>
@@ -96,86 +94,6 @@ const AnnouncementPageStudent = () => {
 
 const styles = StyleSheet.create({
 
-  pageContainer: {
-    height: win.height,
-    backgroundColor: '#8e0000',
-    borderTopRightRadius: 220,
-  },
-
-  pageHeaderContainer:{
-    height: 300, //win.height
-    borderTopRightRadius: 220, //220
-    position: 'relative',
-  },
-  
-  aicsLogo: {
-    marginTop: -50,
-    marginLeft: 330,
-    position: 'absolute',
-    width: 70,
-    height: 155,
-    resizeMode: 'contain',
-  },
-  
-  menuBarContainer: {
-
-    /*
-    marginLeft: 10, 
-    flex: 1,
-    marginTop: 13,
-    borderRadius: 25,
-    backgroundColor: 'black', //#ff6e7f //white
-    opacity: 0.3,
-    width: 45,
-    height: 38,
-    position: 'absolute', */
-
-    marginLeft: 10, 
-    flex: 1,
-    marginTop: 13,
-    borderRadius: 3,
-    backgroundColor: 'black', //#ff6e7f
-    opacity: 0.1,
-    width: 45,
-    height: 38,
-    position: 'absolute', 
-  },
-
-  menuBar: {
-    margin: 10,
-    padding: 10,
-    paddingLeft: 13,
-    color: 'white',
-    opacity: 100,
-  },
-  
-  announcementHeaderContainer:{
-    marginLeft: 12,
-    marginTop: 10, //-150 65
-    marginBottom: 12,
-    width: 377, 
-    height: 105,
-   },
-
-   announcementTitle:{
-     color: 'white',
-     fontSize: 41,
-     fontWeight: '500',
-     fontFamily: 'Poppins-Medium',
-     letterSpacing: -0.8,
-   },
-
-   announcementSubtitle:{
-    marginTop: -6,
-    color: 'white',
-    fontSize: 13,
-    color: '#E5E5E5',
-    width: 400,
-    fontFamily: 'Poppins-LightItalic',
-    letterSpacing: 0.1,
-    lineHeight: 15,
-   },
- 
    allAnnouncementContainer: { //kasama yung sort
     marginTop: -110,
    },
