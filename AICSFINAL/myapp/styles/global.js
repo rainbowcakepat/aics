@@ -1,3 +1,4 @@
+import React from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 
 const win = Dimensions.get('window');
