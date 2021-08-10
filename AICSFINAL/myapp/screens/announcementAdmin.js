@@ -156,7 +156,7 @@ menuBarContainer: {
 
   plusIconContainer:{
     marginLeft: 365, 
-    marginTop: 95,
+    marginTop: 100, //95
     flex: 1,
     borderRadius: 12, //3
     backgroundColor: 'white', // #808080 #ff6e7f
@@ -169,8 +169,8 @@ menuBarContainer: {
   },
 
   plusIcon: {
-    marginLeft: 377, 
-    marginTop: 115,
+    marginLeft: 376, 
+    marginTop: 118,
     position: 'absolute', 
     color: 'black',
   },
