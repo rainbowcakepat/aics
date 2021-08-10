@@ -10,7 +10,7 @@ import Iconss from 'react-native-vector-icons/FontAwesome5';
 
 const win = Dimensions.get('window');
 
-const AnnouncementPageStudent = ({navigation}) => {
+const AnnouncementPageAdmin = ({navigation}) => {
   const [selectedValue, setSelectedValue] = useState("Sort Announcements ▼");
   return (
     
@@ -18,22 +18,24 @@ const AnnouncementPageStudent = ({navigation}) => {
   
 
       {/*<ImageBackground style={styles.reddesign} source={require("./assets/reddesign.png")} /> */} 
-    <LinearGradient style={styles.lgAnnouncement} colors= {['#232526', '#232526']}>
+    <LinearGradient style={styles.lgAnnouncement} colors= {['#A82712', '#c31432']}>
       
     <View style={globalStyles.pageContainer}>
-    <LinearGradient style={globalStyles.pageHeaderContainer} colors= {['#c31432', '#8e0000']}>
+    <LinearGradient style={globalStyles.pageHeaderContainer} colors= {['#232526', '#232526']}>
 
         <View>
           <Image source={require('../assets/aics.png')} style ={globalStyles.aicsLogo} />
         </View>
           
-          <View style={globalStyles.menuBarContainer}></View>
+          <View style={styles.menuBarContainer} ></View>
           <Icon name="menu" color="#900" type= 'ionicons' style={globalStyles.menuBar} size={22} onPress={() => navigation.toggleDrawer()}/>
 
-         
+          <View style={styles.plusIconContainer}></View>
+          <Icon name="plus" color="white" type= 'ionicons' style={styles.plusIcon} size={26}/>
+      
       <View style={globalStyles.textHeaderContainer}>
         <Text style={globalStyles.textTitle}>Announcements</Text>
-        <Text style={globalStyles.textSubtitle}>This section allows you to view the official College of Information and Computing Sciences Announcements</Text>
+        <Text style={globalStyles.textSubtitle}>This section allows you to add, edit, post and view {'\n'}official UST-CICS Announcements</Text>
       </View >
 
       </LinearGradient>
@@ -60,6 +62,9 @@ const AnnouncementPageStudent = ({navigation}) => {
                 <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
                 <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
               </View>
+
+              <Icon name="edit-2" color="#900" size={20} style = {styles.edit}/>
+              <Icon name="archive" color="#900" size={20} style = {styles.archive}/>
     
             </Card>
 
@@ -71,9 +76,11 @@ const AnnouncementPageStudent = ({navigation}) => {
                 <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
                 <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
               </View>
+
+              <Icon name="edit-2" color="#900" size={20} style = {styles.edit}/>
+              <Icon name="archive" color="#900" size={20} style = {styles.archive}/>
     
             </Card>
-            
 
             <Card style = {styles.cards1}>
               
@@ -83,9 +90,11 @@ const AnnouncementPageStudent = ({navigation}) => {
                 <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
                 <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
               </View>
+
+              <Icon name="edit-2" color="#900" size={20} style = {styles.edit}/>
+              <Icon name="archive" color="#900" size={20} style = {styles.archive}/>
     
             </Card>
-            
 
             <Card style = {styles.cards1}>
               
@@ -95,9 +104,12 @@ const AnnouncementPageStudent = ({navigation}) => {
                 <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
                 <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
               </View>
+
+              <Icon name="edit-2" color="#900" size={20} style = {styles.edit}/>
+              <Icon name="archive" color="#900" size={20} style = {styles.archive}/>
     
             </Card>
-            
+
             <Card style = {styles.cards1}>
               
               <Iconss name="caret-down" color="#900" size={26} style = {styles.caret}/>
@@ -106,10 +118,14 @@ const AnnouncementPageStudent = ({navigation}) => {
                 <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
                 <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
               </View>
+
+              <Icon name="edit-2" color="#900" size={20} style = {styles.edit}/>
+              <Icon name="archive" color="#900" size={20} style = {styles.archive}/>
     
             </Card>
-            
-            <StatusBar style= 'auto'></StatusBar>
+
+
+        <StatusBar style= 'auto'></StatusBar>
       </ScrollView>
 
       </View>
@@ -126,6 +142,51 @@ const AnnouncementPageStudent = ({navigation}) => {
 
 const styles = StyleSheet.create({
 
+menuBarContainer: {
+        marginLeft: 10, 
+        flex: 1,
+        marginTop: 13,
+        borderRadius: 10, //3
+        backgroundColor: 'white', //#ff6e7f
+        opacity: 0.14,
+        width: 45,
+        height: 38, //38
+        position: 'absolute', 
+      },
+
+  plusIconContainer:{
+    marginLeft: 365, 
+    marginTop: 95,
+    flex: 1,
+    borderRadius: 12, //3
+    backgroundColor: 'white', // #808080 #ff6e7f
+    borderBottomColor: 'black',
+    borderBottomWidth: 4,
+    opacity: 1,
+    width: 62,
+    height: 70, //38
+    position: 'absolute', 
+  },
+
+  plusIcon: {
+    marginLeft: 377, 
+    marginTop: 115,
+    position: 'absolute', 
+    color: 'black',
+  },
+
+  edit: {
+    marginLeft: 272,
+    marginTop: 8,
+    color: 'black',
+  },
+
+  archive: {
+    marginLeft: 310,
+    marginTop: -20,
+    color: 'black',
+
+  },
 
    allAnnouncementContainer: { //kasama yung sort
     marginTop: -110,
@@ -138,7 +199,7 @@ const styles = StyleSheet.create({
     paddingTop: -20, //-5
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    backgroundColor: '#181818', // #181818-> final #c31432 '#8E0E00' #A82712
+    backgroundColor: '#A82712', // #181818-> final #c31432 '#8E0E00' #A82712
     position: 'relative',
   },
 
@@ -165,14 +226,14 @@ const styles = StyleSheet.create({
    cards1: {
     borderLeftColor: '#232526', //#8E0E00 #232526
     marginBottom: 10,
-    borderRadius: 20,
+    borderRadius: 20, //10
     borderLeftWidth: 20, //20
     backgroundColor: '#E5E5E5', //'#E5E5E5'
     shadowColor: '#470000', //#470000
     shadowOffset: {width: 5, height: 2},
     shadowOpacity: 25,
     elevation: 4,
-    height: 135,
+    height: 165,
     width: 365,
   },
 
@@ -180,7 +241,6 @@ const styles = StyleSheet.create({
     marginLeft: 310,
     marginTop: 9,
     color: 'black',
-
   },
 
   cardsText: {
@@ -212,9 +272,9 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     color: '#404040', //#303030
     width: 275, 
-    height: 52,     
+    height: 52,  
   },
  
 });
 
-export default AnnouncementPageStudent;
+export default AnnouncementPageAdmin;

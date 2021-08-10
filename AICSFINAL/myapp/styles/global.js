@@ -33,30 +33,30 @@ export const globalStyles = StyleSheet.create({
       },
       
       menuBarContainer: {
-    
-    
         marginLeft: 10, 
         flex: 1,
         marginTop: 13,
-        borderRadius: 3,
+        borderRadius: 10, //3
         backgroundColor: 'black', //#ff6e7f
-        opacity: 0.1,
+        opacity: 0.14,
         width: 45,
-        height: 38,
+        height: 38, //38
         position: 'absolute', 
       },
     
       menuBar: {
-        margin: 10,
+        marginLeft: 8,
+        marginTop: 10,
         padding: 10,
         paddingLeft: 13,
         color: 'white',
         opacity: 100,
+        width: 50,
       },
       
       textHeaderContainer:{
         marginLeft: 12,
-        marginTop: 10, //-150 65
+        marginTop: 19, //15 65
         marginBottom: 12,
         width: 377, 
         height: 105,
@@ -64,7 +64,7 @@ export const globalStyles = StyleSheet.create({
     
        textTitle:{
          color: 'white',
-         fontSize: 41,
+         fontSize: 41, //41
          fontWeight: '500',
          fontFamily: 'Poppins-Medium',
          letterSpacing: -0.8,
