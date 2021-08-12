@@ -11,6 +11,14 @@ import Home from './screens/homeScreen';
 import HowToUse from './screens/howToUse';
 import AnnouncementPageStudent from './screens/announcementStudent';
 import AnnouncementPageAdmin from './screens/announcementAdmin';
+import ChatbotInterface from './screens/chatbotInterface';
+import ChatbotSelection from './screens/chatbotSelection';
+import LoadingScreen from './screens/loadingScreen';
+import LoadingScreen2 from './screens/loadingScreen2';
+
+
+import AboutUsAdmin from './screens/aboutAdmin';
+import HomeScreen from './screens/homeScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -23,20 +31,28 @@ export default function App() {
       drawerStyle: { activeBackgroundColor: '#53115B', activeTintColor: '#53115B', backgroundColor: 'white', width: 290, borderTopRightRadius: 40, borderBottomRightRadius: 40, }}}
       drawerContent = {(props) => <CustomSidebarMenu {...props}/>}>
 
-      <Drawer.Screen name="Home" component= {AnnouncementPageStudent} component= {Home} 
-          options={{ drawerIcon: ({focused, size}) => (
+      <Drawer.Screen name="Home" component= {HomeScreen} component= {HomeScreen} 
+          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
                <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
+
+      <Drawer.Screen name="Loading Screen" component= {LoadingScreen}
+            options={{ headerShown: false, drawerIcon: ({focused, size}) => (
+              <Icon name="info-circle" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
+
+      <Drawer.Screen name="Loading Screen 2" component= {LoadingScreen2}
+            options={{ headerShown: false, drawerIcon: ({focused, size}) => (
+              <Icon name="info-circle" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
 
         <Drawer.Screen name="Announcement Page_S" component= {AnnouncementPageStudent} 
           options={{headerShown: false, drawerIcon: ({focused, size}) => (
                <Icon name="bullhorn" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
 
-<Drawer.Screen name="Announcement Page_AA" component= {AnnouncementPageAdmin} 
+        <Drawer.Screen name="Announcement Page_AA" component= {AnnouncementPageAdmin} 
           options={{headerShown: false, drawerIcon: ({focused, size}) => (
                <Icon name="bullhorn" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
 
-        <Drawer.Screen name="Chatbot Interface" component= {HowToUse} 
-          options={{ drawerIcon: ({focused, size}) => (
+        <Drawer.Screen name="Chatbot Interface" component= {ChatbotInterface} 
+          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
           <Icon name="comments" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
         
        
@@ -48,8 +64,8 @@ export default function App() {
           options={{ drawerIcon: ({focused, size}) => (
             <Icon name="list-ol" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
       
-        <Drawer.Screen name="About Us" component= {HowToUse}
-            options={{ drawerIcon: ({focused, size}) => (
+        <Drawer.Screen name="About Us" component= {AboutUsAdmin}
+            options={{ headerShown: false, drawerIcon: ({focused, size}) => (
               <Icon name="info-circle" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
           
       </Drawer.Navigator>

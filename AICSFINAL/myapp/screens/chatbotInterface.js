@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
-import { ListItem, Avatar } from 'react-native-elements'
-
-import { FlatList, Dimensions, ScrollView, Image, StatusBar, StyleSheet, Text, View,} from 'react-native';
+import { ImageBackground, Dimensions, ScrollView, Image, StatusBar, StyleSheet, Text, View,} from 'react-native';
 import { SafeAreaView, Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
 import {Picker} from '@react-native-picker/picker';
 import LinearGradient from 'react-native-linear-gradient';
@@ -12,7 +10,7 @@ import Iconss from 'react-native-vector-icons/FontAwesome5';
 
 const win = Dimensions.get('window');
 
-const AnnouncementPageAdmin = ({navigation}) => {
+const ChatbotInterface = ({navigation}) => {
   const [selectedValue, setSelectedValue] = useState("Sort Announcements ▼");
   return (
     
@@ -20,24 +18,22 @@ const AnnouncementPageAdmin = ({navigation}) => {
   
 
       {/*<ImageBackground style={styles.reddesign} source={require("./assets/reddesign.png")} /> */} 
-    <LinearGradient style={styles.lgAnnouncement} colors= {['#A82712', '#c31432']}>
+    <LinearGradient style={styles.lgAnnouncement} colors= {['#232526', '#232526']}>
       
     <View style={globalStyles.pageContainer}>
-    <LinearGradient style={globalStyles.pageHeaderContainer} colors= {['#232526', '#232526']}>
+    <LinearGradient style={globalStyles.pageHeaderContainer} colors= {['#c31432', '#8e0000']}>
 
         <View>
           <Image source={require('../assets/aics.png')} style ={globalStyles.aicsLogo} />
         </View>
           
-          <View style={styles.menuBarContainer} ></View>
+          <View style={globalStyles.menuBarContainer}></View>
           <Icon name="menu" color="#900" type= 'ionicons' style={globalStyles.menuBar} size={22} onPress={() => navigation.toggleDrawer()}/>
 
-          <View style={styles.plusIconContainer}></View>
-          <Icon name="plus" color="white" type= 'ionicons' style={styles.plusIcon} size={26}/>
-      
+         
       <View style={globalStyles.textHeaderContainer}>
-        <Text style={globalStyles.textTitle}>Announcements</Text>
-        <Text style={globalStyles.textSubtitle}>This section allows you to add, edit, post and view {'\n'}official UST-CICS Announcements</Text>
+        <Text style={globalStyles.textTitle}>Chatbot Interface</Text>
+        <Text style={globalStyles.textSubtitle}>This section allows you to ask and inquire your {'\n'}concerns with the help of UST-CICS Friendly Chatbots</Text>
       </View >
 
       </LinearGradient>
@@ -47,11 +43,12 @@ const AnnouncementPageAdmin = ({navigation}) => {
        
       <View style={styles.announcementSort}>
             <Picker selectedValue={selectedValue}  dropdownIconColor= 'white' onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)} style={styles.sortTexts}>
-            <Picker.Item label="Sort Announcements" value='Sort Announcements'/>
-              <Picker.Item label="By Academic Year" value='Academic_Year'/>
-              <Picker.Item label="By Semesters" value='Semesters'/>
+            <Picker.Item label="Specific Concern 1" value='C1'/>
+              <Picker.Item label="Specific Concern 2" value='C2'/>
+              <Picker.Item label="Specific Concern 3" value='C3'/>
             </Picker>
-      </View>  
+      </View>
+  
 
           <ScrollView style={styles.announcementScrollContainer}>
             
@@ -63,9 +60,6 @@ const AnnouncementPageAdmin = ({navigation}) => {
                 <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
                 <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
               </View>
-
-              <Icon name="edit-2" color="#900" size={20} style = {styles.edit}/>
-              <Icon name="archive" color="#900" size={20} style = {styles.archive}/>
     
             </Card>
 
@@ -77,11 +71,9 @@ const AnnouncementPageAdmin = ({navigation}) => {
                 <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
                 <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
               </View>
-
-              <Icon name="edit-2" color="#900" size={20} style = {styles.edit}/>
-              <Icon name="archive" color="#900" size={20} style = {styles.archive}/>
     
             </Card>
+            
 
             <Card style = {styles.cards1}>
               
@@ -91,11 +83,9 @@ const AnnouncementPageAdmin = ({navigation}) => {
                 <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
                 <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
               </View>
-
-              <Icon name="edit-2" color="#900" size={20} style = {styles.edit}/>
-              <Icon name="archive" color="#900" size={20} style = {styles.archive}/>
     
             </Card>
+            
 
             <Card style = {styles.cards1}>
               
@@ -105,12 +95,9 @@ const AnnouncementPageAdmin = ({navigation}) => {
                 <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
                 <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
               </View>
-
-              <Icon name="edit-2" color="#900" size={20} style = {styles.edit}/>
-              <Icon name="archive" color="#900" size={20} style = {styles.archive}/>
     
             </Card>
-
+            
             <Card style = {styles.cards1}>
               
               <Iconss name="caret-down" color="#900" size={26} style = {styles.caret}/>
@@ -119,14 +106,10 @@ const AnnouncementPageAdmin = ({navigation}) => {
                 <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
                 <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
               </View>
-
-              <Icon name="edit-2" color="#900" size={20} style = {styles.edit}/>
-              <Icon name="archive" color="#900" size={20} style = {styles.archive}/>
     
             </Card>
-
-
-        <StatusBar style= 'auto'></StatusBar>
+            
+            <StatusBar style= 'auto'></StatusBar>
       </ScrollView>
 
       </View>
@@ -143,51 +126,6 @@ const AnnouncementPageAdmin = ({navigation}) => {
 
 const styles = StyleSheet.create({
 
-menuBarContainer: {
-        marginLeft: 10, 
-        flex: 1,
-        marginTop: 13,
-        borderRadius: 10, //3
-        backgroundColor: 'white', //#ff6e7f
-        opacity: 0.14,
-        width: 45,
-        height: 38, //38
-        position: 'absolute', 
-      },
-
-  plusIconContainer:{
-    marginLeft: 365, 
-    marginTop: 100, //95
-    flex: 1,
-    borderRadius: 12, //3
-    backgroundColor: 'white', // #808080 #ff6e7f
-    borderBottomColor: 'black',
-    borderBottomWidth: 4,
-    opacity: 1,
-    width: 62,
-    height: 70, //38
-    position: 'absolute', 
-  },
-
-  plusIcon: {
-    marginLeft: 376, 
-    marginTop: 118,
-    position: 'absolute', 
-    color: 'black',
-  },
-
-  edit: {
-    marginLeft: 272,
-    marginTop: 8,
-    color: 'black',
-  },
-
-  archive: {
-    marginLeft: 310,
-    marginTop: -20,
-    color: 'black',
-
-  },
 
    allAnnouncementContainer: { //kasama yung sort
     marginTop: -110,
@@ -200,7 +138,7 @@ menuBarContainer: {
     paddingTop: -20, //-5
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    backgroundColor: '#A82712', // #181818-> final #c31432 '#8E0E00' #A82712
+    backgroundColor: '#181818', // #181818-> final #c31432 '#8E0E00' #A82712
     position: 'relative',
   },
 
@@ -227,14 +165,14 @@ menuBarContainer: {
    cards1: {
     borderLeftColor: '#232526', //#8E0E00 #232526
     marginBottom: 10,
-    borderRadius: 20, //10
+    borderRadius: 20,
     borderLeftWidth: 20, //20
     backgroundColor: '#E5E5E5', //'#E5E5E5'
     shadowColor: '#470000', //#470000
     shadowOffset: {width: 5, height: 2},
     shadowOpacity: 25,
     elevation: 4,
-    height: 165,
+    height: 135,
     width: 365,
   },
 
@@ -242,6 +180,7 @@ menuBarContainer: {
     marginLeft: 310,
     marginTop: 9,
     color: 'black',
+
   },
 
   cardsText: {
@@ -273,9 +212,9 @@ menuBarContainer: {
     lineHeight: 16,
     color: '#404040', //#303030
     width: 275, 
-    height: 52,  
+    height: 52,     
   },
  
 });
 
-export default AnnouncementPageAdmin;
+export default ChatbotInterface;

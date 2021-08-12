@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import * as Progress from 'react-native-progress';
 
-import { Button, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, View,} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import {globalStyles} from '../styles/global';
@@ -10,29 +10,30 @@ import Iconss from 'react-native-vector-icons/FontAwesome5';
 
 const win = Dimensions.get('window');
 
-const HomeScreen = ({navigation}) => {
+const LoadingScreen = ({navigation}) => {
   return (
     
   <View style={globalStyles.wholePageContainer} >
   
  
 <View style={styles.pageBg}>
-  <Image  style={styles.aicslogo} source={require('../assets/aicslogo.png')}/>
-
-<View style={styles.buttons}>
-  <TouchableOpacity style={styles.askICS}>
-    <Text>Ask-ICS Now!</Text>
-  </TouchableOpacity>
- 
-  <TouchableOpacity  style={styles.adminView}>
-    <Text>Administrator View</Text>
-  </TouchableOpacity>
-</View>
-
   <View style={styles.iconsContainer}>
+    {/* <Image  style={styles.ust} source={require('../assets/ust.png')}/>
+    <Image  style={styles.ustiics} source={require('../assets/ustiics.png')}/> */}
+
+    
+        {/* <Text style={styles.textContainer1}>University of Santo Tomas</Text>
+        <Text style={styles.textContainer2}>College of Information and Computing Sciences</Text> */}
+   
+
     <Image  style={styles.akisha} source={require('../assets/akisha.png')}/>
     <Image  style={styles.iicsboy} source={require('../assets/iicsboy.png')}/>
 
+    {/* <Image  style={styles.loadingBg} source={require('../assets/mainbldg.png')}/> */}
+
+        <View style={styles.progressContainer}></View>
+        <Progress.Bar style={styles.progress} borderColor='white' color='maroon' borderRadius={20}  indeterminate={true} indeterminateAnimationDuration={1500} progress={0.9} height={13} width={240} />
+        <Text  style={styles.progressText}>Waiting for Sylvia Bot to gather questions...</Text>
 </View>
     </View>
   </View>
@@ -43,26 +44,11 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
 
     pageBg: {
-        backgroundColor: 'white',
+        backgroundColor: '#ab0e0e', //#ab0e0e white
         width: win.width,
         height: win.height,
         position: 'absolute',
         resizeMode: 'stretch',
-    },
-
-    aicslogo: {
-      marginTop: 165,
-      alignSelf: 'center',
-      width: 500,
-      height: 200,
-      resizeMode: 'contain',
-      position: 'absolute',
-    },
-
-    askICS: {
-      backgroundColor: 'red',
-      position: 'absolute',
-      alignSelf: 'center',
     },
 
     iconsContainer: {
@@ -70,18 +56,21 @@ const styles = StyleSheet.create({
     },
 
     akisha: {
-      marginTop: win.height/1.50,
-      marginLeft: 200,
-      width: 180,
-      height: 185,
-      position: 'absolute',
+        marginTop: 210,
+        marginLeft: 210,
+        width: 100,
+        height: 110,
+        shadowColor: 'white',
+        shadowRadius: 100,
+        shadowOffset: { width: 0.2, height: 0.3 }, 
+        position: 'absolute',
     },
 
     iicsboy: {
-        marginTop: win.height/1.61,
-        marginLeft: 10,
-        width: 200,
-        height: 220,
+        marginTop: 200,
+        marginLeft: 100,
+        width: 110,
+        height: 120,
         position: 'absolute',
     },
 
@@ -147,7 +136,7 @@ const styles = StyleSheet.create({
 
     progressText:{
       fontSize: 14,
-      color: 'white',
+      color: 'white', //black white
       marginTop: 382,
       alignSelf: 'center',
       position: 'absolute',
@@ -169,4 +158,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default HomeScreen;
+export default LoadingScreen;
