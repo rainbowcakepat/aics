@@ -55,6 +55,10 @@ export default function App() {
           options={{ headerShown: false, drawerIcon: ({focused, size}) => (
           <Icon name="comments" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
         
+        <Drawer.Screen name="Chatbot Selection" component= {ChatbotSelection} 
+          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
+          <Icon name="comments" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
+        
        
         <Drawer.Screen name="Unanswered Questions" component= {HowToUse} 
           options={{ drawerIcon: ({focused, size}) => (

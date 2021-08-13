@@ -18,14 +18,7 @@ const LoadingScreen = ({navigation}) => {
  
 <View style={styles.pageBg}>
   <View style={styles.iconsContainer}>
-    {/* <Image  style={styles.ust} source={require('../assets/ust.png')}/>
-    <Image  style={styles.ustiics} source={require('../assets/ustiics.png')}/> */}
-
     
-        {/* <Text style={styles.textContainer1}>University of Santo Tomas</Text>
-        <Text style={styles.textContainer2}>College of Information and Computing Sciences</Text> */}
-   
-
     <Image  style={styles.akisha} source={require('../assets/akisha.png')}/>
     <Image  style={styles.iicsboy} source={require('../assets/iicsboy.png')}/>
 
@@ -71,28 +64,6 @@ const styles = StyleSheet.create({
         marginLeft: 100,
         width: 110,
         height: 120,
-        position: 'absolute',
-    },
-
-
-    ust: {
-        marginTop: -20,
-        marginLeft: 135,
-        width: 70,
-        height: 70,
-        resizeMode: 'contain',
-        position: 'absolute',
-    },
-
-    ustiics: {
-        marginTop: -20,
-        marginLeft: 210,
-        width: 70,
-        height: 70,
-        resizeMode: 'contain',
-        shadowColor: 'white',
-        shadowRadius: 100,
-        shadowOffset: { width: 0.2, height: 0.3 }, 
         position: 'absolute',
     },
 

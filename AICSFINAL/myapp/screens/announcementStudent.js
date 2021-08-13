@@ -8,7 +8,7 @@ import {globalStyles} from '../styles/global';
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
 
-const win = Dimensions.get('window');
+const win = Dimensions.get('screen');
 
 const AnnouncementPageStudent = ({navigation}) => {
   const [selectedValue, setSelectedValue] = useState("Sort Announcements ▼");
@@ -151,8 +151,8 @@ const styles = StyleSheet.create({
 
    announcementScrollContainer: {
     width: win.width,
-    height: win.height,
-    paddingTop: 17,
+    height: win.height/1.59,
+    paddingTop: 14,
     paddingRight: 20,
     paddingBottom: 10,
     paddingLeft: 16,
