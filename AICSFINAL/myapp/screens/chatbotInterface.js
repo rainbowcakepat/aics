@@ -18,108 +18,12 @@ const ChatbotInterface = ({navigation}) => {
   
 
       {/*<ImageBackground style={styles.reddesign} source={require("./assets/reddesign.png")} /> */} 
-    <LinearGradient style={styles.lgAnnouncement} colors= {['#232526', '#232526']}>
-      
-    <View style={globalStyles.pageContainer}>
-    <LinearGradient style={globalStyles.pageHeaderContainer} colors= {['#c31432', '#8e0000']}>
-
-        <View>
-          <Image source={require('../assets/aics.png')} style ={globalStyles.aicsLogo} />
-        </View>
-          
-          <View style={globalStyles.menuBarContainer}></View>
-          <Icon name="menu" color="#900" type= 'ionicons' style={globalStyles.menuBar} size={22} onPress={() => navigation.toggleDrawer()}/>
-
-         
-      <View style={globalStyles.textHeaderContainer}>
-        <Text style={globalStyles.textTitle}>Chatbot Interface</Text>
-        <Text style={globalStyles.textSubtitle}>This section allows you to ask and inquire your {'\n'}concerns with the help of UST-CICS Friendly Chatbots</Text>
-      </View >
-
-      </LinearGradient>
-
-      <View style={styles.allAnnouncementContainer}>
-          
        
-      <View style={styles.announcementSort}>
-            <Picker selectedValue={selectedValue}  dropdownIconColor= 'white' onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)} style={styles.sortTexts}>
-            <Picker.Item label="Specific Concern 1" value='C1'/>
-              <Picker.Item label="Specific Concern 2" value='C2'/>
-              <Picker.Item label="Specific Concern 3" value='C3'/>
-            </Picker>
-      </View>
+    <Text>Wala na muna eto</Text>
   
-
-          <ScrollView style={styles.announcementScrollContainer}>
-            
-            <Card style = {styles.cards1}>
-              
-              <Iconss name="caret-down" color="#900" size={26} style = {styles.caret}/>
-              <View style = {styles.cardsText}>
-                <Text style = {styles.cardTitle}>IICS Department</Text>
-                <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
-                <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
-              </View>
-    
-            </Card>
-
-            <Card style = {styles.cards1}>
-              
-              <Iconss name="caret-down" color="#900" size={26} style = {styles.caret}/>
-              <View style = {styles.cardsText}>
-                <Text style = {styles.cardTitle}>IICS Department</Text>
-                <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
-                <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
-              </View>
-    
-            </Card>
-            
-
-            <Card style = {styles.cards1}>
-              
-              <Iconss name="caret-down" color="#900" size={26} style = {styles.caret}/>
-              <View style = {styles.cardsText}>
-                <Text style = {styles.cardTitle}>IICS Department</Text>
-                <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
-                <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
-              </View>
-    
-            </Card>
-            
-
-            <Card style = {styles.cards1}>
-              
-              <Iconss name="caret-down" color="#900" size={26} style = {styles.caret}/>
-              <View style = {styles.cardsText}>
-                <Text style = {styles.cardTitle}>IICS Department</Text>
-                <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
-                <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
-              </View>
-    
-            </Card>
-            
-            <Card style = {styles.cards1}>
-              
-              <Iconss name="caret-down" color="#900" size={26} style = {styles.caret}/>
-              <View style = {styles.cardsText}>
-                <Text style = {styles.cardTitle}>IICS Department</Text>
-                <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
-                <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
-              </View>
-    
-            </Card>
-            
-            <StatusBar style= 'auto'></StatusBar>
-      </ScrollView>
-
-      </View>
 
       
     </View>
-
-    
-    </LinearGradient>
-  </View>
 
   );
 };

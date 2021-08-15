@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import {globalStyles} from '../styles/global';
 
-const win = Dimensions.get('window');
+const win = Dimensions.get('screen');
 
 const HomeScreen = ({navigation}) => {
   return (
@@ -108,7 +108,7 @@ ustiics: {
 },
 
   aicslogo: {
-    marginTop: 200,
+    marginTop: 278,
     alignSelf: 'center',
     width: 300,
     height: 220,
@@ -118,14 +118,14 @@ ustiics: {
   },
 
   buttons: {
-    margin: 45,
+    marginTop: 65,
     marginLeft: win.width/7,
     position: 'absolute',
   
   },
   
   askICS: {
-    marginTop: win.height/2.1,
+    marginTop: win.height/2.04,
     height: 35,
     width: 290,
     borderRadius: 20,
@@ -151,7 +151,7 @@ ustiics: {
   },
 
   adminView: {
-    marginTop: win.height/1.86,
+    marginTop: win.height/1.84,
     height: 30,
     width: 290,
     borderRadius: 20,
@@ -179,7 +179,7 @@ ustiics: {
   },
 
   iconsContainer: {
-      marginTop: -191, 
+      marginTop: -260, 
   },
 
   akisha: {

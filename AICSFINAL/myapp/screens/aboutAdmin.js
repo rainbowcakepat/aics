@@ -7,7 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {globalStyles} from '../styles/global';
 import Icon from 'react-native-vector-icons/Feather';
 
-const win = Dimensions.get('window');
+const win = Dimensions.get('screen');
 
 
 const AboutUsAdmin = ({navigation}) => {
