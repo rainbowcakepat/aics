@@ -17,8 +17,6 @@ const AnnouncementPageAdmin = ({navigation}) => {
   return (
     
   <View style={globalStyles.wholePageContainer} >
-  
-
       {/*<ImageBackground style={styles.reddesign} source={require("./assets/reddesign.png")} /> */} 
     <LinearGradient style={styles.lgAnnouncement} colors= {['#A82712', '#c31432']}>
       

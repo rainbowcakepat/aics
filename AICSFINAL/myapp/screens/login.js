@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import {globalStyles} from '../styles/global';
 
-const win = Dimensions.get('screen');
+const win = Dimensions.get('window');
 
 const Login = ({navigation}) => {
   return (
@@ -32,11 +32,15 @@ const Login = ({navigation}) => {
           <View style={styles.credentialsBg}></View>
             <View style={styles.credentials}>
                     <Text style={styles.welcome}>Welcome, Admin!</Text>
-                    <TextInput style={styles.uname} placeholder='Email' type='email'></TextInput>
-                    <TextInput style={styles.pass} placeholder='Password' secureTextEntry></TextInput>
-                    <TextInput style={styles.pass} placeholder='Password' secureTextEntry></TextInput>
+                    <Text style={styles.unameText}>Username:</Text>
+                    <TextInput style={styles.uname} placeholder='Enter your username' type='email'></TextInput>
+                    <Text style={styles.passText}>Password:</Text>
+                    <TextInput style={styles.pass} placeholder='Enter your password' secureTextEntry></TextInput>
                     <TouchableOpacity style={styles.login}>
                       <Text style={styles.loginText}>Login</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                      <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
                     </TouchableOpacity>
             </View>
 
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
     height: 70,
     resizeMode: 'contain',
     position: 'absolute',
-},
+  },
 
 ustiics: {
     marginLeft: 210,
@@ -109,59 +113,74 @@ ustiics: {
     borderRadius: 10,
 },
 
-  aicslogo: {
-    marginTop: 260, //277
-    alignSelf: 'center',
-    width: 120,
-    height: 150,
-    resizeMode: 'contain',
-    position: 'absolute',
-  },
-
   credentials: {
-    marginTop: win.height/11,
+    marginTop: win.height/12,
     marginLeft: win.width/7,
     position: 'absolute',
   },
 
   credentialsBg: {
-    backgroundColor: 'maroon',
+    backgroundColor: '#f5f5f5',
     borderRadius: 20,
-    width: 300,
-    height: 300,
-    opacity: 0.1,
+    width: 340,
+    height: 350,
+    opacity: 0.5,
     padding: 25,
-    marginTop: 40,
+    marginTop: 30,
     marginLeft: win.width/7,
     alignSelf: 'center',
     position: 'absolute',
   },
 
   welcome: {
-    marginTop: -5,
-    marginLeft: win.width/7,
-    marginBottom: 20,
-    fontSize: 25,
+    marginTop: -18,
+    marginLeft: win.width/14,
+    marginBottom: 15,
+    fontSize: 30,
     fontFamily: 'Cambay-Bold',
-    color: 'black',
+    color: '#ab0e0e',
+    textShadowColor: "white",
+    textShadowOffset: {
+    width: 2,
+    height: 1,
+    },
+    textShadowRadius: 20,
+    position: 'absolute',
+  },
+
+  unameText:{
+    marginTop: 50,
+    borderColor: 'black',
+    fontSize: 15,
+    fontFamily: 'Poppins-SemiBold',
     position: 'absolute',
   },
 
   uname: {
-    marginTop: 50,
-    borderBottomWidth: 0.5,
+    marginTop: 70,
+    marginLeft: -5,
+    borderBottomWidth: 0.7,
     width: 295,
-    fontSize: 18,
+    fontSize: 14,
     padding: 5,
     marginBottom: 10,
     position: 'absolute',
     
   },
 
+  passText: {
+    marginTop: 130,
+    borderColor: 'black',
+    fontSize: 15,
+    fontFamily: 'Poppins-SemiBold',
+    position: 'absolute',
+  },
+
   pass: {
-    marginTop: 100,
-    borderBottomWidth: 0.5,
-    fontSize: 18,
+    marginTop: 145,
+    marginLeft: -5,
+    borderBottomWidth: 0.2,
+    fontSize: 14,
     width: 295,
     padding: 7,
     marginBottom: 10,
@@ -170,7 +189,7 @@ ustiics: {
   },
   
   login: {
-    marginTop: 185,
+    marginTop: 215,
     height: 35,
     width: 290,
     borderRadius: 20,
@@ -195,12 +214,19 @@ ustiics: {
     position: 'absolute',
   },
 
+  forgotPasswordText: {
+    marginTop: 267,
+    textDecorationLine: 'underline',
+    position: 'absolute',
+    marginLeft: win.width/5,
+  },
+
   iconsContainer: {
-      marginTop: -260, 
+      marginTop: -230, 
   },
 
   akisha: {
-    marginTop: win.height/1.36,
+    marginTop: win.height/1.27,
     marginLeft: 250,
     width: 180,
     height: 185,
@@ -209,11 +235,11 @@ ustiics: {
   },
 
   iicsboy: {
-      marginTop: win.height/1.42,
+      marginTop: win.height/1.32,
       marginLeft: -15,
       width: 200,
       height: 220,
-      transform: [{ rotate: '24deg' }],
+      transform: [{ rotate: '19deg' }],
       position: 'absolute',
   },
 

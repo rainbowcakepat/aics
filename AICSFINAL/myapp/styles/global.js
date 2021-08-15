@@ -1,12 +1,16 @@
 import React from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const win = Dimensions.get('window');
 
 export const globalStyles = StyleSheet.create({
     wholePageContainer: {
-        height: win.height,
-        width: win.width,
+    
+        height: hp('100%'), // 70% of height device screen
+        width: wp('100%'),  // 80% of width device screen
+        // height: win.height,
+        // width: win.width,
         flex: 1,
         padding: 0,
       }, 

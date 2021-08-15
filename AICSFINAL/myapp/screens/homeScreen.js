@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import {globalStyles} from '../styles/global';
 
-const win = Dimensions.get('screen');
+const win = Dimensions.get('window');
 
 const HomeScreen = ({navigation}) => {
   return (
@@ -107,10 +107,20 @@ ustiics: {
     borderRadius: 10,
 },
 
-  aicslogo: {
-    marginTop: 278,
+  // aicslogo: {
+  //   marginTop: 278,
+  //   alignSelf: 'center',
+  //   width: 300,
+  //   height: 220,
+  //   resizeMode: 'contain',
+  //   position: 'absolute',
+    
+  // },
+
+    aicslogo: {
+    marginTop: 220,
     alignSelf: 'center',
-    width: 300,
+    width: '100%',
     height: 220,
     resizeMode: 'contain',
     position: 'absolute',
@@ -118,7 +128,7 @@ ustiics: {
   },
 
   buttons: {
-    marginTop: 65,
+    marginTop: 55,
     marginLeft: win.width/7,
     position: 'absolute',
   
@@ -126,7 +136,7 @@ ustiics: {
   
   askICS: {
     marginTop: win.height/2.04,
-    height: 35,
+    height: 40,
     width: 290,
     borderRadius: 20,
     backgroundColor: '#ab0e0e',
@@ -143,15 +153,15 @@ ustiics: {
 
   askICSText: {
     color: 'white',
-    marginTop: 6,
-    fontSize: 16,
+    marginTop: 7,
+    fontSize: 19,
     fontFamily: 'Poppins-Medium',
     alignSelf: 'center',    
     position: 'absolute',
   },
 
   adminView: {
-    marginTop: win.height/1.84,
+    marginTop: win.height/1.81,
     height: 30,
     width: 290,
     borderRadius: 20,
@@ -179,7 +189,7 @@ ustiics: {
   },
 
   iconsContainer: {
-      marginTop: -260, 
+      marginTop: -190, 
   },
 
   akisha: {
