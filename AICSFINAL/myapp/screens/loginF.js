@@ -10,7 +10,7 @@ const screenheight = Dimensions.get('window').height;
 
 const win = Dimensions.get('window');
 
-const ChangePassword = ({navigation}) => {
+const Login = ({navigation}) => {
   return (
     
   <View style={globalStyles.wholePageContainer} >
@@ -35,20 +35,32 @@ const ChangePassword = ({navigation}) => {
             
           <View style={globalStyles.credentialsBg}></View>
             <View style={globalStyles.credentials}>
-                    <Text style={styles.changepass}>Change Password</Text>
-                    <Text style={styles.newpass}>New Password:</Text>
-                    <TextInput style={styles.pass1} placeholder='Enter your password' type='email'></TextInput>
-                    <Text style={styles.confirmpass}>Confirm Password:</Text>
-                    <TextInput style={styles.pass2} placeholder='Enter your password' secureTextEntry></TextInput>
-                    <TouchableOpacity style={styles.submit}>
-                      <Text style={styles.submitText}>Submit</Text>
+                    <Text style={styles.welcome}>Welcome, Admin!</Text>
+                    <Text style={styles.unameText}>Username:</Text>
+                    <TextInput style={styles.uname} placeholder='Enter your username' type='email'></TextInput>
+                    <Text style={styles.passText}>Password:</Text>
+                    <TextInput style={styles.pass} placeholder='Enter your password' secureTextEntry></TextInput>
+                    <TouchableOpacity style={styles.login}>
+                      <Text style={styles.loginText}>Login</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                      <Text style={styles.loginText}>Login</Text>
+                      <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
                     </TouchableOpacity>
             </View>
 
-           
+            {/* <View style={styles.avatars}>
+              <Image  style={styles.iicsboy} source={require('../assets/iicsboy.png')}/>
+              <Image  style={styles.akisha} source={require('../assets/akisha.png')}/>
+            </View> */}
+
+
+         {/* <View style={styles.iconsContainer}>
+          <Image  style={styles.iicsboy} source={require('../assets/iicsboy.png')}/>
+   
+            <Image  style={styles.akisha} source={require('../assets/akisha.png')}/>
+          
+          </View> */}
+
           </LinearGradient>
        
       </View>
@@ -58,8 +70,8 @@ const ChangePassword = ({navigation}) => {
 
 const styles = StyleSheet.create({
 
- 
-  changepass: {
+  
+  welcome: {
     marginTop: -18,
     marginLeft: win.width/16,
     marginBottom: 15,
@@ -75,7 +87,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
 
-  newpass:{
+  unameText:{
     marginTop: 50,
     borderColor: 'black',
     fontSize: hp('2.3%'),
@@ -83,7 +95,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
 
-  pass1: {
+  uname: {
     marginTop: 70,
     marginLeft: -5,
     borderBottomWidth: 0.7,
@@ -95,7 +107,7 @@ const styles = StyleSheet.create({
     
   },
 
-  confirmpass: {
+  passText: {
     marginTop: 130,
     borderColor: 'black',
     fontSize: hp('2.3%'),
@@ -103,7 +115,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
 
-  pass2: {
+  pass: {
     marginTop: 145,
     marginLeft: -5,
     borderBottomWidth: 0.7,
@@ -115,7 +127,7 @@ const styles = StyleSheet.create({
     
   },
   
-  submit: {
+  login: {
     marginTop: 215,
     height: 35,
     width: 290,
@@ -131,7 +143,7 @@ const styles = StyleSheet.create({
     elevation: 16,
   },
 
-  submitText: {
+  loginText: {
     color: 'white',
     marginTop: 5,
     fontSize: hp('2.4%'),
@@ -140,7 +152,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
 
-  loginText: {
+  forgotPasswordText: {
     marginLeft: '-20%',
     marginTop: 24,
     fontSize: hp('1.9%'),
@@ -156,7 +168,43 @@ const styles = StyleSheet.create({
     marginTop: '10%',  
 },
 
+  // avatars: {
+  //   marginTop: '72%',
+  //   flexDirection: 'row',
+  //   alignContent: "space-between", 
+  //   marginBottom: '0%',
+  //   position: 'absolute',
+  // },
+
+  iicsboy:{
+    marginTop: '-13%',
+    height: screenheight / 4,
+    width: screenwidth / 2.7,
+    resizeMode: 'cover',
+    // transform: [{ rotate: '0deg' }],
+  },
+
+  akisha:{
+    marginTop: '-8.5%',
+    marginRight: '-2%',
+    height: screenheight / 4.6,
+    width: screenwidth / 2.1,
+    resizeMode: 'contain',
+    // transform: [{ rotate: '0deg' }],
+  },
+
+
+  // loadingBg: {
+  //   height: 600,
+  //   marginTop: 40, //win.height/1.8,
+  //   width: screenwidth,
+  //   resizeMode: 'stretch',
+  //   opacity: 0.3, //0.7
+  //   position: 'absolute',
+  // },
+
+ 
 
 });
 
-export default ChangePassword;
+export default Login;

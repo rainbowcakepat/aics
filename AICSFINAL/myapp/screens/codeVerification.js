@@ -10,7 +10,7 @@ const screenheight = Dimensions.get('window').height;
 
 const win = Dimensions.get('window');
 
-const ChangePassword = ({navigation}) => {
+const CodeVerification = ({navigation}) => {
   return (
     
   <View style={globalStyles.wholePageContainer} >
@@ -35,17 +35,13 @@ const ChangePassword = ({navigation}) => {
             
           <View style={globalStyles.credentialsBg}></View>
             <View style={globalStyles.credentials}>
-                    <Text style={styles.changepass}>Change Password</Text>
-                    <Text style={styles.newpass}>New Password:</Text>
-                    <TextInput style={styles.pass1} placeholder='Enter your password' type='email'></TextInput>
-                    <Text style={styles.confirmpass}>Confirm Password:</Text>
-                    <TextInput style={styles.pass2} placeholder='Enter your password' secureTextEntry></TextInput>
+                    <Text style={styles.codever}>Code Verification</Text>
+                    <Text style={styles.code}>User's Code:</Text>
+                    <TextInput style={styles.code1} placeholder='Enter your code' type='email'></TextInput>
                     <TouchableOpacity style={styles.submit}>
                       <Text style={styles.submitText}>Submit</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                      <Text style={styles.loginText}>Login</Text>
-                    </TouchableOpacity>
+                      <Text style={styles.reminder}>successful once clinick submit</Text>
             </View>
 
            
@@ -59,7 +55,7 @@ const ChangePassword = ({navigation}) => {
 const styles = StyleSheet.create({
 
  
-  changepass: {
+  codever: {
     marginTop: -18,
     marginLeft: win.width/16,
     marginBottom: 15,
@@ -75,7 +71,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
 
-  newpass:{
+  code:{
     marginTop: 50,
     borderColor: 'black',
     fontSize: hp('2.3%'),
@@ -83,7 +79,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
 
-  pass1: {
+  code1: {
     marginTop: 70,
     marginLeft: -5,
     borderBottomWidth: 0.7,
@@ -94,29 +90,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     
   },
-
-  confirmpass: {
-    marginTop: 130,
-    borderColor: 'black',
-    fontSize: hp('2.3%'),
-    fontFamily: 'Poppins-SemiBold',
-    position: 'absolute',
-  },
-
-  pass2: {
-    marginTop: 145,
-    marginLeft: -5,
-    borderBottomWidth: 0.7,
-    fontSize: 14,
-    width: 295,
-    padding: 7,
-    marginBottom: 10,
-    position: 'absolute',
-    
-  },
   
   submit: {
-    marginTop: 215,
+    marginTop: 138,
     height: 35,
     width: 290,
     borderRadius: 20,
@@ -133,30 +109,24 @@ const styles = StyleSheet.create({
 
   submitText: {
     color: 'white',
-    marginTop: 5,
+    marginTop: 4,
     fontSize: hp('2.4%'),
     fontFamily: 'Poppins-Medium',
     alignSelf: 'center',    
     position: 'absolute',
   },
 
-  loginText: {
+  reminder:{
     marginLeft: '-20%',
-    marginTop: 24,
+    marginTop: 22,
     fontSize: hp('1.9%'),
     fontFamily: 'Poppins-Medium',
-    textDecorationLine: 'underline',
     justifyContent: 'center',
+    alignContent: 'center',
     alignSelf: 'center',
   },
-
-  iconsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',  
-    marginTop: '10%',  
-},
 
 
 });
 
-export default ChangePassword;
+export default CodeVerification;

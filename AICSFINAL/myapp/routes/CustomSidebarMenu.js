@@ -1,20 +1,17 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet,Image, Text, Linking } from 'react-native';
+import { Dimensions, SafeAreaView, View, StyleSheet,Image, Text, Linking } from 'react-native';
 import { DrawerContentScrollView, DrawerItemList, DrawerItem, } from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/Feather';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp, } from 'react-native-responsive-screen'
 
 const CustomSidebarMenu = (props) => {
   return (
 
     <SafeAreaView style={styles.sideBarContainer}>
-      {/*Top Large Image */}
       <View style={styles.sideBarHeader}>
         <Image style={styles.sideMenuProfileIcon} source={require('../assets/iicsLogo.png')} />
-        <Text style={styles.sideBarTitle}> University of Santo Tomas College of Information and   
-        Computing Sciences</Text>
+        <Text style={styles.sideBarTitle}> University of Santo Tomas College of Information and Computing Sciences</Text>
       </View>
       
-    
           <DrawerContentScrollView {...props}>
             <DrawerItemList {...props} />
             
@@ -25,8 +22,6 @@ const CustomSidebarMenu = (props) => {
 
   
           </DrawerContentScrollView>
-      
-
     </SafeAreaView>
   );
 };
@@ -34,46 +29,58 @@ const CustomSidebarMenu = (props) => {
 const styles = StyleSheet.create({
   sideBarContainer: {
     flex: 1,
-  },
-
-  sideMenuProfileIcon: {
-    marginTop: 25,
-    marginBottom: 20,
-   //resizeMode: 'center',
-    width: 100,
-    height: 100,
-    borderRadius: 15,
-    alignSelf: 'center',
+    flexDirection: 'column',
+    height: Dimensions.get('window').height,
   },
 
   sideBarHeader: {
     backgroundColor: '#A82712', // #c31432 #E0394D #A82712
     borderTopRightRadius: 40,
     borderBottomLeftRadius: 55,
+    height: Dimensions.get('window').height / 3.3,
+  },
+  
+  sideMenuProfileIcon: {
+    marginTop: '10%',
+    marginBottom: '4%',
+    width: '50%',
+    height: '50%',
+    borderRadius: 15,
+    alignSelf: 'center',
+    resizeMode: 'contain',
   },
 
   sideBarTitle: {
-    paddingBottom: 37, //20
+    marginHorizontal: '2%',
     fontFamily: 'Roboto-Medium',
     alignSelf: 'center',
     color: 'white',
-    fontSize: 14,
+    fontSize: hp('1.82%'), // > 500 ? hp('1.82%') : hp('2%'),
   },
 
-  iconStyle: {
-    width: 15,
-    height: 15,
-    marginHorizontal: 5,
-  },
-  customItem: {
-    padding: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+  // sideMenuProfileIcon: {
+  //   marginTop: 25,
+  //   marginBottom: 20,
+  //   width: 100,
+  //   height: 100,
+  //   borderRadius: 15,
+  //   alignSelf: 'center',
+  // },
 
-  drawerContainer:{
-   // backgroundColor: 'red',
-  },
+  // sideBarTitle: {
+  //   paddingBottom: 37, //20
+  //   fontFamily: 'Roboto-Medium',
+  //   alignSelf: 'center',
+  //   color: 'white',
+  //   fontSize: 14,
+  // },
+
+  // iconStyle: {
+  //   width: 15,
+  //   height: 15,
+  //   marginHorizontal: 5,
+  // },
+
 });
 
 export default CustomSidebarMenu;

@@ -10,7 +10,7 @@ import {globalStyles} from '../styles/global';
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
 
-const win = Dimensions.get('screen');
+const win = Dimensions.get('window');
 
 const AnnouncementPageAdmin = ({navigation}) => {
   const [selectedValue, setSelectedValue] = useState("Sort Announcements ▼");
@@ -57,7 +57,7 @@ const AnnouncementPageAdmin = ({navigation}) => {
               
               <Iconss name="caret-down" color="#900" size={26} style = {styles.caret}/>
               <View style = {styles.cardsText}>
-                <Text style = {styles.cardTitle}>IICS Department</Text>
+                <Text style = {styles.cardTitle}>IICS Department: Preliminary Examinations</Text>
                 <Text style = {styles.cardSubtitle}>Posted at 8:00 PM</Text>
                 <Text style={styles.cardContent}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma aliqua.</Text> 
               </View>
