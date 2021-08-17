@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { globalStyles } from '../styles/global';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp, } from 'react-native-responsive-screen'
 
+
 const screenwidth = Dimensions.get('window').width;
 const screenheight = Dimensions.get('window').height;
 
@@ -38,7 +39,7 @@ const HomeScreen = ({navigation}) => {
               <Text style={styles.askICSText}>Ask-ICS, Now!</Text>
             </TouchableOpacity>
           
-            <TouchableOpacity  style={styles.adminView}>
+            <TouchableOpacity  style={styles.adminView} onPress={() => navigation.navigate('LoginF')}>
               <Text style={styles.adminViewText}>Administrator View</Text>
             </TouchableOpacity>
 

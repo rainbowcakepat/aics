@@ -37,31 +37,19 @@ export default function App() {
       drawerStyle: { activeBackgroundColor: '#53115B', activeTintColor: '#53115B', backgroundColor: 'white', width: 290, borderTopRightRadius: 40, borderBottomRightRadius: 40, }}}
       drawerContent = {(props) => <CustomSidebarMenu {...props}/>}>
 
+    <Drawer.Screen name="Loading Screen 2" component= {LoadingScreen2}
+            options={{ headerShown: false, drawerIcon: ({focused, size}) => (
+              <Icon name="info-circle" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
+
+    <Drawer.Screen name="HomeF" component= {HomeScreenF} component= {HomeScreenF} 
+          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
+               <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
+
       <Drawer.Screen name="LoginF" component= {LoginF} component= {LoginF} 
           options={{ headerShown: false, drawerIcon: ({focused, size}) => (
                <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
-
-
-      <Drawer.Screen name="HomeF" component= {HomeScreenF} component= {HomeScreenF} 
-          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
-               <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
-
-      <Drawer.Screen name="Announcement Page_S" component= {AnnouncementPageStudent} 
-          options={{headerShown: false, drawerIcon: ({focused, size}) => (
-               <Icon name="bullhorn" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
-
-      <Drawer.Screen name="Loading Screen" component= {LoadingScreen}
-            options={{ headerShown: false, drawerIcon: ({focused, size}) => (
-              <Icon name="info-circle" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
-
-      <Drawer.Screen name="Loading Screen 2" component= {LoadingScreen2}
-            options={{ headerShown: false, drawerIcon: ({focused, size}) => (
-              <Icon name="info-circle" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
-
-      <Drawer.Screen name="Announcement Page_AA" component= {AnnouncementPageAdmin} 
-          options={{headerShown: false, drawerIcon: ({focused, size}) => (
-               <Icon name="bullhorn" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
-
+  
+      
       <Drawer.Screen name="ChangePass" component= {ChangePass} component= {ChangePass} 
           options={{ headerShown: false, drawerIcon: ({focused, size}) => (
                <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
@@ -80,10 +68,19 @@ export default function App() {
           options={{ headerShown: false, drawerIcon: ({focused, size}) => (
                <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
 
-      
-  
+       <Drawer.Screen name="Announcement Page_S" component= {AnnouncementPageStudent} 
+          options={{headerShown: false, drawerIcon: ({focused, size}) => (
+               <Icon name="bullhorn" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
 
-      
+  
+  <Drawer.Screen name="Announcement Page_AA" component= {AnnouncementPageAdmin} 
+          options={{headerShown: false, drawerIcon: ({focused, size}) => (
+               <Icon name="bullhorn" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
+         <Drawer.Screen name="Loading Screen" component= {LoadingScreen}
+
+            options={{ headerShown: false, drawerIcon: ({focused, size}) => (
+              <Icon name="info-circle" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
+
       
 
        

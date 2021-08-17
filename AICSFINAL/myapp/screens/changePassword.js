@@ -43,9 +43,7 @@ const ChangePassword = ({navigation}) => {
                     <TouchableOpacity style={styles.submit}>
                       <Text style={styles.submitText}>Submit</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                      <Text style={styles.loginText}>Login</Text>
-                    </TouchableOpacity>
+                      <Text style={styles.succText}>successful notif here</Text>
             </View>
 
            
@@ -140,12 +138,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
 
-  loginText: {
+  succText: {
     marginLeft: '-20%',
     marginTop: 24,
     fontSize: hp('1.9%'),
     fontFamily: 'Poppins-Medium',
-    textDecorationLine: 'underline',
     justifyContent: 'center',
     alignSelf: 'center',
   },

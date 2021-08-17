@@ -39,7 +39,7 @@ const CodeVerification = ({navigation}) => {
                     <Text style={styles.code}>User's Code:</Text>
                     <TextInput style={styles.code1} placeholder='Enter your code' type='email'></TextInput>
                     <TouchableOpacity style={styles.submit}>
-                      <Text style={styles.submitText}>Submit</Text>
+                      <Text style={styles.submitText} onPress={() => navigation.navigate('LoginF')}>Submit</Text>
                     </TouchableOpacity>
                       <Text style={styles.reminder}>successful once clinick submit</Text>
             </View>

@@ -39,7 +39,7 @@ const ForgotPass = ({navigation}) => {
                     <Text style={styles.email}>Email address:</Text>
                     <TextInput style={styles.email1} placeholder='Enter your registered email' type='email'></TextInput>
                     <TouchableOpacity style={styles.submit}>
-                      <Text style={styles.submitText}>Submit</Text>
+                      <Text style={styles.submitText} onPress={() => navigation.navigate('CodeVerification')}>Submit</Text>
                     </TouchableOpacity>
                       <Text style={styles.reminder}>check ur email lalabas once clinick submit</Text>
             </View>
