@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { TextInput, TouchableHighlight, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import { TextInput, TouchableHighlight, Linking, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp, } from 'react-native-responsive-screen'
 
@@ -44,7 +44,7 @@ const Login = ({navigation}) => {
                       <Text style={styles.loginText}>Login</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                      <Text style={styles.forgotPasswordText}  onPress={() => navigation.navigate('ForgotPass')}>Forgot Password?</Text>
+                      <Text style={styles.forgotPasswordText} onPress={() => Linking.openURL('https://console.firebase.google.com/u/0/')}>Forgot Password?</Text>
                     </TouchableOpacity>
             </View>
 

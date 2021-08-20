@@ -14,11 +14,12 @@ import AnnouncementPageAdmin from './screens/announcementAdmin';
 // import ChatbotInterface from './screens/chatbotInterface';
 // import ChatbotSelection from './screens/chatbotSelection';
 import CodeVerification from './screens/codeVerification';
+import AkishaChatbot from './screens/chatbotapp';
 
 import LoadingScreen from './screens/loadingScreen';
 import LoadingScreen2 from './screens/loadingScreen2';
 import LoginF from './screens/loginF';
-import ForgotPass from './screens/forgotPass';
+// import ForgotPass from './screens/forgotPass';
 import ChangePass from './screens/changePassword';
 // import AboutUsAdmin from './screens/aboutAdmin';
 import HomeScreen from './screens/homeScreen';
@@ -54,16 +55,23 @@ export default function App() {
           options={{ headerShown: false, drawerIcon: ({focused, size}) => (
                <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
 
-      <Drawer.Screen name="ForgotPass" component= {ForgotPass} component= {ForgotPass} 
-          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
-               <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
-
+  
       <Drawer.Screen name="CodeVerification" component= {CodeVerification} component= {CodeVerification} 
           options={{ headerShown: false, drawerIcon: ({focused, size}) => (
                <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
 
+<Drawer.Screen name="AkishaChatbot" component= {AkishaChatbot} component= {AkishaChatbot} 
+          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
+               <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
+
+      
       
       {/* 
+
+          <Drawer.Screen name="ForgotPass" component= {ForgotPass} component= {ForgotPass} 
+          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
+               <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
+
        <Drawer.Screen name="Home" component= {HomeScreen} component= {HomeScreen} 
           options={{ headerShown: false, drawerIcon: ({focused, size}) => (
                <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
