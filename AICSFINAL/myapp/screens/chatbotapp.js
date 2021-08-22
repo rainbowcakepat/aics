@@ -60,10 +60,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 
+  header: {
+    height: 100,
+    backgroundColor: '#ae0000',
+  },
+
   akisha: {
-    height: 110,
+    height: 100, //110
     width: win.width,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     position: 'absolute',
     zIndex: 100,
   },
