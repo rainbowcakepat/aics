@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {AsyncStorage, useEffect, useState} from 'react';
 import {
   TextInput,
   TouchableHighlight,

@@ -1,9 +1,10 @@
 import React from 'react';
+import {LogBox, AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Dimensions, StyleSheet, } from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {NavigationContainer} from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import CustomSidebarMenu from './routes/CustomSidebarMenu';
 
@@ -26,47 +27,121 @@ import HomeScreen from './screens/homeScreen';
 import HomeScreenF from './screens/homeScreenF';
 import AnnouncementPageStudent from './screens/announcementStudent';
 
-
 const Drawer = createDrawerNavigator();
+LogBox.ignoreAllLogs();
+AsyncStorage.clear();
 
 export default function App() {
-  
-  return(
+  return (
     <NavigationContainer>
       <Drawer.Navigator
-      screenOptions={{  
-      drawerStyle: { activeBackgroundColor: '#53115B', activeTintColor: '#53115B', backgroundColor: 'white', width: 290, borderTopRightRadius: 40, borderBottomRightRadius: 40, }}}
-      drawerContent = {(props) => <CustomSidebarMenu {...props}/>}>
+        screenOptions={{
+          drawerStyle: {
+            activeBackgroundColor: '#53115B',
+            activeTintColor: '#53115B',
+            backgroundColor: 'white',
+            width: 290,
+            borderTopRightRadius: 40,
+            borderBottomRightRadius: 40,
+          },
+        }}
+        drawerContent={props => <CustomSidebarMenu {...props} />}>
+        <Drawer.Screen
+          name="Loading Screen 2"
+          component={LoadingScreen2}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="info-circle"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        />
 
-    <Drawer.Screen name="Loading Screen 2" component= {LoadingScreen2}
-            options={{ headerShown: false, drawerIcon: ({focused, size}) => (
-              <Icon name="info-circle" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
+        <Drawer.Screen
+          name="HomeF"
+          component={HomeScreenF}
+          component={HomeScreenF}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="home"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        />
 
-    <Drawer.Screen name="HomeF" component= {HomeScreenF} component= {HomeScreenF} 
-          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
-               <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
+        <Drawer.Screen
+          name="LoginF"
+          component={LoginF}
+          component={LoginF}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="home"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        />
 
-      <Drawer.Screen name="LoginF" component= {LoginF} component= {LoginF} 
-          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
-               <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
-  
-      
-      <Drawer.Screen name="ChangePass" component= {ChangePass} component= {ChangePass} 
-          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
-               <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
+        <Drawer.Screen
+          name="ChangePass"
+          component={ChangePass}
+          component={ChangePass}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="home"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        />
 
-  
-      <Drawer.Screen name="CodeVerification" component= {CodeVerification} component= {CodeVerification} 
-          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
-               <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
+        <Drawer.Screen
+          name="CodeVerification"
+          component={CodeVerification}
+          component={CodeVerification}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="home"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        />
 
-<Drawer.Screen name="AkishaChatbot" component= {AkishaChatbot} component= {AkishaChatbot} 
-          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
-               <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
+        <Drawer.Screen
+          name="AkishaChatbot"
+          component={AkishaChatbot}
+          component={AkishaChatbot}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="home"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        />
 
-      
-      
-      {/* 
+        {/* 
 
           <Drawer.Screen name="ForgotPass" component= {ForgotPass} component= {ForgotPass} 
           options={{ headerShown: false, drawerIcon: ({focused, size}) => (
@@ -97,11 +172,22 @@ export default function App() {
           options={{ headerShown: false, drawerIcon: ({focused, size}) => (
           <Icon name="comments" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
         
-        <Drawer.Screen name="Chatbot Selection" component= {ChatbotSelection} 
-          options={{ headerShown: false, drawerIcon: ({focused, size}) => (
-          <Icon name="comments" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
-        
-       
+          <Drawer.Screen
+            name="Chatbot Selection"
+            component={ChatbotSelection}
+            options={{
+              headerShown: false,
+              drawerIcon: ({focused, size}) => (
+                <Icon
+                  name="comments"
+                  size={size}
+                  color={focused ? '#E0394D' : '#ccc'}
+                />
+              ),
+            }}
+          />
+
+          
         <Drawer.Screen name="Unanswered Questions" component= {HowToUse} 
           options={{ drawerIcon: ({focused, size}) => (
             <Icon name="list-ul" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
@@ -115,9 +201,6 @@ export default function App() {
               <Icon name="info-circle" size={size} color={focused ? '#E0394D' : '#ccc'} />) }}/>
            */}
       </Drawer.Navigator>
-
     </NavigationContainer>
-    
   );
 }
-
