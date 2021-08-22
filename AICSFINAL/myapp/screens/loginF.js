@@ -16,6 +16,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {globalStyles} from '../styles/global';
 import {auth} from '../firebase';
 
@@ -27,6 +28,7 @@ const win = Dimensions.get('window');
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isSecureEntry, setIsSecureEntry] = useState(true);
 
   const signin = () => {
     auth.signInWithEmailAndPassword(email, password).catch(error => {
@@ -91,12 +93,30 @@ const Login = ({navigation}) => {
             value={email}
             onChangeText={text => setEmail(text)}></TextInput>
           <Text style={styles.passText}>Password:</Text>
+          
           <TextInput
             style={styles.pass}
             placeholder="Enter your password"
-            secureTextEntry
+            secureTextEntry={isSecureEntry}
             value={password}
-            onChangeText={text => setPassword(text)}></TextInput>
+            onChangeText={text => setPassword(text)}>
+          </TextInput>
+
+          <TouchableOpacity style={{ marginTop: 155, width: 30, height: 30, marginLeft: 250,position:'relative'}}
+                onPress={() => {
+                  setIsSecureEntry(prev => !prev);
+                }}>
+                <Text style={{ color: 'black', width: 30, position:'relative' }}>
+                {isSecureEntry ? 
+                  <Icon name="eye-slash" size={20}/>
+                  : <Icon name="eye" size={20}/>
+                }
+                </Text>
+          </TouchableOpacity>
+
+          
+     
+
           <TouchableOpacity style={styles.login} onPress={signin}>
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
@@ -111,17 +131,6 @@ const Login = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-        {/* <View style={styles.avatars}>
-              <Image  style={styles.iicsboy} source={require('../assets/iicsboy.png')}/>
-              <Image  style={styles.akisha} source={require('../assets/akisha.png')}/>
-            </View> */}
-
-        {/* <View style={styles.iconsContainer}>
-          <Image  style={styles.iicsboy} source={require('../assets/iicsboy.png')}/>
-   
-            <Image  style={styles.akisha} source={require('../assets/akisha.png')}/>
-          
-          </View> */}
       </LinearGradient>
     </View>
   );
@@ -183,7 +192,7 @@ const styles = StyleSheet.create({
   },
 
   login: {
-    marginTop: 215,
+    marginTop: 45,
     height: 35,
     width: 290,
     borderRadius: 20,
