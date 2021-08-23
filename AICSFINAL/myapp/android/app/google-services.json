@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "98998431128",
+    "firebase_url": "https://aics-chatbot-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "aics-chatbot",
+    "storage_bucket": "aics-chatbot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98998431128:android:6d27d8a0ec203ecd324fed",
+        "android_client_info": {
+          "package_name": "com.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "98998431128-qr7gsu5bsvcgpf5u0blm3b8pi1ci0u7m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1Krlmanfh_pi5IHKdkleaMoRdwSRhHyY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "98998431128-qr7gsu5bsvcgpf5u0blm3b8pi1ci0u7m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

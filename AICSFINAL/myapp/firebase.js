@@ -20,5 +20,11 @@ if (firebase.apps.length === 0) {
 }
 
 const db = app.firestore();
+
+
+//PAT:
+// firebase.initializeApp(firebaseConfig);
+// const db = firebase.firestore();
+
 const auth = firebase.auth();
 export {db, auth};

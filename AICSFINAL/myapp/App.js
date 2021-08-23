@@ -27,6 +27,8 @@ import HomeScreen from './screens/homeScreen';
 import HomeScreenF from './screens/homeScreenF';
 import AnnouncementPageStudent from './screens/announcementStudent';
 import AddAnnouncement from './screens/addAnnouncement';
+import Announcement from './screens/ann';
+
 
 const Drawer = createDrawerNavigator();
 LogBox.ignoreAllLogs();
@@ -48,7 +50,7 @@ export default function App() {
         }}
         drawerContent={props => <CustomSidebarMenu {...props} />}>
 
-        {/* <Drawer.Screen
+        <Drawer.Screen
           name="AddAnnouncement"
           component={AddAnnouncement}
           options={{
@@ -61,7 +63,22 @@ export default function App() {
               />
             ),
           }}
-        /> */}
+        />
+
+      <Drawer.Screen
+          name="Announcement"
+          component={Announcement}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="info-circle"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        />
 
         <Drawer.Screen
           name="Loading Screen 2"
