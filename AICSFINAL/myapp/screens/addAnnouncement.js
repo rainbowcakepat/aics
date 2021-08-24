@@ -1,36 +1,38 @@
-import React, { useState } from 'react';
-import { Text, TextInput, View, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, Text, TextInput, View, TouchableOpacity, ScrollView } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import { db } from '../firebase';
 
 const AddAnnouncement = ({navigation}) => {
 
+  const time =  new Date().getDate();
   const [titles, setTitle] = useState('');
   const [links, setLink] = useState('');
-  const ref = firestore().collection('allAnnouncements');
+  const [loader, setLoader] = useState(false);
 
+  //Add Announcements:
   const addAnnouncementNow = async() => {
     firestore()
     .collection('allAnnouncements')
     .add({
       titles: titles,
       links: links,
+      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+      //posttime: new Date(firestore.Timestamp.fromDate(new Date()).seconds*1000).toString(),
+      //posttime: firestore.Timestamp.fromDate(new Date()),
     })
     .then(() => {
+      Alert.alert('Successfully posted!');
       console.log('added');
-      setTitle('');
-      setLink('');
+      setTitle(null);
+      setLink(null);
     })
     .catch((error) => {
       console.log('Something went wrong', error);
     });
   }
 
-
-
-
-  const [loader, setLoader] = useState(false);
-
+ 
   return (
     <View>
       <Text>Add Announcement</Text>
