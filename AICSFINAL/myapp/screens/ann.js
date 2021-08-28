@@ -69,11 +69,6 @@ const Announcement = ({navigation}) => {
         console.log('User updated!');
       }
 
-
-      
-
-
-
   return (
     <View>
       <Text>Announcements here</Text>
@@ -121,6 +116,11 @@ const Announcement = ({navigation}) => {
                   <TouchableOpacity
                     onPress={() => onPressSave(item.key)}>
                     <Text>Save</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() =>  setisModalVisible(false)}>
+                    <Text>Cancel</Text>
                   </TouchableOpacity>
 
                 </View>
