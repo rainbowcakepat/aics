@@ -8,13 +8,12 @@ const AddAnnouncement = ({navigation}) => {
   const time =  new Date().getDate();
   const [titles, setTitle] = useState('');
   const [links, setLink] = useState('');
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoading] = useState(false);
 
   //Add Announcements:
   const addAnnouncementNow = async() => {
-    firestore()
-    .collection('allAnnouncements')
-    .add({
+    const ids = await firestore().collection('allAnnouncements').doc();
+    ids.set({
       titles: titles,
       links: links,
       posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),

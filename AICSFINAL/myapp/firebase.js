@@ -3,13 +3,13 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 var firebaseConfig = {
-  apiKey: 'AIzaSyDZLwlX8IBlv7e5l1KfbF3hwkOMNZpekvc',
-  authDomain: 'aics-chatbot.firebaseapp.com',
-  projectId: 'aics-chatbot',
-  storageBucket: 'aics-chatbot.appspot.com',
-  messagingSenderId: '98998431128',
-  appId: '1:98998431128:web:16711d6db77a60eb324fed',
-  measurementId: 'G-3N9WHRSNBR',
+  apiKey: "AIzaSyCISrXakhLgzS0S9jbWmF8flPvzfkYa5WQ",
+  authDomain: "aicschatbotfinal.firebaseapp.com",
+  projectId: "aicschatbotfinal",
+  storageBucket: "aicschatbotfinal.appspot.com",
+  messagingSenderId: "18585913452",
+  appId: "1:18585913452:web:ea2d1fc671876831ba3049",
+  measurementId: "G-989QVDR81K"
 };
 
 let app;
