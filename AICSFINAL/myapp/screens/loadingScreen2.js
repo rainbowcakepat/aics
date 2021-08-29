@@ -14,7 +14,7 @@ const win = Dimensions.get('window');
 export default class LoadingScreen extends Component<Props> {
   componentDidMount() {
     setTimeout(() => {
-      this.props.navigation.navigate('HomeF');
+      this.props.navigation.navigate('Home');
     }, 3000);
   }
 

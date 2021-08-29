@@ -90,7 +90,7 @@ export default function App() {
         />
 
         <Drawer.Screen
-          name="HomeF"
+          name="Home"
           component={HomeScreenF}
           component={HomeScreenF}
           options={{
