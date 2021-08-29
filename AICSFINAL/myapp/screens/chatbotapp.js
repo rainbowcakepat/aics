@@ -22,13 +22,13 @@ export default class ChatbotApp extends Component {
   textHandler (newtext) {
     // console.log("test")
     
-    console.log("TEST"+newtext)
+    //console.log("TEST"+newtext)
     this.setState({text: newtext});
   }
 
   render() {
-    console.log("in app ");
-    console.log("APP:" + this.state.text)
+    //console.log("in app ");
+    //console.log("APP:" + this.state.text)
     return (
 	     // <UserInactivity
     //   isActive={active}
@@ -44,7 +44,7 @@ export default class ChatbotApp extends Component {
     </View>
 
       <AkishaChatbot style={styles.containers}
-      text = 'Hi! I am your virtual assistant from Dell Technologies.\n\nHow may I help you today?'
+      text = "Hi! It's your girl, Akisha from UST-CICS.\n\nHow may I help you today?"
       fortextHandle={this.textHandler} /> 
 
     </View>

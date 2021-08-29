@@ -33,7 +33,7 @@
        messages: [
          {
            _id: 1,
-           text: `Hi! I am your virtual assistant from Dell Technologies.\n\nHow may I help you today?`,
+           text: `Hi! It's your girl, Akisha from UST-CICS.\n\nHow may I help you today?`,
            createdAt: new Date(),
            user: BOT_USER,
          }

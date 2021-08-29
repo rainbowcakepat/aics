@@ -13,6 +13,8 @@ const Announcement = ({navigation}) => {
   const [newTitles, setNewTitles] =  useState('');
   const [newLinks, setNewLinks] =  useState('');
 
+  
+
   useEffect(() => {
 
     const fetchAnnouncements = firestore()
