@@ -48,6 +48,7 @@ export default function App() {
           },
         }}
         drawerContent={props => <CustomSidebarMenu {...props} />}>
+        
         <Drawer.Screen
           name="Loading Screen"
           component={LoadingScreen2}
@@ -91,7 +92,6 @@ export default function App() {
 
         <Drawer.Screen
           name="Home"
-          component={HomeScreenF}
           component={HomeScreenF}
           options={{
             headerShown: false,

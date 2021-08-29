@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Text, ScrollView, Modal, TextInput, View, TouchableOpacity } from 'react-native';
+import { Alert, FlatList, Text, ScrollView, Modal, TextInput, View, TouchableOpacity } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
 
@@ -7,16 +7,13 @@ const Announcement = ({navigation}) => {
 
   const [posts, setPosts] = useState(null);
   const [loader, setLoading] = useState(true);
-  const [isRender, setisRender] = useState(false);
 
   const [isModalVisible, setisModalVisible] = useState(false);
   const [newTitles, setNewTitles] =  useState('');
   const [newLinks, setNewLinks] =  useState('');
-
-  
+  const [newID, setNewId] =  useState('');
 
   useEffect(() => {
-
     const fetchAnnouncements = firestore()
       .collection('allAnnouncements')
       .orderBy('posttime', 'desc')
@@ -35,7 +32,7 @@ const Announcement = ({navigation}) => {
 
        // Unsubscribe from events when no longer in use
        return () => fetchAnnouncements();
-      }, []);
+    }, []);
 
       const deleteAnnouncement = (id) => {
         firestore()
@@ -51,26 +48,35 @@ const Announcement = ({navigation}) => {
         setisModalVisible(true);
         setNewTitles(item.titles);
         setNewLinks(item.links);
+        setNewId(item.key);        
+        // console.log(item.titles);
+        // console.log(item.links);
+        console.log(item.titles, item.key);
       }
       
-      const onPressSave = (id) => {
-        handleEditAnnouncement(id);
+      const onPressSave = (newID) => {
+        console.log('Gumagana ba to', newID);
+        handleEditAnnouncement(newID); //id
         setisModalVisible(false);
       }
 
       const handleEditAnnouncement = (id) => {
-        firestore()
+      firestore()
         .collection('allAnnouncements')
         .doc(id)
         .update({
           titles: newTitles,
           links: newLinks,
         })
-        setNewTitles('');
-        setNewLinks('');
-        console.log('User updated!');
-      }
-
+        .then(() => {
+          setNewTitles('');
+          setNewLinks('');
+          Alert.alert('Updated!');
+          console.log('User updated!', id);
+    });
+    }
+       
+    
   return (
     <View>
       <Text>Announcements here</Text>
@@ -78,8 +84,6 @@ const Announcement = ({navigation}) => {
           style={{backgroundColor: 'yellow'}}
           data= {posts}
           keyExtractor={(item, index) => 'key'+index}
-          extraData={isRender}
-          //showsVerticalScrollIndicator={true}
           renderItem= {({item}) => {
           return ( 
             <View style={{flex: 1, }}>
@@ -103,20 +107,20 @@ const Announcement = ({navigation}) => {
                   <Text>Change Text</Text>
                   <TextInput onChangeText={(text) => setNewTitles(text)}
                   placeholder={'Title'}
-                  defaultValue={newTitles}
+                  value={newTitles}
                   multiline={false}
                   maxLength={200}>
                   </TextInput>
                   
                   <TextInput onChangeText={(text) => setNewLinks(text)}
                   placeholder={'Links'}
-                  defaultValue={newLinks}
+                  value={newLinks}
                   multiline={false}
                   maxLength={200}>
                   </TextInput>
 
                   <TouchableOpacity
-                    onPress={() => onPressSave(item.key)}>
+                     onPress={() => onPressSave(newID)} >
                     <Text>Save</Text>
                   </TouchableOpacity>
 
