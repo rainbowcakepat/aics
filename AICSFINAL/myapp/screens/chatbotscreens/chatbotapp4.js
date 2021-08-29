@@ -1,6 +1,7 @@
-import React, { Component,useState} from 'react';
-import { Platform, Dimensions, SafeAreaView, Image, StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native';
-import AkishaChatbot from '../screens/akishachatbot';
+//Sylvia
+import React, { Component,} from 'react';
+import { Platform, Dimensions, Image, StyleSheet, View } from 'react-native';
+import SylviaChatbot from '../../screens/chatbotscreens/sylviachatbot';
 
 const win = Dimensions.get('window');
 
@@ -9,9 +10,9 @@ const instructions = Platform.select({
   android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu',
 });
 
-export default class ChatbotApp extends Component {
+export default class ChatbotApp4 extends Component {
   state = {
-    text: 'Hi! I am your virtual assistant from Dell Technologies.\n\nHow may I help you today?'
+    text: "Hi! It's your girl, Sylvia from UST-CICS.\n\nHow may I help you today?"
   }
   constructor(props){
     //super(props);
@@ -21,7 +22,6 @@ export default class ChatbotApp extends Component {
   
   textHandler (newtext) {
     // console.log("test")
-    
     //console.log("TEST"+newtext)
     this.setState({text: newtext});
   }
@@ -40,11 +40,11 @@ export default class ChatbotApp extends Component {
     <View style={styles.container}>
       
     <View style={styles.header}>
-        <Image style={styles.akisha} source={require('../assets/akishabot.png')} />
+        <Image style={styles.akisha} source={require('../../assets/sylviabot.png')} />
     </View>
 
-      <AkishaChatbot style={styles.containers}
-      text = "Hi! It's your girl, Akisha from UST-CICS.\n\nHow may I help you today?"
+      <SylviaChatbot style={styles.containers}
+      text = "Hi! It's your girl, Sylvia from UST-CICS.\n\nHow may I help you today?"
       fortextHandle={this.textHandler} /> 
 
     </View>

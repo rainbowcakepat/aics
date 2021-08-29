@@ -4,7 +4,7 @@ import { SafeAreaView, Card, CardTitle, CardContent, CardAction, CardButton, Car
 import {Picker} from '@react-native-picker/picker';
 import LinearGradient from 'react-native-linear-gradient';
 import { ListItem, Avatar } from 'react-native-elements'
-import {globalStyles} from '../styles/global';
+import {globalStyles} from '../../styles/global';
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
 import { FlatList } from 'react-native';

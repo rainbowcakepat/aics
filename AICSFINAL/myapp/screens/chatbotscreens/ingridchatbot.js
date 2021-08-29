@@ -1,31 +1,18 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 
  import React, {Component} from 'react';
- 
- import {
-   StyleSheet,
- } from 'react-native';
- 
+ import { StyleSheet,} from 'react-native';
  import {GiftedChat} from 'react-native-gifted-chat';
  
  import {Dialogflow_V2} from 'react-native-dialogflow';
+ import { dialogflowConfig } from '../chatbotscreens/env2';
  
- import { dialogflowConfig } from '../screens/env';
- 
- const BOT_USER = {
+ const ingrid = {
    _id: 2,
    name: 'Virtual Assistant',
-   avatar: require('../assets/akisha.png'),
-   //avatar: 'https://media-exp1.licdn.com/dms/image/C4E0BAQERwqLK35zG0A/company-logo_200_200/0?e=2159024400&v=beta&t=jt9W4ycT0Y4g38R3gfjuGAtAzKrGfsx25YbszmHik0A',
+   avatar: require('../../assets/ingrid.png'),
  };
  
- class AkishaChatbot extends Component {
+ class IngridChatbot extends Component {
    constructor(props) {
      //super(props);
      super();
@@ -33,15 +20,14 @@
        messages: [
          {
            _id: 1,
-           text: `Hi! It's your girl, Akisha from UST-CICS.\n\nHow may I help you today?`,
+           text: `Hi! It's your girl, Ingrid from UST-CICS.\n\nHow may I help you today?`,
            createdAt: new Date(),
-           user: BOT_USER,
+           user: ingrid,
          }
        ]
      };
    };
    
- 
    onSend(messages = []) {
      this.setState(previousState => ({
        messages: GiftedChat.append(previousState.messages, messages)
@@ -51,7 +37,6 @@
      Dialogflow_V2.requestQuery(
        message,
        result => this.handleGoogleResponse(result),
- 
        error => console.log (error)
      )
    }
@@ -67,9 +52,9 @@
        messages: [
          {
            _id: 1,
-           text: `Hi! It's your girl, Akisha from UST-CICS.\n\nHow may I help you today?`,
+           text: `Hi! It's your girl, Ingrid from UST-CICS.\n\nHow may I help you today?`,
            createdAt: new Date(),
-           user: BOT_USER,
+           user: ingrid,
          }
        ]
      })
@@ -86,7 +71,7 @@
        _id: this.state.messages.length + 1,
        text,
        createdAt: new Date(),
-       user: BOT_USER
+       user: ingrid
      };
  
      this.setState(previousState => ({
@@ -101,7 +86,6 @@
  
    render() {
      console.log("n chatbot");
-     //console.log(this.state)
      return (
 
          <GiftedChat
@@ -124,4 +108,4 @@
    }
  });
  
- export default AkishaChatbot;
+ export default IngridChatbot;

@@ -15,7 +15,11 @@ import AnnouncementPageAdmin from './screens/announcementAdmin';
 // import ChatbotInterface from './screens/chatbotInterface';
 // import ChatbotSelection from './screens/chatbotSelection';
 import CodeVerification from './screens/codeVerification';
-import AkishaChatbot from './screens/chatbotapp';
+import AkishaChatbot from './screens/./chatbotscreens/chatbotapp';
+import IngridChatbot from './screens/./chatbotscreens/chatbotapp2';
+import ChristineChatbot from './screens/./chatbotscreens/chatbotapp3';
+import SylviaChatbot from './screens/./chatbotscreens/chatbotapp4';
+
 
 import LoadingScreen from './screens/loadingScreen';
 import LoadingScreen2 from './screens/loadingScreen2';
@@ -156,7 +160,6 @@ export default function App() {
         <Drawer.Screen
           name="AkishaChatbot"
           component={AkishaChatbot}
-          component={AkishaChatbot}
           options={{
             headerShown: false,
             drawerIcon: ({focused, size}) => (
@@ -168,6 +171,37 @@ export default function App() {
             ),
           }}
         />
+
+      <Drawer.Screen
+          name="IngridChatbot"
+          component={IngridChatbot}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="home"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        />
+
+        <Drawer.Screen
+          name="ChristineChatbot"
+          component={ChristineChatbot}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="home"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        />
+
 
         {/* 
 <loadingScreen2 navigation={this.props.navigation} />
