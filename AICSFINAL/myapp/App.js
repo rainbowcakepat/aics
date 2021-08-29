@@ -29,7 +29,6 @@ import AnnouncementPageStudent from './screens/announcementStudent';
 import AddAnnouncement from './screens/addAnnouncement';
 import Announcement from './screens/ann';
 
-
 const Drawer = createDrawerNavigator();
 LogBox.ignoreAllLogs();
 AsyncStorage.clear();
@@ -49,6 +48,16 @@ export default function App() {
           },
         }}
         drawerContent={props => <CustomSidebarMenu {...props} />}>
+        <Drawer.Screen
+          name="Loading Screen"
+          component={LoadingScreen2}
+          options={{
+            headerShown: false,
+            drawerLabel: () => null,
+            title: null,
+            drawerIcon: () => null,
+          }}
+        />
 
         <Drawer.Screen
           name="AddAnnouncement"
@@ -65,24 +74,9 @@ export default function App() {
           }}
         />
 
-      <Drawer.Screen
+        <Drawer.Screen
           name="Announcement"
           component={Announcement}
-          options={{
-            headerShown: false,
-            drawerIcon: ({focused, size}) => (
-              <Icon
-                name="info-circle"
-                size={size}
-                color={focused ? '#E0394D' : '#ccc'}
-              />
-            ),
-          }}
-        />
-
-        <Drawer.Screen
-          name="Loading Screen 2"
-          component={LoadingScreen2}
           options={{
             headerShown: false,
             drawerIcon: ({focused, size}) => (
@@ -176,7 +170,7 @@ export default function App() {
         />
 
         {/* 
-
+<loadingScreen2 navigation={this.props.navigation} />
           <Drawer.Screen name="ForgotPass" component= {ForgotPass} component= {ForgotPass} 
           options={{ headerShown: false, drawerIcon: ({focused, size}) => (
                <Icon name="home" size={size} color={focused ? '#E0394D' : '#ccc'}  />) }}/>
@@ -237,4 +231,5 @@ export default function App() {
       </Drawer.Navigator>
     </NavigationContainer>
   );
+  <LoginF navigation={this.props.navigation} />;
 }
