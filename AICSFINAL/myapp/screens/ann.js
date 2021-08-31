@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, FlatList, Text, ScrollView, Modal, TextInput, View, TouchableOpacity } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-
+//
 
 const Announcement = ({navigation}) => {
 
