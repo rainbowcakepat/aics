@@ -5,6 +5,7 @@ import { db } from '../firebase';
 import ImagePicker from 'react-native-image-crop-picker';
 import storage from '@react-native-firebase/storage';
 
+//Try
 const AddAnnouncement = ({navigation}) => {
 
   const time =  new Date().getDate();
@@ -54,6 +55,7 @@ const AddAnnouncement = ({navigation}) => {
       console.log('Error:', error);
     });
   }
+
 
   const uploadPhoto = async () => {
     const uploadUri = photo;
