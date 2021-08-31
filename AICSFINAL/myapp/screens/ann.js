@@ -74,8 +74,12 @@ const Announcement = ({navigation}) => {
           Alert.alert('Updated!');
           console.log('User updated!', id);
     });
-    }
+
+   
        
+
+    }
+      
     
   return (
     <View>
