@@ -56,7 +56,7 @@ const AddAnnouncement = ({navigation}) => {
     });
   }
 
-
+//upload photo
   const uploadPhoto = async () => {
     const uploadUri = photo;
     let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
