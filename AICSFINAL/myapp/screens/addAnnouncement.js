@@ -24,7 +24,6 @@ const AddAnnouncement = ({navigation}) => {
     } else {
       addAnnouncementNow();
       uploadPhoto();
-     
     }
   }
 
@@ -102,16 +101,20 @@ const AddAnnouncement = ({navigation}) => {
         <Text>choose photo here</Text>
       </TouchableOpacity>
 
+      <Image source={{uri: photo}} style={{ width: 300, height: 300, resizeMode: 'contain'}}></Image>
+
       <View style={{ width: 300, height: 20, backgroundColor: 'black'}}>
               <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={onSubmit} >
                 <Text>submit</Text>
               </TouchableOpacity>
       </View>
 
+      
+
       {uploading ? (
         <View>
-          <Text>{transferred} % Completed </Text>
           <ActivityIndicator size="large" color='purple'></ActivityIndicator>
+          <Text>{transferred} % Completed </Text>
         </View>
         ) :  null
       }

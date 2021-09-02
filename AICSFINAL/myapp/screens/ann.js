@@ -3,7 +3,7 @@ import { Alert, FlatList, Text, ScrollView, Modal, TextInput, View, TouchableOpa
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 
-// const url = await storage().doc(id).ref('gs://samplelogin-37250.appspot.com/').getDownloadURL();
+//const url = await storage().doc(id).ref('gs://samplelogin-37250.appspot.com/').getDownloadURL();
 
 const Announcement = ({navigation}) => {
 
