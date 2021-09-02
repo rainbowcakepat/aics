@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Text, TextInput, View, TouchableOpacity, Image, Platform } from 'react-native';
+import { Alert, Text, TextInput, View, TouchableOpacity, ActivityIndicator, Image, Platform, ActivityIndicatorBase } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import { db } from '../firebase';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -13,71 +13,81 @@ const AddAnnouncement = ({navigation}) => {
   const [links, setLink] = useState('');
   const [loader, setLoading] = useState(false);
   
- 
   const [photo, setPhoto] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
 
-  //Add Announcements:
+  const onSubmit = () => {
+    if (photo == null){
+      addAnnouncementNow();
+      Alert.alert('Successfully Posted!');
+    } else {
+      addAnnouncementNow();
+      uploadPhoto();
+     
+    }
+  }
+
   const addAnnouncementNow = async() => {
     const ids = await firestore().collection('allAnnouncements').doc();
     ids.set({
       titles: titles,
       links: links,
       posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-      //posttime: new Date(firestore.Timestamp.fromDate(new Date()).seconds*1000).toString(),
-      //posttime: firestore.Timestamp.fromDate(new Date()),
     })
     .then(() => {
-      Alert.alert('Successfully posted!');
       console.log('added');
       setTitle(null);
       setLink(null);
     })
     .catch((error) => {
       console.log('Something went wrong', error);
-    });
+    });  
   }
 
   const choosePhotoFromImageLibrary = () => {
     ImagePicker.openPicker({
       width: 800,
       height: 1200,
-      cropping: true,
+      cropping: true,  
     }).then((photo) => {
       console.log(photo);
       const imageUri = Platform.OS == 'ios' ? photo.sourceURL : photo.path;
       setPhoto(imageUri);
-      Alert.alert('You have attached an image successfully', imageUri);
+      Alert.alert('Attached an image', imageUri);
     })
-    .catch((error) => {
-      Alert.alert('No image attached');
-      console.log('Error:', error);
-    });
   }
 
 //upload photo
   const uploadPhoto = async () => {
     const uploadUri = photo;
     let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
+    
+    const extension = filename.split('.').pop();
+    const name = filename.split('.').slice(0,-1).join('.');
+    filename = name + Date.now() + '.' + extension;
 
     setUploading(true);
-    try {
-      await storage().ref(filename).putFile(uploadUri);
+    setTransferred(0);
 
+    const task = storage().ref(filename).putFile(uploadUri);
+    task.on('state_changed', taskSnapshot => {
+      console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
+      setTransferred(Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100);
+    });
+
+    try {
+      await task;
       setUploading(false);
-      Alert.alert('Image uploaded to Firebase Cloud');
+      console.log('Photo uploaded in firestore cloud');
+      Alert.alert('Successfully Posted!');
     }
     catch(e){
-      Alert.alert('No image attached');
       console.log(e);
     }
-
     setPhoto(null);
   }
-
   
- 
   return (
     <View>
       <Text>Add Announcement</Text>
@@ -86,27 +96,48 @@ const AddAnnouncement = ({navigation}) => {
       >
       </TextInput>
       
-      <TextInput placeholder={"Link here"} value={links}   onChangeText={(links) => {setLink(links); console.log(`link: ${links}`)}}></TextInput>
-      <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={addAnnouncementNow} >
-        <Text>submit</Text>
-      </TouchableOpacity>
+      <TextInput placeholder={"Link here"} value={links} onChangeText={(links) => {setLink(links); console.log(`link: ${links}`)}}></TextInput>
+      
       <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={choosePhotoFromImageLibrary} >
-        <Text>photo</Text>
+        <Text>choose photo here</Text>
       </TouchableOpacity>
-      <View>
-        {photo == null ? (
-          null
-          ) : 
-          <View>
-          <Image source={{ uri: photo }}></Image>
-          <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={uploadPhoto} >
-            <Text>photo post</Text>
-          </TouchableOpacity>
-          </View>}
-       
-      </View>
-        
 
+      <View style={{ width: 300, height: 20, backgroundColor: 'black'}}>
+              <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={onSubmit} >
+                <Text>submit</Text>
+              </TouchableOpacity>
+          </View>
+
+      {uploading ? (
+        <View>
+          <Text>{transferred} % Completed </Text>
+          <ActivityIndicator size="large" color='purple'></ActivityIndicator>
+        </View>
+        ) :  null
+        // <View style={{ width: 300, height: 20, backgroundColor: 'black'}}>
+        //   <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={onSubmit} >
+        //     <Text>submit with photo</Text>
+        //   </TouchableOpacity>
+        //   </View> 
+      }
+      
+      {/* <View>
+        {photo == null ? (
+          <View style={{ width: 300, height: 20, backgroundColor: 'black'}}>
+              <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={onSubmit} >
+                <Text>submit without photo</Text>
+              </TouchableOpacity>
+          </View>
+          ) :
+          <View style={{ width: 300, height: 20, backgroundColor: 'black'}}>
+          <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={uploadPhoto} >
+            <Text>upload photo</Text>
+          </TouchableOpacity>
+          </View> 
+        }
+      </View> */}
+
+    
       
     </View>
   )

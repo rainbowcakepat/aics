@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, FlatList, Text, ScrollView, Modal, TextInput, View, TouchableOpacity } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-//
+import storage from '@react-native-firebase/storage';
+
+// const url = await storage().doc(id).ref('gs://samplelogin-37250.appspot.com/').getDownloadURL();
 
 const Announcement = ({navigation}) => {
 
@@ -14,7 +16,8 @@ const Announcement = ({navigation}) => {
   const [newID, setNewId] =  useState('');
 
   useEffect(() => {
-    const fetchAnnouncements = firestore()
+    const fetchAnnouncements = 
+    firestore()
       .collection('allAnnouncements')
       .orderBy('posttime', 'desc')
       .onSnapshot(querySnapshot => {
