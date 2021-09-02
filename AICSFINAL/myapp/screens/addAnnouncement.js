@@ -33,11 +33,13 @@ const AddAnnouncement = ({navigation}) => {
       titles: titles,
       links: links,
       posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+      photo: photo,
     })
     .then(() => {
       console.log('added');
       setTitle(null);
       setLink(null);
+      setPhoto(null);
     })
     .catch((error) => {
       console.log('Something went wrong', error);
