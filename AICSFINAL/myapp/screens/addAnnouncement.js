@@ -106,7 +106,7 @@ const AddAnnouncement = ({navigation}) => {
               <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={onSubmit} >
                 <Text>submit</Text>
               </TouchableOpacity>
-          </View>
+      </View>
 
       {uploading ? (
         <View>
@@ -114,30 +114,7 @@ const AddAnnouncement = ({navigation}) => {
           <ActivityIndicator size="large" color='purple'></ActivityIndicator>
         </View>
         ) :  null
-        // <View style={{ width: 300, height: 20, backgroundColor: 'black'}}>
-        //   <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={onSubmit} >
-        //     <Text>submit with photo</Text>
-        //   </TouchableOpacity>
-        //   </View> 
       }
-      
-      {/* <View>
-        {photo == null ? (
-          <View style={{ width: 300, height: 20, backgroundColor: 'black'}}>
-              <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={onSubmit} >
-                <Text>submit without photo</Text>
-              </TouchableOpacity>
-          </View>
-          ) :
-          <View style={{ width: 300, height: 20, backgroundColor: 'black'}}>
-          <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={uploadPhoto} >
-            <Text>upload photo</Text>
-          </TouchableOpacity>
-          </View> 
-        }
-      </View> */}
-
-    
       
     </View>
   )
