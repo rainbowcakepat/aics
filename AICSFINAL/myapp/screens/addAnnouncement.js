@@ -11,6 +11,7 @@ const AddAnnouncement = ({navigation}) => {
   const time =  new Date().getDate();
   const [titles, setTitle] = useState('');
   const [links, setLink] = useState('');
+  const [contents, setContent] = useState('');
   const [loader, setLoading] = useState(false);
   
   const [photo, setPhoto] = useState(null);
@@ -32,6 +33,7 @@ const AddAnnouncement = ({navigation}) => {
     ids.set({
       titles: titles,
       links: links,
+      contents: contents,
       posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
       photo: photo,
     })
@@ -39,6 +41,7 @@ const AddAnnouncement = ({navigation}) => {
       console.log('added');
       setTitle(null);
       setLink(null);
+      setContent(null);
       setPhoto(null);
     })
     .catch((error) => {
@@ -52,26 +55,32 @@ const AddAnnouncement = ({navigation}) => {
       height: 1200,
       cropping: true,  
     }).then((photo) => {
-      console.log(photo);
       const imageUri = Platform.OS == 'ios' ? photo.sourceURL : photo.path;
       setPhoto(imageUri);
+      console.log(photo);
       Alert.alert('Attached an image', imageUri);
-    })
+    }).catch((e) => {
+      console.log(e);
+  });
   }
 
 //upload photo
   const uploadPhoto = async () => {
+
     const uploadUri = photo;
+    // let filename = ;
     let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
     
-    const extension = filename.split('.').pop();
-    const name = filename.split('.').slice(0,-1).join('.');
-    filename = name + Date.now() + '.' + extension;
+    // const extension = filename.split('.').pop();
+    // const name = filename.split('.').slice(0,-1).join('.');
+    // filename = name + '.' + extension;
+    // filename = name + Date.now() + '.' + extension;
 
     setUploading(true);
     setTransferred(0);
 
-    const task = storage().ref(filename).putFile(uploadUri);
+    const task = storage().ref('allAnnouncementImages/' + filename).putFile(uploadUri);
+    
     task.on('state_changed', taskSnapshot => {
       console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
       setTransferred(Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100);
@@ -80,6 +89,7 @@ const AddAnnouncement = ({navigation}) => {
     try {
       await task;
       setUploading(false);
+      console.log('Filename + uri: ' + filename);
       console.log('Photo uploaded in firestore cloud');
       Alert.alert('Successfully Posted!');
     }
@@ -92,11 +102,9 @@ const AddAnnouncement = ({navigation}) => {
   return (
     <View>
       <Text>Add Announcement</Text>
-      <TextInput placeholder={"Title here"} value={titles} 
-       onChangeText={(titles) => {setTitle(titles); console.log(`to do: ${titles}`)}}
-      >
-      </TextInput>
-      
+
+      <TextInput placeholder={"Title here"} value={titles} onChangeText={(titles) => {setTitle(titles); console.log(`title: ${titles}`)}}></TextInput>
+      <TextInput placeholder={"Content here"} value={contents} onChangeText={(contents) => {setContent(contents); console.log(`content: ${contents}`)}}></TextInput>
       <TextInput placeholder={"Link here"} value={links} onChangeText={(links) => {setLink(links); console.log(`link: ${links}`)}}></TextInput>
       
       <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={choosePhotoFromImageLibrary} >

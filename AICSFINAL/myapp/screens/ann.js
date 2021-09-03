@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, FlatList, Text, ScrollView, Modal, TextInput, View, TouchableOpacity, Image } from 'react-native';
+import { Alert, FlatList, Text, ScrollView, Modal, TextInput, View, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -13,6 +13,7 @@ const Announcement = ({navigation}) => {
 
   const [isModalVisible, setisModalVisible] = useState(false);
   const [newTitles, setNewTitles] =  useState('');
+  const [newContents, setNewContents] =  useState('');
   const [newLinks, setNewLinks] =  useState('');
   const [newPhoto, setNewPhoto] =  useState(null);
   const [newID, setNewId] =  useState('');
@@ -48,42 +49,49 @@ const Announcement = ({navigation}) => {
         height: 1200,
         cropping: true,  
       }).then((newPhoto) => {
-        console.log(newPhoto);
         const imageUri = Platform.OS == 'ios' ? newPhoto.sourceURL : newPhoto.path;
         setNewPhoto(imageUri);
-        Alert.alert('You have attached an image', imageUri);
-      })
-    }
-
-    const uploadPhoto = async () => {
-      const uploadUri = newPhoto;
-      let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
-      
-      const extension = filename.split('.').pop();
-      const name = filename.split('.').slice(0,-1).join('.');
-      filename = name + Date.now() + '.' + extension;
-  
-      setUploading(true);
-      setTransferred(0);
-  
-      const task = storage().ref(filename).putFile(uploadUri);
-      task.on('state_changed', taskSnapshot => {
-        console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
-        setTransferred(Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100);
-      });
-  
-      try {
-        await task;
-        setUploading(false);
-        console.log('Photo uploaded in firestore cloud');
-        Alert.alert('Successfully Posted!');
-      }
-      catch(e){
+        Alert.alert('Attached an image', imageUri);
+      }).catch((e) => {
         console.log(e);
-      }
-      setNewPhoto(null);
+    });
+  }
+
+//   const choosePhotoFromImageLibrary = () => {
+//     ImagePicker.openPicker({
+//       width: 800,
+//       height: 1200,
+//       cropping: true,  
+//     }).then((newPhoto) => {
+//       const imageUri = Platform.OS == 'ios' ? newPhoto.sourceURL : newPhoto.path;
+//       setNewPhoto(imageUri);
+//       Alert.alert('Attached an image', imageUri);
+//     }).catch((e) => {
+//       console.log(e);
+//   });
+// }
+
+  const uploadPhoto = async () => {
+    const uploadUri = newPhoto;
+    let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
+
+    setUploading(true);
+    setTransferred(0);
+
+    const task =  storage().ref('allAnnouncementImages/' + filename).putFile(uploadUri);
+
+    try {
+      await task;
+      setUploading(false);
+      console.log('Photo uploaded in firestore cloud');
+      // Alert.alert('Successfully Posted!');
     }
-  
+    catch(e){
+      console.log(e);
+    }
+    setNewPhoto(null);
+  }
+    
       const deleteAnnouncement = (id) => {
         firestore()
         .collection('allAnnouncements')
@@ -97,6 +105,7 @@ const Announcement = ({navigation}) => {
       const getAnnouncements = (item) => {
         setisModalVisible(true);
         setNewTitles(item.titles);
+        setNewContents(item.contents);
         setNewLinks(item.links);
         setNewPhoto(item.photo);
         setNewId(item.key);        
@@ -107,9 +116,16 @@ const Announcement = ({navigation}) => {
       
       const onPressSave = (newID) => {
         console.log('Gumagana ba to', newID);
-        handleEditAnnouncement(newID); //id
-        uploadPhoto(newPhoto);
         setisModalVisible(false);
+
+        if (newPhoto == null){
+          handleEditAnnouncement(newID); //id
+          Alert.alert('Successfully Posted!');
+        } else {
+          handleEditAnnouncement(newID); //id
+          uploadPhoto();
+        }
+
       }
 
       const handleEditAnnouncement = (id) => {
@@ -119,14 +135,15 @@ const Announcement = ({navigation}) => {
         .update({
           titles: newTitles,
           links: newLinks,
+          contents: newContents,
           photo: newPhoto,
         })
         .then(() => {
           setNewTitles('');
-          setNewLinks('');
+          setNewContents('');
+          setNewLinks('');        
           setNewPhoto('');
-          Alert.alert('Updated!');
-          console.log('User updated!', id);
+          console.log('Announcement updated!', id);
     });
     }
       
@@ -141,10 +158,12 @@ const Announcement = ({navigation}) => {
           renderItem= {({item}) => {
           return ( 
             <View style={{flex: 1, }}>
-              <Text style={{color: 'black'}}>Title: {item.titles}</Text>
+              <Text>Title: {item.titles}</Text>
+              <Text>Content: {item.contents}</Text>
               <Text>Link: {item.links}</Text>
               <Text>Time: { item.posttime}</Text>
               <Text>ID: { item.key}</Text>
+              <Text>Photo ID: { item.photo}</Text>
               { item.photo == null ? null : 
                 <Image source={{uri: item.photo}} style={{ width: 100, height: 100, resizeMode: 'contain'}}></Image>
               }
@@ -154,6 +173,7 @@ const Announcement = ({navigation}) => {
               <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: 'purple'}} onPress={() => getAnnouncements(item)}>
                 <Text>UPDATE</Text>
               </TouchableOpacity>
+
 
               <Modal
                 animationType='fade'
@@ -168,6 +188,14 @@ const Announcement = ({navigation}) => {
                   multiline={false}
                   maxLength={200}>
                   </TextInput>
+
+                  <TextInput onChangeText={(text) => setNewContents(text)}
+                  placeholder={'Content'}
+                  value={newContents}
+                  multiline={true}
+                  maxLength={200}>
+                  </TextInput>
+
                   
                   <TextInput onChangeText={(text) => setNewLinks(text)}
                   placeholder={'Links'}
@@ -176,14 +204,14 @@ const Announcement = ({navigation}) => {
                   maxLength={200}>
                   </TextInput>
 
-                  <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={choosePhotoFromImageLibrary} >
+                  <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={() => choosePhotoFromImageLibrary(item.photo)} >
                    <Text>choose photo here</Text>
                   </TouchableOpacity>
 
-                  {/* <View>
-                    <Image source={{uri: setNewPhoto(item.photo)}} style={{ width: '30%', height: '30%', resizeMode: 'contain'}}>
+                  <View>
+                    <Image source={{uri:(newPhoto)}} style={{ width: '50%', height: '60%', resizeMode: 'contain'}}>
                     </Image>
-                  </View> */}
+                  </View>
 
                   <TouchableOpacity
                      onPress={() => onPressSave(newID)} >
@@ -194,6 +222,7 @@ const Announcement = ({navigation}) => {
                     onPress={() =>  setisModalVisible(false)}>
                     <Text>Cancel</Text>
                   </TouchableOpacity>
+
 
                 </View>
 
