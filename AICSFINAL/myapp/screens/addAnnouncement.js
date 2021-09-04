@@ -30,6 +30,7 @@ const AddAnnouncement = ({navigation}) => {
       photo: photo,
     })
     .then(() => {
+      console.log('announcement added');
       setTitle(null);
       setLink(null);
       setContent(null);
@@ -81,7 +82,7 @@ const AddAnnouncement = ({navigation}) => {
     try {
       await task;
       setUploading(false);
-      console.log('Filename + uri: ' + filename);
+      console.log('Filename + uri: ' + filename + uploadUri);
       console.log('Photo uploaded in firestore cloud');
       Alert.alert('Successfully Posted!');
     }

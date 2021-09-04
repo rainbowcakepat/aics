@@ -3,6 +3,7 @@ import { Alert, FlatList, Text, ScrollView, Modal, TextInput, View, TouchableOpa
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import ImagePicker from 'react-native-image-crop-picker';
+import { utils } from '@react-native-firebase/app';
 
 //const url = await storage().doc(id).ref('gs://samplelogin-37250.appspot.com/').getDownloadURL();
 
@@ -20,6 +21,11 @@ const Announcement = ({navigation}) => {
 
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
+
+  const [archivedtitles, setArchivedTitle] = useState('');
+  const [archivedlinks, setArchivedLink] = useState('');
+  const [archivedcontents, setArchivedContent] = useState('');
+  const [archivedphoto, setArchivedPhoto] = useState(null);
 
   useEffect(() => {
     const fetchAnnouncements = 
@@ -57,20 +63,6 @@ const Announcement = ({navigation}) => {
     });
   }
 
-//   const choosePhotoFromImageLibrary = () => {
-//     ImagePicker.openPicker({
-//       width: 800,
-//       height: 1200,
-//       cropping: true,  
-//     }).then((newPhoto) => {
-//       const imageUri = Platform.OS == 'ios' ? newPhoto.sourceURL : newPhoto.path;
-//       setNewPhoto(imageUri);
-//       Alert.alert('Attached an image', imageUri);
-//     }).catch((e) => {
-//       console.log(e);
-//   });
-// }
-
   const uploadPhoto = async () => {
     const uploadUri = newPhoto;
     let filename = newID;
@@ -92,19 +84,7 @@ const Announcement = ({navigation}) => {
     }
     setNewPhoto(null);
   }
-    
-      const deleteAnnouncement = (id) => {
-        firestore()
-        .collection('allAnnouncements')
-        .doc(id)
-        .delete()
-        .then(() => {
-                  console.log('ID: User deleted!', id);
-            });
-        }
 
-  
-        
       const getAnnouncements = (item) => {
         setisModalVisible(true);
         setNewTitles(item.titles);
@@ -149,6 +129,64 @@ const Announcement = ({navigation}) => {
           console.log('Announcement updated!', id);
     });
     }
+
+    let orig;
+
+    const addArchivedAnnouncement = async(id) => {
+
+      const origannouncements = await firestore().collection('allAnnouncements').doc(id)
+      .get().then((doc) => {
+        orig = doc.data();
+       })
+      console.log('Original value: ', orig);
+
+      const archiveannouncements = await firestore().collection('allArchivedAnnouncements').doc();
+
+      archiveannouncements.set({
+        archivedlinks: orig.links,
+        archivedtitles: orig.titles,
+        archivedcontents: orig.contents,
+        archivedposttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+        archivedphoto: orig.photo,
+      })
+      .then(() => {
+        setArchivedTitle(null);
+        setArchivedLink(null);
+        setArchivedContent(null);
+        setArchivedPhoto(null);
+        
+        if (orig.photo == null) {
+          deleteAnnouncement(id);
+        }
+        else {
+          deleteAnnouncement(id);
+          deleteAnnouncementImage(id);
+        }
+      })
+      .catch((error) => {
+        console.log('Something went wrong', error);
+      })
+      
+    }
+
+
+    const deleteAnnouncement = (id) => {
+      firestore()
+      .collection('allAnnouncements')
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log('ID: User deleted!', id);
+      });
+    }
+
+   
+    const deleteAnnouncementImage = async(id) => {
+     const url = await storage().ref('allAnnouncementImages/' + id).getDownloadURL();
+      const deletethis = await storage().refFromURL(url);
+      console.log(url);
+      deletethis.delete();
+    }
       
     
   return (
@@ -170,12 +208,13 @@ const Announcement = ({navigation}) => {
               { item.photo == null ? null : 
                 <Image source={{uri: item.photo}} style={{ width: 100, height: 100, resizeMode: 'contain'}}></Image>
               }
-              <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: 'purple'}} onPress={() => deleteAnnouncement(item.key)} >
+              <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: 'purple'}} onPress={() => addArchivedAnnouncement(item.key)} >
                 <Text>ARCHIVE</Text>
               </TouchableOpacity>
               <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: 'purple'}} onPress={() => getAnnouncements(item)}>
                 <Text>UPDATE</Text>
               </TouchableOpacity>
+            
 
 
               <Modal
