@@ -73,7 +73,8 @@ const Announcement = ({navigation}) => {
 
   const uploadPhoto = async () => {
     const uploadUri = newPhoto;
-    let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
+    let filename = newID;
+    // let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
 
     setUploading(true);
     setTransferred(0);
@@ -101,6 +102,8 @@ const Announcement = ({navigation}) => {
                   console.log('ID: User deleted!', id);
             });
         }
+
+  
         
       const getAnnouncements = (item) => {
         setisModalVisible(true);
@@ -162,7 +165,7 @@ const Announcement = ({navigation}) => {
               <Text>Content: {item.contents}</Text>
               <Text>Link: {item.links}</Text>
               <Text>Time: { item.posttime}</Text>
-              <Text>ID: { item.key}</Text>
+              <Text>ID Key: { item.key}</Text>
               <Text>Photo ID: { item.photo}</Text>
               { item.photo == null ? null : 
                 <Image source={{uri: item.photo}} style={{ width: 100, height: 100, resizeMode: 'contain'}}></Image>

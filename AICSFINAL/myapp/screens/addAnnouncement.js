@@ -18,18 +18,10 @@ const AddAnnouncement = ({navigation}) => {
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
 
-  const onSubmit = () => {
-    if (photo == null){
-      addAnnouncementNow();
-      Alert.alert('Successfully Posted!');
-    } else {
-      addAnnouncementNow();
-      uploadPhoto();
-    }
-  }
 
   const addAnnouncementNow = async() => {
     const ids = await firestore().collection('allAnnouncements').doc();
+    
     ids.set({
       titles: titles,
       links: links,
@@ -38,15 +30,21 @@ const AddAnnouncement = ({navigation}) => {
       photo: photo,
     })
     .then(() => {
-      console.log('added');
       setTitle(null);
       setLink(null);
       setContent(null);
       setPhoto(null);
+
+      if (photo == null) {
+        Alert.alert('Successfully Posted!');
+      } else {
+        uploadPhoto(ids.id);
+      }
     })
     .catch((error) => {
       console.log('Something went wrong', error);
-    });  
+    })
+    
   }
 
   const choosePhotoFromImageLibrary = () => {
@@ -65,16 +63,10 @@ const AddAnnouncement = ({navigation}) => {
   }
 
 //upload photo
-  const uploadPhoto = async () => {
+  const uploadPhoto = async (id) => {
 
     const uploadUri = photo;
-    // let filename = ;
-    let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
-    
-    // const extension = filename.split('.').pop();
-    // const name = filename.split('.').slice(0,-1).join('.');
-    // filename = name + '.' + extension;
-    // filename = name + Date.now() + '.' + extension;
+    let filename = id;
 
     setUploading(true);
     setTransferred(0);
@@ -114,7 +106,7 @@ const AddAnnouncement = ({navigation}) => {
       <Image source={{uri: photo}} style={{ width: 300, height: 300, resizeMode: 'contain'}}></Image>
 
       <View style={{ width: 300, height: 20, backgroundColor: 'black'}}>
-              <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={onSubmit} >
+              <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={addAnnouncementNow} >
                 <Text>submit</Text>
               </TouchableOpacity>
       </View>
