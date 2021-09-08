@@ -19,6 +19,7 @@ const Announcement = ({navigation}) => {
   const [newPhoto, setNewPhoto] =  useState(null);
   const [newID, setNewId] =  useState('');
 
+  const [newUrl, setNewURL] =  useState('');
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
 
@@ -27,6 +28,7 @@ const Announcement = ({navigation}) => {
   const [archivedcontents, setArchivedContent] = useState('');
   const [archivedphoto, setArchivedPhoto] = useState(null);
 
+ 
   useEffect(() => {
     const fetchAnnouncements = 
     firestore()
@@ -57,33 +59,56 @@ const Announcement = ({navigation}) => {
       }).then((newPhoto) => {
         const imageUri = Platform.OS == 'ios' ? newPhoto.sourceURL : newPhoto.path;
         setNewPhoto(imageUri);
+        console.log('Image Uri: ', imageUri);
         Alert.alert('Attached an image', imageUri);
       }).catch((e) => {
         console.log(e);
     });
   }
 
-  const uploadPhoto = async () => {
+  const uploadPhoto = async (id) => {
+
     const uploadUri = newPhoto;
     let filename = newID;
-    // let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
 
     setUploading(true);
     setTransferred(0);
 
-    const task =  storage().ref('allAnnouncementImages/' + filename).putFile(uploadUri);
+    const task = storage().ref('allAnnouncementImages/' + filename).putFile(uploadUri);
+    task
+    .on('state_changed', taskSnapshot => {
+      console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
+      setTransferred(Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100);
+    },
+    error => {
+      console.log(error);
+    });
+
+    task.then(() => {
+       storage().ref('allAnnouncementImages/')
+      .child(filename)
+      .getDownloadURL()
+      .then( async(url) => {
+        await firestore().collection('allAnnouncements').doc(id).update({url: url});
+      // setURL(url);
+      console.log(url);
+      });
+    });
+
 
     try {
       await task;
       setUploading(false);
       console.log('Photo uploaded in firestore cloud');
-      // Alert.alert('Successfully Posted!');
+      Alert.alert('Successfully Posted!');
     }
     catch(e){
       console.log(e);
-    }
+    }    
     setNewPhoto(null);
   }
+
+
 
       const getAnnouncements = (item) => {
         setisModalVisible(true);
@@ -91,22 +116,23 @@ const Announcement = ({navigation}) => {
         setNewContents(item.contents);
         setNewLinks(item.links);
         setNewPhoto(item.photo);
-        setNewId(item.key);        
+        setNewId(item.key);  
+        setNewURL(item.url);        
         // console.log(item.titles);
         // console.log(item.links);
-        console.log(item.titles, item.key, item.photo);
+        console.log(item.titles, item.key, item.url);
       }
       
       const onPressSave = (newID) => {
         console.log('Gumagana ba to', newID);
         setisModalVisible(false);
 
-        if (newPhoto == null){
+        if (newUrl == null){
           handleEditAnnouncement(newID); //id
           Alert.alert('Successfully Posted!');
         } else {
           handleEditAnnouncement(newID); //id
-          uploadPhoto();
+          uploadPhoto(newID);
         }
 
       }
@@ -120,12 +146,14 @@ const Announcement = ({navigation}) => {
           links: newLinks,
           contents: newContents,
           photo: newPhoto,
+          url: newUrl,
         })
         .then(() => {
           setNewTitles('');
           setNewContents('');
           setNewLinks('');        
           setNewPhoto('');
+          setNewURL('');
           console.log('Announcement updated!', id);
     });
     }
@@ -182,7 +210,7 @@ const Announcement = ({navigation}) => {
 
    
     const deleteAnnouncementImage = async(id) => {
-     const url = await storage().ref('allAnnouncementImages/' + id).getDownloadURL();
+      const url = await storage().ref('allAnnouncementImages/' + id).getDownloadURL();
       const deletethis = await storage().refFromURL(url);
       console.log(url);
       deletethis.delete();
@@ -205,9 +233,10 @@ const Announcement = ({navigation}) => {
               <Text>Time: { item.posttime}</Text>
               <Text>ID Key: { item.key}</Text>
               <Text>Photo ID: { item.photo}</Text>
-              { item.photo == null ? null : 
-                <Image source={{uri: item.photo}} style={{ width: 100, height: 100, resizeMode: 'contain'}}></Image>
-              }
+              <Text>Photo Url: { item.url}</Text>
+      
+              <Image source={ item.url == null ? null: {uri: item.url}} style={{ width: 100, height: 200, resizeMode: 'contain'}}></Image>
+              
               <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: 'purple'}} onPress={() => addArchivedAnnouncement(item.key)} >
                 <Text>ARCHIVE</Text>
               </TouchableOpacity>
@@ -246,12 +275,12 @@ const Announcement = ({navigation}) => {
                   maxLength={200}>
                   </TextInput>
 
-                  <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={() => choosePhotoFromImageLibrary(item.photo)} >
+                  <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={() => choosePhotoFromImageLibrary()} >
                    <Text>choose photo here</Text>
                   </TouchableOpacity>
 
                   <View>
-                    <Image source={{uri:(newPhoto)}} style={{ width: '50%', height: '60%', resizeMode: 'contain'}}>
+                    <Image source={ {uri: newPhoto} || {uri: newUrl}} style={{ width: '50%', height: '60%', resizeMode: 'contain'}}>
                     </Image>
                   </View>
 

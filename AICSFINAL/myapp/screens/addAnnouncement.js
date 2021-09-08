@@ -15,6 +15,7 @@ const AddAnnouncement = ({navigation}) => {
   const [loader, setLoading] = useState(false);
   
   const [photo, setPhoto] = useState(null);
+  const [url, setURL] = useState('');
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
 
@@ -28,6 +29,7 @@ const AddAnnouncement = ({navigation}) => {
       contents: contents,
       posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
       photo: photo,
+      url: url,
     })
     .then(() => {
       console.log('announcement added');
@@ -35,6 +37,7 @@ const AddAnnouncement = ({navigation}) => {
       setLink(null);
       setContent(null);
       setPhoto(null);
+      setURL(null);
 
       if (photo == null) {
         Alert.alert('Successfully Posted!');
@@ -63,7 +66,6 @@ const AddAnnouncement = ({navigation}) => {
   });
   }
 
-//upload photo
   const uploadPhoto = async (id) => {
 
     const uploadUri = photo;
@@ -73,25 +75,41 @@ const AddAnnouncement = ({navigation}) => {
     setTransferred(0);
 
     const task = storage().ref('allAnnouncementImages/' + filename).putFile(uploadUri);
-    
-    task.on('state_changed', taskSnapshot => {
+    task
+    .on('state_changed', taskSnapshot => {
       console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
       setTransferred(Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100);
+    },
+    error => {
+      console.log(error);
     });
+
+    task.then(() => {
+       storage().ref('allAnnouncementImages/')
+      .child(filename)
+      .getDownloadURL()
+      .then( async(url) => {
+
+        await firestore().collection('allAnnouncements').doc(id).update({url: url});
+      // setURL(url);
+      console.log(url);
+      });
+    });
+
 
     try {
       await task;
       setUploading(false);
-      console.log('Filename + uri: ' + filename + uploadUri);
       console.log('Photo uploaded in firestore cloud');
       Alert.alert('Successfully Posted!');
     }
     catch(e){
       console.log(e);
-    }
+    }    
     setPhoto(null);
   }
-  
+
+
   return (
     <View>
       <Text>Add Announcement</Text>
@@ -104,8 +122,9 @@ const AddAnnouncement = ({navigation}) => {
         <Text>choose photo here</Text>
       </TouchableOpacity>
 
-      <Image source={{uri: photo}} style={{ width: 300, height: 300, resizeMode: 'contain'}}></Image>
-
+      
+      <Image source={{uri: photo}} style={{ width: 100, height: 200, resizeMode: 'contain'}}></Image>
+      
       <View style={{ width: 300, height: 20, backgroundColor: 'black'}}>
               <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={addAnnouncementNow} >
                 <Text>submit</Text>
