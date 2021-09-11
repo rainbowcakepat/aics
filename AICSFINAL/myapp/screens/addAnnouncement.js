@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Text, TextInput, View, TouchableOpacity, ActivityIndicator, Image, Platform, ActivityIndicatorBase } from 'react-native';
+import { Dimensions, Modal, ScrollView,Alert, Text, TextInput, View, TouchableOpacity, ActivityIndicator, Image, Platform, ActivityIndicatorBase } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import { db } from '../firebase';
 import ImagePicker from 'react-native-image-crop-picker';
 import storage from '@react-native-firebase/storage';
+import LinearGradient from 'react-native-linear-gradient';
+
+import Icon from 'react-native-vector-icons/Feather';
+import Iconss from 'react-native-vector-icons/FontAwesome5';
+
+import {announcementStyles} from '../styles/announcementStyles';
+
+const win = Dimensions.get('window');
 
 //Try
 const AddAnnouncement = ({navigation}) => {
@@ -111,37 +118,59 @@ const AddAnnouncement = ({navigation}) => {
 
 
   return (
-    <View>
-      <Text>Add Announcement</Text>
-
-      <TextInput placeholder={"Title here"} value={titles} onChangeText={(titles) => {setTitle(titles); console.log(`title: ${titles}`)}}></TextInput>
-      <TextInput placeholder={"Content here"} value={contents} onChangeText={(contents) => {setContent(contents); console.log(`content: ${contents}`)}}></TextInput>
-      <TextInput placeholder={"Link here"} value={links} onChangeText={(links) => {setLink(links); console.log(`link: ${links}`)}}></TextInput>
+    <LinearGradient style={announcementStyles.lgOverallContainer} colors= {['#c31432', '#A82712', '#c31432', '#c31432']} >
       
-      <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={choosePhotoFromImageLibrary} >
-        <Text>choose photo here</Text>
-      </TouchableOpacity>
+        <LinearGradient style={announcementStyles.lgTopHeader} colors= {['#A82712', '#A82712','#A82712']}>
+            <View style={announcementStyles.menuBarContainer}></View>
+            <Icon style= {announcementStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={22} onPress={() => navigation.toggleDrawer()}/>
+            <Text style={announcementStyles.titleText}>Add Announcements</Text>
+            <Text style={announcementStyles.subtitleText}>Tell us the latest happenings and updates in CICS, post your announcements now! </Text>
 
-      
-      <Image source={{uri: photo}} style={{ width: 100, height: 200, resizeMode: 'contain'}}></Image>
-      
-      <View style={{ width: 300, height: 20, backgroundColor: 'black'}}>
-              <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={addAnnouncementNow} >
-                <Text>submit</Text>
-              </TouchableOpacity>
-      </View>
+            <TouchableOpacity style={announcementStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
+            </TouchableOpacity>
+            <Image source={require('../assets/aics.png')} style={announcementStyles.aicsLogo}/>
+            
+        </LinearGradient>
 
-      
-
-      {uploading ? (
-        <View>
-          <ActivityIndicator size="large" color='purple'></ActivityIndicator>
-          <Text>{transferred} % Completed </Text>
+        <View style={announcementStyles.vBodyContainer}>
+          <ScrollView style={announcementStyles.svBody}>
+            <Text style={announcementStyles.announcementTitleLabel}>Announcement Title:</Text>
+            <TextInput style={announcementStyles.announcementTitleText} placeholder={"Your Title here..."} value={titles} maxLength={50} multiline={true} numberOfLines={2} onChangeText={(titles) => {setTitle(titles); console.log(`title: ${titles}`)}}></TextInput>
+            <Text style={announcementStyles.announcementContentLabel}>What's the latest news?</Text>
+            <TextInput style={announcementStyles.announcementContentText} placeholder={"Your Content here..."} value={contents} maxLength={450} numberOfLines={7} multiline={true} onChangeText={(contents) => {setContent(contents); console.log(`content: ${contents}`)}}></TextInput>
+            {/* <Text>Link</Text>
+            <TextInput placeholder={"Link here"} value={links}  maxLength={150} numberOfLines={3} multiline={true} onChangeText={(links) => {setLink(links); console.log(`link: ${links}`)}}></TextInput> */}
+          </ScrollView>
         </View>
-        ) :  null
-      }
+   
+        <View style={announcementStyles.btnContainer}>
+          <TouchableOpacity style={announcementStyles.toImage} onPress={choosePhotoFromImageLibrary} >
+            <Iconss name="image" color="white" size={27}/>
+            <Text style={{color: 'white', fontFamily: 'Roboto-Medium'}}>  Attach image</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={announcementStyles.imgContainer}>
+          <ScrollView style={announcementStyles.svImage}>
+            <Image source={{uri: photo}} style={{ width: 500, height: 500, resizeMode: 'contain', alignSelf: 'center'}}></Image>
+          </ScrollView>
+        </View>
+
+        <View style={announcementStyles.submitContainer}>
+          <TouchableOpacity style={announcementStyles.toSubmit} onPress={addAnnouncementNow} >
+              <Text style={announcementStyles.submitText}> SUBMIT</Text>
+          </TouchableOpacity>
+        </View>
+
+        {uploading ? (
+          <Modal>
+            <ActivityIndicator size="large" color='purple'></ActivityIndicator>
+            <Text>{transferred} % Completed </Text>
+          </Modal>
+          ) :  null
+        }
       
-    </View>
+    </LinearGradient>
   )
 }
 export default AddAnnouncement;
