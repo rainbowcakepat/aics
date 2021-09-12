@@ -20,7 +20,7 @@ export const announcementStyles = StyleSheet.create({
         height: 35, 
         width: 40, 
         marginTop: 13, 
-        marginLeft: 14, 
+        marginLeft: 17, 
         opacity: 0.2, 
         borderRadius: 10, 
         backgroundColor: 'black',
@@ -29,12 +29,12 @@ export const announcementStyles = StyleSheet.create({
 
     menuBarIcon: {
         marginTop: 18, 
-        marginLeft: 23
+        marginLeft: 17
     },
 
     titleText: {
         marginLeft: 15, 
-        marginTop: 26, 
+        marginTop: 20, 
         fontSize: 35, 
         marginBottom: -5,
         fontFamily: 'Poppins-Medium',
@@ -89,40 +89,41 @@ export const announcementStyles = StyleSheet.create({
 
     announcementTitleLabel:{
         marginBottom: 8,
-        fontSize: 20,
-        color: '#790404',
-        fontFamily: 'Roboto-Medium',
+        fontSize: 18,
+        color: '#A70B0E',
+        fontFamily: 'Poppins-Medium',
     },
 
     announcementTitleText: {
         paddingLeft: 40,
         paddingRight: 25,
         marginBottom: 15,
-        borderLeftWidth: 20,
-        borderColor: '#8B0000',
+        borderLeftWidth: 12,
+        borderColor: '#CB0A0D',
         borderRadius: 18,
         fontSize: 15,
         color: 'black',
-        backgroundColor: '#FFEAEA',
+        backgroundColor: '#FCF6F6',
     },
 
     announcementContentLabel: {
         marginBottom: 8,
-        fontSize: 20,
-        color: '#790404',
-        fontFamily: 'Roboto-Medium',
+        fontSize: 18,
+        color: '#A70B0E',
+        fontFamily: 'Poppins-Medium',
+        // fontFamily: 'Roboto-Medium',
     },
 
     announcementContentText:{
         paddingLeft: 40,
         paddingRight: 25,
         marginBottom: 20,
-        borderLeftWidth: 20,
-        borderColor: '#8B0000',
+        borderLeftWidth: 12,
+        borderColor: '#CB0A0D',
         borderRadius: 18,
         fontSize: 15,
         color: 'black',
-        backgroundColor: '#FFEAEA',
+        backgroundColor: '#FCF6F6',
 
         
     },
@@ -142,7 +143,7 @@ export const announcementStyles = StyleSheet.create({
         alignSelf: 'flex-end',
         flexDirection:'row',
         borderRadius: 20,
-        backgroundColor: '#8B0000',
+        backgroundColor: '#CB0A0D',
 
         shadowColor: "#000",
         shadowOffset: {
@@ -178,10 +179,10 @@ export const announcementStyles = StyleSheet.create({
     toSubmit: {
         width: 350, 
         height: 33, 
-        marginTop: 3,
+        marginTop: -1,
         borderRadius: 20, 
         alignSelf:'center', 
-        backgroundColor:'#790404',
+        backgroundColor:'#CB0A0D',
         
         shadowColor: "#000",
         shadowOffset: {

@@ -8,7 +8,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
 
-import {announcementStyles} from '../styles/announcementStyles';
+import {announcementStyles} from '../../styles/announcementStyles';
 
 const win = Dimensions.get('window');
 
@@ -121,24 +121,24 @@ const AddAnnouncement = ({navigation}) => {
   return (
     <LinearGradient style={announcementStyles.lgOverallContainer} colors= {['#c31432', '#A82712', '#c31432', '#c31432']} >
       
-        <LinearGradient style={announcementStyles.lgTopHeader} colors= {['#A82712', '#A82712','#A82712']}>
-            <View style={announcementStyles.menuBarContainer}></View>
-            <Icon style= {announcementStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={22} onPress={() => navigation.toggleDrawer()}/>
+        <LinearGradient style={announcementStyles.lgTopHeader} colors= {['#CB0A0D', '#CB0A0D', ]}>
+            {/* <TouchableOpacity style={announcementStyles.menuBarContainer}></TouchableOpacity> */}
+            <Icon style= {announcementStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
             <Text style={announcementStyles.titleText}>Add Announcements</Text>
             <Text style={announcementStyles.subtitleText}>Tell us the latest happenings and updates in CICS, post your announcements now! </Text>
 
             <TouchableOpacity style={announcementStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
             </TouchableOpacity>
-            <Image source={require('../assets/aics.png')} style={announcementStyles.aicsLogo}/>
+            <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
             
         </LinearGradient>
 
         <View style={announcementStyles.vBodyContainer}>
           <ScrollView style={announcementStyles.svBody}>
-            <Text style={announcementStyles.announcementTitleLabel}>Announcement Title:</Text>
+            <Text style={announcementStyles.announcementTitleLabel}>Announcement Title: *</Text>
             <TextInput style={announcementStyles.announcementTitleText} placeholder={"Your Title here..."} value={titles} maxLength={50} multiline={true} numberOfLines={2} onChangeText={(titles) => {setTitle(titles); console.log(`title: ${titles}`)}}></TextInput>
             <Text style={announcementStyles.announcementContentLabel}>What's the latest news?</Text>
-            <TextInput style={announcementStyles.announcementContentText} placeholder={"Your Content here..."} value={contents} maxLength={450} numberOfLines={7} multiline={true} onChangeText={(contents) => {setContent(contents); console.log(`content: ${contents}`)}}></TextInput>
+            <TextInput style={announcementStyles.announcementContentText} placeholder={"Your Content here..."} value={contents} maxLength={550} numberOfLines={7} multiline={true} onChangeText={(contents) => {setContent(contents); console.log(`content: ${contents}`)}}></TextInput>
             {/* <Text>Link</Text>
             <TextInput placeholder={"Link here"} value={links}  maxLength={150} numberOfLines={3} multiline={true} onChangeText={(links) => {setLink(links); console.log(`link: ${links}`)}}></TextInput> */}
           </ScrollView>
@@ -153,7 +153,7 @@ const AddAnnouncement = ({navigation}) => {
 
         <View style={announcementStyles.imgContainer}>
           <ScrollView style={announcementStyles.svImage}>
-            <Image source={{uri: photo}} style={{ width: 500, height: 500, resizeMode: 'contain', alignSelf: 'center'}}></Image>
+            <Image source={{uri: photo ? photo : null}} style={{ width: 500, height: 500, resizeMode: 'contain', alignSelf: 'center'}}></Image>
           </ScrollView>
         </View>
 

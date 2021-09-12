@@ -114,12 +114,9 @@ const Announcement = ({navigation}) => {
         setisModalVisible(true);
         setNewTitles(item.titles);
         setNewContents(item.contents);
-        setNewLinks(item.links);
         setNewPhoto(item.photo);
         setNewId(item.key);  
         setNewURL(item.url);        
-        // console.log(item.titles);
-        // console.log(item.links);
         console.log(item.titles, item.key, item.url);
       }
       
@@ -143,7 +140,7 @@ const Announcement = ({navigation}) => {
         .doc(id)
         .update({
           titles: newTitles,
-          links: newLinks,
+          // links: newLinks,
           contents: newContents,
           photo: newPhoto,
           url: newUrl,
@@ -171,7 +168,7 @@ const Announcement = ({navigation}) => {
       const archiveannouncements = await firestore().collection('allArchivedAnnouncements').doc();
 
       archiveannouncements.set({
-        archivedlinks: orig.links,
+        // archivedlinks: orig.links,
         archivedtitles: orig.titles,
         archivedcontents: orig.contents,
         archivedposttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
@@ -229,10 +226,10 @@ const Announcement = ({navigation}) => {
             <View style={{flex: 1, }}>
               <Text>Title: {item.titles}</Text>
               <Text>Content: {item.contents}</Text>
-              <Text>Link: {item.links}</Text>
+              {/* <Text>Link: {item.links}</Text> */}
               <Text>Time: { item.posttime}</Text>
-              <Text>ID Key: { item.key}</Text>
-              <Text>Photo ID: { item.photo}</Text>
+              {/* <Text>ID Key: { item.key}</Text>
+              <Text>Photo ID: { item.photo}</Text> */}
               <Text>Photo Url: { item.url}</Text>
       
               <Image source={ item.url == null ? null: {uri: item.url}} style={{ width: 100, height: 200, resizeMode: 'contain'}}></Image>
@@ -268,12 +265,12 @@ const Announcement = ({navigation}) => {
                   </TextInput>
 
                   
-                  <TextInput onChangeText={(text) => setNewLinks(text)}
+                  {/* <TextInput onChangeText={(text) => setNewLinks(text)}
                   placeholder={'Links'}
                   value={newLinks}
                   multiline={false}
                   maxLength={200}>
-                  </TextInput>
+                  </TextInput> */}
 
                   <TouchableOpacity style={{ width: 300, height: 20, backgroundColor: loader ? 'gray' : 'purple'}} onPress={() => choosePhotoFromImageLibrary()} >
                    <Text>choose photo here</Text>
