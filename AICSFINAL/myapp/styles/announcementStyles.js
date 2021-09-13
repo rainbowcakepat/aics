@@ -35,7 +35,7 @@ export const announcementStyles = StyleSheet.create({
     titleText: {
         marginLeft: 15, 
         marginTop: 20, 
-        fontSize: 35, 
+        fontSize: 33, 
         marginBottom: -5,
         fontFamily: 'Poppins-Medium',
         color: 'white', 
@@ -43,10 +43,10 @@ export const announcementStyles = StyleSheet.create({
 
     subtitleText: {
         marginLeft: 20, 
-        marginRight: 15,
+        marginRight: 35,
         marginBottom: 3,
         lineHeight: 20,
-        fontSize: 13, 
+        fontSize: 14, 
         fontFamily: 'Poppins-Italic',
         color: 'white',  
     },
@@ -104,6 +104,7 @@ export const announcementStyles = StyleSheet.create({
         fontSize: 15,
         color: 'black',
         backgroundColor: '#FCF6F6',
+        fontFamily: 'Poppins-Medium',
     },
 
     announcementContentLabel: {
@@ -124,6 +125,7 @@ export const announcementStyles = StyleSheet.create({
         fontSize: 15,
         color: 'black',
         backgroundColor: '#FCF6F6',
+        fontFamily: 'Poppins-Medium',
 
         
     },
@@ -200,9 +202,9 @@ export const announcementStyles = StyleSheet.create({
         alignSelf:'center', 
         marginTop: 2, 
         fontSize: 18,
-        letterSpacing: 1,
-        fontFamily: 'Poppins-Medium',
-    },
+        letterSpacing: 0.5,
+        fontFamily: 'Poppins-SemiBold',
+    }
 
 
 

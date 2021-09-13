@@ -21,6 +21,7 @@ const win = Dimensions.get('window');
 import AnnouncementComponent from './announcementComponent';
 
 const AnnouncementAdmin = ({navigation}) => {
+
   const [searchTerm, setSearchTerm] = useState('');
   const [posts, setPosts] = useState(null);
   const [loader, setLoading] = useState(false);
@@ -56,7 +57,6 @@ const AnnouncementAdmin = ({navigation}) => {
         });
         setPosts(posts);
         setLoading(true);
-        // console.log(posts);
       });
     // Unsubscribe from events when no longer in use
     return () => fetchAnnouncements();
@@ -239,6 +239,7 @@ const AnnouncementAdmin = ({navigation}) => {
     deletethis.delete();
   };
 
+
   let searchtitles = null;
 
   if (loader) {
@@ -346,12 +347,12 @@ const AnnouncementAdmin = ({navigation}) => {
   }
 
   if (searchtitles.length < 1) {
-    searchtitles = <Text>Search not found.</Text>;
+    searchtitles = <Text>No Announcements found</Text>;
   }
 
   return (
     <View>
-      <Text>Announcements here *</Text>
+      <Text>Announcements here</Text>
       <TextInput
         placeholder={'Search'}
         onChangeText={text => {
@@ -361,11 +362,15 @@ const AnnouncementAdmin = ({navigation}) => {
 
       <ScrollView
         pagingEnabled={true}
-        style={{height: window.height, marginVertical: 100}}>
+        style={{height: window.height, marginBottom: 100}}>
         {searchtitles}
       </ScrollView>
       {/* <View style={{backgroundColor: 'red', marginVertical: 100}}></View> */}
-    </View>
+        
+
+      </View>
+    
+   
   );
 };
 export default AnnouncementAdmin;

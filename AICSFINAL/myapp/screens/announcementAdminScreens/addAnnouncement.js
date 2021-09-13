@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, Modal, ScrollView,Alert, Text, TextInput, View, TouchableOpacity, ActivityIndicator, Image, Platform, ActivityIndicatorBase } from 'react-native';
+import { Dimensions, Modal, ScrollView,Alert, Text, TextInput, View, TouchableOpacity, 
+ActivityIndicator, Image, Platform, ActivityIndicatorBase } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import ImagePicker from 'react-native-image-crop-picker';
 import storage from '@react-native-firebase/storage';
@@ -17,9 +18,12 @@ const AddAnnouncement = ({navigation}) => {
 
   const time =  new Date().getDate();
   const [titles, setTitle] = useState('');
-  const [links, setLink] = useState('');
+  // const [links, setLink] = useState('');
   const [contents, setContent] = useState('');
   const [loader, setLoading] = useState(false);
+
+  const [validate1, setValidation1] = useState(false);
+  const [validate2, setValidation2] = useState(false);
   
   const [photo, setPhoto] = useState(null);
   const [url, setURL] = useState('');
@@ -28,6 +32,7 @@ const AddAnnouncement = ({navigation}) => {
 
 
   const addAnnouncementNow = async() => {
+
     const ids = await firestore().collection('allAnnouncements').doc();
     
     ids.set({
@@ -45,12 +50,15 @@ const AddAnnouncement = ({navigation}) => {
       setContent(null);
       setPhoto(null);
       setURL(null);
+      setValidation1(null);
+      setValidation2(null);
 
       if (photo == null) {
         Alert.alert('Successfully Posted!');
       } else {
         uploadPhoto(ids.id);
       }
+
     })
     .catch((error) => {
       console.log('Something went wrong', error);
@@ -135,10 +143,10 @@ const AddAnnouncement = ({navigation}) => {
 
         <View style={announcementStyles.vBodyContainer}>
           <ScrollView style={announcementStyles.svBody}>
-            <Text style={announcementStyles.announcementTitleLabel}>Announcement Title: *</Text>
-            <TextInput style={announcementStyles.announcementTitleText} placeholder={"Your Title here..."} value={titles} maxLength={50} multiline={true} numberOfLines={2} onChangeText={(titles) => {setTitle(titles); console.log(`title: ${titles}`)}}></TextInput>
+            <Text style={announcementStyles.announcementTitleLabel}>Announcement Title: </Text>
+            <TextInput style={announcementStyles.announcementTitleText} placeholder={"Your Title here..."} value={titles} maxLength={50} multiline={true} numberOfLines={2} onChangeText={(titles) => {setTitle(titles); setValidation1(titles); console.log(`title: ${titles}`)}}></TextInput>
             <Text style={announcementStyles.announcementContentLabel}>What's the latest news?</Text>
-            <TextInput style={announcementStyles.announcementContentText} placeholder={"Your Content here..."} value={contents} maxLength={550} numberOfLines={7} multiline={true} onChangeText={(contents) => {setContent(contents); console.log(`content: ${contents}`)}}></TextInput>
+            <TextInput style={announcementStyles.announcementContentText} placeholder={"Your Content here..."} value={contents} maxLength={550} numberOfLines={7} multiline={true} onChangeText={(contents) => {setContent(contents); setValidation2(contents); console.log(`content: ${contents}`)}}></TextInput>
             {/* <Text>Link</Text>
             <TextInput placeholder={"Link here"} value={links}  maxLength={150} numberOfLines={3} multiline={true} onChangeText={(links) => {setLink(links); console.log(`link: ${links}`)}}></TextInput> */}
           </ScrollView>
@@ -157,11 +165,17 @@ const AddAnnouncement = ({navigation}) => {
           </ScrollView>
         </View>
 
-        <View style={announcementStyles.submitContainer}>
-          <TouchableOpacity style={announcementStyles.toSubmit} onPress={addAnnouncementNow} >
-              <Text style={announcementStyles.submitText}> SUBMIT</Text>
-          </TouchableOpacity>
-        </View>
+        {
+          validate2 && validate1 ? 
+          <View style={announcementStyles.submitContainer}>
+            <TouchableOpacity style={announcementStyles.toSubmit} onPress={addAnnouncementNow} >
+                <Text style={announcementStyles.submitText}> SUBMIT</Text>
+            </TouchableOpacity>
+          </View> 
+          : 
+         null
+        }
+        
 
         {uploading ? (
           <Modal>
