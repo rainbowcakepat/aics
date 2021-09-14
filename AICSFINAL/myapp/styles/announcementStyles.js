@@ -7,7 +7,9 @@ export const announcementStyles = StyleSheet.create({
 
     //Overall Container: Red
     lgOverallContainer: {
+        flex:1,
         height: win.height,
+       
     },
 
     //Top Header: Black
@@ -28,14 +30,14 @@ export const announcementStyles = StyleSheet.create({
     },
 
     menuBarIcon: {
-        marginTop: 18, 
+        marginTop: 16, 
         marginLeft: 17
     },
 
     titleText: {
         marginLeft: 15, 
-        marginTop: 20, 
-        fontSize: 33, 
+        marginTop: 22, 
+        fontSize: hp(4.4), //34
         marginBottom: -5,
         fontFamily: 'Poppins-Medium',
         color: 'white', 
@@ -46,15 +48,15 @@ export const announcementStyles = StyleSheet.create({
         marginRight: 35,
         marginBottom: 3,
         lineHeight: 20,
-        fontSize: 14, 
+        fontSize: hp(1.85),  //14
         fontFamily: 'Poppins-Italic',
         color: 'white',  
     },
 
     aicsLogo: {
         width: 70,
-        height: 50,
-        marginTop: 2,
+        height: 48,
+        marginTop: 5,
         marginLeft: 334,
         opacity: 1,
         position: 'absolute',
@@ -75,7 +77,7 @@ export const announcementStyles = StyleSheet.create({
 
     vBodyContainer:{
         flex: 4, 
-        marginTop: -40,
+        marginTop: -20,
         backgroundColor: 'white', 
         borderTopLeftRadius: 30, 
         borderTopRightRadius: 30, 
@@ -89,7 +91,7 @@ export const announcementStyles = StyleSheet.create({
 
     announcementTitleLabel:{
         marginBottom: 8,
-        fontSize: 18,
+        fontSize: hp(2.5), //18
         color: '#A70B0E',
         fontFamily: 'Poppins-Medium',
     },
@@ -101,7 +103,7 @@ export const announcementStyles = StyleSheet.create({
         borderLeftWidth: 12,
         borderColor: '#CB0A0D',
         borderRadius: 18,
-        fontSize: 15,
+        fontSize: hp(2), //14
         color: 'black',
         backgroundColor: '#FCF6F6',
         fontFamily: 'Poppins-Medium',
@@ -109,7 +111,7 @@ export const announcementStyles = StyleSheet.create({
 
     announcementContentLabel: {
         marginBottom: 8,
-        fontSize: 18,
+        fontSize: hp(2.5), //18
         color: '#A70B0E',
         fontFamily: 'Poppins-Medium',
         // fontFamily: 'Roboto-Medium',
@@ -122,7 +124,7 @@ export const announcementStyles = StyleSheet.create({
         borderLeftWidth: 12,
         borderColor: '#CB0A0D',
         borderRadius: 18,
-        fontSize: 15,
+        fontSize: hp(2), //14
         color: 'black',
         backgroundColor: '#FCF6F6',
         fontFamily: 'Poppins-Medium',
@@ -137,7 +139,8 @@ export const announcementStyles = StyleSheet.create({
     },
     
     toImage :{
-        width: 150,
+        width: 160,
+        height: 28,
         marginTop: 5,
         marginRight: 10,
         alignItems: 'center',
@@ -201,7 +204,7 @@ export const announcementStyles = StyleSheet.create({
         color: 'white',
         alignSelf:'center', 
         marginTop: 2, 
-        fontSize: 18,
+        fontSize: hp(2.6), //18
         letterSpacing: 0.5,
         fontFamily: 'Poppins-SemiBold',
     }

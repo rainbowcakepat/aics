@@ -16,17 +16,12 @@ import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import ImagePicker from 'react-native-image-crop-picker';
 
-import Icon from 'react-native-vector-icons/Feather';
-import Iconss from 'react-native-vector-icons/FontAwesome5';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
 const win = Dimensions.get('window');
 
 import AnnouncementComponent from './announcementComponent';
-import {announcementStyles} from '../../styles/announcementStyles';
-import {announcementComponentStyles} from '../../styles/announcementComponentStyles';
 
 const AnnouncementAdmin = ({navigation}) => {
+
   const [searchTerm, setSearchTerm] = useState('');
   const [posts, setPosts] = useState(null);
   const [loader, setLoading] = useState(false);
@@ -244,6 +239,7 @@ const AnnouncementAdmin = ({navigation}) => {
     deletethis.delete();
   };
 
+
   let searchtitles = null;
 
   if (loader) {
@@ -262,39 +258,28 @@ const AnnouncementAdmin = ({navigation}) => {
       })
       .map((item, key) => {
         return (
-          <View key={key} >
+          <View key={key}>
+            <AnnouncementComponent
+              // item = {item}
+              propsnum={key}
+              propsid={item.key}
+              propstitle={item.titles}
+              propsposttime={item.posttime}
+              propscontent={item.contents}
+              propsimage={item.url}
+            />
 
-            <View style={announcementComponentStyles.vCardContainer}>
-              
-              <AnnouncementComponent 
-                // item = {item}
-                propsnum={key}
-                propsid={item.key}
-                propstitle={item.titles}
-                propsposttime={item.posttime}
-                propscontent={item.contents}
-                propsimage={item.url}
-              />
+            <TouchableOpacity
+              style={{width: 300, height: 20, backgroundColor: 'purple'}}
+              onPress={() => addArchivedAnnouncement(item.key)}>
+              <Text>ARCHIVE</Text>
+            </TouchableOpacity>
 
-              <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
-
-                <TouchableOpacity
-                  style={announcementComponentStyles.toUpdateArchive}
-                  onPress={() => getAnnouncements(item)}>
-                  <Icon name="edit-2" color="white" size={16} style={{ marginBottom: 5 }}/>
-                  <Text style={announcementComponentStyles.txtUpdateArchive}> Edit post  </Text>
-                </TouchableOpacity>
-          
-                <TouchableOpacity
-                  style={announcementComponentStyles.toUpdateArchive}       
-                  onPress={() => addArchivedAnnouncement(item.key)}>
-                  <Icon name="archive" color="white" size={16} style={{ marginBottom: 5 }}/>
-                  <Text style={announcementComponentStyles.txtUpdateArchive}> Archive </Text>
-                </TouchableOpacity>
-
-              </View>
-
-            </View>
+            <TouchableOpacity
+              style={{width: 300, height: 20, backgroundColor: 'purple'}}
+              onPress={() => getAnnouncements(item)}>
+              <Text>UPDATE</Text>
+            </TouchableOpacity>
 
             <Modal
               animationType="fade"
@@ -315,6 +300,13 @@ const AnnouncementAdmin = ({navigation}) => {
                   value={newContents}
                   multiline={true}
                   maxLength={200}></TextInput>
+
+                {/* <TextInput onChangeText={(text) => setNewLinks(text)}
+                  placeholder={'Links'}
+                  value={newLinks}
+                  multiline={false}
+                  maxLength={200}>
+                  </TextInput> */}
 
                 <TouchableOpacity
                   style={{
@@ -351,16 +343,7 @@ const AnnouncementAdmin = ({navigation}) => {
         );
       });
   } else {
-    searchtitles = (
-      <Image
-        source={require('../../assets/./gif/spinner.gif')}
-        style={{
-          width: '50%',
-          height: '60%',
-          resizeMode: 'contain',
-        }}></Image>
-    );
-    // <Text>Dito ko lalagay yung nagloload</Text>
+    searchtitles = <Text>Dito ko lalagay yung nagloload</Text>;
   }
 
   if (searchtitles.length < 1) {
@@ -368,56 +351,26 @@ const AnnouncementAdmin = ({navigation}) => {
   }
 
   return (
-    <View style={announcementComponentStyles.lgOverallContainer}>
+    <View>
+      <Text>Announcements here</Text>
+      <TextInput
+        placeholder={'Search'}
+        onChangeText={text => {
+          setSearchTerm(text);
+          console.log(`search: ${searchTerm}`);
+        }}></TextInput>
 
-      <View style={announcementComponentStyles.lgTopHeader}>
+      <ScrollView
+        pagingEnabled={true}
+        style={{height: window.height, marginBottom: 100}}>
+        {searchtitles}
+      </ScrollView>
+      {/* <View style={{backgroundColor: 'red', marginVertical: 100}}></View> */}
         
-        <Icon style= {announcementComponentStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={announcementComponentStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
-        </TouchableOpacity>
-        <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
-        
-        <View style={{flexDirection: 'row'}}>
-          <View>
-            <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.titleText}>Announcements</Text>
-            <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.subtitleText}>Be informed! View the latest happenings and updates from CICS. </Text>
-          </View>
-          
-        </View>
 
       </View>
-
-      <View style={announcementComponentStyles.vSearchBar}>
-          
-          <Icon name="search" color="#B2B2B2" style={announcementComponentStyles.searchBaricon} size={19}/>
-          <TextInput adjustsFontSizeToFit={true}
-          style={announcementComponentStyles.tiSearch}
-            numberOfLines={1}
-            maxLength={50}
-            placeholder={'Search'}
-            placeholderTextColor={'#B2B2B2'}
-            onChangeText={text => {
-              setSearchTerm(text);
-              console.log(`search: ${searchTerm}`);
-            }}>
-            </TextInput>
-
-      </View>
-
-      <View style={announcementComponentStyles.vAnnouncements}>
-         
-          <TouchableOpacity style={announcementComponentStyles.addBtn}>
-            <Icon name="plus-circle"  style={announcementComponentStyles.plusicon} size={17}/>
-            <Text style={announcementComponentStyles.txtAdd}>   Add an Announcement</Text>
-          </TouchableOpacity>
-
-        <ScrollView adjustsFontSizeToFit
-          pagingEnabled={true}>
-          {searchtitles}
-        </ScrollView>
-      </View>
-      
-    </View>
+    
+   
   );
 };
 export default AnnouncementAdmin;

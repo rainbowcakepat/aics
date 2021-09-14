@@ -13,7 +13,6 @@ import {announcementStyles} from '../../styles/announcementStyles';
 
 const win = Dimensions.get('window');
 
-//Try
 const AddAnnouncement = ({navigation}) => {
 
   const time =  new Date().getDate();
@@ -138,15 +137,14 @@ const AddAnnouncement = ({navigation}) => {
             <TouchableOpacity style={announcementStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
             </TouchableOpacity>
             <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
-            
         </LinearGradient>
 
         <View style={announcementStyles.vBodyContainer}>
           <ScrollView style={announcementStyles.svBody}>
-            <Text style={announcementStyles.announcementTitleLabel}>Announcement Title: </Text>
-            <TextInput style={announcementStyles.announcementTitleText} placeholder={"Your Title here..."} value={titles} maxLength={50} multiline={true} numberOfLines={2} onChangeText={(titles) => {setTitle(titles); setValidation1(titles); console.log(`title: ${titles}`)}}></TextInput>
-            <Text style={announcementStyles.announcementContentLabel}>What's the latest news?</Text>
-            <TextInput style={announcementStyles.announcementContentText} placeholder={"Your Content here..."} value={contents} maxLength={550} numberOfLines={7} multiline={true} onChangeText={(contents) => {setContent(contents); setValidation2(contents); console.log(`content: ${contents}`)}}></TextInput>
+            <Text adjustsFontSizeToFit={true} style={announcementStyles.announcementTitleLabel}>Announcement Title: </Text>
+            <TextInput adjustsFontSizeToFit={true}  style={announcementStyles.announcementTitleText} placeholder={"Your Title here..."} value={titles} maxLength={50} multiline={true} numberOfLines={2} onChangeText={(titles) => {setTitle(titles); setValidation1(titles); console.log(`title: ${titles}`)}}></TextInput>
+            <Text adjustsFontSizeToFit={true}  style={announcementStyles.announcementContentLabel}>What's the latest news?</Text>
+            <TextInput adjustsFontSizeToFit={true}  style={announcementStyles.announcementContentText} placeholder={"Your Content here..."} value={contents} maxLength={550} numberOfLines={7} multiline={true} onChangeText={(contents) => {setContent(contents); setValidation2(contents); console.log(`content: ${contents}`)}}></TextInput>
             {/* <Text>Link</Text>
             <TextInput placeholder={"Link here"} value={links}  maxLength={150} numberOfLines={3} multiline={true} onChangeText={(links) => {setLink(links); console.log(`link: ${links}`)}}></TextInput> */}
           </ScrollView>
@@ -154,8 +152,8 @@ const AddAnnouncement = ({navigation}) => {
    
         <View style={announcementStyles.btnContainer}>
           <TouchableOpacity style={announcementStyles.toImage} onPress={choosePhotoFromImageLibrary} >
-            <Iconss name="image" color="white" size={27}/>
-            <Text style={{color: 'white', fontFamily: 'Roboto-Medium'}}>  Attach image</Text>
+            <Icon name="image" color="white" size={24}/>
+            <Text style={{color: 'white', fontFamily: 'Roboto-Medium'}}> Attach an image</Text>
           </TouchableOpacity>
         </View>
 
@@ -165,7 +163,12 @@ const AddAnnouncement = ({navigation}) => {
           </ScrollView>
         </View>
 
-        {
+        
+        <View style={announcementStyles.submitContainer}>
+            {/* <TouchableOpacity style={ announcementStyles.toSubmit} onPress={addAnnouncementNow} >
+                <Text style={announcementStyles.submitText}> SUBMIT</Text>
+            </TouchableOpacity> */}
+             {
           validate2 && validate1 ? 
           <View style={announcementStyles.submitContainer}>
             <TouchableOpacity style={announcementStyles.toSubmit} onPress={addAnnouncementNow} >
@@ -175,7 +178,8 @@ const AddAnnouncement = ({navigation}) => {
           : 
          null
         }
-        
+          </View> 
+         
 
         {uploading ? (
           <Modal>
