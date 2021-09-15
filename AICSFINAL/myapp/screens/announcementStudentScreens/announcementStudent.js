@@ -11,15 +11,10 @@ import {
   Image,
   ActivityIndicator,
   Dimensions,
-  Button,
 } from 'react-native';
-
-import LinearGradient from 'react-native-linear-gradient';
-
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import ImagePicker from 'react-native-image-crop-picker';
-import ImageModal from 'react-native-image-modal';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
@@ -30,15 +25,12 @@ const win = Dimensions.get('window');
 import AnnouncementComponent from './announcementComponent';
 import {announcementStyles} from '../../styles/announcementStyles';
 import {announcementComponentStyles} from '../../styles/announcementComponentStyles';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import ImageViewer from 'react-native-image-zoom-viewer';
 
 const AnnouncementAdmin = ({navigation}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [posts, setPosts] = useState(null);
   const [loader, setLoading] = useState(false);
 
-  const [isImageModalVisible, setImageModal] = useState(false);
   const [isModalVisible, setisModalVisible] = useState(false);
   const [newTitles, setNewTitles] = useState('');
   const [newContents, setNewContents] = useState('');
@@ -93,7 +85,7 @@ const AnnouncementAdmin = ({navigation}) => {
       });
   };
 
-  const uploadPhoto = async (id) => {
+  const uploadPhoto = async id => {
     const uploadUri = newPhoto;
     let filename = id;
 
@@ -124,7 +116,7 @@ const AnnouncementAdmin = ({navigation}) => {
         .ref('allAnnouncementImages/')
         .child(filename)
         .getDownloadURL()
-        .then(async (url) => {
+        .then(async url => {
           await firestore()
             .collection('allAnnouncements')
             .doc(id)
@@ -145,18 +137,17 @@ const AnnouncementAdmin = ({navigation}) => {
     setNewPhoto(null);
   };
 
-  const getAnnouncements = (item) => {
+  const getAnnouncements = item => {
     setisModalVisible(true);
     setNewTitles(item.titles);
     setNewContents(item.contents);
     setNewPhoto(item.photo);
     setNewId(item.key);
     setNewURL(item.url);
-    setImageModal(true)
     console.log(item.titles, item.key, item.url);
   };
 
-  const onPressSave = (newID) => {
+  const onPressSave = newID => {
     console.log('Gumagana ba to', newID);
     setisModalVisible(false);
 
@@ -190,10 +181,9 @@ const AnnouncementAdmin = ({navigation}) => {
       });
   };
 
- 
   let orig;
 
-  const addArchivedAnnouncement = async (id) => {
+  const addArchivedAnnouncement = async id => {
     const origannouncements = await firestore()
       .collection('allAnnouncements')
       .doc(id)
@@ -209,6 +199,7 @@ const AnnouncementAdmin = ({navigation}) => {
 
     archiveannouncements
       .set({
+        // archivedlinks: orig.links,
         archivedtitles: orig.titles,
         archivedcontents: orig.contents,
         archivedposttime: new Date(
@@ -244,7 +235,7 @@ const AnnouncementAdmin = ({navigation}) => {
       });
   };
 
-  const deleteAnnouncementImage = async (id) => {
+  const deleteAnnouncementImage = async id => {
     const url = await storage()
       .ref('allAnnouncementImages/' + id)
       .getDownloadURL();
@@ -282,7 +273,7 @@ const AnnouncementAdmin = ({navigation}) => {
                 propstitle={item.titles}
                 propsposttime={item.posttime}
                 propscontent={item.contents}
-                // propsimage={item.url}
+                propsimage={item.url}
               />
 
               <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
@@ -308,115 +299,53 @@ const AnnouncementAdmin = ({navigation}) => {
             <Modal
               animationType="fade"
               visible={isModalVisible}
-              onRequestClose={() => setisModalVisible(false)}
-              
-            >
+              onRequestClose={() => setisModalVisible(false)}>
+              <View>
+                <Text>Change Text</Text>
+                <TextInput
+                  onChangeText={text => setNewTitles(text)}
+                  placeholder={'Title'}
+                  value={newTitles}
+                  multiline={false}
+                  maxLength={200}></TextInput>
 
-              <View style={announcementComponentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'#CB0A0D',}}></View>
-                <View style={announcementComponentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={announcementComponentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={announcementComponentStyles.txtEdit}> Edit Announcement</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Medium', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Announcement Title</Text>
-                        
-                    <TextInput
-                    style={announcementComponentStyles.txtTitle}
-                    onChangeText={text => setNewTitles(text)}
-                    placeholder={'Title'}
-                    placeholderTextColor={'#B2B2B2'}
-                    value={newTitles}
-                    multiline={true}
-                    numberOfLines={2}
-                    maxLength={50}>
-                </TextInput>
-                 
-                </View>
-                
+                <TextInput
+                  onChangeText={text => setNewContents(text)}
+                  placeholder={'Content'}
+                  value={newContents}
+                  multiline={true}
+                  maxLength={200}></TextInput>
 
-                <View style={announcementComponentStyles.vtxtContent}>
-                  
-                  <Text style={{fontFamily: 'Poppins-Medium', textAlign: 'left', fontSize: hp(2), 
-                  color:'gray', }}>Announcement Content:</Text>
-                    
-                  <TextInput
-                    style={announcementComponentStyles.txtContent}
-                    onChangeText={text => setNewContents(text)}
-                    placeholder={'Content'}
-                    placeholderTextColor={'#B2B2B2'}
-                    value={newContents}
-                    multiline={true}
-                    // numberOfLines={12}
-                    maxLength={550}></TextInput>
-                </View>
+                <TouchableOpacity
+                  style={{
+                    width: 300,
+                    height: 20,
+                    backgroundColor: loader ? 'gray' : 'purple',
+                  }}
+                  onPress={() => choosePhotoFromImageLibrary()}>
+                  <Text>choose photo here</Text>
+                </TouchableOpacity>
 
-                <View style={{backgroundColor: '#F5F5F5', flex:1,}}> 
-                  <TouchableOpacity style={announcementComponentStyles.toPhoto} onPress={choosePhotoFromImageLibrary} >
-                    <Icon name="image" color="white" size={21}/>
-                    <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(2)}}> Attach an image</Text>
-                  </TouchableOpacity>
-                </View>
-
-                {/* {newUrl == null && newPhoto == null ? */}
-                  <ScrollView style={announcementComponentStyles.imageContainer}>
-
-                  {/* <Image
-                   source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : null}}
-                   style={{
-                     width: 500,
-                     height: 500,
-                     resizeMode: 'contain',
-                   }}>
-                   </Image> */}
-{/* 
-                  {
-                    newUrl && newPhoto ? 
-                    <ImageModal
+                <View>
+                  <Image
                     source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : null}}
                     style={{
-                      width: 500,
-                      height: 500,
-                      resizeMode: 'contain',}}
-                  />
-                 :
-                    <Text>Meron</Text>
-                  } */}
-                 <ImageModal
-                    source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : null}}
-                    style={{
-                      width: 500,
-                      height: 500,
-                      resizeMode: 'contain',}}
-                 />
-      
-               </ScrollView>
-                  {/* : 
-                  null
-                } */}
-
-
-                <View style={announcementComponentStyles.vSaveCancel}>
-                  <TouchableOpacity style={announcementComponentStyles.btnSave}
-                  onPress={() => onPressSave(newID)}>
-                    <Text style={announcementComponentStyles.txtSave}>Save</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={announcementComponentStyles.btnCancel}
-                  onPress={() => setisModalVisible(false)}>
-                    <Text style={announcementComponentStyles.txtCancel}>Cancel</Text>
-                  </TouchableOpacity>
+                      width: '50%',
+                      height: '60%',
+                      resizeMode: 'contain',
+                    }}></Image>
+                  {/* <Image source={  {uri: newPhoto} || {uri: newUrl}} style={{ width: '50%', height: '60%', resizeMode: 'contain'}}>
+                    </Image> */}
                 </View>
-                
+
+                <TouchableOpacity onPress={() => onPressSave(newID)}>
+                  <Text>Save</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => setisModalVisible(false)}>
+                  <Text>Cancel</Text>
+                </TouchableOpacity>
               </View>
-
-            
-
             </Modal>
           </View>
         );
@@ -487,14 +416,6 @@ const AnnouncementAdmin = ({navigation}) => {
           {searchtitles}
         </ScrollView>
       </View>
-
-      {uploading ? (
-          <Modal>
-            <ActivityIndicator size="large" color='purple'></ActivityIndicator>
-            <Text>{transferred} % Completed </Text>
-          </Modal>
-          ) :  null
-        }
       
     </View>
   );

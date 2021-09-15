@@ -7,15 +7,15 @@ export const announcementStyles = StyleSheet.create({
 
     //Overall Container: Red
     lgOverallContainer: {
-        flex:1,
         height: win.height,
+        width: win.width,
        
     },
 
     //Top Header: Black
     lgTopHeader: {
         flex: 2.65, 
-        backgroundColor: 'red',
+        backgroundColor: '#CB0A0D',
     },
 
     menuBarContainer: {
@@ -139,7 +139,7 @@ export const announcementStyles = StyleSheet.create({
     },
     
     toImage :{
-        width: 160,
+        width: 175,
         height: 28,
         marginTop: 5,
         marginRight: 10,
@@ -177,7 +177,7 @@ export const announcementStyles = StyleSheet.create({
     //Submit Container:
 
     submitContainer: {
-        flex: 0.6, 
+        flex: 1, 
         backgroundColor: 'white'
     },
 
@@ -187,7 +187,8 @@ export const announcementStyles = StyleSheet.create({
         marginTop: -1,
         borderRadius: 20, 
         alignSelf:'center', 
-        backgroundColor:'#CB0A0D',
+        backgroundColor:'#CB0A0D', //#FFB0B2
+
         
         shadowColor: "#000",
         shadowOffset: {
@@ -207,9 +208,9 @@ export const announcementStyles = StyleSheet.create({
         fontSize: hp(2.6), //18
         letterSpacing: 0.5,
         fontFamily: 'Poppins-SemiBold',
-    }
+    },
 
-
+  
 
 
 

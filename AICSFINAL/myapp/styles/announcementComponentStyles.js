@@ -8,8 +8,9 @@ export const announcementComponentStyles = StyleSheet.create({
       //Overall Container: Red
     lgOverallContainer: {
        height: win.height,
+       width: win.width,
        backgroundColor: '#CB0A0D',
-        // flex: 1,
+       flex: 1,
     },
 
     //Top Header: Black
@@ -124,18 +125,7 @@ export const announcementComponentStyles = StyleSheet.create({
         borderRadius: 50,
         borderColor: '#CB0A0D',
         borderWidth: 1,
-        // backgroundColor: '#F5293B',
-        // position: 'absolute',
-
-        // shadowColor: "#000",
-        // shadowOffset: {
-        //     width: 0,
-        //     height: 2,
-        // },
-        // shadowOpacity: 0.23,
-        // shadowRadius: 2.62,
-
-        // elevation: 4,
+       
 
     },
 
@@ -194,7 +184,183 @@ export const announcementComponentStyles = StyleSheet.create({
         textAlignVertical: 'center',
         fontFamily: 'Poppins-Medium',
         color:'#CB0A0D',
-    }
+    },
+
+    //MODAL
+    vModalContainer: {
+        height: win.height,
+        // backgroundColor: '#FDDFE2' 
+        backgroundColor: '#CB0A0D',
+    },
+
+    vtxtTitle:{
+        flex: 3,
+        paddingTop: 16,
+        paddingHorizontal: 20,
+        paddingBottom: 10,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        flexDirection: 'column',
+        backgroundColor: 'white', 
+        //'#F5F5F5'
+        // white #F1F1F1 - gray
+    },
+
+    txtTitle: {
+        padding: 0,
+        fontSize: hp(3.30), //18
+        color: '#CB0A0D',
+        fontFamily: 'Poppins-Medium',
+    },
+
+    toAnnouncement: { //EDIT
+        width: 210, 
+        height: 32, 
+        flexDirection: 'row',
+        marginTop: 5,
+        marginBottom: 20,
+        backgroundColor: '#8E8E8E', 
+        justifyContent: "center", 
+        // alignSelf: 'center', 
+      
+        borderRadius: 15,
+        borderColor: 'black',
+    },
+
+    txtEdit:{
+        fontSize: hp(2.3),
+        alignSelf: 'center',   
+        justifyContent: "center", 
+        alignItems: 'center',
+        textAlignVertical: 'center',
+        textAlign: 'center',
+        fontFamily: 'Poppins-Medium',
+        color: 'white',
+    },
+
+  
+    vtxtContent:{
+        flex: 4, 
+        backgroundColor: '#F5F5F5',
+        // borderTopLeftRadius: 30,
+        // borderTopRightRadius: 30,      
+        paddingTop: 20,
+        paddingLeft: 20,
+        paddingBottom: 0,
+        paddingRight: 40,
+    },
+
+    txtContent:{  
+        lineHeight: 23,
+        textAlign: 'justify',
+        fontSize: hp(2.2),
+        color: '#2B2F3B',
+        fontFamily: 'Poppins-Regular',
+        // backgroundColor: 'white', 
+    },
+
+    toPhoto: {
+        width: 175,
+        height: 28,
+        marginTop: 10,
+        marginRight: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
+        flexDirection:'row',
+        borderRadius: 20,
+        backgroundColor: '#F75462',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+
+    },
+
+    //light white = #F5F5F5
+    imageContainer: {
+        flex: 1, 
+        backgroundColor: '#F5F5F5', 
+        alignSelf:'center',        
+    },
+
+    vSaveCancel:{
+        flexDirection: 'row', 
+        justifyContent:'space-between',
+        flex: 1,
+        paddingHorizontal: 30,
+        paddingBottom: 20,
+        // backgroundColor: '#F5F5F5', 
+        backgroundColor: 'white',
+    },
+
+    btnSave: {
+        width: 160,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
+        flexDirection:'row',
+        borderRadius: 20,
+        backgroundColor: '#CB0A0D',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+
+    },
+
+    btnCancel: {
+        width: 160,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
+        flexDirection:'row',
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#CB0A0D',
+        backgroundColor: 'white',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+
+    },
+
+    txtSave: {
+        fontSize: hp(2.3),
+        color: 'white',
+        fontFamily: 'Poppins-Regular',
+    },
+
+    txtCancel: {
+        fontSize: hp(2.3),
+        color: 'black',
+        fontFamily: 'Poppins-Regular',
+    },
+
+
+
+
+    
+
+
 
 
 });

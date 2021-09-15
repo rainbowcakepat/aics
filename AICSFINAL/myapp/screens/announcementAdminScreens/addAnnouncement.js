@@ -8,6 +8,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import {announcementStyles} from '../../styles/announcementStyles';
 
@@ -25,7 +26,7 @@ const AddAnnouncement = ({navigation}) => {
   const [validate2, setValidation2] = useState(false);
   
   const [photo, setPhoto] = useState(null);
-  const [url, setURL] = useState('');
+  const [url, setURL] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
 
@@ -153,7 +154,7 @@ const AddAnnouncement = ({navigation}) => {
         <View style={announcementStyles.btnContainer}>
           <TouchableOpacity style={announcementStyles.toImage} onPress={choosePhotoFromImageLibrary} >
             <Icon name="image" color="white" size={24}/>
-            <Text style={{color: 'white', fontFamily: 'Roboto-Medium'}}> Attach an image</Text>
+            <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(2)}}> Attach an image</Text>
           </TouchableOpacity>
         </View>
 
