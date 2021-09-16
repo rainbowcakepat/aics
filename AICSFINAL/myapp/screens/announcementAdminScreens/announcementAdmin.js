@@ -12,6 +12,7 @@ import {
   ActivityIndicator,
   Dimensions,
   Button,
+  ImageBackground
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -31,7 +32,6 @@ import AnnouncementComponent from './announcementComponent';
 import {announcementStyles} from '../../styles/announcementStyles';
 import {announcementComponentStyles} from '../../styles/announcementComponentStyles';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import ImageViewer from 'react-native-image-zoom-viewer';
 
 const AnnouncementAdmin = ({navigation}) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -288,14 +288,14 @@ const AnnouncementAdmin = ({navigation}) => {
               <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
 
                 <TouchableOpacity
-                  style={announcementComponentStyles.toUpdateArchive}
+                  style={announcementComponentStyles.toUpdate}
                   onPress={() => getAnnouncements(item)}>
                   <Icon name="edit-2" color="white" size={16} style={{ marginBottom: 5 }}/>
                   <Text style={announcementComponentStyles.txtUpdateArchive}> Edit post  </Text>
                 </TouchableOpacity>
           
                 <TouchableOpacity
-                  style={announcementComponentStyles.toUpdateArchive}       
+                  style={announcementComponentStyles.toArchive}       
                   onPress={() => addArchivedAnnouncement(item.key)}>
                   <Icon name="archive" color="white" size={16} style={{ marginBottom: 5 }}/>
                   <Text style={announcementComponentStyles.txtUpdateArchive}> Archive </Text>
@@ -314,8 +314,8 @@ const AnnouncementAdmin = ({navigation}) => {
 
               <View style={announcementComponentStyles.vModalContainer}>
                 
-                <View style={{flex:1, backgroundColor:'#CB0A0D',}}></View>
-                <View style={announcementComponentStyles.vtxtTitle} >
+                <View style={{flex:1, backgroundColor:'white',}}></View>
+                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={announcementComponentStyles.vtxtTitle} >
                     
                     <TouchableWithoutFeedback
                       style={announcementComponentStyles.toAnnouncement}>
@@ -323,8 +323,8 @@ const AnnouncementAdmin = ({navigation}) => {
                       <Text style={announcementComponentStyles.txtEdit}> Edit Announcement</Text>
                     </TouchableWithoutFeedback>
   
-                    <Text style={{fontFamily: 'Poppins-Medium', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Announcement Title</Text>
+                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
+                    color:'#F5F5F5', }}>Announcement Title</Text>
                         
                     <TextInput
                     style={announcementComponentStyles.txtTitle}
@@ -337,12 +337,12 @@ const AnnouncementAdmin = ({navigation}) => {
                     maxLength={50}>
                 </TextInput>
                  
-                </View>
+                </ImageBackground>
                 
 
                 <View style={announcementComponentStyles.vtxtContent}>
                   
-                  <Text style={{fontFamily: 'Poppins-Medium', textAlign: 'left', fontSize: hp(2), 
+                  <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
                   color:'gray', }}>Announcement Content:</Text>
                     
                   <TextInput
@@ -358,8 +358,10 @@ const AnnouncementAdmin = ({navigation}) => {
 
                 <View style={{backgroundColor: '#F5F5F5', flex:1,}}> 
                   <TouchableOpacity style={announcementComponentStyles.toPhoto} onPress={choosePhotoFromImageLibrary} >
-                    <Icon name="image" color="white" size={21}/>
-                    <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(2)}}> Attach an image</Text>
+                    {/* <Icon name="plus" color="white" size={21}/>
+                    <Icon name="image" color="white" size={21}/> */}
+                     <Image source={require('../../assets/./icons/addimage.png')} style={{height: 40, width: 45}}></Image>
+                    {/* <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(2)}}> Attach an image</Text> */}
                   </TouchableOpacity>
                 </View>
 

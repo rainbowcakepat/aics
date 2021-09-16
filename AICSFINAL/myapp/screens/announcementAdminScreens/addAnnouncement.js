@@ -153,9 +153,12 @@ const AddAnnouncement = ({navigation}) => {
    
         <View style={announcementStyles.btnContainer}>
           <TouchableOpacity style={announcementStyles.toImage} onPress={choosePhotoFromImageLibrary} >
-            <Icon name="image" color="white" size={24}/>
-            <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(2)}}> Attach an image</Text>
+            {/* <Icon name="image" color="white" size={24}/>
+            <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(2)}}> Attach an image</Text> */}
+           <Image source={require('../../assets/./icons/addimage.png')} style={{height: 40, width: 45}}></Image>
+
           </TouchableOpacity>
+
         </View>
 
         <View style={announcementStyles.imgContainer}>

@@ -22,6 +22,7 @@ import AddAnnouncement from './screens/./announcementAdminScreens/addAnnouncemen
 import ViewAnnouncementAdmin from './screens/./announcementAdminScreens/announcementAdmin';
 
 //Student Announcements
+import ViewAnnouncementStudent from './screens/./announcementStudentScreens/announcementStudent';
 import LoadingScreen from './screens/loadingScreen';
 import ChangePass from './screens/changePassword';
 import HomeScreenF from './screens/homeScreenF';
@@ -58,6 +59,21 @@ export default function App() {
             drawerIcon: () => null,
           }}
         />
+
+      <Drawer.Screen
+          name="View Announcement_Student"
+          component={ViewAnnouncementStudent}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="info-circle"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        /> 
 
       <Drawer.Screen
           name="View Announcement_Admin"

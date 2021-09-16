@@ -163,11 +163,22 @@ export const announcementComponentStyles = StyleSheet.create({
 
     },
 
-    toUpdateArchive:{
+    toUpdate:{
         width: 150, 
         height: 30, 
         flexDirection: 'row',
-        backgroundColor: '#F75462',  //#FFC1CE FB6D77
+        backgroundColor: '#FF8080',  //#FFC1CE FB6D77
+        borderRadius: 20, 
+        justifyContent: "center", 
+        alignItems: "center",        
+
+    },
+
+    toArchive:{
+        width: 150, 
+        height: 30, 
+        flexDirection: 'row',
+        backgroundColor: '#ACABAB',  //#FFC1CE FB6D77
         borderRadius: 20, 
         justifyContent: "center", 
         alignItems: "center",        
@@ -190,7 +201,33 @@ export const announcementComponentStyles = StyleSheet.create({
     vModalContainer: {
         height: win.height,
         // backgroundColor: '#FDDFE2' 
-        backgroundColor: '#CB0A0D',
+        backgroundColor: 'white',
+    },
+   
+
+    toAnnouncement: { //EDIT
+        width: 210, 
+        height: 32, 
+        flexDirection: 'row',
+        marginTop: 5,
+        marginBottom: 20,
+        backgroundColor: '#B65858', 
+        justifyContent: "center", 
+        // alignSelf: 'center', 
+      
+        borderRadius: 15,
+        borderColor: 'black',
+    },
+
+    txtEdit:{
+        fontSize: hp(1.9),
+        alignSelf: 'center',   
+        justifyContent: "center", 
+        alignItems: 'center',
+        textAlignVertical: 'center',
+        textAlign: 'center',
+        fontFamily: 'Poppins-Regular',
+        color: 'white',
     },
 
     vtxtTitle:{
@@ -201,7 +238,16 @@ export const announcementComponentStyles = StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         flexDirection: 'column',
-        backgroundColor: 'white', 
+        overflow: 'hidden',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
         //'#F5F5F5'
         // white #F1F1F1 - gray
     },
@@ -209,35 +255,9 @@ export const announcementComponentStyles = StyleSheet.create({
     txtTitle: {
         padding: 0,
         fontSize: hp(3.30), //18
-        color: '#CB0A0D',
-        fontFamily: 'Poppins-Medium',
-    },
-
-    toAnnouncement: { //EDIT
-        width: 210, 
-        height: 32, 
-        flexDirection: 'row',
-        marginTop: 5,
-        marginBottom: 20,
-        backgroundColor: '#8E8E8E', 
-        justifyContent: "center", 
-        // alignSelf: 'center', 
-      
-        borderRadius: 15,
-        borderColor: 'black',
-    },
-
-    txtEdit:{
-        fontSize: hp(2.3),
-        alignSelf: 'center',   
-        justifyContent: "center", 
-        alignItems: 'center',
-        textAlignVertical: 'center',
-        textAlign: 'center',
-        fontFamily: 'Poppins-Medium',
         color: 'white',
+        fontFamily: 'Poppins-Medium',
     },
-
   
     vtxtContent:{
         flex: 4, 
@@ -260,16 +280,17 @@ export const announcementComponentStyles = StyleSheet.create({
     },
 
     toPhoto: {
-        width: 175,
-        height: 28,
-        marginTop: 10,
+        // width: 175,
+        // height: 28,
+        // marginTop: 10,
+        padding: 5,
         marginRight: 10,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'flex-end',
         flexDirection:'row',
-        borderRadius: 20,
-        backgroundColor: '#F75462',
+        borderRadius: 30,
+        backgroundColor: '#CB0000',
 
         shadowColor: "#000",
         shadowOffset: {

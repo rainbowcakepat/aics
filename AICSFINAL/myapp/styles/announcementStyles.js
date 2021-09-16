@@ -9,7 +9,6 @@ export const announcementStyles = StyleSheet.create({
     lgOverallContainer: {
         height: win.height,
         width: win.width,
-       
     },
 
     //Top Header: Black
@@ -134,20 +133,21 @@ export const announcementStyles = StyleSheet.create({
 
     //Buttons:
     btnContainer: {
-        flex:0.5, 
+        flex: 1, 
         backgroundColor: 'white',
     },
     
     toImage :{
-        width: 175,
-        height: 28,
-        marginTop: 5,
-        marginRight: 10,
+        // width: 175,
+        // height: 28,
+        padding: 5,
+        marginTop: 20,
+        marginRight: 15,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'flex-end',
         flexDirection:'row',
-        borderRadius: 20,
+        borderRadius: 50,
         backgroundColor: '#CB0A0D',
 
         shadowColor: "#000",
