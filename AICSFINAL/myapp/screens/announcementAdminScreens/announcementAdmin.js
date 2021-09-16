@@ -209,18 +209,21 @@ const AnnouncementAdmin = ({navigation}) => {
 
     archiveannouncements
       .set({
+        archivedlinks: orig.url,
         archivedtitles: orig.titles,
         archivedcontents: orig.contents,
         archivedposttime: new Date(
           firestore.Timestamp.now().seconds * 1000,
         ).toLocaleString(),
         archivedphoto: orig.photo,
+        
       })
       .then(() => {
         setArchivedTitle(null);
         setArchivedLink(null);
         setArchivedContent(null);
         setArchivedPhoto(null);
+        setArchivedLink(null);
 
         if (orig.photo == null) {
           deleteAnnouncement(id);

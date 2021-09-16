@@ -55,19 +55,30 @@ const AboutUsAdmin = ({navigation}) => {
   const [archivedcontents, setArchivedContent] = useState('');
   const [archivedphoto, setArchivedPhoto] = useState(null);
 
-  useEffect(() => {
-    const fetchAnnouncements = firestore()
-      .collection('allAboutUs')
-      .doc('mK9n3ITB58L2egS00RBC')
-      // .orderBy('posttime', 'desc')
-      .then(documentSnapshot => {
-        console.log('User exists: ', documentSnapshot.exists);
+
+  
+      useEffect(() => {
+        firestore()
+        .collection('allAboutUs')
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(documentSnapshot => {
+            console.log(documentSnapshot.data());
+          });
+        });
+
+      })
+      //   const subscriber = 
+      //    firestore()
+      //     .collection('aboutUs')
+      //     .doc('mK9n3ITB58L2egS00RBC')
+      //     .onSnapshot(documentSnapshot => {
+      //       console.log('User data: ', documentSnapshot.data());
+      //     });
+      //   // Stop listening for updates when no longer required
+      //   return () => subscriber();
+      // }, );
     
-        if (documentSnapshot.exists) {
-          console.log('User data: ', documentSnapshot.data());
-        }
-      });
-    })
   
 
 
