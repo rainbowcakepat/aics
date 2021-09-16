@@ -339,21 +339,24 @@ const AnnouncementAdmin = ({navigation}) => {
                  
                 </ImageBackground>
                 
-
                 <View style={announcementComponentStyles.vtxtContent}>
                   
-                  <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                  color:'gray', }}>Announcement Content:</Text>
-                    
-                  <TextInput
-                    style={announcementComponentStyles.txtContent}
-                    onChangeText={text => setNewContents(text)}
-                    placeholder={'Content'}
-                    placeholderTextColor={'#B2B2B2'}
-                    value={newContents}
-                    multiline={true}
-                    // numberOfLines={12}
-                    maxLength={550}></TextInput>
+                  <ScrollView>
+            
+                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
+                    color:'gray', }}>Announcement Content:</Text>
+                      
+                    <TextInput
+                      style={announcementComponentStyles.txtContent}
+                      onChangeText={text => setNewContents(text)}
+                      placeholder={'Content'}
+                      placeholderTextColor={'#B2B2B2'}
+                      value={newContents}
+                      multiline={true}
+                      numberOfLines={10}
+                      maxLength={550}></TextInput>
+                  </ScrollView>
+
                 </View>
 
                 <View style={{backgroundColor: '#F5F5F5', flex:1,}}> 
@@ -392,9 +395,11 @@ const AnnouncementAdmin = ({navigation}) => {
                  <ImageModal
                     source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : null}}
                     style={{
-                      width: 500,
+                      width: win.width,
                       height: 500,
-                      resizeMode: 'contain',}}
+                      resizeMode: 'contain',
+                      
+                    }}
                  />
       
                </ScrollView>
@@ -490,14 +495,33 @@ const AnnouncementAdmin = ({navigation}) => {
         </ScrollView>
       </View>
 
-      {uploading ? (
-          <Modal>
+      {uploading ? 
+           (
+            <Modal >
+              <View style={{flexDirection: 'column', 
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100%',
+              }}>
+                <ImageBackground  source={require('../../assets/aicslogo.png')} 
+                style={{width: 250, height: 150, resizeMode:'contain'}}
+                ></ImageBackground>
+  
+                <ActivityIndicator size="large" color='purple'></ActivityIndicator>
+                <Text>{transferred} % Completed </Text>
+              </View>
+            </Modal>
+            )  : null
+      }
+
+      {/* {uploading ? (
+          <Modal style={{flex:1, flexDirection: 'row'}}>
             <ActivityIndicator size="large" color='purple'></ActivityIndicator>
             <Text>{transferred} % Completed </Text>
           </Modal>
           ) :  null
         }
-      
+       */}
     </View>
   );
 };

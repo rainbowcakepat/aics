@@ -28,12 +28,12 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 const win = Dimensions.get('window');
 
-import AnnouncementComponent from './announcementComponent';
+import AboutUsComponents from '../aboutUsAdmin/aboutUsComponent';
 import {announcementStyles} from '../../styles/announcementStyles';
 import {announcementComponentStyles} from '../../styles/announcementComponentStyles';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-const AboutUsStudent = ({navigation}) => {
+const AboutUsAdmin = ({navigation}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [posts, setPosts] = useState(null);
   const [loader, setLoading] = useState(false);
@@ -57,201 +57,125 @@ const AboutUsStudent = ({navigation}) => {
 
   useEffect(() => {
     const fetchAnnouncements = firestore()
-      .collection('allAnnouncements')
-      .orderBy('posttime', 'desc')
-      .onSnapshot(querySnapshot => {
-        const posts = [];
-
-        querySnapshot.forEach(documentSnapshot => {
-          posts.push({
-            ...documentSnapshot.data(),
-            key: documentSnapshot.id,
-          });
-        });
-        setPosts(posts);
-        setLoading(true);
+      .collection('allAboutUs')
+      .doc('mK9n3ITB58L2egS00RBC')
+      // .orderBy('posttime', 'desc')
+      .then(documentSnapshot => {
+        console.log('User exists: ', documentSnapshot.exists);
+    
+        if (documentSnapshot.exists) {
+          console.log('User data: ', documentSnapshot.data());
+        }
       });
-    // Unsubscribe from events when no longer in use
-    return () => fetchAnnouncements();
-  }, []);
-
-  const choosePhotoFromImageLibrary = () => {
-    ImagePicker.openPicker({
-      width: 800,
-      height: 1200,
-      cropping: true,
     })
-      .then(newPhoto => {
-        const imageUri =
-          Platform.OS == 'ios' ? newPhoto.sourceURL : newPhoto.path;
-        setNewPhoto(imageUri);
-        console.log('Image Uri: ', imageUri);
-        Alert.alert('Attached an image', imageUri);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
+  
 
-  const uploadPhoto = async (id) => {
-    const uploadUri = newPhoto;
-    let filename = id;
 
-    setUploading(true);
-    setTransferred(0);
+  // const getAnnouncements = (item) => {
+  //   setisModalVisible(true);
+  //   setNewTitles(item.mission);
+  //   setNewContents(item.vision);
+    
+  //   setImageModal(true)
+  //   // console.log(item.titles, item.key, item.url);
+  // };
 
-    const task = storage()
-      .ref('allAnnouncementImages/' + filename)
-      .putFile(uploadUri);
-    task.on(
-      'state_changed',
-      taskSnapshot => {
-        console.log(
-          `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
-        );
-        setTransferred(
-          Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) *
-            100,
-        );
-      },
-      error => {
-        console.log(error);
-      },
-    );
+  // const onPressSave = (newID) => {
+  //   console.log('Gumagana ba to', newID);
+  //   setisModalVisible(false);
 
-    task.then(() => {
-      storage()
-        .ref('allAnnouncementImages/')
-        .child(filename)
-        .getDownloadURL()
-        .then(async (url) => {
-          await firestore()
-            .collection('allAnnouncements')
-            .doc(id)
-            .update({url: url});
-          // setURL(url);
-          console.log(url);
-        });
-    });
+  //   if (newUrl == null) {
+  //     handleEditAnnouncement(newID); //id
+  //     Alert.alert('Successfully Posted!');
+  //   } else {
+  //     handleEditAnnouncement(newID); //id
+  //     uploadPhoto(newID);
+  //   }
+  // };
 
-    try {
-      await task;
-      setUploading(false);
-      console.log('Photo uploaded in firestore cloud');
-      Alert.alert('Successfully Posted!');
-    } catch (e) {
-      console.log(e);
-    }
-    setNewPhoto(null);
-  };
-
-  const getAnnouncements = (item) => {
-    setisModalVisible(true);
-    setNewTitles(item.titles);
-    setNewContents(item.contents);
-    setNewPhoto(item.photo);
-    setNewId(item.key);
-    setNewURL(item.url);
-    setImageModal(true)
-    console.log(item.titles, item.key, item.url);
-  };
-
-  const onPressSave = (newID) => {
-    console.log('Gumagana ba to', newID);
-    setisModalVisible(false);
-
-    if (newUrl == null) {
-      handleEditAnnouncement(newID); //id
-      Alert.alert('Successfully Posted!');
-    } else {
-      handleEditAnnouncement(newID); //id
-      uploadPhoto(newID);
-    }
-  };
-
-  const handleEditAnnouncement = id => {
-    firestore()
-      .collection('allAnnouncements')
-      .doc(id)
-      .update({
-        titles: newTitles,
-        // links: newLinks,
-        contents: newContents,
-        photo: newPhoto,
-        url: newUrl,
-      })
-      .then(() => {
-        setNewTitles('');
-        setNewContents('');
-        setNewLinks('');
-        setNewPhoto('');
-        setNewURL('');
-        console.log('Announcement updated!', id);
-      });
-  };
+  // const handleEditAnnouncement = id => {
+  //   firestore()
+  //     .collection('allAnnouncements')
+  //     .doc(id)
+  //     .update({
+  //       titles: newTitles,
+  //       // links: newLinks,
+  //       contents: newContents,
+  //       photo: newPhoto,
+  //       url: newUrl,
+  //     })
+  //     .then(() => {
+  //       setNewTitles('');
+  //       setNewContents('');
+  //       setNewLinks('');
+  //       setNewPhoto('');
+  //       setNewURL('');
+  //       console.log('Announcement updated!', id);
+  //     });
+  // };
 
  
-  let orig;
+  // let orig;
 
-  const addArchivedAnnouncement = async (id) => {
-    const origannouncements = await firestore()
-      .collection('allAnnouncements')
-      .doc(id)
-      .get()
-      .then(doc => {
-        orig = doc.data();
-      });
-    console.log('Original value: ', orig);
+  // const addArchivedAnnouncement = async (id) => {
+  //   const origannouncements = await firestore()
+  //     .collection('allAnnouncements')
+  //     .doc(id)
+  //     .get()
+  //     .then(doc => {
+  //       orig = doc.data();
+  //     });
+  //   console.log('Original value: ', orig);
 
-    const archiveannouncements = await firestore()
-      .collection('allArchivedAnnouncements')
-      .doc();
+  //   const archiveannouncements = await firestore()
+  //     .collection('allArchivedAnnouncements')
+  //     .doc();
 
-    archiveannouncements
-      .set({
-        archivedtitles: orig.titles,
-        archivedcontents: orig.contents,
-        archivedposttime: new Date(
-          firestore.Timestamp.now().seconds * 1000,
-        ).toLocaleString(),
-        archivedphoto: orig.photo,
-      })
-      .then(() => {
-        setArchivedTitle(null);
-        setArchivedLink(null);
-        setArchivedContent(null);
-        setArchivedPhoto(null);
+  //   archiveannouncements
+  //     .set({
+  //       archivedtitles: orig.titles,
+  //       archivedcontents: orig.contents,
+  //       archivedposttime: new Date(
+  //         firestore.Timestamp.now().seconds * 1000,
+  //       ).toLocaleString(),
+  //       archivedphoto: orig.photo,
+  //     })
+  //     .then(() => {
+  //       setArchivedTitle(null);
+  //       setArchivedLink(null);
+  //       setArchivedContent(null);
+  //       setArchivedPhoto(null);
 
-        if (orig.photo == null) {
-          deleteAnnouncement(id);
-        } else {
-          deleteAnnouncement(id);
-          deleteAnnouncementImage(id);
-        }
-      })
-      .catch(error => {
-        console.log('Something went wrong', error);
-      });
-  };
+  //       if (orig.photo == null) {
+  //         deleteAnnouncement(id);
+  //       } else {
+  //         deleteAnnouncement(id);
+  //         deleteAnnouncementImage(id);
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.log('Something went wrong', error);
+  //     });
+  // };
 
-  const deleteAnnouncement = id => {
-    firestore()
-      .collection('allAnnouncements')
-      .doc(id)
-      .delete()
-      .then(() => {
-        console.log('ID: User deleted!', id);
-      });
-  };
+  // const deleteAnnouncement = id => {
+  //   firestore()
+  //     .collection('allAnnouncements')
+  //     .doc(id)
+  //     .delete()
+  //     .then(() => {
+  //       console.log('ID: User deleted!', id);
+  //     });
+  // };
 
-  const deleteAnnouncementImage = async (id) => {
-    const url = await storage()
-      .ref('allAnnouncementImages/' + id)
-      .getDownloadURL();
-    const deletethis = await storage().refFromURL(url);
-    console.log(url);
-    deletethis.delete();
-  };
+  // const deleteAnnouncementImage = async (id) => {
+  //   const url = await storage()
+  //     .ref('allAnnouncementImages/' + id)
+  //     .getDownloadURL();
+  //   const deletethis = await storage().refFromURL(url);
+  //   console.log(url);
+  //   deletethis.delete();
+  // };
 
   let searchtitles = null;
 
@@ -275,13 +199,13 @@ const AboutUsStudent = ({navigation}) => {
 
             <View style={announcementComponentStyles.vCardContainer}>
               
-              <AnnouncementComponent 
+              <AboutUsComponents 
                 // item = {item}
                 propsnum={key}
                 propsid={item.key}
-                propstitle={item.titles}
-                propsposttime={item.posttime}
-                propscontent={item.contents}
+                propstitle={item.mission}
+                propsposttime={item.vision}
+                // propscontent={item.contents}
                 // propsimage={item.url}
               />
 
@@ -457,8 +381,8 @@ const AboutUsStudent = ({navigation}) => {
         
         <View style={{flexDirection: 'row'}}>
           <View>
-            <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.titleText}>Announcements</Text>
-            <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.subtitleText}>Be informed! View the latest happenings and updates from CICS. </Text>
+            <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.titleText}>About Us</Text>
+            <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.subtitleText}>Welcome to the College of Information and Computing Sciences, know about us! </Text>
           </View>
           
         </View>
@@ -483,11 +407,6 @@ const AboutUsStudent = ({navigation}) => {
       </View>
 
       <View style={announcementComponentStyles.vAnnouncements}>
-         
-          <TouchableOpacity style={announcementComponentStyles.addBtn}>
-            <Icon name="plus-circle"  style={announcementComponentStyles.plusicon} size={17}/>
-            <Text style={announcementComponentStyles.txtAdd}>   Add an Announcement</Text>
-          </TouchableOpacity>
 
         <ScrollView adjustsFontSizeToFit
           pagingEnabled={true}>
@@ -525,4 +444,5 @@ const AboutUsStudent = ({navigation}) => {
     </View>
   );
 };
-export default AboutUsStudent;
+
+export default AboutUsAdmin;

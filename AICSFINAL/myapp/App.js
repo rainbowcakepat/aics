@@ -27,6 +27,9 @@ import LoadingScreen from './screens/loadingScreen';
 import ChangePass from './screens/changePassword';
 import HomeScreenF from './screens/homeScreenF';
 
+//Admin About Us
+import ViewAboutUsAdmin from './screens/./aboutUsAdmin/aboutAdmin';
+
 import AnnouncementPageStudent from './screens/announcementStudent';
 
 const Drawer = createDrawerNavigator();
@@ -74,6 +77,22 @@ export default function App() {
             ),
           }}
         /> 
+
+      <Drawer.Screen
+          name="A About Us"
+          component={ViewAboutUsAdmin}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="info-circle"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        /> 
+
 
       <Drawer.Screen
           name="View Announcement_Admin"

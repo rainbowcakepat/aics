@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, Modal, ScrollView,Alert, Text, TextInput, View, TouchableOpacity, 
+import { ImageBackground, Dimensions, Modal, ScrollView,Alert, Text, TextInput, View, TouchableOpacity, 
 ActivityIndicator, Image, Platform, ActivityIndicatorBase } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -9,6 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import ImageModal from 'react-native-image-modal';
 
 import {announcementStyles} from '../../styles/announcementStyles';
 
@@ -143,9 +144,9 @@ const AddAnnouncement = ({navigation}) => {
         <View style={announcementStyles.vBodyContainer}>
           <ScrollView style={announcementStyles.svBody}>
             <Text adjustsFontSizeToFit={true} style={announcementStyles.announcementTitleLabel}>Announcement Title: </Text>
-            <TextInput adjustsFontSizeToFit={true}  style={announcementStyles.announcementTitleText} placeholder={"Your Title here..."} value={titles} maxLength={50} multiline={true} numberOfLines={2} onChangeText={(titles) => {setTitle(titles); setValidation1(titles); console.log(`title: ${titles}`)}}></TextInput>
+            <TextInput adjustsFontSizeToFit={true}  style={announcementStyles.announcementTitleText} placeholder={"Your Title here..."} placeholderTextColor={'gray'} value={titles} maxLength={50} multiline={true} numberOfLines={2} onChangeText={(titles) => {setTitle(titles); setValidation1(titles); console.log(`title: ${titles}`)}}></TextInput>
             <Text adjustsFontSizeToFit={true}  style={announcementStyles.announcementContentLabel}>What's the latest news?</Text>
-            <TextInput adjustsFontSizeToFit={true}  style={announcementStyles.announcementContentText} placeholder={"Your Content here..."} value={contents} maxLength={550} numberOfLines={7} multiline={true} onChangeText={(contents) => {setContent(contents); setValidation2(contents); console.log(`content: ${contents}`)}}></TextInput>
+            <TextInput adjustsFontSizeToFit={true}  style={announcementStyles.announcementContentText} placeholder={"Your Content here..."} placeholderTextColor={'gray'} value={contents} maxLength={550} numberOfLines={7} multiline={true} onChangeText={(contents) => {setContent(contents); setValidation2(contents); console.log(`content: ${contents}`)}}></TextInput>
             {/* <Text>Link</Text>
             <TextInput placeholder={"Link here"} value={links}  maxLength={150} numberOfLines={3} multiline={true} onChangeText={(links) => {setLink(links); console.log(`link: ${links}`)}}></TextInput> */}
           </ScrollView>
@@ -163,7 +164,7 @@ const AddAnnouncement = ({navigation}) => {
 
         <View style={announcementStyles.imgContainer}>
           <ScrollView style={announcementStyles.svImage}>
-            <Image source={{uri: photo ? photo : null}} style={{ width: 500, height: 500, resizeMode: 'contain', alignSelf: 'center'}}></Image>
+            <ImageModal source={{uri: photo ? photo : null}} style={{ width: 500, height: 500, resizeMode: 'contain', alignSelf: 'center'}}></ImageModal>
           </ScrollView>
         </View>
 
@@ -187,8 +188,18 @@ const AddAnnouncement = ({navigation}) => {
 
         {uploading ? (
           <Modal>
-            <ActivityIndicator size="large" color='purple'></ActivityIndicator>
-            <Text>{transferred} % Completed </Text>
+            <View style={{flexDirection: 'column', 
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+            }}>
+              <ImageBackground  source={require('../../assets/aicslogo.png')} 
+              style={{width: 250, height: 150, resizeMode:'contain'}}
+              ></ImageBackground>
+
+              <ActivityIndicator size="large" color='purple'></ActivityIndicator>
+              <Text>{transferred} % Completed </Text>
+            </View>
           </Modal>
           ) :  null
         }

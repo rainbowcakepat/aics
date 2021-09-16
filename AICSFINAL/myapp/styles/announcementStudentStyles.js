@@ -3,14 +3,14 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 const win = Dimensions.get('window');
 
-export const announcementComponentStyles = StyleSheet.create({
+export const announcementComponentStudentStyles = StyleSheet.create({
 
       //Overall Container: Red
     lgOverallContainer: {
        height: win.height,
        width: win.width,
        backgroundColor: '#CB0A0D',
-       
+    //    flex: 1,
     },
 
     //Top Header: Black
@@ -108,7 +108,7 @@ export const announcementComponentStyles = StyleSheet.create({
     vAnnouncements: {
         backgroundColor: '#F5F5F5',
         flex: 3, 
-        paddingTop: 20, 
+        paddingTop: 8, 
         borderTopLeftRadius: 20, 
         borderTopRightRadius:20
     },
@@ -164,7 +164,7 @@ export const announcementComponentStyles = StyleSheet.create({
     },
 
     toUpdate:{
-        width: 150, 
+        width: 120, 
         height: 30, 
         flexDirection: 'row',
         backgroundColor: '#FF8080',  //#FFC1CE FB6D77
@@ -202,7 +202,6 @@ export const announcementComponentStyles = StyleSheet.create({
         height: win.height,
         // backgroundColor: '#FDDFE2' 
         backgroundColor: 'white',
-        // flex:1,
     },
    
 
@@ -235,7 +234,7 @@ export const announcementComponentStyles = StyleSheet.create({
         flex: 3,
         paddingTop: 16,
         paddingHorizontal: 20,
-        paddingBottom: 20,
+        paddingBottom: 10,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         flexDirection: 'column',
@@ -308,21 +307,21 @@ export const announcementComponentStyles = StyleSheet.create({
     imageContainer: {
         flex: 1, 
         margin: 10,
-        alignSelf:'center', 
-        backgroundColor: 'white',     
+        alignSelf:'center',  
+        // margin: 10,      
     },
 
     vSaveCancel:{
         flexDirection: 'row', 
-        justifyContent:'space-between',
+        justifyContent:'flex-end',
         flex: 1,
-        paddingHorizontal: 30,
+        paddingHorizontal: 20,
         paddingBottom: 20,
         // backgroundColor: '#F5F5F5', 
         backgroundColor: 'white',
     },
 
-    btnSave: {
+    btnBack: {
         width: 160,
         height: 35,
         alignItems: 'center',
@@ -343,45 +342,11 @@ export const announcementComponentStyles = StyleSheet.create({
 
     },
 
-    btnCancel: {
-        width: 160,
-        height: 35,
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'flex-end',
-        flexDirection:'row',
-        borderRadius: 20,
-        borderWidth: 1,
-        borderColor: '#CB0A0D',
-        backgroundColor: 'white',
-
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
-        elevation: 4,
-
-    },
-
-    txtSave: {
+    txtBack: {
         fontSize: hp(2.3),
         color: 'white',
         fontFamily: 'Poppins-Regular',
     },
-
-    txtCancel: {
-        fontSize: hp(2.3),
-        color: 'black',
-        fontFamily: 'Poppins-Regular',
-    },
-
-
-
-
-    
 
 
 
