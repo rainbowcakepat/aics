@@ -200,8 +200,8 @@ const AnnouncementStudent = ({navigation}) => {
                  
                 </ImageBackground>
                 
-
                 <View style={announcementComponentStudentStyles.vtxtContent}>
+                <ScrollView >
                   
                   <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
                   color:'gray', }}>Announcement Content:</Text>
@@ -212,11 +212,12 @@ const AnnouncementStudent = ({navigation}) => {
                     maxLength={550}>
                     {newContents}</Text>
 
+                </ScrollView>
                 </View>
 
 
                 {/* {newUrl == null && newPhoto == null ? */}
-                  <ScrollView style={announcementComponentStudentStyles.imageContainer}>
+                  <View style={announcementComponentStudentStyles.imageContainer}>
 
                   {/* <Image
                    source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : null}}
@@ -240,18 +241,15 @@ const AnnouncementStudent = ({navigation}) => {
                     <Text>Meron</Text>
                   } */}
                  <ImageModal
-                    source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : null}}
+                    source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : 'https://firebasestorage.googleapis.com/v0/b/samplelogin-37250.appspot.com/o/aicsnoimage.png?alt=media&token=c32b87b2-ea3e-48f7-9ddb-decb500a12e0'}}
                     style={{
                       width: win.width,
                       height: 500,
                       resizeMode: 'contain',
-                      backgroundColor: '#A41426', 
-                      borderColor: '#A41426',
-                     
                     }}
                  />
       
-               </ScrollView>
+               </View>
                   {/* : 
                   null
                 } */}
@@ -327,18 +325,12 @@ const AnnouncementStudent = ({navigation}) => {
       <View style={announcementComponentStudentStyles.vAnnouncements}>
          
         <ScrollView adjustsFontSizeToFit
-          pagingEnabled={true}>
+          >
           {searchtitles}
         </ScrollView>
       </View>
 
-      {uploading ? (
-          <Modal>
-            <ActivityIndicator size="large" color='purple'></ActivityIndicator>
-            <Text>{transferred} % Completed </Text>
-          </Modal>
-          ) :  null
-        }
+    
       
     </View>
   );

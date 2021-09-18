@@ -356,7 +356,7 @@ const AnnouncementAdmin = ({navigation}) => {
                       placeholderTextColor={'#B2B2B2'}
                       value={newContents}
                       multiline={true}
-                      numberOfLines={10}
+                      numberOfLines={5}
                       maxLength={550}></TextInput>
                   </ScrollView>
 
@@ -396,7 +396,7 @@ const AnnouncementAdmin = ({navigation}) => {
                     <Text>Meron</Text>
                   } */}
                  <ImageModal
-                    source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : null}}
+                      source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : 'https://firebasestorage.googleapis.com/v0/b/samplelogin-37250.appspot.com/o/aicsnoimage.png?alt=media&token=c32b87b2-ea3e-48f7-9ddb-decb500a12e0'}}
                     style={{
                       width: win.width,
                       height: 500,
@@ -493,7 +493,7 @@ const AnnouncementAdmin = ({navigation}) => {
           </TouchableOpacity>
 
         <ScrollView adjustsFontSizeToFit
-          pagingEnabled={true}>
+          >
           {searchtitles}
         </ScrollView>
       </View>

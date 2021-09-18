@@ -3,14 +3,14 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 const win = Dimensions.get('window');
 
-export const announcementComponentStudentStyles = StyleSheet.create({
+export const aboutUsAdminStyles = StyleSheet.create({
 
       //Overall Container: Red
     lgOverallContainer: {
        height: win.height,
        width: win.width,
        backgroundColor: '#CB0A0D',
-    //    flex: 1,
+       
     },
 
     //Top Header: Black
@@ -108,33 +108,11 @@ export const announcementComponentStudentStyles = StyleSheet.create({
     vAnnouncements: {
         backgroundColor: '#F5F5F5',
         flex: 3, 
-        paddingTop: 8, 
+        paddingTop: 20, 
         borderTopLeftRadius: 20, 
         borderTopRightRadius:20
     },
 
-    addBtn:{
-        
-        width: 250,
-        height: 32,
-        alignSelf: 'center',
-        padding: 5,
-        marginTop: -8,
-        marginBottom: 0,
-        flexDirection: 'row',
-        borderRadius: 50,
-        borderColor: '#CB0A0D',
-        borderWidth: 1,
-       
-
-    },
-
-
-
-    plusicon: {
-        marginLeft: 20,
-        color: '#CB0A0D',
-    },
 
     vCardContainer: {
 
@@ -164,26 +142,17 @@ export const announcementComponentStudentStyles = StyleSheet.create({
     },
 
     toUpdate:{
-        width: 120, 
+        width: 160, 
         height: 30, 
         flexDirection: 'row',
         backgroundColor: '#FF8080',  //#FFC1CE FB6D77
         borderRadius: 20, 
         justifyContent: "center", 
-        alignItems: "center",        
+        alignItems: "center",    
+        marginLeft: 170,    
 
     },
 
-    toArchive:{
-        width: 150, 
-        height: 30, 
-        flexDirection: 'row',
-        backgroundColor: '#ACABAB',  //#FFC1CE FB6D77
-        borderRadius: 20, 
-        justifyContent: "center", 
-        alignItems: "center",        
-
-    },
 
     txtUpdateArchive: {
         textAlignVertical: 'center',
@@ -202,16 +171,17 @@ export const announcementComponentStudentStyles = StyleSheet.create({
         height: win.height,
         // backgroundColor: '#FDDFE2' 
         backgroundColor: 'white',
+        flex:1,
     },
    
 
     toAnnouncement: { //EDIT
-        width: 210, 
+        width: 235, 
         height: 32, 
         flexDirection: 'row',
         marginTop: 5,
         marginBottom: 20,
-        backgroundColor: '#B65858', 
+        backgroundColor: '#B4940D', 
         justifyContent: "center", 
         // alignSelf: 'center', 
       
@@ -234,7 +204,7 @@ export const announcementComponentStudentStyles = StyleSheet.create({
         flex: 3,
         paddingTop: 16,
         paddingHorizontal: 20,
-        paddingBottom: 10,
+        paddingBottom: 20,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         flexDirection: 'column',
@@ -254,19 +224,21 @@ export const announcementComponentStudentStyles = StyleSheet.create({
 
     txtTitle: {
         padding: 0,
-        fontSize: hp(3.30), //18
+        paddingVertical: 20,
+        fontSize: hp(5), //18
         color: 'white',
         fontFamily: 'Poppins-Medium',
     },
   
     vtxtContent:{
-        flex: 4, 
+        flex: 6, 
         backgroundColor: '#F5F5F5',
         // borderTopLeftRadius: 30,
         // borderTopRightRadius: 30,      
-        paddingVertical: 20,
+        paddingTop: 20,
         paddingLeft: 20,
-        paddingRight: 40,
+        paddingBottom: 20,
+        paddingRight: 35,
     },
 
     txtContent:{  
@@ -306,21 +278,21 @@ export const announcementComponentStudentStyles = StyleSheet.create({
     imageContainer: {
         flex: 1, 
         margin: 10,
-        alignSelf:'center',  
-        // margin: 10,      
+        alignSelf:'center', 
+        backgroundColor: 'white',     
     },
 
     vSaveCancel:{
         flexDirection: 'row', 
-        justifyContent:'flex-end',
+        justifyContent:'space-between',
         flex: 1,
-        paddingHorizontal: 20,
+        paddingHorizontal: 30,
         paddingBottom: 20,
         // backgroundColor: '#F5F5F5', 
         backgroundColor: 'white',
     },
 
-    btnBack: {
+    btnSave: {
         width: 160,
         height: 35,
         alignItems: 'center',
@@ -341,11 +313,45 @@ export const announcementComponentStudentStyles = StyleSheet.create({
 
     },
 
-    txtBack: {
+    btnCancel: {
+        width: 160,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
+        flexDirection:'row',
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#CB0A0D',
+        backgroundColor: 'white',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+
+    },
+
+    txtSave: {
         fontSize: hp(2.3),
         color: 'white',
         fontFamily: 'Poppins-Regular',
     },
+
+    txtCancel: {
+        fontSize: hp(2.3),
+        color: 'black',
+        fontFamily: 'Poppins-Regular',
+    },
+
+
+
+
+    
 
 
 

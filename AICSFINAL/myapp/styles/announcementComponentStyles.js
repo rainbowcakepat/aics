@@ -267,7 +267,7 @@ export const announcementComponentStyles = StyleSheet.create({
         // borderTopRightRadius: 30,      
         paddingTop: 20,
         paddingLeft: 20,
-        paddingBottom: 0,
+        paddingBottom: 20,
         paddingRight: 40,
     },
 

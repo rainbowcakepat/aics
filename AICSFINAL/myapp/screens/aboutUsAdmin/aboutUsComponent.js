@@ -13,17 +13,11 @@ function AboutUsComponents(props){
                     <Text>{props.propsid}</Text> */}
                     <Text style={{fontFamily: 'Poppins-Medium', fontSize: hp(2.65), marginBottom: 5,}}>{props.propstitle}</Text>
                     <View style={{flexDirection:'row',}}>
-                        <Icon name="clock" color="gray" size={18} style={{ marginBottom: 5 }}/>
-                        <Text style={{fontFamily: 'Lato-Regular', color: 'gray', fontSize: hp(1.8), marginBottom: 10, marginTop: 1}}>  {props.propsposttime}</Text>
+                        <Icon name="bookmark" color="gray" size={18} style={{ marginBottom: 5 }}/>
+                        <Text numberOfLines={2}  style={{paddingLeft: 2,fontFamily: 'Lato-Regular',  color: 'gray', fontSize: hp(1.8), marginBottom: 3, marginTop: 1}}> {props.propskeywords}</Text>
                     </View>
                     
-                    {/* <Text>{props.propscontent}</Text>
-                    <Text>{props.propsimage}</Text> */}
-
-                {/* {props.propsimage ? null :
-                    <Image source={{uri: props.propsimage ? props.propsimage : null}}  style={{ width: 100, height: 200, resizeMode: 'contain'}}></Image>
-
-                    } */}
+                    <Text>{props.propscontent}</Text>
 
                 </View>
 
