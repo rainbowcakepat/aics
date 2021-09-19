@@ -16,6 +16,8 @@ import AkishaChatbot from './screens/./chatbotscreens/chatbotapp';
 import IngridChatbot from './screens/./chatbotscreens/chatbotapp2';
 import ChristineChatbot from './screens/./chatbotscreens/chatbotapp3';
 import SylviaChatbot from './screens/./chatbotscreens/chatbotapp4';
+import SelectChatbot from './screens/./chatbotscreens/chatbotmenu';
+
 
 //Admin Announcements
 import AddAnnouncement from './screens/./announcementAdminScreens/addAnnouncement';
@@ -67,6 +69,21 @@ export default function App() {
       <Drawer.Screen
           name="View Announcement_Student"
           component={ViewAnnouncementStudent}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="info-circle"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        /> 
+
+<Drawer.Screen
+          name="SelectChatbot"
+          component={SelectChatbot}
           options={{
             headerShown: false,
             drawerIcon: ({focused, size}) => (
