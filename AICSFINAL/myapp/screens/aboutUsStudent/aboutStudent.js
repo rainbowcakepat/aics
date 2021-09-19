@@ -30,7 +30,7 @@ const win = Dimensions.get('window');
 
 import AboutUsComponents from '../aboutUsAdmin/aboutUsComponent';
 import {announcementStyles} from '../../styles/announcementStyles';
-import {aboutUsAdminStyles} from '../../styles/aboutUsAdminStyles';
+import {aboutUsStudentStyles} from '../../styles/aboutUsStudentStyles';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const AboutUsAdmin = ({navigation}) => {
@@ -264,7 +264,7 @@ const AboutUsAdmin = ({navigation}) => {
         return (
           <View key={key} >
 
-            <View style={aboutUsAdminStyles.vCardContainer}>
+            <View style={aboutUsStudentStyles.vCardContainer}>
               
               <AboutUsComponents 
                 // item = {item}
@@ -277,10 +277,10 @@ const AboutUsAdmin = ({navigation}) => {
               <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
 
                 <TouchableOpacity
-                  style={aboutUsAdminStyles.toUpdate}
+                  style={aboutUsStudentStyles.toUpdate}
                   onPress={() => getAnnouncements(item)}>
-                  <Icon name="edit-2" color="white" size={16} style={{ marginBottom: 5 }}/>
-                  <Text style={aboutUsAdminStyles.txtUpdateArchive}> Edit information </Text>
+                  <Icon name="eye" color="white" size={16} style={{ marginBottom: 5 }}/>
+                  <Text style={aboutUsStudentStyles.txtUpdateArchive}> View information </Text>
                 </TouchableOpacity>
 
               </View>
@@ -293,54 +293,43 @@ const AboutUsAdmin = ({navigation}) => {
            visible={isModalVisibleTheCollege}
            onRequestClose={() => setisModalVisibleTheCollege(false)}
           >
-            <View style={aboutUsAdminStyles.vModalContainer}>
+            <View style={aboutUsStudentStyles.vModalContainer}>
                 
                 <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsAdminStyles.vtxtTitle} >
+                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
                     
                     <TouchableWithoutFeedback
-                      style={aboutUsAdminStyles.toAnnouncement}>
+                      style={aboutUsStudentStyles.toAnnouncement}>
                       {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsAdminStyles.txtEdit}> Edit About Us Information</Text>
+                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
                     </TouchableWithoutFeedback>
   
                     <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
                     color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
                         
-                    <Text style={aboutUsAdminStyles.txtTitle}>About the College</Text>
+                    <Text style={aboutUsStudentStyles.txtTitle}>About the College</Text>
                  
                 </ImageBackground>
                 
-                <View style={aboutUsAdminStyles.vtxtContent}>
+                <View style={aboutUsStudentStyles.vtxtContent}>
                   
                   <ScrollView>
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Description:</Text>
+                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Description:</Text>
                       
-                    <TextInput
-                      style={aboutUsAdminStyles.txtContent}
-                      onChangeText={text => setnewAbout(text)}
-                      placeholder={'Content'}
-                      placeholderTextColor={'#B2B2B2'}
-                      value={newAbout}
-                      multiline={true}
-                      numberOfLines={10}
-                      maxLength={800}></TextInput>
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                    >{newAbout}</Text>
                   </ScrollView>
 
                 </View>
-
-                <View style={aboutUsAdminStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsAdminStyles.btnSave}
-                  onPress={() => onPressSave(newID)}>
-                    <Text style={aboutUsAdminStyles.txtSave}>Save</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={aboutUsAdminStyles.btnCancel}
-                  onPress={() => setisModalVisibleTheCollege(false)}>
-                    <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
+    
+                <View style={aboutUsStudentStyles.vSaveCancel}>
+                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleTheCollege(false)}>
+                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
+                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
                   </TouchableOpacity>
                 </View>
+               
                 
               </View>
 
@@ -351,79 +340,52 @@ const AboutUsAdmin = ({navigation}) => {
            visible={isModalCollegeOfferings}
            onRequestClose={() => setisModalCollegeOfferings(false)}
           >
-            <View style={aboutUsAdminStyles.vModalContainer}>
+            <View style={aboutUsStudentStyles.vModalContainer}>
                 
                 <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsAdminStyles.vtxtTitle} >
+                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
                     
                     <TouchableWithoutFeedback
-                      style={aboutUsAdminStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsAdminStyles.txtEdit}> Edit About Us Information</Text>
+                      style={aboutUsStudentStyles.toAnnouncement}>
+                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
                     </TouchableWithoutFeedback>
   
                     <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
                     color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
                         
-                    <Text style={aboutUsAdminStyles.txtTitle}>College Offerings</Text>
+                    <Text style={aboutUsStudentStyles.txtTitle}>College Offerings</Text>
                  
                 </ImageBackground>
                 
-                <View style={aboutUsAdminStyles.vtxtContent}>
+                <View style={aboutUsStudentStyles.vtxtContent}>
                   
                   <ScrollView>
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Degree Programs:</Text>
+                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Degree Programs:</Text>
                       
-                    <TextInput
-                      style={aboutUsAdminStyles.txtContent}
-                      onChangeText={text => setnewDegreePrograms(text)}
-                      placeholder={'Degree Programs'}
-                      placeholderTextColor={'#B2B2B2'}
-                      value={newDegreePrograms}
-                      multiline={true}
-                      numberOfLines={5}
-                      maxLength={400}></TextInput>
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                     >{newDegreePrograms}</Text>
 
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Degree Departments:</Text>
+                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Degree Departments:</Text>
                       
-                    <TextInput
-                      style={aboutUsAdminStyles.txtContent}
-                      onChangeText={text => setnewDepartments(text)}
-                      placeholder={'Departments'}
-                      placeholderTextColor={'#B2B2B2'}
-                      value={newDepartments}
-                      multiline={true}
-                      numberOfLines={2}
-                      maxLength={400}></TextInput>
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                     >{newDepartments}</Text>
 
-                  <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Other information:</Text>
+                  <Text style={aboutUsStudentStyles.txtLabelDescription}>Other information:</Text>
                       
-                      <TextInput
-                      style={aboutUsAdminStyles.txtContent}
-                      onChangeText={text => setnewOtherInformation(text)}
-                      placeholder={'Other Information'}
-                      placeholderTextColor={'#B2B2B2'}
-                      value={newOtherInformation}
-                      multiline={true}
-                      numberOfLines={2}
-                      maxLength={400}></TextInput>
+                      <Text
+                      style={aboutUsStudentStyles.txtContent}
+                      >{newOtherInformation}</Text>
                  
                   </ScrollView>
 
                 </View>
 
-                <View style={aboutUsAdminStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsAdminStyles.btnSave}
-                  onPress={() => onPressSave(newID)}>
-                    <Text style={aboutUsAdminStyles.txtSave}>Save</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={aboutUsAdminStyles.btnCancel}
-                  onPress={() => setisModalCollegeOfferings(false)}>
-                    <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
+                <View style={aboutUsStudentStyles.vSaveCancel}>
+                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalCollegeOfferings(false)}>
+                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
+                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
                   </TouchableOpacity>
                 </View>
                 
@@ -436,56 +398,43 @@ const AboutUsAdmin = ({navigation}) => {
            visible={isModalVisibleMission}
            onRequestClose={() => setisModalVisibleMission(false)}
           >
-            <View style={aboutUsAdminStyles.vModalContainer}>
+            <View style={aboutUsStudentStyles.vModalContainer}>
                 
                 <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsAdminStyles.vtxtTitle} >
+                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
                     
                     <TouchableWithoutFeedback
-                      style={aboutUsAdminStyles.toAnnouncement}>
+                      style={aboutUsStudentStyles.toAnnouncement}>
                       {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsAdminStyles.txtEdit}> Edit About Us Information</Text>
+                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
                     </TouchableWithoutFeedback>
   
                     <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
                     color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
                         
-                    <Text style={aboutUsAdminStyles.txtTitle}>Mission</Text>
+                    <Text style={aboutUsStudentStyles.txtTitle}>Mission</Text>
                  
                 </ImageBackground>
                 
-                <View style={aboutUsAdminStyles.vtxtContent}>
+                <View style={aboutUsStudentStyles.vtxtContent}>
                   
                   <ScrollView>
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Description:</Text>
+                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Description:</Text>
                       
-                    <TextInput
-                      style={aboutUsAdminStyles.txtContent}
-                      onChangeText={text => setnewMission(text)}
-                      placeholder={'Mission Content'}
-                      placeholderTextColor={'#B2B2B2'}
-                      value={newMission}
-                      multiline={true}
-                      numberOfLines={5}
-                      maxLength={600}></TextInput>
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                      >{newMission}</Text>
                                  
                   </ScrollView>
 
                 </View>
 
-                <View style={aboutUsAdminStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsAdminStyles.btnSave}
-                  onPress={() => onPressSave(newID)}>
-                    <Text style={aboutUsAdminStyles.txtSave}>Save</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={aboutUsAdminStyles.btnCancel}
-                  onPress={() => setisModalVisibleMission(false)}>
-                    <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
+                <View style={aboutUsStudentStyles.vSaveCancel}>
+                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleMission(false)}>
+                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
+                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
 
           </Modal>
@@ -495,53 +444,41 @@ const AboutUsAdmin = ({navigation}) => {
            visible={isModalVisibleVision}
            onRequestClose={() => setisModalVisibleVision(false)}
           >
-            <View style={aboutUsAdminStyles.vModalContainer}>
+            <View style={aboutUsStudentStyles.vModalContainer}>
                 
                 <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsAdminStyles.vtxtTitle} >
+                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
                     
                     <TouchableWithoutFeedback
-                      style={aboutUsAdminStyles.toAnnouncement}>
+                      style={aboutUsStudentStyles.toAnnouncement}>
                       {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsAdminStyles.txtEdit}> Edit About Us Information</Text>
+                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
                     </TouchableWithoutFeedback>
   
                     <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
                     color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
                         
-                    <Text style={aboutUsAdminStyles.txtTitle}>Vision</Text>
+                    <Text style={aboutUsStudentStyles.txtTitle}>Vision</Text>
                  
                 </ImageBackground>
                 
-                <View style={aboutUsAdminStyles.vtxtContent}>
+                <View style={aboutUsStudentStyles.vtxtContent}>
                   
                   <ScrollView>
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Description:</Text>
+                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Description:</Text>
                       
-                    <TextInput
-                      style={aboutUsAdminStyles.txtContent}
-                      onChangeText={text => setnewVision(text)}
-                      placeholder={'Vision Content'}
-                      placeholderTextColor={'#B2B2B2'}
-                      value={newVision}
-                      multiline={true}
-                      numberOfLines={5}
-                      maxLength={400}></TextInput>
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                    >{newVision}</Text>
                                  
                   </ScrollView>
 
                 </View>
 
-                <View style={aboutUsAdminStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsAdminStyles.btnSave}
-                  onPress={() => onPressSave(newID)}>
-                    <Text style={aboutUsAdminStyles.txtSave}>Save</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={aboutUsAdminStyles.btnCancel}
-                  onPress={() => setisModalVisibleVision(false)}>
-                    <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
+                <View style={aboutUsStudentStyles.vSaveCancel}>
+                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleVision(false)}>
+                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
+                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
                   </TouchableOpacity>
                 </View>
                 
@@ -554,111 +491,76 @@ const AboutUsAdmin = ({navigation}) => {
            visible={isModalVisibleContactInformation}
            onRequestClose={() => setisModalVisibleContactInformation(false)}
           >
-            <View style={aboutUsAdminStyles.vModalContainer}>
+            <View style={aboutUsStudentStyles.vModalContainer}>
                 
                 <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsAdminStyles.vtxtTitle} >
+                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
                     
                     <TouchableWithoutFeedback
-                      style={aboutUsAdminStyles.toAnnouncement}>
+                      style={aboutUsStudentStyles.toAnnouncement}>
                       {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsAdminStyles.txtEdit}> Edit About Us Information</Text>
+                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
                     </TouchableWithoutFeedback>
   
                     <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
                     color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
                         
-                    <Text style={aboutUsAdminStyles.txtTitle}>Contact Details</Text>
+                    <Text style={aboutUsStudentStyles.txtTitle}>Contact Details</Text>
                  
                 </ImageBackground>
                 
-                <View style={aboutUsAdminStyles.vtxtContent}>
+                <View style={aboutUsStudentStyles.vtxtContent}>
                   
                   <ScrollView>
                     <View style={{flexDirection:'row'}}>
                       <Icon name="map-pin" color="black" type= 'ionicons' size={18}/>
-                      <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                      color:'gray', }}> Location:</Text>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Location:</Text>
                     </View>
                    
-                    <TextInput
-                      style={aboutUsAdminStyles.txtContent}
-                      onChangeText={text => setnewContactInfoLocation(text)}
-                      placeholder={'College Location'}
-                      placeholderTextColor={'#B2B2B2'}
-                      value={newContactInfoLocation}
-                      multiline={true}
-                      numberOfLines={4}
-                      maxLength={400}></TextInput>
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                      >{newContactInfoLocation}</Text>
 
                     <Text></Text>
                     <View style={{flexDirection:'row'}}>
                       <Icon name="clock" color="black" type= 'ionicons' size={18}/>
-                      <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                      color:'gray', }}> Office hours:</Text>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Office hours:</Text>
                     </View>
                    
-                    <TextInput
-                      style={aboutUsAdminStyles.txtContent}
-                      onChangeText={text => setnewContactInfoSchedule(text)}
-                      placeholder={'College Office Schedule'}
-                      placeholderTextColor={'#B2B2B2'}
-                      value={newContactInfoSchedule}
-                      multiline={true}
-                      numberOfLines={2}
-                      maxLength={300}></TextInput>
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                      >{newContactInfoSchedule}</Text>
                     
                     <Text></Text>    
 
                     <View style={{flexDirection:'row'}}>
                       <Icon name="phone" color="black" type= 'ionicons' size={18}/>
-                      <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                      color:'gray', }}> Office Contact Number:</Text>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Office Contact Number:</Text>
                     </View>
                    
-                    <TextInput
-                      style={aboutUsAdminStyles.txtContent}
-                      onChangeText={text => setnewContactInfoNumber(text)}
-                      placeholder={'College Contact Number'}
-                      placeholderTextColor={'#B2B2B2'}
-                      value={newContactInfoNumber}
-                      multiline={true}
-                      numberOfLines={1}
-                      maxLength={100}></TextInput>
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                      >{newContactInfoNumber}</Text>
                       <Text></Text> 
 
                     <View style={{flexDirection:'row'}}>
                       <Icon name="facebook" color="black" type= 'ionicons' size={18}/>
-                      <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                      color:'gray', }}> Facebook Page:</Text>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Facebook Page:</Text>
                     </View>
                    
-                    <TextInput
-                      style={aboutUsAdminStyles.txtContent}
-                      onChangeText={text => setnewContactInfoFacebook(text)}
-                      placeholder={'College Official Facebook Page'}
-                      placeholderTextColor={'#B2B2B2'}
-                      value={newContactInfoFacebook}
-                      multiline={true}
-                      numberOfLines={1}
-                      maxLength={100}></TextInput>
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                     >{newContactInfoFacebook}</Text>
                       <Text></Text> 
 
                     <View style={{flexDirection:'row'}}>
                       <Icon name="mail" color="black" type= 'ionicons' size={18}/>
-                      <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                      color:'gray', }}> UST CICS Email :</Text>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> UST CICS Email :</Text>
                     </View>
                    
-                    <TextInput
-                      style={aboutUsAdminStyles.txtContent}
-                      onChangeText={text => setnewContactInfoEmail(text)}
-                      placeholder={'College Official Email'}
-                      placeholderTextColor={'#B2B2B2'}
-                      value={newContactInfoEmail}
-                      multiline={true}
-                      numberOfLines={1}
-                      maxLength={50}></TextInput>
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                      >{newContactInfoEmail}</Text>
                       <Text></Text> 
 
 
@@ -666,15 +568,10 @@ const AboutUsAdmin = ({navigation}) => {
 
                 </View>
 
-                <View style={aboutUsAdminStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsAdminStyles.btnSave}
-                  onPress={() => onPressSave(newID)}>
-                    <Text style={aboutUsAdminStyles.txtSave}>Save</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={aboutUsAdminStyles.btnCancel}
-                  onPress={() => setisModalVisibleContactInformation(false)}>
-                    <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
+                <View style={aboutUsStudentStyles.vSaveCancel}>
+                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleContactInformation(false)}>
+                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
+                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
                   </TouchableOpacity>
                 </View>
                 
@@ -699,37 +596,39 @@ const AboutUsAdmin = ({navigation}) => {
   }
 
   if (searchtitles.length < 1) {
+    
     searchtitles = 
     <ImageBackground  source={require('../../assets/./icons/aicsnoannouncements.png')} 
     style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
     </ImageBackground>
+    
   }
 
   return (
-    <View style={aboutUsAdminStyles.lgOverallContainer}>
+    <View style={aboutUsStudentStyles.lgOverallContainer}>
 
-      <View style={aboutUsAdminStyles.lgTopHeader}>
+      <View style={aboutUsStudentStyles.lgTopHeader}>
         
-        <Icon style= {aboutUsAdminStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={aboutUsAdminStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
+        <Icon style= {aboutUsStudentStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
+        <TouchableOpacity style={aboutUsStudentStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
         </TouchableOpacity>
         <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
         
         <View style={{flexDirection: 'row'}}>
           <View>
-            <Text adjustsFontSizeToFit={true} style={aboutUsAdminStyles.titleText}>About Us</Text>
-            <Text adjustsFontSizeToFit={true} style={aboutUsAdminStyles.subtitleText}>Welcome to the College of Information and Computing Sciences, know about us! </Text>
+            <Text adjustsFontSizeToFit={true} style={aboutUsStudentStyles.titleText}>About Us</Text>
+            <Text adjustsFontSizeToFit={true} style={aboutUsStudentStyles.subtitleText}>Welcome to the College of Information and Computing Sciences, know about us! </Text>
           </View>
           
         </View>
 
       </View>
 
-      <View style={aboutUsAdminStyles.vSearchBar}>
+      <View style={aboutUsStudentStyles.vSearchBar}>
           
-          <Icon name="search" color="#B2B2B2" style={aboutUsAdminStyles.searchBaricon} size={19}/>
+          <Icon name="search" color="#B2B2B2" style={aboutUsStudentStyles.searchBaricon} size={19}/>
           <TextInput adjustsFontSizeToFit={true}
-          style={aboutUsAdminStyles.tiSearch}
+          style={aboutUsStudentStyles.tiSearch}
             numberOfLines={1}
             maxLength={50}
             placeholder={'Search'}
@@ -742,7 +641,7 @@ const AboutUsAdmin = ({navigation}) => {
 
       </View>
 
-      <View style={aboutUsAdminStyles.vAnnouncements}>
+      <View style={aboutUsStudentStyles.vAnnouncements}>
 
         <ScrollView adjustsFontSizeToFit
           >

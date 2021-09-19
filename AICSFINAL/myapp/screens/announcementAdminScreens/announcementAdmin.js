@@ -15,8 +15,6 @@ import {
   ImageBackground
 } from 'react-native';
 
-import LinearGradient from 'react-native-linear-gradient';
-
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -433,19 +431,22 @@ const AnnouncementAdmin = ({navigation}) => {
       });
   } else {
     searchtitles = (
-      <Image
-        source={require('../../assets/./gif/spinner.gif')}
-        style={{
-          width: '50%',
-          height: '60%',
-          resizeMode: 'contain',
-        }}></Image>
+      <View style={{flexDirection: 'column', 
+      justifyContent: 'center',
+      }}>
+        <ImageBackground  source={require('../../assets/aicslogo.png')} 
+        style={{width: 250, height: 150, alignSelf:'center', margin: 32, resizeMode:'contain'}}
+        ></ImageBackground>
+        <ActivityIndicator size="large" color='purple'></ActivityIndicator>
+      </View>
     );
-    // <Text>Dito ko lalagay yung nagloload</Text>
   }
 
   if (searchtitles.length < 1) {
-    searchtitles = <Text>No Announcements found</Text>;
+    searchtitles = 
+    <ImageBackground  source={require('../../assets/./icons/aicsnoannouncements.png')} 
+    style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
+    </ImageBackground>
   }
 
   return (
@@ -487,7 +488,7 @@ const AnnouncementAdmin = ({navigation}) => {
 
       <View style={announcementComponentStyles.vAnnouncements}>
          
-          <TouchableOpacity style={announcementComponentStyles.addBtn}>
+          <TouchableOpacity style={announcementComponentStyles.addBtn} onPress={() => navigation.navigate('AddAnnouncement')}>
             <Icon name="plus-circle"  style={announcementComponentStyles.plusicon} size={17}/>
             <Text style={announcementComponentStyles.txtAdd}>   Add an Announcement</Text>
           </TouchableOpacity>

@@ -3,7 +3,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 const win = Dimensions.get('window');
 
-export const aboutUsAdminStyles = StyleSheet.create({
+export const aboutUsStudentStyles = StyleSheet.create({
 
       //Overall Container: Red
     lgOverallContainer: {
@@ -142,14 +142,14 @@ export const aboutUsAdminStyles = StyleSheet.create({
     },
 
     toUpdate:{
-        width: 160, 
+        width: 170, 
         height: 30, 
         flexDirection: 'row',
         backgroundColor: '#FF8080',  //#FFC1CE FB6D77
         borderRadius: 20, 
         justifyContent: "center", 
         alignItems: "center",    
-        marginLeft: 170,    
+        marginLeft: 160,    
 
     },
 
@@ -236,15 +236,24 @@ export const aboutUsAdminStyles = StyleSheet.create({
         // borderTopLeftRadius: 30,
         // borderTopRightRadius: 30,      
         paddingTop: 20,
-        paddingLeft: 20,
+        paddingLeft: 25,
         paddingBottom: 20,
         paddingRight: 35,
+    },
+
+    txtLabelDescription: {
+        fontFamily: 'Poppins-Regular',
+        textAlign: 'left',
+        fontSize: hp(2),
+        paddingBottom: 10,
+        color:'gray'
     },
 
     txtContent:{  
         lineHeight: 23,
         textAlign: 'justify',
         fontSize: hp(2.2),
+        paddingBottom: 15,
         color: '#2B2F3B',
         fontFamily: 'Poppins-Regular',
         // backgroundColor: 'white', 
@@ -284,13 +293,14 @@ export const aboutUsAdminStyles = StyleSheet.create({
 
     vSaveCancel:{
         flexDirection: 'row', 
-        justifyContent:'space-between',
+        justifyContent:'flex-end',
         flex: 1,
-        paddingHorizontal: 30,
+        paddingHorizontal: 20,
         paddingBottom: 20,
         // backgroundColor: '#F5F5F5', 
         backgroundColor: 'white',
     },
+
 
     btnSave: {
         width: 160,
@@ -348,7 +358,35 @@ export const aboutUsAdminStyles = StyleSheet.create({
         fontFamily: 'Poppins-Regular',
     },
 
-  
+    btnBack: {
+        width: 160,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
+        flexDirection:'row',
+        borderRadius: 20,
+        backgroundColor: '#CB0A0D',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+
+    },
+
+    txtBack: {
+        fontSize: hp(2.3),
+        color: 'white',
+        fontFamily: 'Poppins-Regular',
+    },
+
+
+
 
 
     

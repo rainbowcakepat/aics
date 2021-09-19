@@ -132,7 +132,7 @@ const AddAnnouncement = ({navigation}) => {
       
         <LinearGradient style={announcementStyles.lgTopHeader} colors= {['#CB0A0D', '#CB0A0D', ]}>
             {/* <TouchableOpacity style={announcementStyles.menuBarContainer}></TouchableOpacity> */}
-            <Icon style= {announcementStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
+            <Icon style= {announcementStyles.menuBarIcon} name="arrow-left" color="white" type= 'ionicons' size={23} onPress={() => navigation.navigate("ViewAnnouncementAdmin")}/>
             <Text style={announcementStyles.titleText}>Add Announcements</Text>
             <Text style={announcementStyles.subtitleText}>Tell us the latest happenings and updates in CICS, post your announcements now! </Text>
 

@@ -270,19 +270,22 @@ const AnnouncementStudent = ({navigation}) => {
       });
   } else {
     searchtitles = (
-      <Image
-        source={require('../../assets/./gif/spinner.gif')}
-        style={{
-          width: '50%',
-          height: '60%',
-          resizeMode: 'contain',
-        }}></Image>
+      <View style={{flexDirection: 'column', 
+      justifyContent: 'center',
+      }}>
+        <ImageBackground  source={require('../../assets/aicslogo.png')} 
+        style={{width: 250, height: 150, alignSelf:'center', margin: 32, resizeMode:'contain'}}
+        ></ImageBackground>
+        <ActivityIndicator size="large" color='purple'></ActivityIndicator>
+      </View>
     );
-    // <Text>Dito ko lalagay yung nagloload</Text>
   }
 
   if (searchtitles.length < 1) {
-    searchtitles = <Text>No Announcements found</Text>;
+    searchtitles = 
+    <ImageBackground  source={require('../../assets/./icons/aicsnoannouncements.png')} 
+    style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
+    </ImageBackground>
   }
 
   return (

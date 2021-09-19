@@ -29,6 +29,7 @@ import HomeScreenF from './screens/homeScreenF';
 
 //Admin About Us
 import ViewAboutUsAdmin from './screens/./aboutUsAdmin/aboutAdmin';
+import ViewAboutUsStudent from './screens/./aboutUsStudent/aboutStudent';
 
 import AnnouncementPageStudent from './screens/announcementStudent';
 
@@ -93,9 +94,25 @@ export default function App() {
           }}
         /> 
 
+      <Drawer.Screen
+          name="S About Us"
+          component={ViewAboutUsStudent}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="info-circle"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        /> 
+
+
 
       <Drawer.Screen
-          name="View Announcement_Admin"
+          name="ViewAnnouncementAdmin"
           component={ViewAnnouncementAdmin}
           options={{
             headerShown: false,
@@ -109,7 +126,7 @@ export default function App() {
           }}
         />    
         <Drawer.Screen
-          name="Add Announcement_Admin"
+          name="AddAnnouncement"
           component={AddAnnouncement}
           options={{
             headerShown: false,
