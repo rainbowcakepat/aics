@@ -598,7 +598,7 @@ const AboutUsAdmin = ({navigation}) => {
   if (searchtitles.length < 1) {
     
     searchtitles = 
-    <ImageBackground  source={require('../../assets/./icons/aicsnoannouncements.png')} 
+    <ImageBackground  source={require('../../assets/./icons/aicsnoabout.png')} 
     style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
     </ImageBackground>
     
