@@ -2,13 +2,14 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { GiftedChat } from 'react-native-gifted-chat'
 import firestore from '@react-native-firebase/firestore';
 import Filter from 'bad-words';
+import wordExists from 'word-exists';
+import badwords from './badwords.js';
 
 const sylvia = {
   _id: 2,
   name: 'ingrid',
   avatar:  require('../../assets/./chatbots/sylvia.png'),
 };
-
 
 
 
@@ -42,6 +43,7 @@ class SylviaChatbot extends React.Component {
   
     onSend(messages = []) {
       const filter = new Filter();
+      const wordExists = require('word-exists');
 
       this.setState((previousState) => ({
         messages: GiftedChat.append(previousState.messages, messages),
@@ -53,18 +55,81 @@ class SylviaChatbot extends React.Component {
       let message = messages[0].text;
       console.log(message)
 
-      if(filter.isProfane(message) == true) {
-        let reply = 'Bastos ka';
-        console.log(message,  filter.isProfane(message));
-        this.sendBotResponse(reply);
-      }
+      // if(filter.isProfane(message) == true) {
+      //   let reply = 'Bastos ka';
+      //   console.log(message,  filter.isProfane(message));
+      //   this.sendBotResponse(reply);
+      // }
 
-      if(message == 'ok') {
-        let reply = 'Thank you for your response. Kindly visit Akisha, Ingrid and Christine Chatbots to reflect your answer.';
-        this.sendBotResponse(reply);
-      }
+      // if(message == 'ok') {
+      //   let reply = 'Thank you for your response. Kindly visit Akisha, Ingrid and Christine Chatbots to reflect your answer.';
+      //   this.sendBotResponse(reply);
+      // }
+
       
-    }
+       message = message.split(/[ ,]+/);;
+      //  console.log(message);
+       
+      if(message != null) {
+        
+        console.log(message);
+
+        for(var i = 0; i < message.length; i++) {
+          // console.log('inside for loop');
+          console.log(i , message[i]);
+
+          if(filter.isProfane(message[i]) == true) {
+            console.log(message[i]); 
+            let reply = 'Bastos ka';
+            this.sendBotResponse(reply);
+            break;
+          }
+          
+          else if(badwords.includes(message[i])) {
+            console.log('May badwords pa nga')
+            let reply = 'May badwords pa';
+            this.sendBotResponse(reply);
+          }
+
+
+          else {
+            let reply = 'TY';
+            this.sendBotResponse(reply);
+            break;
+          }
+
+        }
+        
+      }
+    };
+
+      // for(var i = 0; i < message.length; ++i) {
+      //   console.log(message.length);
+        
+      //   if(message[i] == 'ok') {
+      //     console.log(message[i]);
+      //     console.log('may ok');
+          
+      //   }
+      //   else{
+      //     console.log(message[i]);
+      //     console.log('walang ok');
+         
+      //   }
+       
+
+      // }
+   
+      
+
+      // console.log(wordExists(message));
+
+      // if(message != null) {
+      //   let reply = 'Keme';
+      //   this.sendBotResponse(reply);
+      // }
+      
+    
     
     sendBotResponse(text) {
       let msg = {
