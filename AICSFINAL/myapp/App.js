@@ -65,7 +65,20 @@ export default function App() {
             drawerIcon: () => null,
           }}
         />
-
+ <Drawer.Screen
+          name="SylviaChatbot"
+          component={SylviaChatbot}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="info-circle"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        /> 
       <Drawer.Screen
           name="View Announcement_Student"
           component={ViewAnnouncementStudent}

@@ -1,6 +1,8 @@
 import React, { Component,} from 'react';
 import { Platform, Dimensions, Image, StyleSheet, View } from 'react-native';
 import AkishaChatbot from '../../screens/chatbotscreens/akishachatbot';
+import Icon from 'react-native-vector-icons/Feather';
+import SelectChatbot from '../../screens/chatbotscreens/chatbotmenu';
 
 const win = Dimensions.get('window');
 
@@ -37,9 +39,14 @@ export default class ChatbotApp extends Component {
       // <SpeechToText />
    
     <View style={styles.container}>
-      
+
+{/* <Icon style={{marginTop: 20, marginLeft: 8,}} name="arrow-left" color="black" size={22} onPress={() => {navigation.navigate("SelectChatbot")}}/> */}
+
+
     <View style={styles.header}>
+
         <Image style={styles.akisha} source={require('../../assets/akishabot.png')} />
+
     </View>
 
       <AkishaChatbot style={styles.containers}
@@ -56,6 +63,7 @@ export default class ChatbotApp extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: win.height,
     backgroundColor: 'white',
   },
 
