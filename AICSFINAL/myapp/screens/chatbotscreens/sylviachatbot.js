@@ -66,8 +66,12 @@ class SylviaChatbot extends React.Component {
       //   this.sendBotResponse(reply);
       // }
 
+      var special = (/^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/);
       
-       message = message.split(/[ ,]+/);;
+
+      
+       message = message.split(/[ ,]+/);
+      //  message = message.replace(/[^a-zA-Z ]/g, "");;
       //  console.log(message);
        
       if(message != null) {
@@ -80,20 +84,29 @@ class SylviaChatbot extends React.Component {
 
           if(filter.isProfane(message[i]) == true) {
             console.log(message[i]); 
-            let reply = 'Bastos ka';
+            let reply = "Whoops! I can't understand you, please try again.";
             this.sendBotResponse(reply);
             break;
           }
           
           else if(badwords.includes(message[i])) {
-            console.log('May badwords pa nga')
-            let reply = 'May badwords pa';
+            console.log('badword const')
+            let reply = 'Oh no! It seems that kemberlu';
             this.sendBotResponse(reply);
+            break;
           }
 
 
+          else if(wordExists(message[i]) == false) {
+            console.log('spam')
+            let reply = "Looks like you're a spammer.";
+            this.sendBotResponse(reply);
+            break;
+          }
+
           else {
-            let reply = 'TY';
+            console.log('thank you')
+            let reply = 'Thank you for your response. Kindly visit Akisha, Ingrid and Christine Chatbots to reflect your answer.';
             this.sendBotResponse(reply);
             break;
           }
