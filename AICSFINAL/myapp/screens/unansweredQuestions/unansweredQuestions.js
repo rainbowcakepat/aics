@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {
   Alert,
-  FlatList,
   Text,
   ScrollView,
   Modal,
@@ -19,8 +18,6 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
-import ImagePicker from 'react-native-image-crop-picker';
-import ImageModal from 'react-native-image-modal';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
@@ -66,8 +63,8 @@ const AboutUsAdmin = ({navigation}) => {
 
       useEffect(() => {
       const fecthAboutUs = firestore()
-        .collection('allAboutUs')
-        .orderBy('titles', 'asc')
+        .collection('allQuestions')
+        .orderBy('createdAt', 'desc')
         .onSnapshot(querySnapshot => {
           const posts = [];
           console.log('Total users: ', querySnapshot.size);
@@ -128,7 +125,122 @@ const AboutUsAdmin = ({navigation}) => {
     }
   };
 
- 
+  const onPressSave = (newID) => {
+    console.log('Gumagana ba to', newID);
+
+      if(newID == '0generalAbout') {
+        handleEditAbout(newID);
+        setisModalVisibleTheCollege(false);
+        console.log('id: ', newID);
+      }
+
+      else if(newID == '1mission') {
+        handleEditMission(newID);
+        setisModalVisibleMission(false);
+        console.log('id: ', newID);
+      }
+
+      else if(newID == '2vision') {
+        handleEditVision(newID);
+        setisModalVisibleVision(false);
+        console.log('id: ', newID);
+      }
+
+      else if(newID == '3contactInformation') {
+        handleEditContactInformation(newID);
+        setisModalVisibleContactInformation(false);
+        console.log('id: ', newID);
+      }
+
+      else if(newID == '4offerings') {
+        handleEditCollegeOfferings(newID);
+        setisModalCollegeOfferings(false);
+        console.log('id: ', newID);
+      }
+  };
+
+  const handleEditAbout = (newID) => {
+    firestore()
+    .collection('allAboutUs')
+    .doc(newID)
+    .update({  
+      about: newAbout,
+    })
+    .then(() => {
+      setnewAbout('');
+      Alert.alert('Information Updated!');
+      console.log('all set!');
+    });
+  };
+
+  const handleEditMission = (newID) => {
+    firestore()
+    .collection('allAboutUs')
+    .doc(newID)
+    .update({  
+      mission: newMission,
+    })
+    .then(() => {
+      setnewMission('');
+      Alert.alert('Information Updated!');
+      console.log('all set!');
+    });
+  };
+
+  const handleEditVision = (newID) => {
+    firestore()
+    .collection('allAboutUs')
+    .doc(newID)
+    .update({  
+      vision: newVision,
+    })
+    .then(() => {
+      setnewVision('');
+      Alert.alert('Information Updated!');
+      console.log('all set!');
+    });
+  };
+
+  const handleEditContactInformation = (newID) => {
+    firestore()
+    .collection('allAboutUs')
+    .doc(newID)
+    .update({  
+      email: newContactInfoEmail,
+      facebook: newContactInfoFacebook,
+      location: newContactInfoLocation,
+      number: newContactInfoNumber,
+      schedule: newContactInfoSchedule,
+    })
+    .then(() => {
+      setnewContactInfoEmail('');
+      setnewContactInfoFacebook('');
+      setnewContactInfoLocation('');
+      setnewContactInfoNumber('');
+      setnewContactInfoSchedule('');
+      Alert.alert('Information Updated!');
+      console.log('all set!');
+    });
+  };
+
+  const handleEditCollegeOfferings = (newID) => {
+    firestore()
+    .collection('allAboutUs')
+    .doc(newID)
+    .update({  
+      degreePrograms: newDegreePrograms,
+      departments: newDepartments,
+      otherinformation: newOtherInformation,
+    })
+    .then(() => {
+      setnewDegreePrograms('');
+      setnewDepartments('');
+      setnewOtherInformation('');
+      Alert.alert('Information Updated!');
+      console.log('all set!');
+    });
+  };
+
   let searchtitles = null;
 
   if (loader) {
