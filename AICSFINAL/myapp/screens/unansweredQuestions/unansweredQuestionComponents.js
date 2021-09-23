@@ -17,14 +17,6 @@ function UnansweredQuestionComponent(props){
                         <Text style={{fontFamily: 'Lato-Regular', color: 'gray', fontSize: hp(1.8), marginBottom: 10, marginTop: 1}}>  {(props.propstime.toDate().toLocaleString())}</Text>
                     </View>
                     
-                    {/* <Text>{props.propscontent}</Text>
-                    <Text>{props.propsimage}</Text> */}
-
-                {/* {props.propsimage ? null :
-                    <Image source={{uri: props.propsimage ? props.propsimage : null}}  style={{ width: 100, height: 200, resizeMode: 'contain'}}></Image>
-
-                    } */}
-
                 </View>
 
                 

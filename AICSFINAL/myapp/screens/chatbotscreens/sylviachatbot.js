@@ -72,22 +72,22 @@ class SylviaChatbot extends React.Component {
 
       const newBadEnglish = badwords.split(/[ ,]+/);
       const newBadTagalog = tagbadwords.split(/[ ,]+/);
-      const newMessage = message.replace(/[&\/\\#,+()$~%!.„":*‚^_¤?<>|@ª{«»§}©®™' ]/g, " ").trim().split(/[ ,]+/); 
+      const newMessage = message.replace(/[&\/\\#,+()$~%!.„":*‚^_¤?<>|@ª{«»§}©®™ ]/g, " ").trim().split(/[ ,]+/); 
       console.log(newMessage);
      
     
       //Spam
-      // for (words of newMessage) {
-      //   console.log(words)
+      for (words of newMessage) {
+        console.log(words)
           
-      //     if (wordExists(words) == false) {
-      //       isNotAWord = true;
-      //       break;
-      //     } 
-      //     else {
-      //       isNotAWord = false;
-      //     }
-      // }
+          if (wordExists(words) == false) {
+            isNotAWord = true;
+            break;
+          } 
+          else {
+            isNotAWord = false;
+          }
+      }
 
       //Profane
       for (words of newMessage) {
@@ -97,7 +97,6 @@ class SylviaChatbot extends React.Component {
           isProfane = false;
         }
       }
-
 
       //Bad English Custom Words
       for (wordsEnglish of newBadEnglish) {
@@ -118,9 +117,7 @@ class SylviaChatbot extends React.Component {
           isBadTagalog = false;
         }
       }
-
-
-      
+ 
       if (isBadEnglish) {
         console.log("bad english word");
         let reply = "Whoops! I can't understand your language 👀, please try again.";
@@ -144,6 +141,7 @@ class SylviaChatbot extends React.Component {
       else {
         console.log("OK");
         let reply = "Thank you for your response. 🥰 Kindly revisit Akisha, Ingrid and Christine Chatbots after 2 days to answer your inquiry. Have a great day ahead! ✨";
+        // let reply = "Type this code to confirm: 100 ✨";
         this.sendBotResponse(reply);
         firestore().collection('allUnansweredQuestions').add({_id, createdAt,  text, user }) 
         
@@ -151,11 +149,7 @@ class SylviaChatbot extends React.Component {
   
     };
 
-
-
-
-   
-      
+ 
     sendBotResponse(text) {
       let msg = {
         _id: this.state.messages.length + 1,
@@ -167,8 +161,10 @@ class SylviaChatbot extends React.Component {
       this.setState(previousState => ({
         messages: GiftedChat.append(previousState.messages, [msg])
       }));
+
     }
-  
+
+    
   
     render() {
       return (
@@ -179,7 +175,6 @@ class SylviaChatbot extends React.Component {
           user={{
             _id: 1,
           }}
-          renderMessage={this.renderMessage}
         />
       );
     }
