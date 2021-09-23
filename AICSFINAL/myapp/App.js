@@ -35,6 +35,10 @@ import ViewAboutUsStudent from './screens/./aboutUsStudent/aboutStudent';
 
 import AnnouncementPageStudent from './screens/announcementStudent';
 
+//Unanswered Questions
+import UnansweredQuestions from './screens/./unansweredQuestions/unansweredQuestions';
+
+
 const Drawer = createDrawerNavigator();
 LogBox.ignoreAllLogs();
 AsyncStorage.clear();
@@ -65,7 +69,24 @@ export default function App() {
             drawerIcon: () => null,
           }}
         />
- <Drawer.Screen
+
+<Drawer.Screen
+          name="UnansweredQuestions"
+          component={UnansweredQuestions}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="info-circle"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        /> 
+
+
+      <Drawer.Screen
           name="SylviaChatbot"
           component={SylviaChatbot}
           options={{

@@ -3,14 +3,13 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 const win = Dimensions.get('window');
 
-export const announcementComponentStyles = StyleSheet.create({
+export const unansweredQuestionsStyles = StyleSheet.create({
 
       //Overall Container: Red
     lgOverallContainer: {
        height: win.height,
        width: win.width,
        backgroundColor: '#CB0A0D',
-       
     },
 
     //Top Header: Black
@@ -38,7 +37,7 @@ export const announcementComponentStyles = StyleSheet.create({
     titleText: {
         marginLeft: 15, 
         marginTop: 22, 
-        fontSize: hp(4.6), //34
+        fontSize: hp(4), //34
         marginBottom: -5,
         fontFamily: 'Poppins-Medium',
         color: 'white', 
@@ -164,15 +163,18 @@ export const announcementComponentStyles = StyleSheet.create({
     },
 
     toUpdate:{
-        width: 150, 
+        width: 170, 
         height: 30, 
         flexDirection: 'row',
         backgroundColor: '#FF8080',  //#FFC1CE FB6D77
         borderRadius: 20, 
         justifyContent: "center", 
-        alignItems: "center",        
+        alignItems: "center",    
+        marginLeft: 160,        
 
     },
+
+    
 
     toArchive:{
         width: 150, 
@@ -363,7 +365,7 @@ export const announcementComponentStyles = StyleSheet.create({
         elevation: 4,
 
     },
-    
+
     btnCancel: {
         width: 160,
         height: 35,

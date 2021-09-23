@@ -149,8 +149,6 @@ const AboutUsAdmin = ({navigation}) => {
         return (
           <View key={key} >
 
-
-{/* hatdog */}
             <View style={aboutUsStudentStyles.vCardContainer}>
               
               <AboutUsComponents 

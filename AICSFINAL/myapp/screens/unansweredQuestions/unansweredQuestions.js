@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {
   Alert,
+  FlatList,
   Text,
   ScrollView,
   Modal,
@@ -14,10 +15,7 @@ import {
   ImageBackground
 } from 'react-native';
 
-import LinearGradient from 'react-native-linear-gradient';
-
 import firestore from '@react-native-firebase/firestore';
-import storage from '@react-native-firebase/storage';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
@@ -25,221 +23,89 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 const win = Dimensions.get('window');
 
-import AboutUsComponents from '../aboutUsAdmin/aboutUsComponent';
-import {announcementStyles} from '../../styles/announcementStyles';
-import {aboutUsStudentStyles} from '../../styles/aboutUsStudentStyles';
+import UnansweredQuestionComponent from './unansweredQuestionComponents';
+import {unansweredQuestionsStyles} from '../../styles/unansweredQuestionsStyles';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-const AboutUsAdmin = ({navigation}) => {
+const UnansweredQuestions = ({navigation}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [posts, setPosts] = useState(null);
   const [loader, setLoading] = useState(false);
 
-  const [isModalVisibleVision, setisModalVisibleVision] = useState(false);
-  const [isModalVisibleMission, setisModalVisibleMission] = useState(false);
-  const [isModalVisibleTheCollege, setisModalVisibleTheCollege] = useState(false);
-  const [isModalVisibleContactInformation, setisModalVisibleContactInformation] = useState(false);
-  const [isModalCollegeOfferings, setisModalCollegeOfferings] = useState(false);
+  const [isModalVisible, setisModalVisible] = useState(false);
+  const [newText, setNewQuestion] = useState('');
+  const [newcreatedAt, setNewTime] = useState('');
+  const [newAnswer, setnewAnswer] = useState('');
 
-  const [newAbout, setnewAbout] = useState('');
-  const [newMission, setnewMission] = useState('');
-  const [newVision, setnewVision] = useState('');
+  const [validate, setValidate] = useState(false);
 
-  const [newContactInfoLocation, setnewContactInfoLocation] = useState('');
-  const [newContactInfoNumber, setnewContactInfoNumber] = useState('');
-  const [newContactInfoSchedule, setnewContactInfoSchedule] = useState('');
-  const [newContactInfoEmail, setnewContactInfoEmail] = useState('');
-  const [newContactInfoFacebook, setnewContactInfoFacebook] = useState('');
-  const [newContactInfoWebsite, setnewContactInfoWebsite] = useState('');
-
-  const [newDegreePrograms, setnewDegreePrograms] = useState('');
-  const [newDepartments, setnewDepartments] = useState('');
-  const [newOtherInformation, setnewOtherInformation] = useState('');
-
-  const [newID, setNewId] = useState('');
+  const [newID, setNewID] = useState('');
 
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
 
-      useEffect(() => {
-      const fecthAboutUs = firestore()
-        .collection('allQuestions')
-        .orderBy('createdAt', 'desc')
-        .onSnapshot(querySnapshot => {
-          const posts = [];
-          console.log('Total users: ', querySnapshot.size);
-      
-          querySnapshot.forEach(documentSnapshot => {
-            posts.push({
-              ...documentSnapshot.data(),
-              key: documentSnapshot.id,
-            });
+  useEffect(() => {
+    const fetchUnansweredQuestions = firestore()
+      .collection('allUnansweredQuestions')
+      .orderBy('createdAt', 'desc')
+      .onSnapshot(querySnapshot => {
+        const posts = [];
+
+        querySnapshot.forEach(documentSnapshot => {
+          posts.push({
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
           });
-          setPosts(posts);
-          setLoading(true);
-          console.log('Reading firebase');
         });
-        
-        return () => fecthAboutUs();
-      }, []);
+        setPosts(posts);
+        setLoading(true);
+      });
+    // Unsubscribe from events when no longer in use
+    return () => fetchUnansweredQuestions();
+  }, []);
 
-  const getAnnouncements = (item) => {
+ 
+  const getQuestions = (item) => {
+    setisModalVisible(true);
+    setNewQuestion(item.text);
 
-    setNewId(item.key);
-
-    if (item.titles == 'About the College') {
-      setNewId(item.key);
-      setnewAbout(item.about);
-      setisModalVisibleTheCollege(true);
-    }
-
-    if (item.titles == 'College Offerings') {
-      setNewId(item.key);
-      setnewDegreePrograms(item.degreePrograms);
-      setnewDepartments(item.departments);
-      setnewOtherInformation(item.otherinformation);
-       setisModalCollegeOfferings(true);
-     }
-
-    if (item.titles == 'The Mission') {
-      setNewId(item.key);
-      setnewMission(item.mission);
-      setisModalVisibleMission(true);
-    }
-
-    if (item.titles == 'The Vision') {
-      setNewId(item.key);
-      setnewVision(item.vision);
-      setisModalVisibleVision(true);
-    }
-
-    if (item.titles == 'UST CICS Contact Information') {
-      setNewId(item.key);
-     setnewContactInfoEmail(item.email);
-     setnewContactInfoFacebook(item.facebook);
-     setnewContactInfoLocation(item.location);
-     setnewContactInfoNumber(item.number);
-     setnewContactInfoSchedule(item.schedule);
-    //  setnewContactInfoWebsite(item.email);
-      setisModalVisibleContactInformation(true);
-    }
+    setNewID(item.key);
+    console.log(item.text, item.key);
   };
 
   const onPressSave = (newID) => {
     console.log('Gumagana ba to', newID);
-
-      if(newID == '0generalAbout') {
-        handleEditAbout(newID);
-        setisModalVisibleTheCollege(false);
-        console.log('id: ', newID);
-      }
-
-      else if(newID == '1mission') {
-        handleEditMission(newID);
-        setisModalVisibleMission(false);
-        console.log('id: ', newID);
-      }
-
-      else if(newID == '2vision') {
-        handleEditVision(newID);
-        setisModalVisibleVision(false);
-        console.log('id: ', newID);
-      }
-
-      else if(newID == '3contactInformation') {
-        handleEditContactInformation(newID);
-        setisModalVisibleContactInformation(false);
-        console.log('id: ', newID);
-      }
-
-      else if(newID == '4offerings') {
-        handleEditCollegeOfferings(newID);
-        setisModalCollegeOfferings(false);
-        console.log('id: ', newID);
-      }
-  };
-
-  const handleEditAbout = (newID) => {
+    setisModalVisible(false);
+    
     firestore()
-    .collection('allAboutUs')
-    .doc(newID)
-    .update({  
-      about: newAbout,
+    .collection('allAnsweredQuestions')
+    .doc()
+    .set({
+      question: newText,
+      createdAt: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+      answer: newAnswer,
     })
     .then(() => {
-      setnewAbout('');
-      Alert.alert('Information Updated!');
-      console.log('all set!');
+        setNewQuestion('');
+        setnewAnswer('');
+      console.log('Answer added!', id);
+      deleteQuestion(newID);
     });
   };
 
-  const handleEditMission = (newID) => {
+ 
+  let orig;
+
+  const deleteQuestion = id => {
     firestore()
-    .collection('allAboutUs')
-    .doc(newID)
-    .update({  
-      mission: newMission,
-    })
-    .then(() => {
-      setnewMission('');
-      Alert.alert('Information Updated!');
-      console.log('all set!');
-    });
+      .collection('allUnansweredQuestions')
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log('ID: User deleted!', id);
+      });
   };
 
-  const handleEditVision = (newID) => {
-    firestore()
-    .collection('allAboutUs')
-    .doc(newID)
-    .update({  
-      vision: newVision,
-    })
-    .then(() => {
-      setnewVision('');
-      Alert.alert('Information Updated!');
-      console.log('all set!');
-    });
-  };
-
-  const handleEditContactInformation = (newID) => {
-    firestore()
-    .collection('allAboutUs')
-    .doc(newID)
-    .update({  
-      email: newContactInfoEmail,
-      facebook: newContactInfoFacebook,
-      location: newContactInfoLocation,
-      number: newContactInfoNumber,
-      schedule: newContactInfoSchedule,
-    })
-    .then(() => {
-      setnewContactInfoEmail('');
-      setnewContactInfoFacebook('');
-      setnewContactInfoLocation('');
-      setnewContactInfoNumber('');
-      setnewContactInfoSchedule('');
-      Alert.alert('Information Updated!');
-      console.log('all set!');
-    });
-  };
-
-  const handleEditCollegeOfferings = (newID) => {
-    firestore()
-    .collection('allAboutUs')
-    .doc(newID)
-    .update({  
-      degreePrograms: newDegreePrograms,
-      departments: newDepartments,
-      otherinformation: newOtherInformation,
-    })
-    .then(() => {
-      setnewDegreePrograms('');
-      setnewDepartments('');
-      setnewOtherInformation('');
-      Alert.alert('Information Updated!');
-      console.log('all set!');
-    });
-  };
 
   let searchtitles = null;
 
@@ -249,7 +115,7 @@ const AboutUsAdmin = ({navigation}) => {
         if (searchTerm == '') {
           return item;
         } else if (
-          item.maincontent
+          item.text
             ?.toString()
             .toLowerCase()
             .includes(searchTerm.toString().toLowerCase())
@@ -261,321 +127,112 @@ const AboutUsAdmin = ({navigation}) => {
         return (
           <View key={key} >
 
-            <View style={aboutUsStudentStyles.vCardContainer}>
+            <View style={unansweredQuestionsStyles.vCardContainer}>
               
-              <AboutUsComponents 
+              <UnansweredQuestionComponent 
                 // item = {item}
                 propsnum={key}
                 propsid={item.key}
-                propstitle={item.titles}
-                propskeywords={item.keywords}
+                propsqsn={item.text}
+                propstime={item.createdAt}
               />
 
               <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
 
-                <TouchableOpacity
-                  style={aboutUsStudentStyles.toUpdate}
-                  onPress={() => getAnnouncements(item)}>
-                  <Icon name="eye" color="white" size={16} style={{ marginBottom: 5 }}/>
-                  <Text style={aboutUsStudentStyles.txtUpdateArchive}> View information </Text>
+              <TouchableOpacity
+                  style={unansweredQuestionsStyles.toUpdate}
+                  onPress={() => getQuestions(item)}>
+                  <Icon name="edit" color="white" size={16} style={{ marginBottom: 5 }}/>
+                  <Text style={unansweredQuestionsStyles.txtUpdateArchive}> Answer question </Text>
                 </TouchableOpacity>
-
+            
               </View>
 
             </View>
 
-            {/* MODAL: ABOUT THE COLLEGE */}
-          <Modal
-           animationType="slide"
-           visible={isModalVisibleTheCollege}
-           onRequestClose={() => setisModalVisibleTheCollege(false)}
-          >
-            <View style={aboutUsStudentStyles.vModalContainer}>
+            <Modal
+              animationType="fade"
+              visible={isModalVisible}
+              onRequestClose={() => setisModalVisible(false)}>
+
+              <View style={unansweredQuestionsStyles.vModalContainer}>
                 
                 <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
+                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={unansweredQuestionsStyles.vtxtTitle} >
                     
                     <TouchableWithoutFeedback
-                      style={aboutUsStudentStyles.toAnnouncement}>
+                      style={unansweredQuestionsStyles.toAnnouncement}>
                       {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
+                      <Text style={unansweredQuestionsStyles.txtEdit}> Answer Question</Text>
                     </TouchableWithoutFeedback>
   
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
+                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
+                    color:'#F5F5F5', }}>Question: </Text>
                         
-                    <Text style={aboutUsStudentStyles.txtTitle}>About the College</Text>
+                    <TextInput
+                    style={unansweredQuestionsStyles.txtTitle}
+                    onChangeText={text => setNewQuestion(text)}
+                    placeholder={'Title'}
+                    placeholderTextColor={'#B2B2B2'}
+                    value={newText}
+                    multiline={true}
+                    numberOfLines={2}
+                    maxLength={50}>
+                </TextInput>
                  
                 </ImageBackground>
                 
-                <View style={aboutUsStudentStyles.vtxtContent}>
+                <View style={unansweredQuestionsStyles.vtxtContent}>
                   
                   <ScrollView>
-                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Description:</Text>
+            
+                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
+                    color:'gray', }}>Answer Content:</Text>
                       
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                    >{newAbout}</Text>
+                    <TextInput
+                      style={unansweredQuestionsStyles.txtContent}
+                      onChangeText={text => {setnewAnswer(text); setValidate(text)}}
+                      placeholder={'Content'}
+                      placeholderTextColor={'#B2B2B2'}
+                      value={newAnswer}
+                      multiline={true}
+                      numberOfLines={5}
+                      maxLength={550}></TextInput>
                   </ScrollView>
 
                 </View>
-    
-                <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleTheCollege(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
-                  </TouchableOpacity>
-                </View>
+
+                  <ScrollView style={unansweredQuestionsStyles.imageContainer}>
+
+               </ScrollView>
                
-                
-              </View>
 
-          </Modal>
+                <View style={unansweredQuestionsStyles.vSaveCancel}>
 
-          <Modal
-           animationType="slide"
-           visible={isModalCollegeOfferings}
-           onRequestClose={() => setisModalCollegeOfferings(false)}
-          >
-            <View style={aboutUsStudentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsStudentStyles.toAnnouncement}>
-                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsStudentStyles.txtTitle}>College Offerings</Text>
-                 
-                </ImageBackground>
-                
-                <View style={aboutUsStudentStyles.vtxtContent}>
-                  
-                  <ScrollView>
-                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Degree Programs:</Text>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                     >{newDegreePrograms}</Text>
+                  {
+                      validate ? 
+                      <TouchableOpacity style={unansweredQuestionsStyles.btnSave}
+                      onPress={() => onPressSave(newID)}>
+                        <Text style={unansweredQuestionsStyles.txtSave}>Save</Text>
+                      </TouchableOpacity>
+                      :
+                      <TouchableOpacity style={unansweredQuestionsStyles.btnNotSave}>
+                        <Text style={unansweredQuestionsStyles.txtSave}>Save</Text>
+                      </TouchableOpacity>
 
-                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Degree Departments:</Text>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                     >{newDepartments}</Text>
+                  }  
 
-                  <Text style={aboutUsStudentStyles.txtLabelDescription}>Other information:</Text>
-                      
-                      <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newOtherInformation}</Text>
-                 
-                  </ScrollView>
-
-                </View>
-
-                <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalCollegeOfferings(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  <TouchableOpacity style={unansweredQuestionsStyles.btnCancel}
+                  onPress={() => setisModalVisible(false)}>
+                    <Text style={unansweredQuestionsStyles.txtCancel}>Cancel</Text>
                   </TouchableOpacity>
                 </View>
                 
               </View>
 
-          </Modal>
-         
-          <Modal
-           animationType="slide"
-           visible={isModalVisibleMission}
-           onRequestClose={() => setisModalVisibleMission(false)}
-          >
-            <View style={aboutUsStudentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsStudentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsStudentStyles.txtTitle}>Mission</Text>
-                 
-                </ImageBackground>
-                
-                <View style={aboutUsStudentStyles.vtxtContent}>
-                  
-                  <ScrollView>
-                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Description:</Text>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newMission}</Text>
-                                 
-                  </ScrollView>
+            
 
-                </View>
-
-                <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleMission(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-
-          </Modal>
-
-          <Modal
-           animationType="slide"
-           visible={isModalVisibleVision}
-           onRequestClose={() => setisModalVisibleVision(false)}
-          >
-            <View style={aboutUsStudentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsStudentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsStudentStyles.txtTitle}>Vision</Text>
-                 
-                </ImageBackground>
-                
-                <View style={aboutUsStudentStyles.vtxtContent}>
-                  
-                  <ScrollView>
-                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Description:</Text>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                    >{newVision}</Text>
-                                 
-                  </ScrollView>
-
-                </View>
-
-                <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleVision(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
-                  </TouchableOpacity>
-                </View>
-                
-              </View>
-
-          </Modal>
-
-          <Modal
-           animationType="slide"
-           visible={isModalVisibleContactInformation}
-           onRequestClose={() => setisModalVisibleContactInformation(false)}
-          >
-            <View style={aboutUsStudentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsStudentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsStudentStyles.txtTitle}>Contact Details</Text>
-                 
-                </ImageBackground>
-                
-                <View style={aboutUsStudentStyles.vtxtContent}>
-                  
-                  <ScrollView>
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="map-pin" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Location:</Text>
-                    </View>
-                   
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newContactInfoLocation}</Text>
-
-                    <Text></Text>
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="clock" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Office hours:</Text>
-                    </View>
-                   
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newContactInfoSchedule}</Text>
-                    
-                    <Text></Text>    
-
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="phone" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Office Contact Number:</Text>
-                    </View>
-                   
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newContactInfoNumber}</Text>
-                      <Text></Text> 
-
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="facebook" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Facebook Page:</Text>
-                    </View>
-                   
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                     >{newContactInfoFacebook}</Text>
-                      <Text></Text> 
-
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="mail" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> UST CICS Email :</Text>
-                    </View>
-                   
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newContactInfoEmail}</Text>
-                      <Text></Text> 
-
-
-                  </ScrollView>
-
-                </View>
-
-                <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleContactInformation(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
-                  </TouchableOpacity>
-                </View>
-                
-              </View>
-
-          </Modal>
-
+            </Modal>
           </View>
         );
       });
@@ -593,39 +250,37 @@ const AboutUsAdmin = ({navigation}) => {
   }
 
   if (searchtitles.length < 1) {
-    
     searchtitles = 
     <ImageBackground  source={require('../../assets/./icons/aicsnoabout.png')} 
     style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
     </ImageBackground>
-    
   }
 
   return (
-    <View style={aboutUsStudentStyles.lgOverallContainer}>
+    <View style={unansweredQuestionsStyles.lgOverallContainer}>
 
-      <View style={aboutUsStudentStyles.lgTopHeader}>
+      <View style={unansweredQuestionsStyles.lgTopHeader}>
         
-        <Icon style= {aboutUsStudentStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={aboutUsStudentStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
+        <Icon style= {unansweredQuestionsStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
+        <TouchableOpacity style={unansweredQuestionsStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
         </TouchableOpacity>
-        <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
+        <Image source={require('../../assets/aics.png')} style={unansweredQuestionsStyles.aicsLogo}/>
         
         <View style={{flexDirection: 'row'}}>
           <View>
-            <Text adjustsFontSizeToFit={true} style={aboutUsStudentStyles.titleText}>About Us</Text>
-            <Text adjustsFontSizeToFit={true} style={aboutUsStudentStyles.subtitleText}>Welcome to the College of Information and Computing Sciences, know about us! </Text>
+            <Text adjustsFontSizeToFit={true} style={unansweredQuestionsStyles.titleText}>Unanswered Questions</Text>
+            <Text adjustsFontSizeToFit={true} style={unansweredQuestionsStyles.subtitleText}>Answer inquiries and concerns from the CICS Community. </Text>
           </View>
           
         </View>
 
       </View>
 
-      <View style={aboutUsStudentStyles.vSearchBar}>
+      <View style={unansweredQuestionsStyles.vSearchBar}>
           
-          <Icon name="search" color="#B2B2B2" style={aboutUsStudentStyles.searchBaricon} size={19}/>
+          <Icon name="search" color="#B2B2B2" style={unansweredQuestionsStyles.searchBaricon} size={19}/>
           <TextInput adjustsFontSizeToFit={true}
-          style={aboutUsStudentStyles.tiSearch}
+          style={unansweredQuestionsStyles.tiSearch}
             numberOfLines={1}
             maxLength={50}
             placeholder={'Search'}
@@ -638,16 +293,16 @@ const AboutUsAdmin = ({navigation}) => {
 
       </View>
 
-      <View style={aboutUsStudentStyles.vAnnouncements}>
-
+      <View style={unansweredQuestionsStyles.vAnnouncements}>
+        
         <ScrollView adjustsFontSizeToFit
           >
           {searchtitles}
         </ScrollView>
       </View>
 
+   
     </View>
   );
 };
-
-export default AboutUsAdmin;
+export default UnansweredQuestions;

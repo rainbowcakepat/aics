@@ -3,4 +3,3 @@ const badwords = "abortion, abuse, addict, addicts, adult, anal, analsex, anus, 
 export default badwords;
 
 
-

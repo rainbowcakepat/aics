@@ -36,6 +36,7 @@ const AnnouncementAdmin = ({navigation}) => {
   const [posts, setPosts] = useState(null);
   const [loader, setLoading] = useState(false);
 
+  const [validate, setValidate] = useState(false);
   const [isImageModalVisible, setImageModal] = useState(false);
   const [isModalVisible, setisModalVisible] = useState(false);
   const [newTitles, setNewTitles] = useState('');
@@ -349,7 +350,7 @@ const AnnouncementAdmin = ({navigation}) => {
                       
                     <TextInput
                       style={announcementComponentStyles.txtContent}
-                      onChangeText={text => setNewContents(text)}
+                      onChangeText={text => {setNewContents(text); setValidate(text)}}
                       placeholder={'Content'}
                       placeholderTextColor={'#B2B2B2'}
                       value={newContents}
@@ -410,10 +411,20 @@ const AnnouncementAdmin = ({navigation}) => {
 
 
                 <View style={announcementComponentStyles.vSaveCancel}>
-                  <TouchableOpacity style={announcementComponentStyles.btnSave}
-                  onPress={() => onPressSave(newID)}>
-                    <Text style={announcementComponentStyles.txtSave}>Save</Text>
-                  </TouchableOpacity>
+
+                  
+                {
+                      validate ? 
+                      <TouchableOpacity style={announcementComponentStyles.btnSave}
+                      onPress={() => onPressSave(newID)}>
+                        <Text style={announcementComponentStyles.txtSave}>Save</Text>
+                      </TouchableOpacity>
+                      :
+                      <TouchableOpacity style={announcementComponentStyles.btnNotSave}>
+                        <Text style={announcementComponentStyles.txtSave}>Save</Text>
+                      </TouchableOpacity>
+
+                  }  
 
                   <TouchableOpacity style={announcementComponentStyles.btnCancel}
                   onPress={() => setisModalVisible(false)}>
