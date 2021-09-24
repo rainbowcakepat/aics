@@ -14,17 +14,17 @@ export default class ChatbotApp4 extends Component {
   state = {
     text: "Hi! It's your girl, Sylvia from UST-CICS.\n\nHow may I help you today?"
   }
-  constructor(props){
-    //super(props);
-    super();
-    this.textHandler = this.textHandler.bind(this);
-  }
+  // constructor(props){
+  //   //super(props);
+  //   super();
+  //   this.textHandler = this.textHandler.bind(this);
+  // }
   
-  textHandler (newtext) {
-    // console.log("test")
-    //console.log("TEST"+newtext)
-    this.setState({text: newtext});
-  }
+  // textHandler (newtext) {
+  //   // console.log("test")
+  //   //console.log("TEST"+newtext)
+  //   this.setState({text: newtext});
+  // }
 
   render() {
     //console.log("in app ");
@@ -43,9 +43,7 @@ export default class ChatbotApp4 extends Component {
         <Image style={styles.akisha} source={require('../../assets/sylviabot.png')} />
     </View>
 
-      <SylviaChatbot style={styles.containers}
-      text = "Hi! It's your girl, Sylvia from UST-CICS.\n\nHow may I help you today?"
-      fortextHandle={this.textHandler} /> 
+      <SylviaChatbot /> 
 
     </View>
     

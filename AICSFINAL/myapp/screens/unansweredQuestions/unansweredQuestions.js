@@ -68,7 +68,7 @@ const UnansweredQuestions = ({navigation}) => {
   const getQuestions = (item) => {
     setisModalVisible(true);
     setNewQuestion(item.text);
-
+    setNewTime(item.createdAt.toDate().toLocaleString());
     setNewID(item.key);
     console.log(item.text, item.key);
   };
@@ -167,18 +167,13 @@ const UnansweredQuestions = ({navigation}) => {
                     </TouchableWithoutFeedback>
   
                     <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'#F5F5F5', }}>Question: </Text>
+                    color:'#F5F5F5', }}>Submission Date: </Text>
                         
-                    <TextInput
+                    <Text
                     style={unansweredQuestionsStyles.txtTitle}
-                    onChangeText={text => setNewQuestion(text)}
-                    placeholder={'Title'}
-                    placeholderTextColor={'#B2B2B2'}
-                    value={newText}
-                    multiline={true}
-                    numberOfLines={2}
-                    maxLength={50}>
-                </TextInput>
+                    numberOfLines={2}>
+                {newcreatedAt}</Text> 
+                {/* newText */}
                  
                 </ImageBackground>
                 
@@ -187,17 +182,12 @@ const UnansweredQuestions = ({navigation}) => {
                   <ScrollView>
             
                     <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Answer Content:</Text>
+                    color:'gray', }}>Question Content:</Text>
                       
-                    <TextInput
+                    <Text
                       style={unansweredQuestionsStyles.txtContent}
-                      onChangeText={text => {setnewAnswer(text); setValidate(text)}}
-                      placeholder={'Content'}
-                      placeholderTextColor={'#B2B2B2'}
-                      value={newAnswer}
-                      multiline={true}
                       numberOfLines={5}
-                      maxLength={550}></TextInput>
+                      maxLength={550}>{newText}</Text>
                   </ScrollView>
 
                 </View>

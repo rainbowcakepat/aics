@@ -106,9 +106,9 @@ const ChatbotMenu = ({navigation}) => {
         navigation.navigate("ChristineChatbot");
     }
 
-    // if (item.name == 'Sylvia Chatbot') {
-    //     navigation.navigate("AkishaChatbot");
-    // }
+    if (item.name == 'Sylvia Chatbot') {
+        navigation.navigate("SylviaChatbot");
+    }
    
   };
 

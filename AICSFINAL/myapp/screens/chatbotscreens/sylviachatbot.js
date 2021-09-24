@@ -7,7 +7,7 @@ import tagbadwords from './badwords2.js';
 
 const sylvia = {
   _id: 2,
-  name: 'ingrid',
+  name: 'sylvia',
   avatar:  require('../../assets/./chatbots/sylvia.png'),
 };
 
@@ -28,11 +28,12 @@ class SylviaChatbot extends React.Component {
             _id: 1,
             text: "Hi! It's your girl, Sylvia from UST CICS. How may I help you?",
             createdAt: new Date(),
-            user: {
-              _id: 2,
-              name: 'React Native',
-              avatar: 'https://facebook.github.io/react/img/logo_og.png',
-            },
+            user: sylvia,
+            // user: {
+            //   _id: 2,
+            //   name: 'React Native',
+            //   avatar: 'https://facebook.github.io/react/img/logo_og.png',
+            // },
           },
         ],
       });
