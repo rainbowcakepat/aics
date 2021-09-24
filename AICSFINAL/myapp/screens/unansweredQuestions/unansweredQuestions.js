@@ -83,12 +83,12 @@ const UnansweredQuestions = ({navigation}) => {
     .set({
       question: newText,
       createdAt: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-      answer: newAnswer,
+      // answer: newAnswer,
     })
     .then(() => {
         setNewQuestion('');
-        setnewAnswer('');
-      console.log('Answer added!', id);
+        // setnewAnswer('');
+      console.log('Answered!', id);
       deleteQuestion(newID);
     });
   };
@@ -199,18 +199,18 @@ const UnansweredQuestions = ({navigation}) => {
 
                 <View style={unansweredQuestionsStyles.vSaveCancel}>
 
-                  {
-                      validate ? 
+                  {/* {
+                      validate ?  */}
                       <TouchableOpacity style={unansweredQuestionsStyles.btnSave}
                       onPress={() => onPressSave(newID)}>
                         <Text style={unansweredQuestionsStyles.txtSave}>Save</Text>
                       </TouchableOpacity>
-                      :
-                      <TouchableOpacity style={unansweredQuestionsStyles.btnNotSave}>
-                        <Text style={unansweredQuestionsStyles.txtSave}>Save</Text>
-                      </TouchableOpacity>
+                      {/* : */}
+                  {/* //     <TouchableOpacity style={unansweredQuestionsStyles.btnNotSave}>
+                  //       <Text style={unansweredQuestionsStyles.txtSave}>Save</Text>
+                  //     </TouchableOpacity>
 
-                  }  
+                  // }   */}
 
                   <TouchableOpacity style={unansweredQuestionsStyles.btnCancel}
                   onPress={() => setisModalVisible(false)}>
