@@ -16,6 +16,8 @@ import {
 } from 'react-native';
 
 import firestore from '@react-native-firebase/firestore';
+import Dialog from "react-native-dialog";
+import DialogInput from 'react-native-dialog-input';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
@@ -32,6 +34,8 @@ const UnansweredQuestions = ({navigation}) => {
   const [posts, setPosts] = useState(null);
   const [loader, setLoading] = useState(false);
 
+  
+  const [isModalConfirmVisible, setisModalConfirm] = useState(false);
   const [isModalVisible, setisModalVisible] = useState(false);
   const [newText, setNewQuestion] = useState('');
   const [newcreatedAt, setNewTime] = useState('');
@@ -75,22 +79,10 @@ const UnansweredQuestions = ({navigation}) => {
 
   const onPressSave = (newID) => {
     console.log('Gumagana ba to', newID);
-    setisModalVisible(false);
+    // setisModalVisible(false);
+    setisModalConfirm(true);
+
     
-    firestore()
-    .collection('allAnsweredQuestions')
-    .doc()
-    .set({
-      question: newText,
-      createdAt: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-      // answer: newAnswer,
-    })
-    .then(() => {
-        setNewQuestion('');
-        // setnewAnswer('');
-      console.log('Answered!', id);
-      deleteQuestion(newID);
-    });
   };
 
  
@@ -106,6 +98,38 @@ const UnansweredQuestions = ({navigation}) => {
       });
   };
 
+  const handleCancel = () => {
+    setisModalConfirm(false);
+  };
+
+  const handleSubmit = (inputText) =>{
+    if(inputText == 'answerQuestion') {
+      handleDelete(newID);
+    }
+    else {
+      handleCancel();
+    }
+  }
+
+  const handleDelete = (id) => {
+    firestore()
+    .collection('allAnsweredQuestions')
+    .doc()
+    .set({
+      question: newText,
+      createdAt: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+      // answer: newAnswer,
+    })
+    .then(() => {
+        setNewQuestion('');
+        // setnewAnswer('');
+      console.log('Answered!', id);
+      deleteQuestion(newID);
+    });
+
+    setisModalConfirm(false);
+    setisModalVisible(false);
+  };
 
   let searchtitles = null;
 
@@ -199,18 +223,10 @@ const UnansweredQuestions = ({navigation}) => {
 
                 <View style={unansweredQuestionsStyles.vSaveCancel}>
 
-                  {/* {
-                      validate ?  */}
-                      <TouchableOpacity style={unansweredQuestionsStyles.btnSave}
-                        onPress={() => onPressSave(newID)}>
-                        <Text style={unansweredQuestionsStyles.txtSave}>Save</Text>
-                      </TouchableOpacity>
-                      {/* : */}
-                  {/* //     <TouchableOpacity style={unansweredQuestionsStyles.btnNotSave}>
-                  //       <Text style={unansweredQuestionsStyles.txtSave}>Save</Text>
-                  //     </TouchableOpacity>
-
-                  // }   */}
+                  <TouchableOpacity style={unansweredQuestionsStyles.btnSave}
+                    onPress={() => onPressSave(newID)}>
+                    <Text style={unansweredQuestionsStyles.txtSave}>Answer</Text>
+                  </TouchableOpacity>
 
                   <TouchableOpacity style={unansweredQuestionsStyles.btnCancel}
                   onPress={() => setisModalVisible(false)}>
@@ -219,12 +235,21 @@ const UnansweredQuestions = ({navigation}) => {
                 </View>
                 
               </View>
-
-            
-
             </Modal>
+
+            {isModalConfirmVisible ? 
+           <DialogInput isDialogVisible={isModalConfirmVisible}
+              title={"Answer question"}
+              message={"Do you want to mark this as Answered Question? You cannot undo this action."}
+              hintInput ={"answerQuestion"}
+              submitInput={(inputText) => {handleSubmit(inputText)} }
+              closeDialog={ () => {handleCancel()}}>
+          </DialogInput>
+          : 
+            null}
           </View>
         );
+
       });
   } else {
     searchtitles = (
@@ -291,7 +316,9 @@ const UnansweredQuestions = ({navigation}) => {
         </ScrollView>
       </View>
 
-   
+     
+      
+      
     </View>
   );
 };

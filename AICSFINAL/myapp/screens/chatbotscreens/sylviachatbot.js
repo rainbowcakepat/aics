@@ -148,7 +148,7 @@ class SylviaChatbot extends React.Component {
       this.sendBotResponse(reply);
     } else if (isBadTagalog) {
       console.log('bad tagalog word');
-      let reply = 'Oh no! 🤯 Lets try again with simple keywords';
+      let reply = 'Hmmm...🤔 Lets try again with simple keywords';
       this.sendBotResponse(reply);
     } else if (isNotAWord) {
       console.log('not word');
@@ -161,7 +161,7 @@ class SylviaChatbot extends React.Component {
         'Thank you for your response. 🥰 Kindly revisit Akisha, Ingrid and Christine Chatbots after 2 days to answer your inquiry. Have a great day ahead! ✨';
       // let reply = "Type this code to confirm: 100 ✨";
       this.sendBotResponse(reply);
-      // firestore().collection('allUnansweredQuestions').add({_id, createdAt,  text, user })
+      firestore().collection('allUnansweredQuestions').add({_id, createdAt,  text, user })
     }
   }
 
