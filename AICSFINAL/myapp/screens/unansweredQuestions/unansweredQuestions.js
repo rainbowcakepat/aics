@@ -96,13 +96,13 @@ const UnansweredQuestions = ({navigation}) => {
  
   let orig;
 
-  const deleteQuestion = id => {
+  const deleteQuestion = newID => {
     firestore()
       .collection('allUnansweredQuestions')
-      .doc(id)
+      .doc(newID)
       .delete()
       .then(() => {
-        console.log('ID: User deleted!', id);
+        console.log('ID: User deleted!', newID);
       });
   };
 
@@ -202,7 +202,7 @@ const UnansweredQuestions = ({navigation}) => {
                   {/* {
                       validate ?  */}
                       <TouchableOpacity style={unansweredQuestionsStyles.btnSave}
-                      onPress={() => onPressSave(newID)}>
+                        onPress={() => onPressSave(newID)}>
                         <Text style={unansweredQuestionsStyles.txtSave}>Save</Text>
                       </TouchableOpacity>
                       {/* : */}
