@@ -38,6 +38,11 @@ import AnnouncementPageStudent from './screens/announcementStudent';
 //Unanswered Questions
 import UnansweredQuestions from './screens/./unansweredQuestions/unansweredQuestions';
 
+//How To Use Admin
+import HowToUseAdmin from './screens/./howToUseAdmin/howToUseAdmin';
+
+//How To Use Student
+import HowToUseStudent from './screens/./howToUseStudent/howToUseStudent';
 
 const Drawer = createDrawerNavigator();
 LogBox.ignoreAllLogs();
@@ -58,6 +63,37 @@ export default function App() {
           },
         }}
         drawerContent={props => <CustomSidebarMenu {...props} />}>
+
+        <Drawer.Screen
+          name="HowToUseAdmin"
+          component={HowToUseAdmin}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="info-circle"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        />
+
+        <Drawer.Screen
+          name="HowToUseStudent"
+          component={HowToUseStudent}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="info-circle"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        /> 
+
         
         <Drawer.Screen
           name="Loading Screen"
