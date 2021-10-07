@@ -39,28 +39,44 @@ const howToUseStudent = ({navigation}) => {
   const [posts, setPosts] = useState(null);
   const [loader, setLoading] = useState(false);
 
-  const [newTitles, setNewTitles] = useState('');
+  const [newTitle, setNewTitle] = useState('');
 
 
   const [newID, setNewId] = useState('');
 
   const [uploading, setUploading] = useState(false);
 
-  // FOR HOW TO USE ANNOUNCEMENTS
-//   const [isModalVisibleAnnouncements, setisModalVisibleAnnouncements] = useState(false);
-//   const [newAddAnnouncement, setNewAddAnnouncement] = useState('');
-//   const [newEditAnnouncement, setNewEditAnnouncement] = useState('');
-//   const [newArchiveAnnouncement, setNewArchiveAnnouncement] = useState('');
+  // FOR HOW TO SELECT A CHATBOT
+  const [isModalVisibleSelectChatbot, setisModalVisibleSelectChatbot] = useState(false);
+  const [newSelectAkisha, setNewSelectAkisha] = useState('');
+  const [newSelectIngrid, setNewSelectIngrid] = useState('');
+  const [newSelectChristine, setNewSelectChristine] = useState('');
+  const [newSelectSylvia, setNewSelectSylvia] = useState('');
 
-  // FOR HOW TO USE ABOUT US
-//   const [isModalVisibleAboutUs, setisModalVisibleAboutUs] = useState(false);
-//   const [newEditAboutUs, setNewEditAboutUs] = useState('');
-//   const [newSearchAboutUs, setNewSearchAboutUs] = useState('');
+  // FOR HOW TO SEND QUERIES TO A CHATBOT
+  const [isModalVisibleSendQueries, setisModalVisibleSendQueries] = useState(false);
+  const [newAskAkisha, setNewAskAkisha] = useState('');
+  const [newAskIngrid, setNewAskIngrid] = useState('');
+  const [newAskChristine, setNewAskChristine] = useState('');
+  const [newAskSylvia, setNewAskSylvia] = useState('');
+
+  // FOR HOW TO LOGIN AS STUDENT
+  const [isModalVisibleStudentLogin, setisModalVisibleStudentLogin] = useState(false);
+  const [newStudentLogin, setNewStudentLogin] = useState('');
+
+  // FOR HOW TO VIEW ABOUT US
+  const [isModalVisibleViewAboutUs, setisModalVisibleViewAboutUs] = useState(false);
+  const [newViewAboutUs, setNewViewAboutUs] = useState('');
+
+  // FOR HOW TO VIEW ANNOUNCEMENTS
+  const [isModalVisibleViewAnnouncements, setisModalVisibleViewAnnouncements] = useState(false);
+  const [newViewAnnouncements, setNewViewAnnouncements] = useState('');
+
 
   useEffect(() => {
     const fetchHowToUse = firestore()
       .collection('howToUseStudent')
-      .orderBy('titles', 'asc')
+      .orderBy('title', 'asc')
       .onSnapshot(querySnapshot => {
         const posts = [];
 
@@ -81,33 +97,59 @@ const howToUseStudent = ({navigation}) => {
 
     setNewId(item.key);
 
-    if (item.titles == 'How to Use Announcements Screen') {
-      setisModalVisibleAnnouncements(true);
+    if (item.title == 'How to Select a Chatbot') {
+      setisModalVisibleSelectChatbot(true);
        setNewId(item.key); {/*kinukuha yung ID*/}
-       setNewTitles(item.titles);
-       setNewAddAnnouncement(item.add);
-       setNewEditAnnouncement(item.edit);
-       setNewArchiveAnnouncement(item.archive);
+       setNewTitle(item.title);
+       setNewSelectAkisha(item.selectakisha);
+       setNewSelectIngrid(item.selectingrid);
+       setNewSelectChristine(item.selectchristine);
+       setNewSelectSylvia(item.selectsylvia);
      }
 
-     if (item.titles == 'How to Use About Us Screen') {
-      setisModalVisibleAboutUs(true);
+     if (item.title == 'How to send queries to a chatbot') {
+      setisModalVisibleSendQueries(true);
        setNewId(item.key); {/*kinukuha yung ID*/}
-       setNewTitles(item.titles);
-       setNewEditAboutUs(item.edit);
-       setNewSearchAboutUs(item.search);
+       setNewTitle(item.title);
+       setNewAskAkisha(item.askakisha);
+       setNewAskIngrid(item.askingrid);
+       setNewAskChristine(item.askchristine);
+       setNewAskSylvia(item.asksylvia);
      }
+
+     if (item.title == 'How to Login') {
+      setisModalVisibleStudentLogin(true);
+       setNewId(item.key); {/*kinukuha yung ID*/}
+       setNewTitle(item.title);
+       setNewStudentLogin(item.maincontent);
+     }
+
+     if (item.title == 'How to view About Us') {
+      setisModalVisibleViewAboutUs(true);
+       setNewId(item.key); {/*kinukuha yung ID*/}
+       setNewTitle(item.title);
+       setNewViewAboutUs(item.maincontent);
+     }
+
+     if (item.title == 'How to view Announcements') {
+      setisModalVisibleViewAnnouncements(true);
+       setNewId(item.key); {/*kinukuha yung ID*/}
+       setNewTitle(item.title);
+       setNewViewAnnouncements(item.maincontent);
+     }
+
+
 };
 
-  let searchtitles = null;
+  let searchtitle = null;
 
   if (loader) {
-    searchtitles = posts
+    searchtitle = posts
       .filter(item => {
         if (searchTerm == '') {
           return item;
         } else if (
-          item.titles
+          item.title
             ?.toString()
             .toLowerCase()
             .includes(searchTerm.toString().toLowerCase())
@@ -125,7 +167,7 @@ const howToUseStudent = ({navigation}) => {
                 // item = {item}
                 propsnum={key}
                 propsid={item.key}
-                propstitle={item.titles}
+                propstitle={item.title}
                 propskeywords={item.keywords}
               />
 
@@ -142,11 +184,11 @@ const howToUseStudent = ({navigation}) => {
 
             </View>
 
-            {/*MODAL: HOW TO USE ANNOUNCEMENTS*/}
+            {/*MODAL: HOW TO SELECT A CHATBOT*/}
             <Modal 
               animationType="fade"
-              visible={isModalVisibleAnnouncements}
-              onRequestClose={() => setisModalVisibleAnnouncements(false)}
+              visible={isModalVisibleSelectChatbot}
+              onRequestClose={() => setisModalVisibleSelectChatbot(false)}
               
             >
               <View style={announcementComponentStyles.vModalContainer}>
@@ -157,14 +199,14 @@ const howToUseStudent = ({navigation}) => {
                     <TouchableWithoutFeedback
                       style={announcementComponentStyles.toAnnouncement}>
                       {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={announcementComponentStyles.txtEdit}> How To Use Admin </Text>
+                      <Text style={announcementComponentStyles.txtEdit}> How To Use Student </Text>
                     </TouchableWithoutFeedback>
   
                     <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
                     color:'#F5F5F5', }}> College of Information and Computing Sciences </Text>
                         
                     <Text style = {announcementComponentStyles.txtTitle}>
-                        {newTitles}
+                        {newTitle}
                 </Text>
                  
                 </ImageBackground>
@@ -173,31 +215,40 @@ const howToUseStudent = ({navigation}) => {
                   
                   <ScrollView>
                     <View style={{flexDirection:'row'}}>
-                      <Icon name="file-plus" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Add Announcement: </Text>
+                      <Icon name="user" color="black" type= 'ionicons' size={18}/>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Select Akisha: </Text>
                     </View>
                       
                     <Text
                       style={aboutUsStudentStyles.txtContent}
-                      >{newAddAnnouncement}</Text>
+                      >{newSelectAkisha}</Text>
 
                     <View style={{flexDirection:'row'}}>
-                      <Icon name="edit" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Edit Announcement: </Text>
+                      <Icon name="user" color="black" type= 'ionicons' size={18}/>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Select Ingrid: </Text>
                     </View>
                       
                     <Text
                       style={aboutUsStudentStyles.txtContent}
-                      >{newEditAnnouncement}</Text>
+                      >{newSelectIngrid}</Text>
 
                     <View style={{flexDirection:'row'}}>
-                      <Icon name="archive" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Archive Announcement: </Text>
+                      <Icon name="user" color="black" type= 'ionicons' size={18}/>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Select Christine: </Text>
                     </View>
                       
                     <Text
                       style={aboutUsStudentStyles.txtContent}
-                      >{newArchiveAnnouncement}</Text>
+                      >{newSelectChristine}</Text>
+
+                    <View style={{flexDirection:'row'}}>
+                      <Icon name="user" color="black" type= 'ionicons' size={18}/>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Select Sylvia: </Text>
+                    </View>
+                      
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                      >{newSelectSylvia}</Text>
 
                     <Text></Text>
                   </ScrollView>
@@ -205,7 +256,7 @@ const howToUseStudent = ({navigation}) => {
                 </View>
 
                 <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleAnnouncements(false)}>
+                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleSelectChatbot(false)}>
                     <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
                     <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
                   </TouchableOpacity>
@@ -215,11 +266,11 @@ const howToUseStudent = ({navigation}) => {
 
             </Modal>
 
-            {/*MODAL: HOW TO USE ABOUT US SCREEN*/}
+            {/*MODAL: HOW TO SEND QUERIES TO A CHATBOT*/}
             <Modal 
               animationType="fade"
-              visible={isModalVisibleAboutUs}
-              onRequestClose={() => setisModalVisibleAboutUs(false)}
+              visible={isModalVisibleSendQueries}
+              onRequestClose={() => setisModalVisibleSendQueries(false)}
               
             >
               <View style={announcementComponentStyles.vModalContainer}>
@@ -230,14 +281,14 @@ const howToUseStudent = ({navigation}) => {
                     <TouchableWithoutFeedback
                       style={announcementComponentStyles.toAnnouncement}>
                       {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={announcementComponentStyles.txtEdit}> How To Use Admin </Text>
+                      <Text style={announcementComponentStyles.txtEdit}> How To Use Student </Text>
                     </TouchableWithoutFeedback>
   
                     <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
                     color:'#F5F5F5', }}> College of Information and Computing Sciences </Text>
                         
                     <Text style = {announcementComponentStyles.txtTitle}>
-                        {newTitles}
+                        {newTitle}
                 </Text>
                  
                 </ImageBackground>
@@ -246,22 +297,40 @@ const howToUseStudent = ({navigation}) => {
                   
                   <ScrollView>
                     <View style={{flexDirection:'row'}}>
-                      <Icon name="edit" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Edit About Us: </Text>
+                      <Icon name="message-circle" color="black" type= 'ionicons' size={18}/>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Ask Akisha: </Text>
                     </View>
                       
                     <Text
                       style={aboutUsStudentStyles.txtContent}
-                      >{newEditAboutUs}</Text>
+                      >{newAskAkisha}</Text>
 
                     <View style={{flexDirection:'row'}}>
-                      <Icon name="search" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Search About Us: </Text>
+                      <Icon name="message-circle" color="black" type= 'ionicons' size={18}/>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Ask Ingrid: </Text>
                     </View>
                       
                     <Text
                       style={aboutUsStudentStyles.txtContent}
-                      >{newSearchAboutUs}</Text>
+                      >{newAskIngrid}</Text>
+
+                    <View style={{flexDirection:'row'}}>
+                      <Icon name="message-circle" color="black" type= 'ionicons' size={18}/>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Ask Christine: </Text>
+                    </View>
+                      
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                      >{newAskChristine}</Text>
+
+                    <View style={{flexDirection:'row'}}>
+                      <Icon name="message-circle" color="black" type= 'ionicons' size={18}/>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Ask Sylvia: </Text>
+                    </View>
+                      
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                      >{newAskSylvia}</Text>
 
                     <Text></Text>
                   </ScrollView>
@@ -269,7 +338,169 @@ const howToUseStudent = ({navigation}) => {
                 </View>
 
                 <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleAboutUs(false)}>
+                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleSendQueries(false)}>
+                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
+                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  </TouchableOpacity>
+                </View>
+                
+              </View>
+
+            </Modal>
+
+            {/*MODAL: HOW TO LOGIN AS STUDENT*/}
+            <Modal 
+              animationType="fade"
+              visible={isModalVisibleStudentLogin}
+              onRequestClose={() => setisModalVisibleStudentLogin(false)}
+              
+            >
+              <View style={announcementComponentStyles.vModalContainer}>
+                
+                <View style={{flex:1, backgroundColor:'white',}}></View>
+                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={announcementComponentStyles.vtxtTitle} >
+                    
+                    <TouchableWithoutFeedback
+                      style={announcementComponentStyles.toAnnouncement}>
+                      {/* <Icon name="edit-2" color="white" size={19}/> */}
+                      <Text style={announcementComponentStyles.txtEdit}> How To Use Student </Text>
+                    </TouchableWithoutFeedback>
+  
+                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
+                    color:'#F5F5F5', }}> College of Information and Computing Sciences </Text>
+                        
+                    <Text style = {announcementComponentStyles.txtTitle}>
+                        {newTitle}
+                </Text>
+                 
+                </ImageBackground>
+                
+                <View style={announcementComponentStyles.vtxtContent}>
+                  
+                  <ScrollView>
+                    <View style={{flexDirection:'row'}}>
+                      <Icon name="key" color="black" type= 'ionicons' size={18}/>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Student Login: </Text>
+                    </View>
+                      
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                      >{newStudentLogin}</Text>
+                    <Text></Text>
+                  </ScrollView>
+
+                </View>
+
+                <View style={aboutUsStudentStyles.vSaveCancel}>
+                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleStudentLogin(false)}>
+                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
+                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  </TouchableOpacity>
+                </View>
+                
+              </View>
+
+            </Modal>
+
+            {/*MODAL: HOW TO VIEW ABOUT US*/}
+             <Modal 
+              animationType="fade"
+              visible={isModalVisibleViewAboutUs}
+              onRequestClose={() => setisModalVisibleViewAboutUs(false)}
+              
+            >
+              <View style={announcementComponentStyles.vModalContainer}>
+                
+                <View style={{flex:1, backgroundColor:'white',}}></View>
+                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={announcementComponentStyles.vtxtTitle} >
+                    
+                    <TouchableWithoutFeedback
+                      style={announcementComponentStyles.toAnnouncement}>
+                      {/* <Icon name="edit-2" color="white" size={19}/> */}
+                      <Text style={announcementComponentStyles.txtEdit}> How To Use Student </Text>
+                    </TouchableWithoutFeedback>
+  
+                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
+                    color:'#F5F5F5', }}> College of Information and Computing Sciences </Text>
+                        
+                    <Text style = {announcementComponentStyles.txtTitle}>
+                        {newTitle}
+                </Text>
+                 
+                </ImageBackground>
+                
+                <View style={announcementComponentStyles.vtxtContent}>
+                  
+                  <ScrollView>
+                    <View style={{flexDirection:'row'}}>
+                      <Icon name="eye" color="black" type= 'ionicons' size={18}/>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> View About Us: </Text>
+                    </View>
+                      
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                      >{newViewAboutUs}</Text>
+                    <Text></Text>
+                  </ScrollView>
+
+                </View>
+
+                <View style={aboutUsStudentStyles.vSaveCancel}>
+                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleViewAboutUs(false)}>
+                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
+                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  </TouchableOpacity>
+                </View>
+                
+              </View>
+
+            </Modal>
+
+            {/*MODAL: HOW TO VIEW ANNOUNCEMENTS*/}
+            <Modal 
+              animationType="fade"
+              visible={isModalVisibleViewAnnouncements}
+              onRequestClose={() => setisModalVisibleViewAnnouncements(false)}
+              
+            >
+              <View style={announcementComponentStyles.vModalContainer}>
+                
+                <View style={{flex:1, backgroundColor:'white',}}></View>
+                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={announcementComponentStyles.vtxtTitle} >
+                    
+                    <TouchableWithoutFeedback
+                      style={announcementComponentStyles.toAnnouncement}>
+                      {/* <Icon name="edit-2" color="white" size={19}/> */}
+                      <Text style={announcementComponentStyles.txtEdit}> How To Use Student </Text>
+                    </TouchableWithoutFeedback>
+  
+                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
+                    color:'#F5F5F5', }}> College of Information and Computing Sciences </Text>
+                        
+                    <Text style = {announcementComponentStyles.txtTitle}>
+                        {newTitle}
+                </Text>
+                 
+                </ImageBackground>
+                
+                <View style={announcementComponentStyles.vtxtContent}>
+                  
+                  <ScrollView>
+                    <View style={{flexDirection:'row'}}>
+                      <Icon name="eye" color="black" type= 'ionicons' size={18}/>
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}> View Announcements: </Text>
+                    </View>
+                      
+                    <Text
+                      style={aboutUsStudentStyles.txtContent}
+                      >{newViewAnnouncements}</Text>
+                    <Text></Text>
+                  </ScrollView>
+
+                </View>
+
+                <View style={aboutUsStudentStyles.vSaveCancel}>
+                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleViewAnnouncements(false)}>
                     <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
                     <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
                   </TouchableOpacity>
@@ -283,7 +514,7 @@ const howToUseStudent = ({navigation}) => {
         );
       });
   } else {
-    searchtitles = (
+    searchtitle = (
       <Image
         source={require('../../assets/./gif/spinner.gif')}
         style={{
@@ -295,9 +526,9 @@ const howToUseStudent = ({navigation}) => {
     // <Text>Dito ko lalagay yung nagloload</Text>
   }
 
-  if (searchtitles.length < 1) {
+  if (searchtitle.length < 1) {
     
-    searchtitles = 
+    searchtitle = 
     <ImageBackground  source={require('../../assets/./icons/aicsnoabout.png')} 
     style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
     </ImageBackground>
@@ -349,7 +580,7 @@ const howToUseStudent = ({navigation}) => {
         
         <ScrollView adjustsFontSizeToFit
           pagingEnabled={true}>
-          {searchtitles}
+          {searchtitle}
         </ScrollView>
       </View>
 
