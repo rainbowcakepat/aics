@@ -78,13 +78,13 @@ class AkishaChatbot extends Component {
     this.setState({
       messages: [
         {
-          _id: 1,
+          _id: 2,
           text: `What do you want to ask? Type your question or choose from these predefined questions.`,
           createdAt: new Date(),
           user: akisha,
           quickReplies: {
             type: 'radio',
-            keepIt: false,
+            keepIt: true,
             values: [
               {
                 title: 'Tuition Fee',
