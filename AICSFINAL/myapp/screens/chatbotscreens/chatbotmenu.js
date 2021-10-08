@@ -194,7 +194,7 @@ const ChatbotMenu = ({navigation}) => {
         <View style={{flexDirection: 'row'}}>
           <View>
             <Text adjustsFontSizeToFit={true} style={chatbotMenuStyles.titleText}>CICS Chatbots</Text>
-            <Text adjustsFontSizeToFit={true} style={chatbotMenuStyles.subtitleText}>Ask the official CICS Chatbots! Select from chatbot categories or type in your concerns and inquiries.</Text>
+            <Text adjustsFontSizeToFit={true} style={chatbotMenuStyles.subtitleText}>Ask the official CICS Chatbots! Each chatbot corresponds to a specific category.</Text>
           </View>
           
         </View>
@@ -221,7 +221,7 @@ const ChatbotMenu = ({navigation}) => {
       <View style={chatbotMenuStyles.vAnnouncements}>
          
         <ScrollView adjustsFontSizeToFit
-          >
+         contentContainerStyle={{ paddingBottom: 45}}>
           {searchtitles}
         </ScrollView>
       </View>
