@@ -38,6 +38,9 @@ import AnnouncementPageStudent from './screens/announcementStudent';
 //Unanswered Questions
 import UnansweredQuestions from './screens/./unansweredQuestions/unansweredQuestions';
 
+//Questions Interface
+import QuestionsInterface from './screens/./questionsInterface/questionsInterface';
+
 //How To Use Admin
 import HowToUseAdmin from './screens/./howToUseAdmin/howToUseAdmin';
 
@@ -105,6 +108,21 @@ export default function App() {
             drawerIcon: () => null,
           }}
         />
+
+        <Drawer.Screen
+          name="QuestionsInterface"
+          component={QuestionsInterface}
+          options={{
+            headerShown: false,
+            drawerIcon: ({focused, size}) => (
+              <Icon
+                name="info-circle"
+                size={size}
+                color={focused ? '#E0394D' : '#ccc'}
+              />
+            ),
+          }}
+        /> 
 
 <Drawer.Screen
           name="UnansweredQuestions"
