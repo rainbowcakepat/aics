@@ -184,6 +184,7 @@ class SylviaChatbot extends React.Component {
         placeholder="Type in your concerns and inquiries."
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}
+        textInputStyle={{color:'black'}}
         user={{
           _id: 1,
         }}

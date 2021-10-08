@@ -588,7 +588,7 @@ const howToUseAdmin = ({navigation}) => {
         {/* TouchableOpacity = button */}
         
         <ScrollView adjustsFontSizeToFit
-          pagingEnabled={true}>
+          pagingEnabled={true}  contentContainerStyle={{ paddingBottom: 45}}>
           {searchtitles}
         </ScrollView>
       </View>

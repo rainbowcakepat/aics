@@ -25,6 +25,7 @@ class AkishaChatbot extends Component {
         },
       ],
     };
+    
   }
 
   onSend(messages = []) {
@@ -64,7 +65,7 @@ class AkishaChatbot extends Component {
   //color of user bubble
   renderBubble = props => {
     return (
-      <Bubble {...props} wrapperStyle={{right: {backgroundColor: '#830505'}}} />
+      <Bubble {...props} wrapperStyle={{right: {backgroundColor: '#830505', color:'black'}}} />
     );
   };
 
@@ -149,6 +150,9 @@ class AkishaChatbot extends Component {
         onSend={messages => this.onSend(messages)}
         onQuickReply={quickReply => this.onQuickReply(quickReply)}
         renderBubble={this.renderBubble}
+        textInputStyle={{color:'black'}}
+
+
         //PLUS SIGN ETO: onPressActionButton = {()=>this.props.fortextHandle(this.state.messages)}
         user={{
           _id: 1,
@@ -162,6 +166,7 @@ styles = StyleSheet.create({
   giftedchat: {
     flex: 1,
     backgroundColor: '#fff',
+    color: 'black',
   },
 });
 

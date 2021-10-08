@@ -336,7 +336,7 @@ const AnnouncementStudent = ({navigation}) => {
       <View style={announcementComponentStudentStyles.vAnnouncements}>
          
         <ScrollView adjustsFontSizeToFit
-          >
+           contentContainerStyle={{ paddingBottom: 45}}>
           {searchtitles}
         </ScrollView>
       </View>

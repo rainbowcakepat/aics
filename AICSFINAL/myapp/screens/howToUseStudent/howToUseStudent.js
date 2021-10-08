@@ -579,7 +579,7 @@ const howToUseStudent = ({navigation}) => {
         {/* TouchableOpacity = button */}
         
         <ScrollView adjustsFontSizeToFit
-          pagingEnabled={true}>
+          pagingEnabled={true}  contentContainerStyle={{ paddingBottom: 45}}>
           {searchtitle}
         </ScrollView>
       </View>

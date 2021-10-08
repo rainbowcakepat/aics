@@ -351,7 +351,7 @@ const UnansweredQuestions = ({navigation}) => {
       <View style={unansweredQuestionsStyles.vAnnouncements}>
         
         <ScrollView adjustsFontSizeToFit
-          >
+           contentContainerStyle={{ paddingBottom: 45}}>
           {searchtitles}
         </ScrollView>
       </View>

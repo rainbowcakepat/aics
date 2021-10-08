@@ -557,7 +557,7 @@ const handleCancelDelete = () => {
           </TouchableOpacity>
 
         <ScrollView adjustsFontSizeToFit
-          >
+           contentContainerStyle={{ paddingBottom: 45}}>
           {searchtitles}
         </ScrollView>
       </View>

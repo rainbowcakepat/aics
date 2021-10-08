@@ -148,6 +148,7 @@ class ChristineChatbot extends Component {
         onSend={messages => this.onSend(messages)}
         onQuickReply={quickReply => this.onQuickReply(quickReply)}
         renderBubble={this.renderBubble}
+        textInputStyle={{color:'black'}}
         //PLUS SIGN ETO: onPressActionButton = {()=>this.props.fortextHandle(this.state.messages)}
         user={{
           _id: 1,

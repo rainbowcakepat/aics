@@ -745,7 +745,7 @@ const AboutUsAdmin = ({navigation}) => {
       <View style={aboutUsAdminStyles.vAnnouncements}>
 
         <ScrollView adjustsFontSizeToFit
-          >
+           contentContainerStyle={{ paddingBottom: 45}}>
           {searchtitles}
         </ScrollView>
       </View>
