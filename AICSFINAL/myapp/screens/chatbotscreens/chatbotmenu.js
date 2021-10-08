@@ -40,7 +40,7 @@ const chatbotData = [
       imgpath: require('../../assets/./chatbots/akisha.png'),
       name: 'Akisha Chatbot',
       subtitle: 'Billings, Enrollment, Application, Tuition Fee',
-      keywords: 'Billings, Enrollment, Application',
+      keywords: 'Billings, Enrollment, Application, Tuition Fee, Payments, Bills',
     },
     { 
       id: 1,
@@ -53,15 +53,15 @@ const chatbotData = [
       id: 2,
       imgpath: require('../../assets/./chatbots/christine.png'),
       name: 'Christine Chatbot',
-      subtitle: 'Year level inquiries',
-      keywords: 'Year level inquiries',
+      subtitle: 'Year level inquiries and Alumni',
+      keywords: 'Year level inquiries, Tracks, Alumni, Computer Science, Information Systems, Information technology, IT, IS, CS, Specialization, Programs, Degrees',
     },
     {
       id: 3,
       imgpath: require('../../assets/./chatbots/sylvia.png'),
       name: 'Sylvia Chatbot',
       subtitle: 'Directly chat and ask your inquiries and concerns',
-      keywords: 'Others',
+      keywords: 'Others, No category, etc, none',
     },
   
   ];
@@ -176,7 +176,7 @@ const ChatbotMenu = ({navigation}) => {
 
   if (searchtitles.length < 1) {
     searchtitles = 
-    <ImageBackground  source={require('../../assets/./icons/aicsnoannouncements.png')} 
+    <ImageBackground  source={require('../../assets/./icons/aicsnoabout.png')} 
     style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
     </ImageBackground>
   }
