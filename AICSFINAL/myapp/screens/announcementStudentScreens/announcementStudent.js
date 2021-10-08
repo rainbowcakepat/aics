@@ -140,6 +140,14 @@ const AnnouncementStudent = ({navigation}) => {
         ) {
           return item;
         }
+        else if (
+          item.posttime
+            ?.toString()
+            .toLowerCase()
+            .includes(searchTerm.toString().toLowerCase())
+        ) {
+          return item;
+        }
       })
       .map((item, key) => {
         return (

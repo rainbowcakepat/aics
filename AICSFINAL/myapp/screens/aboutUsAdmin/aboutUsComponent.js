@@ -8,7 +8,7 @@ function AboutUsComponents(props){
     return (
         // style={{backgroundColor: 'yellow',}}
             <View>
-                <View style={{alignContent: 'space-around'}}>
+                <View style={{alignContent: 'space-around',}}>
                     {/* <Text>{props.propsnum}</Text>
                     <Text>{props.propsid}</Text> */}
                     <Text style={{fontFamily: 'Poppins-Medium', fontSize: hp(2.65), marginBottom: 5,}}>{props.propstitle}</Text>

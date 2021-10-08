@@ -19,20 +19,12 @@ import {
 } from 'react-native-responsive-screen';
 
 import { AuthenticatedUserContext } from '../screens/AuthUserProvider';
-import {auth} from '../firebase';
-import Icon from 'react-native-vector-icons/FontAwesome';
+//import {auth} from '../firebase';
 
-const CustomSidebarMenu = props => {
+
+const UserCustomSideMenu = props => {
 
   const { user } = useContext(AuthenticatedUserContext);
-
-  const handleSignOut = async () => {
-    try {
-      await auth.signOut();
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <SafeAreaView style={styles.sideBarContainer}>
@@ -52,13 +44,13 @@ const CustomSidebarMenu = props => {
         <DrawerItemList {...props} />
 
 
-        <DrawerItem
-          label="Logout"
-          onPress={handleSignOut}
+        {/* <DrawerItem
+          label="Go Back to Home Screen"
+          component={AuthStack}
           icon={({focused, size }) => 
           <Icon color={focused ? '#E0394D' : '#ccc'} size={size} name={"sign-out"} />
           }
-        />
+        /> */}
 
       </DrawerContentScrollView>
     </SafeAreaView>
@@ -121,4 +113,4 @@ const styles = StyleSheet.create({
   // },
 });
 
-export default CustomSidebarMenu;
+export default UserCustomSideMenu;

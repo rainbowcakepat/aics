@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   Alert,
   FlatList,
@@ -15,14 +15,17 @@ import {
   ImageBackground
 } from 'react-native';
 
+import { AuthenticatedUserContext } from '../AuthUserProvider';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import ImagePicker from 'react-native-image-crop-picker';
 import ImageModal from 'react-native-image-modal';
+import DialogInput from 'react-native-dialog-input';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 const win = Dimensions.get('window');
 
@@ -32,6 +35,7 @@ import {announcementComponentStyles} from '../../styles/announcementComponentSty
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const AnnouncementAdmin = ({navigation}) => {
+  const { user } = useContext(AuthenticatedUserContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [posts, setPosts] = useState(null);
   const [loader, setLoading] = useState(false);
@@ -39,6 +43,8 @@ const AnnouncementAdmin = ({navigation}) => {
   const [validate, setValidate] = useState(false);
   const [isImageModalVisible, setImageModal] = useState(false);
   const [isModalVisible, setisModalVisible] = useState(false);
+  const [isModalConfirmArchive, setisModalConfirmArchive] = useState(false);
+
   const [newTitles, setNewTitles] = useState('');
   const [newContents, setNewContents] = useState('');
   const [newLinks, setNewLinks] = useState('');
@@ -255,6 +261,31 @@ const AnnouncementAdmin = ({navigation}) => {
     deletethis.delete();
   };
 
+  
+const onPressDelete = (newID) => {
+  console.log('lalabas pop up', newID);
+  setisModalConfirmArchive(true);  
+  setNewId(newID);
+};
+
+
+const handleSubmitDelete = (inputText, newID) =>{
+  if(inputText == 'archiveAnnouncement') {
+    addArchivedAnnouncement(newID);
+    setisModalConfirmArchive(false);
+  }
+  else {
+    handleCancelDelete();
+  }
+}
+
+const handleCancelDelete = () => {
+  setisModalConfirmArchive(false);
+};
+
+
+
+
   let searchtitles = null;
 
   if (loader) {
@@ -264,6 +295,14 @@ const AnnouncementAdmin = ({navigation}) => {
           return item;
         } else if (
           item.titles
+            ?.toString()
+            .toLowerCase()
+            .includes(searchTerm.toString().toLowerCase())
+        ) {
+          return item;
+        }
+        else if (
+          item.posttime
             ?.toString()
             .toLowerCase()
             .includes(searchTerm.toString().toLowerCase())
@@ -298,7 +337,8 @@ const AnnouncementAdmin = ({navigation}) => {
           
                 <TouchableOpacity
                   style={announcementComponentStyles.toArchive}       
-                  onPress={() => addArchivedAnnouncement(item.key)}>
+                  onPress={() => onPressDelete(item.key)}>
+                    {/* onPress={() => addArchivedAnnouncement(item.key)}> */}
                   <Icon name="archive" color="white" size={16} style={{ marginBottom: 5 }}/>
                   <Text style={announcementComponentStyles.txtUpdateArchive}> Archive </Text>
                 </TouchableOpacity>
@@ -437,6 +477,18 @@ const AnnouncementAdmin = ({navigation}) => {
             
 
             </Modal>
+
+            {isModalConfirmArchive ? 
+           <DialogInput isDialogVisible={isModalConfirmArchive}
+              title={"Archive Announcement"}
+              message={"Confirm to archive this announcement by typing: archiveAnnouncement"}
+              hintInput ={"archiveAnnouncement"}
+              submitInput={(inputText) => {handleSubmitDelete(inputText, newID)} }
+              closeDialog={ () => {handleCancelDelete()}}>
+          </DialogInput>
+          : 
+            null}
+
           </View>
         );
       });
@@ -472,7 +524,8 @@ const AnnouncementAdmin = ({navigation}) => {
         
         <View style={{flexDirection: 'row'}}>
           <View>
-            <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.titleText}>Announcements</Text>
+          {/* {user.email} */}
+            <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.titleText}>Announcements </Text>
             <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.subtitleText}>Be informed! View the latest happenings and updates from CICS. </Text>
           </View>
           
@@ -498,8 +551,7 @@ const AnnouncementAdmin = ({navigation}) => {
       </View>
 
       <View style={announcementComponentStyles.vAnnouncements}>
-         
-          <TouchableOpacity style={announcementComponentStyles.addBtn} onPress={() => navigation.navigate('AddAnnouncement')}>
+          <TouchableOpacity style={announcementComponentStyles.addBtn} onPress={() => navigation.navigate('AddAnnouncement')} >
             <Icon name="plus-circle"  style={announcementComponentStyles.plusicon} size={17}/>
             <Text style={announcementComponentStyles.txtAdd}>   Add an Announcement</Text>
           </TouchableOpacity>
@@ -529,14 +581,8 @@ const AnnouncementAdmin = ({navigation}) => {
             )  : null
       }
 
-      {/* {uploading ? (
-          <Modal style={{flex:1, flexDirection: 'row'}}>
-            <ActivityIndicator size="large" color='purple'></ActivityIndicator>
-            <Text>{transferred} % Completed </Text>
-          </Modal>
-          ) :  null
-        }
-       */}
+   
+       
     </View>
   );
 };

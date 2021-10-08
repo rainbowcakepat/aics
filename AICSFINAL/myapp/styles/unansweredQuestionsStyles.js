@@ -169,18 +169,26 @@ export const unansweredQuestionsStyles = StyleSheet.create({
         backgroundColor: '#FF8080',  //#FFC1CE FB6D77
         borderRadius: 20, 
         justifyContent: "center", 
-        alignItems: "center",    
-        marginLeft: 160,        
+        alignItems: "center",        
+
+        // width: 170, 
+        // height: 30, 
+        // flexDirection: 'row',
+        // backgroundColor: '#FF8080',  //#FFC1CE FB6D77
+        // borderRadius: 20, 
+        // justifyContent: "center", 
+        // alignItems: "center",    
+        // marginLeft: 160,        
 
     },
 
     
 
     toArchive:{
-        width: 150, 
+        width: 130, 
         height: 30, 
         flexDirection: 'row',
-        backgroundColor: '#ACABAB',  //#FFC1CE FB6D77
+        backgroundColor: '#CB0A0D',  //gray '#ACABAB'
         borderRadius: 20, 
         justifyContent: "center", 
         alignItems: "center",        

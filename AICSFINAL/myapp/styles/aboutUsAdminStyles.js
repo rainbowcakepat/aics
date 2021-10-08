@@ -118,7 +118,7 @@ export const aboutUsAdminStyles = StyleSheet.create({
 
         backgroundColor: '#F5F5F5', 
         marginBottom: 10, 
-        marginTop: 20,
+        marginTop: 10,
         marginHorizontal: 25, 
         paddingTop: 18, 
         paddingLeft: 20,

@@ -13,7 +13,7 @@ export const announcementStyles = StyleSheet.create({
 
     //Top Header: Black
     lgTopHeader: {
-        flex: 2.65, 
+        flex: 2.2, 
         backgroundColor: '#CB0A0D',
     },
 
@@ -35,7 +35,7 @@ export const announcementStyles = StyleSheet.create({
 
     titleText: {
         marginLeft: 15, 
-        marginTop: 22, 
+        marginTop: 18, 
         fontSize: hp(4.4), //34
         marginBottom: -5,
         fontFamily: 'Poppins-Medium',
@@ -164,7 +164,7 @@ export const announcementStyles = StyleSheet.create({
     //Image Container:
 
     imgContainer: {
-        flex: 2,
+        flex: 1,
         backgroundColor: 'white',
         paddingBottom: 10,
         paddingTop: 10,
@@ -184,7 +184,8 @@ export const announcementStyles = StyleSheet.create({
     toSubmit: {
         width: 350, 
         height: 33, 
-        marginTop: -1,
+        marginTop: win.height/25,
+        // marginTop: -1,
         borderRadius: 20, 
         alignSelf:'center', 
         backgroundColor:'#CB0A0D', //#FFB0B2

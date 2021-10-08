@@ -36,6 +36,7 @@ const UnansweredQuestions = ({navigation}) => {
 
   
   const [isModalConfirmVisible, setisModalConfirm] = useState(false);
+  const [isModalConfirmDelete, setisModalConfirmDelete] = useState(false);
   const [isModalVisible, setisModalVisible] = useState(false);
   const [newText, setNewQuestion] = useState('');
   const [newcreatedAt, setNewTime] = useState('');
@@ -80,10 +81,15 @@ const UnansweredQuestions = ({navigation}) => {
   const onPressSave = (newID) => {
     console.log('Gumagana ba to', newID);
     // setisModalVisible(false);
-    setisModalConfirm(true);
-
-    
+    setisModalConfirm(true);  
   };
+
+  const onPressDelete = (newID) => {
+    console.log('lalabas pop up', newID);
+    setisModalConfirmDelete(true);  
+    setNewID(newID);
+  };
+
 
  
   let orig;
@@ -96,6 +102,20 @@ const UnansweredQuestions = ({navigation}) => {
       .then(() => {
         console.log('ID: User deleted!', newID);
       });
+  };
+
+  const handleSubmitDelete = (inputText, newID) =>{
+    if(inputText == 'deleteQuestion') {
+      deleteQuestion(newID);
+      setisModalConfirmDelete(false);
+    }
+    else {
+      handleCancelDelete();
+    }
+  }
+
+  const handleCancelDelete = () => {
+    setisModalConfirmDelete(false);
   };
 
   const handleCancel = () => {
@@ -167,8 +187,15 @@ const UnansweredQuestions = ({navigation}) => {
                   style={unansweredQuestionsStyles.toUpdate}
                   onPress={() => getQuestions(item)}>
                   <Icon name="edit" color="white" size={16} style={{ marginBottom: 5 }}/>
-                  <Text style={unansweredQuestionsStyles.txtUpdateArchive}> Answer question </Text>
-                </TouchableOpacity>
+                  <Text style={unansweredQuestionsStyles.txtUpdateArchive}> Answer question</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                  style={unansweredQuestionsStyles.toArchive}
+                  onPress={() => onPressDelete(item.key)}>
+                  <Icon name="delete" color="white" size={16} style={{ marginBottom: 5 }}/>
+                  <Text style={unansweredQuestionsStyles.txtUpdateArchive}>  Delete </Text>
+              </TouchableOpacity>
             
               </View>
 
@@ -240,10 +267,23 @@ const UnansweredQuestions = ({navigation}) => {
             {isModalConfirmVisible ? 
            <DialogInput isDialogVisible={isModalConfirmVisible}
               title={"Answer question"}
-              message={"Do you want to mark this as Answered Question? You cannot undo this action."}
+              message={"Confirm you want to answer this question by typing: answerQuestion."}
               hintInput ={"answerQuestion"}
               submitInput={(inputText) => {handleSubmit(inputText)} }
               closeDialog={ () => {handleCancel()}}>
+          </DialogInput>
+          : 
+            null}
+          
+
+            
+           {isModalConfirmDelete ? 
+           <DialogInput isDialogVisible={isModalConfirmDelete}
+              title={"Delete question"}
+              message={"Confirm you want to delete this question by typing: deleteQuestion."}
+              hintInput ={"deleteQuestion"}
+              submitInput={(inputText) => {handleSubmitDelete(inputText, newID)} }
+              closeDialog={ () => {handleCancelDelete()}}>
           </DialogInput>
           : 
             null}
