@@ -209,6 +209,7 @@ export const aboutUsAdminStyles = StyleSheet.create({
         borderTopRightRadius: 30,
         flexDirection: 'column',
         overflow: 'hidden',
+        resizeMode: 'cover',
 
         shadowColor: "#000",
         shadowOffset: {
