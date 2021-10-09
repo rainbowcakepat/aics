@@ -11,6 +11,7 @@ import AddAnnouncement from '../screens/./announcementAdminScreens/addAnnounceme
 import ViewAboutUsAdmin from '../screens/./aboutUsAdmin/aboutAdmin';
 import UnansweredQuestions from '../screens/./unansweredQuestions/unansweredQuestions';
 import HowToUseAdmin from '../screens/howToUseAdmin/howToUseAdmin';
+import QuestionsInterface from '../screens/questionsInterface/questionsInterface';
 
 const Drawer = createDrawerNavigator();
 
@@ -36,6 +37,21 @@ export default function AdminStackDrawer() {
           drawerIcon: ({focused, size}) => (
             <Icon
               name="bullhorn"
+              size={size}
+              color={focused ? '#E0394D' : '#ccc'}
+            />
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name="Questions Interface"
+        component={QuestionsInterface}
+        options={{
+          headerShown: false,
+          drawerIcon: ({focused, size}) => (
+            <Icon
+              name="list-alt"
               size={size}
               color={focused ? '#E0394D' : '#ccc'}
             />
