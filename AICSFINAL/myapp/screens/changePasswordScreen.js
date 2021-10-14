@@ -22,15 +22,15 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {globalStyles} from '../styles/global';
 import {auth} from '../firebase';
-import ForgotPasswordScreen from './forgotPasswordScreen';
-import ChangePasswordScreen from './changePasswordScreen';
+import LoginScreen from './logInScreen';
+import SignInScreen from './signInScreen';
 
 const screenwidth = Dimensions.get('window').width;
 const screenheight = Dimensions.get('window').height;
 
 const win = Dimensions.get('window');
 
-const LoginScreen = ({navigation}) => {
+const ChangePasswordScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSecureEntry, setIsSecureEntry] = useState(true);
@@ -90,7 +90,7 @@ const LoginScreen = ({navigation}) => {
               color: 'white',
             }}>
             {' '}
-          Welcome, Admin! </Text>
+          Change Password </Text>
         </TouchableWithoutFeedback>
 
         <View style={{margin: 20}}>
@@ -172,7 +172,7 @@ const LoginScreen = ({navigation}) => {
                 color: 'white',
                 fontSize: hp(2.3),
               }}>
-              Login
+              Submit
             </Text>
           </TouchableOpacity>
 
@@ -181,20 +181,12 @@ const LoginScreen = ({navigation}) => {
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}
                 onPress={() =>
-                  // Linking.openURL('https://console.firebase.google.com/u/0/')
-                  navigation.navigate(ForgotPasswordScreen)
+                  navigation.navigate(SignInScreen)
                 }>
-                Forgot Password?  </Text>
+                Go back to Home  </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity>
-              <Text
-                style={{color: 'gray', fontSize: hp(2)}}
-                onPress={() =>
-                  navigation.navigate(ChangePasswordScreen)
-                }>|  Change Password 
-              </Text>
-            </TouchableOpacity>
+           
 
 
           </View>
@@ -205,134 +197,7 @@ const LoginScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  welcome: {
-    marginTop: -18,
-    marginLeft: win.width / 16,
-    marginBottom: 15,
-    fontSize: hp('4.1%'),
-    fontFamily: 'Cambay-Bold',
-    color: '#ab0e0e',
-    textShadowColor: 'white',
-    textShadowOffset: {
-      width: 3,
-      height: 1,
-    },
-    textShadowRadius: 20,
-    position: 'absolute',
-  },
-
-  unameText: {
-    marginTop: 50,
-    borderColor: 'black',
-    fontSize: hp('2.3%'),
-    fontFamily: 'Poppins-SemiBold',
-    position: 'absolute',
-  },
-
-  uname: {
-    marginTop: 70,
-    marginLeft: -5,
-    borderBottomWidth: 0.7,
-    width: 295,
-    fontSize: 14,
-    padding: 5,
-    marginBottom: 10,
-    position: 'absolute',
-  },
-
-  passText: {
-    marginTop: 130,
-    borderColor: 'black',
-    fontSize: hp('2.3%'),
-    fontFamily: 'Poppins-SemiBold',
-    position: 'absolute',
-  },
-
-  pass: {
-    marginTop: 145,
-    marginLeft: -5,
-    borderBottomWidth: 0.7,
-    fontSize: 14,
-    width: 295,
-    padding: 7,
-    marginBottom: 10,
-    position: 'absolute',
-  },
-
-  login: {
-    marginTop: 45,
-    height: 35,
-    width: 290,
-    borderRadius: 20,
-    backgroundColor: '#ab0e0e',
-    shadowColor: 'black',
-    shadowOffset: {
-      width: 3,
-      height: 2,
-    },
-    shadowOpacity: 10,
-    shadowRadius: 200,
-    elevation: 16,
-  },
-
-  loginText: {
-    color: 'white',
-    marginTop: 5,
-    fontSize: hp('2.4%'),
-    fontFamily: 'Poppins-Medium',
-    alignSelf: 'center',
-    position: 'absolute',
-  },
-
-  forgotPasswordText: {
-    marginLeft: '-20%',
-    marginTop: 24,
-    fontSize: hp('1.9%'),
-    fontFamily: 'Poppins-Medium',
-    textDecorationLine: 'underline',
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-
-  iconsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: '10%',
-  },
-
-  // avatars: {
-  //   marginTop: '72%',
-  //   flexDirection: 'row',
-  //   alignContent: "space-between",
-  //   marginBottom: '0%',
-  //   position: 'absolute',
-  // },
-
-  iicsboy: {
-    marginTop: '-13%',
-    height: screenheight / 4,
-    width: screenwidth / 2.7,
-    resizeMode: 'cover',
-    // transform: [{ rotate: '0deg' }],
-  },
-
-  akisha: {
-    marginTop: '-8.5%',
-    marginRight: '-2%',
-    height: screenheight / 4.6,
-    width: screenwidth / 2.1,
-    resizeMode: 'contain',
-    // transform: [{ rotate: '0deg' }],
-  },
-
-  // loadingBg: {
-  //   height: 600,
-  //   marginTop: 40, //win.height/1.8,
-  //   width: screenwidth,
-  //   resizeMode: 'stretch',
-  //   opacity: 0.3, //0.7
-  //   position: 'absolute',
-  // },
+  
 });
 
-export default LoginScreen;
+export default ChangePasswordScreen;

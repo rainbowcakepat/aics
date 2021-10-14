@@ -5,6 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import SignInScreen from '../screens/signInScreen';
 import LogInScreen from '../screens/logInScreen';
 import UserStackDrawer from '../routes/UserStackDrawer';
+import ForgotPasswordScreen from '../screens/forgotPasswordScreen';
+import ChangePasswordScreen from '../screens/changePasswordScreen';
 
 //Chatbots
 import AkishaChatbot from '../screens/./chatbotscreens/chatbotapp';
@@ -25,6 +27,9 @@ export default function AuthStack() {
      <Stack.Screen name='SignInScreen' component={SignInScreen} />
      <Stack.Screen name='LogInScreen' component={LogInScreen} />
      <Stack.Screen name='SelectChatbot' component={UserStackDrawer} />
+     <Stack.Screen name='ForgotPasswordScreen' component={ForgotPasswordScreen} />
+     <Stack.Screen name='ChangePasswordScreen' component={ChangePasswordScreen} />
+
      <Stack.Screen name='AkishaChatbot' component={AkishaChatbot} />
      <Stack.Screen name='IngridChatbot' component={IngridChatbot} />
      <Stack.Screen name='ChristineChatbot' component={ChristineChatbot} />

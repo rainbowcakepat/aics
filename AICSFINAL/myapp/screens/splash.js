@@ -8,7 +8,6 @@ import {globalStyles} from '../styles/global';
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
 import navigation from '@react-navigation/native';
-import loginF from './loginF';
 const win = Dimensions.get('window');
 
 const Splash = ({navigation}) => {

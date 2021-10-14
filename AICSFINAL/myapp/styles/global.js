@@ -9,8 +9,8 @@ const screenheight = Dimensions.get('window').height;
 
 export const globalStyles = StyleSheet.create({
     wholePageContainer: {
-      height: '100%', // 70% of height device screen
-      width: '100%',
+      height: hp('100%'), // 70% of height device screen
+      width: wp('100%'),
       flex: 1,
       flexDirection: 'column',
       padding: '0%',
@@ -22,6 +22,7 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "space-evenly",
     paddingBottom: '5%',
     backgroundColor: 'black',
+    flex: 1,
     
   },
 
@@ -43,7 +44,7 @@ export const globalStyles = StyleSheet.create({
   },
 
   ustiics: {
-    width: screenwidth/5,
+    width: screenwidth/4.5,
     height: screenheight/7,
     marginHorizontal: '3%',
     resizeMode: 'contain',
@@ -55,25 +56,25 @@ export const globalStyles = StyleSheet.create({
   },
 
   ustText:{
-    fontSize: hp('2.5%'),
+    fontSize: wp('4%'),
     color: 'white',
-    fontFamily: 'Cambay-Bold',
-    marginTop: '-9%',
+    fontFamily: 'Poppins-Medium',
+    marginTop: -30,
   },
 
   ustiicsText:{
-    fontSize: hp('2.22%'),
+    fontSize: wp('3.5%'),
     color: 'white',
-    fontFamily: 'Cambay-Bold',
+    fontFamily: 'Poppins-Medium',
   },
 
   pageBodyContainer: { //white eto na bg
     marginTop: '-10%', //53
-    height: Dimensions.get('window').height > 685 ? '71%' : '70.5%',
     width: '100%',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     flexDirection:'column',
+    flex: 2,
     
   },
 

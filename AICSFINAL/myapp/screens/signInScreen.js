@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import { Dimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { globalStyles } from '../styles/global';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp, } from 'react-native-responsive-screen'
@@ -13,11 +13,11 @@ const SignInScreen = ({navigation}) => {
     
   <View style={globalStyles.wholePageContainer} >
           
-        <LinearGradient style={globalStyles.pageHeaderContainer} colors= {['#b31217', '#8e0000']}>
+        <ImageBackground style={globalStyles.pageHeaderContainer} source={require('../assets/./bg/annoucementsbg.png')}>
           
           <View style={globalStyles.pageHeaderElements}>
-            <Image  style={globalStyles.ust} source={require('../assets/ust.png')}/>
-            <Image  style={globalStyles.ustiics} source={require('../assets/ustiics.png')}/>  
+            <Image  style={globalStyles.ust} source={require('../assets/ustOutline.png')}/>
+            <Image  style={globalStyles.ustiics} source={require('../assets/iicsOutline.png')}/>  
           </View>
 
           <View style={globalStyles.pageHeaderTexts}>
@@ -25,11 +25,11 @@ const SignInScreen = ({navigation}) => {
             <Text style={globalStyles.ustiicsText}>College of Information and Computing Sciences</Text>
           </View>
 
-        </LinearGradient>
+        </ImageBackground>
 
         <LinearGradient style={globalStyles.pageBodyContainer} colors= {['white', 'white','white', 'white','white','maroon']}>
           
-            <Image  style={globalStyles.ustBg} source={require('../assets/mainbldg.png')}/>
+            <ImageBackground  style={globalStyles.ustBg} source={require('../assets/mainbldg.png')}/>
 
           <View style={styles.elements}>
 
