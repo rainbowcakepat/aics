@@ -178,7 +178,11 @@ export const announcementStyles = StyleSheet.create({
 
     submitContainer: {
         flex: 1, 
-        backgroundColor: 'white'
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        backgroundColor: 'white',
+        // paddingHorizontal: 15,
+        
     },
 
     toSubmit: {
@@ -189,7 +193,7 @@ export const announcementStyles = StyleSheet.create({
         borderRadius: 20, 
         alignSelf:'center', 
         backgroundColor:'#CB0A0D', //#FFB0B2
-
+        
         
         shadowColor: "#000",
         shadowOffset: {
@@ -206,9 +210,64 @@ export const announcementStyles = StyleSheet.create({
         color: 'white',
         alignSelf:'center', 
         marginTop: 2, 
-        fontSize: hp(2.6), //18
-        letterSpacing: 0.5,
-        fontFamily: 'Poppins-SemiBold',
+        fontSize: hp(2), //18
+        letterSpacing: 0.2,
+        fontFamily: 'Poppins-Medium',
+    },
+
+    cancelText: {
+        color: 'black',
+        alignSelf:'center', 
+        marginTop: 2, 
+        fontSize: hp(2), //18
+        letterSpacing: 0.2,
+        fontFamily: 'Poppins-Medium',
+    },
+
+
+    btnSave: {
+        width: 160,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
+        flexDirection:'row',
+        borderRadius: 20,
+        marginBottom: 10,
+        backgroundColor: '#CB0A0D',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+
+    },
+
+    btnCancel: {
+        width: 160,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
+        flexDirection:'row',
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#CB0A0D',
+        backgroundColor: 'white',
+        marginBottom: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+
     },
 
   

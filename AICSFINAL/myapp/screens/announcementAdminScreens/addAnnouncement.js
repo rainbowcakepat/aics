@@ -80,6 +80,11 @@ const AddAnnouncement = ({navigation}) => {
     
   }
 
+
+  const cancelAnnouncement = () => {
+navigation
+  }
+
   const choosePhotoFromImageLibrary = () => {
     ImagePicker.openPicker({
       width: 800,
@@ -192,13 +197,21 @@ const AddAnnouncement = ({navigation}) => {
              {
           validate2 && validate1 ? 
           <View style={announcementStyles.submitContainer}>
-            <TouchableOpacity style={announcementStyles.toSubmit} onPress={addAnnouncementNow} >
-                <Text style={announcementStyles.submitText}> SUBMIT</Text>
+            <TouchableOpacity style={announcementStyles.btnSave} onPress={addAnnouncementNow} >
+                <Text style={announcementStyles.submitText}> Submit</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity style={announcementStyles.btnCancel}
+                  onPress={() => navigation.navigate("Announcements")}>
+                    <Text style={announcementStyles.cancelText}>Cancel</Text>
+                  </TouchableOpacity>
           </View> 
           : 
          null
         }
+
+       
+
           </View> 
          
 
