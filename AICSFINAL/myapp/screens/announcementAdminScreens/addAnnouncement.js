@@ -73,7 +73,9 @@ const AddAnnouncement = ({navigation}) => {
     ImagePicker.openPicker({
       width: 800,
       height: 1200,
-      cropping: true,  
+      cropping: true, 
+      mediaType: 'photo',
+      multiple: false,
     }).then((photo) => {
       const imageUri = Platform.OS == 'ios' ? photo.sourceURL : photo.path;
       setPhoto(imageUri);
