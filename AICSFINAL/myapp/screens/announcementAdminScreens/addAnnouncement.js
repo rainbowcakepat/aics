@@ -80,7 +80,7 @@ const AddAnnouncement = ({navigation}) => {
       console.log(photo);
       Alert.alert('Attached an image', imageUri);
     }).catch((e) => {
-      // Alert.alert('Error', e.toString());
+      Alert.alert('Unable to attach file, please try again');
       console.log(e);
   });
   }
