@@ -195,7 +195,10 @@ const AnnouncementAdmin = ({navigation}) => {
         setNewPhoto('');
         setNewURL('');
         console.log('Announcement updated!', id);
-      });
+      }).catch((error) => {
+        console.log('Something went wrong', error);
+        Alert.alert('Unable to edit announcement, please try again');
+      })
 
   };
 
