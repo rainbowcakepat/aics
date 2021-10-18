@@ -146,6 +146,7 @@ const AnnouncementAdmin = ({navigation}) => {
       Alert.alert('Successfully Posted!');
     } catch (e) {
       console.log(e);
+      Alert.alert('Something went wrong, please try again');
     }
     setNewPhoto(null);
   };
