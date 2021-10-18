@@ -40,6 +40,9 @@ const LoginScreen = ({navigation}) => {
       if (email !== '' && password !== '') {
         await auth.signInWithEmailAndPassword(email, password);
       }
+      else {
+        Alert.alert('Please enter your credentials correctly');
+      }
     } catch (error) {
       Alert.alert(error.message);
     }
@@ -181,7 +184,7 @@ const LoginScreen = ({navigation}) => {
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}
                 onPress={() =>
-                  // Linking.openURL('https://console.firebase.google.com/u/0/')
+                  //Linking.openURL('https://console.firebase.google.com/u/0/')
                   navigation.navigate(ForgotPasswordScreen)
                 }>
                 Forgot Password?  </Text>
@@ -191,6 +194,7 @@ const LoginScreen = ({navigation}) => {
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}
                 onPress={() =>
+                  //Linking.openURL('https://console.firebase.google.com/u/0/')
                   navigation.navigate(ChangePasswordScreen)
                 }>|  Change Password 
               </Text>

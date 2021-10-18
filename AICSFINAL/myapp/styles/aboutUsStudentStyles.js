@@ -17,6 +17,7 @@ export const aboutUsStudentStyles = StyleSheet.create({
     lgTopHeader: {
         backgroundColor: '#CB0A0D',
         flex: 1.30,
+        flexDirection: 'column'
     },
 
     menuBarContainer: {
@@ -27,7 +28,7 @@ export const aboutUsStudentStyles = StyleSheet.create({
         opacity: 0.2, 
         borderRadius: 10, 
         backgroundColor: 'black',
-        position:'absolute',
+       // position:'absolute',
     },
 
     menuBarIcon: {
@@ -35,7 +36,7 @@ export const aboutUsStudentStyles = StyleSheet.create({
         marginLeft: 17
     },
 
-    titleText: {
+   /* titleText: {
         marginLeft: 15, 
         marginTop: 22, 
         fontSize: hp(4.6), //34
@@ -52,7 +53,27 @@ export const aboutUsStudentStyles = StyleSheet.create({
         fontSize: hp(1.85),  //14
         fontFamily: 'Poppins-Italic',
         color: 'white',  
+    },*/
+
+    titleText: {
+        marginLeft: 15, 
+       marginTop: -28,
+        fontSize: hp(4.6), //34
+       
+        fontFamily: 'Poppins-Medium',
+        color: 'white', 
     },
+
+    subtitleText: {
+        marginLeft: 20, 
+        marginRight: 45,
+        marginBottom: 3,
+        lineHeight: 20,
+        fontSize: hp(1.85),  //14
+        fontFamily: 'Poppins-Italic',
+        color: 'white',  
+    },
+
 
     aicsLogo: {
         width: 70,
@@ -60,9 +81,8 @@ export const aboutUsStudentStyles = StyleSheet.create({
         marginTop: 5,
         marginLeft: 334,
         opacity: 1,
-        position: 'absolute',
         resizeMode: 'contain',
-        position: 'absolute',
+        // position: 'absolute',
     },
 
     aicsLogoContainer:{
@@ -71,7 +91,7 @@ export const aboutUsStudentStyles = StyleSheet.create({
         width: 70,
         marginTop: 2,
         marginLeft: 334,
-        position: 'absolute',
+        //position: 'absolute',
     },
 
 

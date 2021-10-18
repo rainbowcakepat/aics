@@ -35,7 +35,18 @@ const AddAnnouncement = ({navigation}) => {
   const addAnnouncementNow = async() => {
 
     const ids = await firestore().collection('allAnnouncements').doc();
+    const ids2 = await firestore().collection('allSystemLogs').doc();
     
+    ids2.set({
+      activity: 'Add announcement',
+      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+    })
+    .then(() => {
+      console.log('system log: Add announcement');
+    }).catch((error) => {
+      console.log('Something went wrong', error);
+    })
+
     ids.set({
       titles: titles,
       // links: links,
@@ -62,7 +73,7 @@ const AddAnnouncement = ({navigation}) => {
 
     })
     .catch((error) => {
-      Alert.alert('Error', error);
+      Alert.alert('Error', error.message);
       console.log('Something went wrong', error);
      
     })
