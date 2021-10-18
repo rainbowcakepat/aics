@@ -108,17 +108,17 @@ const ForgotPasswordScreen = ({navigation}) => {
               paddingHorizontal: 10,
               paddingRight: 20,
             }}
-            placeholder="  enter your username"
+            placeholder="  enter your email address"
             placeholderTextColor="gray"
             type="email"
             value={email}
             onChangeText={text => setEmail(text)}></TextInput>
 
-          <Text style={{fontFamily: 'Poppins-Regular', fontSize: hp(2.1)}}>
+          {/* <Text style={{fontFamily: 'Poppins-Regular', fontSize: hp(2.1)}}>
             Password:
           </Text>
 
-          <TextInput
+           <TextInput
             style={{
               backgroundColor: '#F6F1F1',
               fontSize: hp(2.3),
@@ -131,7 +131,7 @@ const ForgotPasswordScreen = ({navigation}) => {
             placeholderTextColor="gray"
             secureTextEntry={isSecureEntry}
             value={password}
-            onChangeText={text => setPassword(text)}></TextInput>
+            onChangeText={text => setPassword(text)}></TextInput> */}
 
           <TouchableOpacity
             style={{
@@ -173,7 +173,7 @@ const ForgotPasswordScreen = ({navigation}) => {
                 color: 'white',
                 fontSize: hp(2.3),
               }}>
-              Submit
+              Send Confirmation
             </Text>
           </TouchableOpacity>
 

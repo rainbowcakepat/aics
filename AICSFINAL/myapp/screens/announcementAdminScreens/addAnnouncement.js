@@ -62,7 +62,9 @@ const AddAnnouncement = ({navigation}) => {
 
     })
     .catch((error) => {
+      Alert.alert('Error', error);
       console.log('Something went wrong', error);
+     
     })
     
   }
@@ -78,6 +80,7 @@ const AddAnnouncement = ({navigation}) => {
       console.log(photo);
       Alert.alert('Attached an image', imageUri);
     }).catch((e) => {
+      // Alert.alert('Error', e.toString());
       console.log(e);
   });
   }

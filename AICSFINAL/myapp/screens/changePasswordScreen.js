@@ -107,7 +107,7 @@ const ChangePasswordScreen = ({navigation}) => {
               paddingHorizontal: 10,
               paddingRight: 20,
             }}
-            placeholder="  enter your username"
+            placeholder="  enter your email address"
             placeholderTextColor="gray"
             type="email"
             value={email}
@@ -126,7 +126,7 @@ const ChangePasswordScreen = ({navigation}) => {
               paddingHorizontal: 10,
               paddingRight: 60,
             }}
-            placeholder="  enter your password"
+            placeholder="  enter your current password"
             placeholderTextColor="gray"
             secureTextEntry={isSecureEntry}
             value={password}
