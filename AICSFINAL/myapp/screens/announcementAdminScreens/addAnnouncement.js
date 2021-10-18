@@ -38,7 +38,7 @@ const AddAnnouncement = ({navigation}) => {
     const ids2 = await firestore().collection('allSystemLogs').doc();
     
     ids2.set({
-      activity: 'Add announcement',
+      activity: 'Successfully Added an announcement',
       posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
     })
     .then(() => {

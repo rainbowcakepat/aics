@@ -21,6 +21,7 @@ import {
 import { AuthenticatedUserContext } from '../screens/AuthUserProvider';
 import {auth} from '../firebase';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import firestore from '@react-native-firebase/firestore';
 
 const CustomSidebarMenu = props => {
 
@@ -29,6 +30,20 @@ const CustomSidebarMenu = props => {
   const handleSignOut = async () => {
     try {
       await auth.signOut();
+
+      const ids2 = await firestore().collection('allSystemLogs').doc();
+    
+      ids2.set({
+        activity: 'Successful Logout',
+        posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+      })
+      .then(() => {
+        console.log('system log: Successful Logout');
+      }).catch((error) => {
+        console.log('Something went wrong', error);
+      })
+      
+
     } catch (error) {
       console.log(error);
     }

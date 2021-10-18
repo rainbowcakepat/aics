@@ -186,6 +186,9 @@ const AnnouncementAdmin = ({navigation}) => {
         url: newUrl,
       })
       .then(() => {
+
+        editSystemLogs();
+
         setNewTitles('');
         setNewContents('');
         setNewLinks('');
@@ -193,8 +196,23 @@ const AnnouncementAdmin = ({navigation}) => {
         setNewURL('');
         console.log('Announcement updated!', id);
       });
+
   };
 
+  const editSystemLogs = async () => {
+    const ids2 = await firestore().collection('allSystemLogs').doc();
+    
+    ids2.set({
+      activity: 'Successfully Edited an Announcement',
+      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+    })
+    .then(() => {
+      console.log('system log: Successfully Edited an Announcement');
+    }).catch((error) => {
+      console.log('Something went wrong', error);
+    })
+    
+  }
  
   let orig;
 
@@ -212,6 +230,20 @@ const AnnouncementAdmin = ({navigation}) => {
       .collection('allArchivedAnnouncements')
       .doc();
 
+
+      const ids2 = await firestore().collection('allSystemLogs').doc();
+    
+      ids2.set({
+        activity: 'Successfully Archived an Announcement',
+        posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+      })
+      .then(() => {
+        console.log('system log: Successfully Archived an Announcement');
+      }).catch((error) => {
+        console.log('Something went wrong', error);
+      })
+    
+      
     archiveannouncements
       .set({
         archivedlinks: orig.url,
@@ -518,7 +550,7 @@ const handleCancelDelete = () => {
       <View style={announcementComponentStyles.lgTopHeader}>
         
         <Icon style= {announcementComponentStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={announcementComponentStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
+        <TouchableOpacity style={announcementComponentStyles.aicsLogoContainer}>
         </TouchableOpacity>
         <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
         

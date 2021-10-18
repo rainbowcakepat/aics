@@ -12,6 +12,7 @@ import ViewAboutUsAdmin from '../screens/./aboutUsAdmin/aboutAdmin';
 import UnansweredQuestions from '../screens/./unansweredQuestions/unansweredQuestions';
 import HowToUseAdmin from '../screens/howToUseAdmin/howToUseAdmin';
 import QuestionsInterface from '../screens/questionsInterface/questionsInterface';
+import SystemLogs from '../screens/systemLogs/systemLogs';
 
 const Drawer = createDrawerNavigator();
 
@@ -102,6 +103,23 @@ export default function AdminStackDrawer() {
           ),
         }}
       />
+
+<Drawer.Screen
+        name="System Logs"
+        component={SystemLogs}
+        options={{
+          headerShown: false,
+          drawerIcon: ({focused, size}) => (
+            <Icon
+              name="history"
+              size={size}
+              color={focused ? '#E0394D' : '#ccc'}
+            />
+          ),
+        }}
+      />
+
+
     </Drawer.Navigator>
   );
 }

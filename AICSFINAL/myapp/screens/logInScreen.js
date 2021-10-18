@@ -24,6 +24,7 @@ import {globalStyles} from '../styles/global';
 import {auth} from '../firebase';
 import ForgotPasswordScreen from './forgotPasswordScreen';
 import ChangePasswordScreen from './changePasswordScreen';
+import firestore from '@react-native-firebase/firestore';
 
 const screenwidth = Dimensions.get('window').width;
 const screenheight = Dimensions.get('window').height;
@@ -39,7 +40,21 @@ const LoginScreen = ({navigation}) => {
     try {
       if (email !== '' && password !== '') {
         await auth.signInWithEmailAndPassword(email, password);
+
+        const ids2 = await firestore().collection('allSystemLogs').doc();
+    
+        ids2.set({
+          activity: 'Successful Login',
+          posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+        })
+        .then(() => {
+          console.log('system log: Successful Login');
+        }).catch((error) => {
+          console.log('Something went wrong', error);
+        })
+        
       }
+
       else {
         Alert.alert('Please enter your credentials correctly');
       }

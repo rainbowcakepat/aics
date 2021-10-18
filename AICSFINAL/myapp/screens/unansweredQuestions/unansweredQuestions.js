@@ -102,16 +102,46 @@ const UnansweredQuestions = ({navigation}) => {
       .then(() => {
         console.log('ID: User deleted!', newID);
       });
+      
   };
 
   const handleSubmitDelete = (inputText, newID) =>{
     if(inputText == 'deleteQuestion') {
       deleteQuestion(newID);
       setisModalConfirmDelete(false);
+      handleSubmitDeleteSystemLogs();
     }
     else {
       handleCancelDelete();
     }
+  }
+
+  const handleSubmitDeleteSystemLogs = async() => {
+    const ids2 = await firestore().collection('allSystemLogs').doc();
+    
+    ids2.set({
+      activity: 'Successfully Deleted a Question',
+      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+    })
+    .then(() => {
+      console.log('system log: Successfully Deleted a Question');
+    }).catch((error) => {
+      console.log('Something went wrong', error);
+    })
+  }
+
+  const handleSubmitAnswerSystemLogs = async() => {
+    const ids2 = await firestore().collection('allSystemLogs').doc();
+    
+    ids2.set({
+      activity: 'Successfully Answered a Question',
+      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+    })
+    .then(() => {
+      console.log('system log: Successfully Answered a Question');
+    }).catch((error) => {
+      console.log('Something went wrong', error);
+    })
   }
 
   const handleCancelDelete = () => {
@@ -125,6 +155,7 @@ const UnansweredQuestions = ({navigation}) => {
   const handleSubmit = (inputText) =>{
     if(inputText == 'answerQuestion') {
       handleDelete(newID);
+      handleSubmitAnswerSystemLogs();
     }
     else {
       handleCancel();

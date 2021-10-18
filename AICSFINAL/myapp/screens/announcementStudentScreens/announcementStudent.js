@@ -302,7 +302,7 @@ const AnnouncementStudent = ({navigation}) => {
       <View style={announcementComponentStudentStyles.lgTopHeader}>
         
         <Icon style= {announcementComponentStudentStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={announcementComponentStudentStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
+        <TouchableOpacity style={announcementComponentStudentStyles.aicsLogoContainer} >
         </TouchableOpacity>
         <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
         

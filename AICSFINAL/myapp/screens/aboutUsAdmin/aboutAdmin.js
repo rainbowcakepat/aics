@@ -170,6 +170,7 @@ const AboutUsAdmin = ({navigation}) => {
       about: newAbout,
     })
     .then(() => {
+      EditAboutTheCollege();
       setnewAbout('');
       Alert.alert('Information Updated!');
       console.log('all set!');
@@ -184,6 +185,7 @@ const AboutUsAdmin = ({navigation}) => {
       mission: newMission,
     })
     .then(() => {
+EditMission();
       setnewMission('');
       Alert.alert('Information Updated!');
       console.log('all set!');
@@ -198,6 +200,7 @@ const AboutUsAdmin = ({navigation}) => {
       vision: newVision,
     })
     .then(() => {
+      EditVision();
       setnewVision('');
       Alert.alert('Information Updated!');
       console.log('all set!');
@@ -216,6 +219,7 @@ const AboutUsAdmin = ({navigation}) => {
       schedule: newContactInfoSchedule,
     })
     .then(() => {
+      EditContactInformation();
       setnewContactInfoEmail('');
       setnewContactInfoFacebook('');
       setnewContactInfoLocation('');
@@ -236,6 +240,7 @@ const AboutUsAdmin = ({navigation}) => {
       otherinformation: newOtherInformation,
     })
     .then(() => {
+      EditCollegeOfferings();
       setnewDegreePrograms('');
       setnewDepartments('');
       setnewOtherInformation('');
@@ -243,6 +248,88 @@ const AboutUsAdmin = ({navigation}) => {
       console.log('all set!');
     });
   };
+
+  const EditAboutTheCollege = async() => {
+    const ids2 = await firestore().collection('allSystemLogs').doc();
+    
+    ids2.set({
+      activity: 'Successfully Edited About the College',
+      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+    })
+    .then(() => {
+      console.log('system log: Successfully Edited About Us');
+    }).catch((error) => {
+      console.log('Something went wrong', error);
+    })
+    
+  }
+
+  const EditCollegeOfferings = async() => {
+    const ids2 = await firestore().collection('allSystemLogs').doc();
+    
+    ids2.set({
+      activity: 'Successfully Edited College Offerings',
+      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+    })
+    .then(() => {
+      console.log('system log: Successfully Edited College Offerings');
+    }).catch((error) => {
+      console.log('Something went wrong', error);
+    })
+    
+  }
+
+  const EditMission = async() => {
+    const ids2 = await firestore().collection('allSystemLogs').doc();
+    
+    ids2.set({
+      activity: 'Successfully Edited Mission',
+      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+    })
+    .then(() => {
+      console.log('system log: Successfully Edited Mission');
+    }).catch((error) => {
+      console.log('Something went wrong', error);
+    })
+    
+  }
+
+  
+  const EditVision = async() => {
+    const ids2 = await firestore().collection('allSystemLogs').doc();
+    
+    ids2.set({
+      activity: 'Successfully Edited Vision',
+      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+    })
+    .then(() => {
+      console.log('system log: Successfully Edited Vision');
+    }).catch((error) => {
+      console.log('Something went wrong', error);
+    })
+    
+  }
+
+  
+  const EditContactInformation = async() => {
+    const ids2 = await firestore().collection('allSystemLogs').doc();
+    
+    ids2.set({
+      activity: 'Successfully Edited Contact Information',
+      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+    })
+    .then(() => {
+      console.log('system log: Successfully Edited Contact Information');
+    }).catch((error) => {
+      console.log('Something went wrong', error);
+    })
+    
+  }
+  
+
+  
+  
+  
 
   let searchtitles = null;
 
@@ -711,7 +798,7 @@ const AboutUsAdmin = ({navigation}) => {
       <View style={aboutUsAdminStyles.lgTopHeader}>
         
         <Icon style= {aboutUsAdminStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={aboutUsAdminStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
+        <TouchableOpacity style={aboutUsAdminStyles.aicsLogoContainer}>
         </TouchableOpacity>
         <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
         

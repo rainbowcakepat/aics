@@ -550,7 +550,7 @@ const howToUseAdmin = ({navigation}) => {
       <View style={announcementComponentStyles.lgTopHeader}>
         
         <Icon style= {announcementComponentStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={announcementComponentStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
+        <TouchableOpacity style={announcementComponentStyles.aicsLogoContainer} >
         </TouchableOpacity>
         <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
         

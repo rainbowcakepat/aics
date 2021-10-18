@@ -495,7 +495,7 @@ const AboutUsAdmin = ({navigation}) => {
       <View style={aboutUsStudentStyles.lgTopHeader}>
         
         <Icon style= {aboutUsStudentStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={aboutUsStudentStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
+        <TouchableOpacity style={aboutUsStudentStyles.aicsLogoContainer}>
         </TouchableOpacity>
         <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
         
