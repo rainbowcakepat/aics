@@ -181,9 +181,9 @@ const ChangePasswordScreen = ({navigation}) => {
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}
                 onPress={() =>
-                  navigation.navigate(SignInScreen)
+                  navigation.toggleDrawer()
                 }>
-                Go back to Home  </Text>
+                Go back to Menu  </Text>
             </TouchableOpacity>
 
            

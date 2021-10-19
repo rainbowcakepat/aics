@@ -205,7 +205,7 @@ const LoginScreen = ({navigation}) => {
                 Forgot Password?  </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            {/* <TouchableOpacity>
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}
                 onPress={() =>
@@ -213,7 +213,7 @@ const LoginScreen = ({navigation}) => {
                   navigation.navigate(ChangePasswordScreen)
                 }>|  Change Password 
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
 
           </View>

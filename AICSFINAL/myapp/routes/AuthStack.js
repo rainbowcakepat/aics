@@ -28,7 +28,7 @@ export default function AuthStack() {
      <Stack.Screen name='LogInScreen' component={LogInScreen} />
      <Stack.Screen name='SelectChatbot' component={UserStackDrawer} />
      <Stack.Screen name='ForgotPasswordScreen' component={ForgotPasswordScreen} />
-     <Stack.Screen name='ChangePasswordScreen' component={ChangePasswordScreen} />
+     {/* <Stack.Screen name='ChangePasswordScreen' component={ChangePasswordScreen} /> */}
 
      <Stack.Screen name='AkishaChatbot' component={AkishaChatbot} />
      <Stack.Screen name='IngridChatbot' component={IngridChatbot} />

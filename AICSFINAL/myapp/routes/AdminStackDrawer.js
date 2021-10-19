@@ -13,6 +13,7 @@ import UnansweredQuestions from '../screens/./unansweredQuestions/unansweredQues
 import HowToUseAdmin from '../screens/howToUseAdmin/howToUseAdmin';
 import QuestionsInterface from '../screens/questionsInterface/questionsInterface';
 import SystemLogs from '../screens/systemLogs/systemLogs';
+import ChangePassword from '../screens/changePasswordScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -119,6 +120,20 @@ export default function AdminStackDrawer() {
         }}
       />
 
+<Drawer.Screen
+        name="Change Password"
+        component={ChangePassword}
+        options={{
+          headerShown: false,
+          drawerIcon: ({focused, size}) => (
+            <Icon
+              name="lock"
+              size={size}
+              color={focused ? '#E0394D' : '#ccc'}
+            />
+          ),
+        }}
+      />
 
     </Drawer.Navigator>
   );
