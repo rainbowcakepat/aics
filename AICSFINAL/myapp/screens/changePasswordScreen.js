@@ -172,7 +172,7 @@ const ChangePasswordScreen = ({navigation}) => {
                 color: 'white',
                 fontSize: hp(2.3),
               }}>
-              Senc Confirmation
+              Send Confirmation
             </Text>
           </TouchableOpacity>
 

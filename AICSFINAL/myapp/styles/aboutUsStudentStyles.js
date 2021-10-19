@@ -1,6 +1,11 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
+import {
+    widthPercentageToDP as wp,
+    heightPercentageToDP as hp,
+    widthPercentageToFonts as wf,
+    heightPercentageToFonts as hf,
+  } from "react-native-responsive-screen-font";
+  
 const win = Dimensions.get('window');
 
 export const aboutUsStudentStyles = StyleSheet.create({
@@ -58,8 +63,7 @@ export const aboutUsStudentStyles = StyleSheet.create({
     titleText: {
         marginLeft: 15, 
        marginTop: -28,
-        fontSize: hp(4.6), //34
-       
+        fontSize: wf(8.2), //34
         fontFamily: 'Poppins-Medium',
         color: 'white', 
     },
@@ -69,7 +73,7 @@ export const aboutUsStudentStyles = StyleSheet.create({
         marginRight: 45,
         marginBottom: 3,
         lineHeight: 20,
-        fontSize: hp(1.85),  //14
+        fontSize: wf(3.5),  //14
         fontFamily: 'Poppins-Italic',
         color: 'white',  
     },

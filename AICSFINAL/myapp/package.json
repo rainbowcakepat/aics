@@ -47,6 +47,7 @@
     "react-native-reanimated": "^2.2.0",
     "react-native-responsive-image": "^2.3.1",
     "react-native-responsive-screen": "^1.4.2",
+    "react-native-responsive-screen-font": "^0.1.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.5.0",
     "react-native-svg": "^12.1.1",

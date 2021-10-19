@@ -1,6 +1,11 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
+import {
+    widthPercentageToDP as wp,
+    heightPercentageToDP as hp,
+    widthPercentageToFonts as wf,
+    heightPercentageToFonts as hf,
+  } from "react-native-responsive-screen-font";
+  
 const win = Dimensions.get('window');
 
 export const unansweredQuestionsStyles = StyleSheet.create({
@@ -37,7 +42,8 @@ export const unansweredQuestionsStyles = StyleSheet.create({
     titleText: {
         marginLeft: 15, 
         marginTop: 22, 
-        fontSize: hp(4), //34
+        // fontSize: hp(4), //34
+        fontSize: wf(8.2),
         marginBottom: -5,
         fontFamily: 'Poppins-Medium',
         color: 'white', 
@@ -48,7 +54,8 @@ export const unansweredQuestionsStyles = StyleSheet.create({
         marginRight: 45,
         marginBottom: 3,
         lineHeight: 20,
-        fontSize: hp(1.85),  //14
+        // fontSize: hp(1.85),  //14
+        fontSize: wf(3.8), 
         fontFamily: 'Poppins-Italic',
         color: 'white',  
     },
@@ -199,6 +206,7 @@ export const unansweredQuestionsStyles = StyleSheet.create({
         textAlignVertical: 'center',
         fontFamily: 'Poppins-Medium',
         color: 'white',
+        fontSize: wf(3.3),
     },
 
     txtAdd: {
@@ -266,6 +274,7 @@ export const unansweredQuestionsStyles = StyleSheet.create({
     txtTitle: {
         padding: 0,
         fontSize: hp(3.30), //18
+        // fontSize: wf(4.0), //18
         color: 'white',
         fontFamily: 'Poppins-Medium',
     },

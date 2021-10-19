@@ -1,6 +1,12 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+    widthPercentageToDP as wp,
+    heightPercentageToDP as hp,
+    widthPercentageToFonts as wf,
+    heightPercentageToFonts as hf,
+  } from "react-native-responsive-screen-font";
 
+  
 const win = Dimensions.get('window');
 
 export const announcementStyles = StyleSheet.create({
@@ -36,7 +42,8 @@ export const announcementStyles = StyleSheet.create({
     titleText: {
         marginLeft: 15, 
         marginTop: 18, 
-        fontSize: hp(4.4), //34
+        // fontSize: hp(4.4), //34
+        fontSize: wf(8.2), 
         marginBottom: -5,
         fontFamily: 'Poppins-Medium',
         color: 'white', 
@@ -47,7 +54,8 @@ export const announcementStyles = StyleSheet.create({
         marginRight: 35,
         marginBottom: 3,
         lineHeight: 20,
-        fontSize: hp(1.85),  //14
+        // fontSize: hp(1.85),  //14
+        fontSize: wf(3.8), 
         fontFamily: 'Poppins-Italic',
         color: 'white',  
     },

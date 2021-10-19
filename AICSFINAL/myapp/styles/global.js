@@ -1,5 +1,10 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  widthPercentageToFonts as wf,
+  heightPercentageToFonts as hf,
+} from "react-native-responsive-screen-font";
 
 const win = Dimensions.get('window');
 
@@ -56,14 +61,14 @@ export const globalStyles = StyleSheet.create({
   },
 
   ustText:{
-    fontSize: wp('4%'),
+    fontSize: wf('5%'),
     color: 'white',
     fontFamily: 'Poppins-Medium',
     marginTop: -30,
   },
 
   ustiicsText:{
-    fontSize: wp('3.5%'),
+    fontSize: hf('2%'),
     color: 'white',
     fontFamily: 'Poppins-Medium',
   },
