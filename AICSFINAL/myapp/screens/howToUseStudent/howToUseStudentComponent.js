@@ -34,7 +34,12 @@ function HowToUseStudentComponent(props) {
         </Text>
 
         <View style={{flexDirection: 'row'}}>
-          <Icon name="clock" color="gray" size={18} style={{marginBottom: 5}} />
+          <Icon
+            name="bookmark"
+            color="gray"
+            size={18}
+            style={{marginBottom: 5}}
+          />
           {/* <Text style={{fontFamily: 'Lato-Regular', color: 'gray', fontSize: hp(1.8), marginBottom: 10, marginTop: 1}}>  {props.propskeywords}</Text> */}
           <Text
             style={{
