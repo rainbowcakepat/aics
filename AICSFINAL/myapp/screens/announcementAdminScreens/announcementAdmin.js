@@ -12,10 +12,10 @@ import {
   ActivityIndicator,
   Dimensions,
   Button,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 
-import { AuthenticatedUserContext } from '../AuthUserProvider';
+import {AuthenticatedUserContext} from '../AuthUserProvider';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -24,22 +24,25 @@ import DialogInput from 'react-native-dialog-input';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const win = Dimensions.get('window');
 
 import AnnouncementComponent from './announcementComponent';
 import {announcementStyles} from '../../styles/announcementStyles';
 import {announcementComponentStyles} from '../../styles/announcementComponentStyles';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
 const AnnouncementAdmin = ({navigation}) => {
-  const { user } = useContext(AuthenticatedUserContext);
+  const {user} = useContext(AuthenticatedUserContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [posts, setPosts] = useState(null);
   const [loader, setLoading] = useState(false);
 
+  const [photoIsEdited, setphotoIsEdited] = useState(false);
   const [validate, setValidate] = useState(false);
   const [isImageModalVisible, setImageModal] = useState(false);
   const [isModalVisible, setisModalVisible] = useState(false);
@@ -80,6 +83,17 @@ const AnnouncementAdmin = ({navigation}) => {
     return () => fetchAnnouncements();
   }, []);
 
+  // useEffect(() => {
+  //   console.log(initialLoad);
+  //   console.log(newPhoto);
+  //   if(!initialLoad) {
+  //    // uploadPhoto(newID);
+  //   }
+  //   else {
+  //     setinitialLoad(false)
+  //   }
+  // }, [newPhoto]);
+
   const choosePhotoFromImageLibrary = () => {
     ImagePicker.openPicker({
       width: 800,
@@ -92,13 +106,14 @@ const AnnouncementAdmin = ({navigation}) => {
         setNewPhoto(imageUri);
         console.log('Image Uri: ', imageUri);
         Alert.alert('Attached an image', imageUri);
+        setphotoIsEdited(true);
       })
       .catch(e => {
         console.log(e);
       });
   };
 
-  const uploadPhoto = async (id) => {
+  const uploadPhoto = async id => {
     const uploadUri = newPhoto;
     let filename = id;
 
@@ -129,7 +144,7 @@ const AnnouncementAdmin = ({navigation}) => {
         .ref('allAnnouncementImages/')
         .child(filename)
         .getDownloadURL()
-        .then(async (url) => {
+        .then(async url => {
           await firestore()
             .collection('allAnnouncements')
             .doc(id)
@@ -143,36 +158,46 @@ const AnnouncementAdmin = ({navigation}) => {
       await task;
       setUploading(false);
       console.log('Photo uploaded in firestore cloud');
-      Alert.alert('Successfully Posted!');
+      // Alert.alert('Successfully edited an announcem!');
     } catch (e) {
       console.log(e);
       Alert.alert('Something went wrong, please try again');
+      setUploading(false);
     }
     setNewPhoto(null);
+    setphotoIsEdited(false);
   };
 
-  const getAnnouncements = (item) => {
+  const getAnnouncements = item => {
     setisModalVisible(true);
     setNewTitles(item.titles);
     setNewContents(item.contents);
     setNewPhoto(item.photo);
     setNewId(item.key);
     setNewURL(item.url);
-    setImageModal(true)
+    setImageModal(true);
     console.log(item.titles, item.key, item.url);
   };
 
-  const onPressSave = (newID) => {
+  const onPressSave = newID => {
     console.log('Gumagana ba to', newID);
     setisModalVisible(false);
 
-    if (newUrl == null) {
-      handleEditAnnouncement(newID); //id
-      Alert.alert('Successfully Posted!');
-    } else {
-      handleEditAnnouncement(newID); //id
+    if (photoIsEdited) {
       uploadPhoto(newID);
+      console.log('may photo na nabago');
     }
+
+    handleEditAnnouncement(newID); //id
+    Alert.alert('Successfulyy edited an announcement!');
+
+    // if (newUrl == null) {
+    //   handleEditAnnouncement(newID); //id
+    //   Alert.alert('Successfully Posted!');
+    // } else {
+    //   handleEditAnnouncement(newID); //id
+    //   uploadPhoto(newID);
+    // }
   };
 
   const handleEditAnnouncement = id => {
@@ -187,7 +212,6 @@ const AnnouncementAdmin = ({navigation}) => {
         url: newUrl,
       })
       .then(() => {
-
         editSystemLogs();
 
         setNewTitles('');
@@ -196,31 +220,34 @@ const AnnouncementAdmin = ({navigation}) => {
         setNewPhoto('');
         setNewURL('');
         console.log('Announcement updated!', id);
-      }).catch((error) => {
+      })
+      .catch(error => {
         console.log('Something went wrong', error);
         Alert.alert('Unable to edit announcement, please try again');
-      })
-
+      });
   };
 
   const editSystemLogs = async () => {
     const ids2 = await firestore().collection('allSystemLogs').doc();
-    
-    ids2.set({
-      activity: 'Successfully Edited an Announcement',
-      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-    })
-    .then(() => {
-      console.log('system log: Successfully Edited an Announcement');
-    }).catch((error) => {
-      console.log('Something went wrong', error);
-    })
-    
-  }
- 
+
+    ids2
+      .set({
+        activity: 'Successfully Edited an Announcement',
+        posttime: new Date(
+          firestore.Timestamp.now().seconds * 1000,
+        ).toLocaleString(),
+      })
+      .then(() => {
+        console.log('system log: Successfully Edited an Announcement');
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      });
+  };
+
   let orig;
 
-  const addArchivedAnnouncement = async (id) => {
+  const addArchivedAnnouncement = async id => {
     const origannouncements = await firestore()
       .collection('allAnnouncements')
       .doc(id)
@@ -234,20 +261,22 @@ const AnnouncementAdmin = ({navigation}) => {
       .collection('allArchivedAnnouncements')
       .doc();
 
+    const ids2 = await firestore().collection('allSystemLogs').doc();
 
-      const ids2 = await firestore().collection('allSystemLogs').doc();
-    
-      ids2.set({
+    ids2
+      .set({
         activity: 'Successfully Archived an Announcement',
-        posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
+        posttime: new Date(
+          firestore.Timestamp.now().seconds * 1000,
+        ).toLocaleString(),
       })
       .then(() => {
         console.log('system log: Successfully Archived an Announcement');
-      }).catch((error) => {
-        console.log('Something went wrong', error);
       })
-    
-      
+      .catch(error => {
+        console.log('Something went wrong', error);
+      });
+
     archiveannouncements
       .set({
         archivedlinks: orig.url,
@@ -257,7 +286,6 @@ const AnnouncementAdmin = ({navigation}) => {
           firestore.Timestamp.now().seconds * 1000,
         ).toLocaleString(),
         archivedphoto: orig.photo,
-        
       })
       .then(() => {
         setArchivedTitle(null);
@@ -288,7 +316,7 @@ const AnnouncementAdmin = ({navigation}) => {
       });
   };
 
-  const deleteAnnouncementImage = async (id) => {
+  const deleteAnnouncementImage = async id => {
     const url = await storage()
       .ref('allAnnouncementImages/' + id)
       .getDownloadURL();
@@ -297,30 +325,24 @@ const AnnouncementAdmin = ({navigation}) => {
     deletethis.delete();
   };
 
-  
-const onPressDelete = (newID) => {
-  console.log('lalabas pop up', newID);
-  setisModalConfirmArchive(true);  
-  setNewId(newID);
-};
+  const onPressDelete = newID => {
+    console.log('lalabas pop up', newID);
+    setisModalConfirmArchive(true);
+    setNewId(newID);
+  };
 
+  const handleSubmitDelete = (inputText, newID) => {
+    if (inputText == 'archiveAnnouncement') {
+      addArchivedAnnouncement(newID);
+      setisModalConfirmArchive(false);
+    } else {
+      handleCancelDelete();
+    }
+  };
 
-const handleSubmitDelete = (inputText, newID) =>{
-  if(inputText == 'archiveAnnouncement') {
-    addArchivedAnnouncement(newID);
+  const handleCancelDelete = () => {
     setisModalConfirmArchive(false);
-  }
-  else {
-    handleCancelDelete();
-  }
-}
-
-const handleCancelDelete = () => {
-  setisModalConfirmArchive(false);
-};
-
-
-
+  };
 
   let searchtitles = null;
 
@@ -336,8 +358,7 @@ const handleCancelDelete = () => {
             .includes(searchTerm.toString().toLowerCase())
         ) {
           return item;
-        }
-        else if (
+        } else if (
           item.posttime
             ?.toString()
             .toLowerCase()
@@ -348,11 +369,9 @@ const handleCancelDelete = () => {
       })
       .map((item, key) => {
         return (
-          <View key={key} >
-
+          <View key={key}>
             <View style={announcementComponentStyles.vCardContainer}>
-              
-              <AnnouncementComponent 
+              <AnnouncementComponent
                 // item = {item}
                 propsnum={key}
                 propsid={item.key}
@@ -362,49 +381,70 @@ const handleCancelDelete = () => {
                 // propsimage={item.url}
               />
 
-              <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
-
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <TouchableOpacity
                   style={announcementComponentStyles.toUpdate}
                   onPress={() => getAnnouncements(item)}>
-                  <Icon name="edit-2" color="white" size={16} style={{ marginBottom: 5 }}/>
-                  <Text style={announcementComponentStyles.txtUpdateArchive}> Edit post  </Text>
+                  <Icon
+                    name="edit-2"
+                    color="white"
+                    size={16}
+                    style={{marginBottom: 5}}
+                  />
+                  <Text style={announcementComponentStyles.txtUpdateArchive}>
+                    {' '}
+                    Edit post{' '}
+                  </Text>
                 </TouchableOpacity>
-          
+
                 <TouchableOpacity
-                  style={announcementComponentStyles.toArchive}       
+                  style={announcementComponentStyles.toArchive}
                   onPress={() => onPressDelete(item.key)}>
-                    {/* onPress={() => addArchivedAnnouncement(item.key)}> */}
-                  <Icon name="archive" color="white" size={16} style={{ marginBottom: 5 }}/>
-                  <Text style={announcementComponentStyles.txtUpdateArchive}> Archive </Text>
+                  {/* onPress={() => addArchivedAnnouncement(item.key)}> */}
+                  <Icon
+                    name="archive"
+                    color="white"
+                    size={16}
+                    style={{marginBottom: 5}}
+                  />
+                  <Text style={announcementComponentStyles.txtUpdateArchive}>
+                    {' '}
+                    Archive{' '}
+                  </Text>
                 </TouchableOpacity>
-
               </View>
-
             </View>
 
             <Modal
               animationType="fade"
               visible={isModalVisible}
-              onRequestClose={() => setisModalVisible(false)}
-              
-            >
-
+              onRequestClose={() => setisModalVisible(false)}>
               <View style={announcementComponentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={announcementComponentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={announcementComponentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={announcementComponentStyles.txtEdit}> Edit Announcement</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'#F5F5F5', }}>Announcement Title</Text>
-                        
-                    <TextInput
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/annoucementsbg.png')}
+                  style={announcementComponentStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={announcementComponentStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={announcementComponentStyles.txtEdit}>
+                      {' '}
+                      Edit Announcement
+                    </Text>
+                  </TouchableWithoutFeedback>
+
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(2),
+                      color: '#F5F5F5',
+                    }}>
+                    Announcement Title
+                  </Text>
+
+                  <TextInput
                     style={announcementComponentStyles.txtTitle}
                     onChangeText={text => setNewTitles(text)}
                     placeholder={'Title'}
@@ -412,21 +452,27 @@ const handleCancelDelete = () => {
                     value={newTitles}
                     multiline={true}
                     numberOfLines={2}
-                    maxLength={50}>
-                </TextInput>
-                 
+                    maxLength={50}></TextInput>
                 </ImageBackground>
-                
+
                 <View style={announcementComponentStyles.vtxtContent}>
-                  
                   <ScrollView>
-            
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Announcement Content:</Text>
-                      
+                    <Text
+                      style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: 'gray',
+                      }}>
+                      Announcement Content:
+                    </Text>
+
                     <TextInput
                       style={announcementComponentStyles.txtContent}
-                      onChangeText={text => {setNewContents(text); setValidate(text)}}
+                      onChangeText={text => {
+                        setNewContents(text);
+                        setValidate(text);
+                      }}
                       placeholder={'Content'}
                       placeholderTextColor={'#B2B2B2'}
                       value={newContents}
@@ -434,21 +480,23 @@ const handleCancelDelete = () => {
                       numberOfLines={5}
                       maxLength={550}></TextInput>
                   </ScrollView>
-
                 </View>
 
-                <View style={{backgroundColor: '#F5F5F5', flex:1,}}> 
-                  <TouchableOpacity style={announcementComponentStyles.toPhoto} onPress={choosePhotoFromImageLibrary} >
+                <View style={{backgroundColor: '#F5F5F5', flex: 1}}>
+                  <TouchableOpacity
+                    style={announcementComponentStyles.toPhoto}
+                    onPress={choosePhotoFromImageLibrary}>
                     {/* <Icon name="plus" color="white" size={21}/>
                     <Icon name="image" color="white" size={21}/> */}
-                     <Image source={require('../../assets/./icons/addimage.png')} style={{height: 40, width: 45}}></Image>
+                    <Image
+                      source={require('../../assets/./icons/addimage.png')}
+                      style={{height: 40, width: 45}}></Image>
                     {/* <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(2)}}> Attach an image</Text> */}
                   </TouchableOpacity>
                 </View>
 
                 {/* {newUrl == null && newPhoto == null ? */}
-                  <ScrollView style={announcementComponentStyles.imageContainer}>
-
+                <ScrollView style={announcementComponentStyles.imageContainer}>
                   {/* <Image
                    source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : null}}
                    style={{
@@ -457,7 +505,7 @@ const handleCancelDelete = () => {
                      resizeMode: 'contain',
                    }}>
                    </Image> */}
-{/* 
+                  {/* 
                   {
                     newUrl && newPhoto ? 
                     <ImageModal
@@ -470,149 +518,209 @@ const handleCancelDelete = () => {
                  :
                     <Text>Meron</Text>
                   } */}
-                 <ImageModal
-                      source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : 'https://firebasestorage.googleapis.com/v0/b/samplelogin-37250.appspot.com/o/aicsnoimage.png?alt=media&token=c32b87b2-ea3e-48f7-9ddb-decb500a12e0'}}
-                    style={{
-                      width: win.width,
-                      height: 500,
-                      resizeMode: 'contain',
-                      
-                    }}
-                 />
-      
-               </ScrollView>
-                  {/* : 
+
+                  {photoIsEdited ? (
+                    <ImageModal
+                      source={{
+                        uri: newPhoto
+                          ? newPhoto
+                          : 'https://firebasestorage.googleapis.com/v0/b/samplelogin-37250.appspot.com/o/aicsnoimage.png?alt=media&token=c32b87b2-ea3e-48f7-9ddb-decb500a12e0',
+                      }}
+                      style={{
+                        width: win.width,
+                        height: 500,
+                        resizeMode: 'contain',
+                      }}
+                    />
+                  ) : (
+                    <ImageModal
+                      source={{
+                        uri: newUrl
+                          ? newUrl
+                          : 'https://firebasestorage.googleapis.com/v0/b/samplelogin-37250.appspot.com/o/aicsnoimage.png?alt=media&token=c32b87b2-ea3e-48f7-9ddb-decb500a12e0',
+                      }}
+                      style={{
+                        width: win.width,
+                        height: 500,
+                        resizeMode: 'contain',
+                      }}
+                    />
+                  )}
+                </ScrollView>
+                {/* : 
                   null
                 } */}
 
-
                 <View style={announcementComponentStyles.vSaveCancel}>
+                  <TouchableOpacity
+                    style={announcementComponentStyles.btnSave}
+                    onPress={() => onPressSave(newID)}>
+                    <Text style={announcementComponentStyles.txtSave}>
+                      Save
+                    </Text>
+                  </TouchableOpacity>
 
-                  
-                
-                      <TouchableOpacity style={announcementComponentStyles.btnSave}
-                      onPress={() => onPressSave(newID)}>
-                        <Text style={announcementComponentStyles.txtSave}>Save</Text>
-                      </TouchableOpacity>
-                   
-                  
-                  <TouchableOpacity style={announcementComponentStyles.btnCancel}
-                  onPress={() => setisModalVisible(false)}>
-                    <Text style={announcementComponentStyles.txtCancel}>Cancel</Text>
+                  <TouchableOpacity
+                    style={announcementComponentStyles.btnCancel}
+                    onPress={() => setisModalVisible(false)}>
+                    <Text style={announcementComponentStyles.txtCancel}>
+                      Cancel
+                    </Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
-
-            
-
             </Modal>
 
-            {isModalConfirmArchive ? 
-           <DialogInput isDialogVisible={isModalConfirmArchive}
-              title={"Archive Announcement"}
-              message={"Confirm to archive this announcement by typing: archiveAnnouncement"}
-              hintInput ={"archiveAnnouncement"}
-              submitInput={(inputText) => {handleSubmitDelete(inputText, newID)} }
-              closeDialog={ () => {handleCancelDelete()}}>
-          </DialogInput>
-          : 
-            null}
-
+            {isModalConfirmArchive ? (
+              <DialogInput
+                isDialogVisible={isModalConfirmArchive}
+                title={'Archive Announcement'}
+                message={
+                  'Confirm to archive this announcement by typing: archiveAnnouncement'
+                }
+                hintInput={'archiveAnnouncement'}
+                submitInput={inputText => {
+                  handleSubmitDelete(inputText, newID);
+                }}
+                closeDialog={() => {
+                  handleCancelDelete();
+                }}></DialogInput>
+            ) : null}
           </View>
         );
       });
   } else {
     searchtitles = (
-      <View style={{flexDirection: 'column', 
-      justifyContent: 'center',
-      }}>
-        <ImageBackground  source={require('../../assets/aicslogo.png')} 
-        style={{width: 250, height: 150, alignSelf:'center', margin: 32, resizeMode:'contain'}}
-        ></ImageBackground>
-        <ActivityIndicator size="large" color='purple'></ActivityIndicator>
+      <View style={{flexDirection: 'column', justifyContent: 'center'}}>
+        <ImageBackground
+          source={require('../../assets/aicslogo.png')}
+          style={{
+            width: 250,
+            height: 150,
+            alignSelf: 'center',
+            margin: 32,
+            resizeMode: 'contain',
+          }}></ImageBackground>
+        <ActivityIndicator size="large" color="purple"></ActivityIndicator>
       </View>
     );
   }
 
   if (searchtitles.length < 1) {
-    searchtitles = 
-    <ImageBackground  source={require('../../assets/./icons/aicsnoannouncements.png')} 
-    style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
-    </ImageBackground>
+    searchtitles = (
+      <ImageBackground
+        source={require('../../assets/./icons/aicsnoannouncements.png')}
+        style={{
+          width: 350,
+          height: 220,
+          alignSelf: 'auto',
+          margin: 32,
+          resizeMode: 'contain',
+        }}></ImageBackground>
+    );
   }
 
   return (
     <View style={announcementComponentStyles.lgOverallContainer}>
-
       <View style={announcementComponentStyles.lgTopHeader}>
-        
-        <Icon style= {announcementComponentStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={announcementComponentStyles.aicsLogoContainer}>
-        </TouchableOpacity>
-        <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
-        
+        <Icon
+          style={announcementComponentStyles.menuBarIcon}
+          name="menu"
+          color="white"
+          type="ionicons"
+          size={23}
+          onPress={() => navigation.toggleDrawer()}
+        />
+        <TouchableOpacity
+          style={
+            announcementComponentStyles.aicsLogoContainer
+          }></TouchableOpacity>
+        <Image
+          source={require('../../assets/aics.png')}
+          style={announcementStyles.aicsLogo}
+        />
+
         <View style={{flexDirection: 'row'}}>
           <View>
-          {/* {user.email} */}
-            <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.titleText}>Announcements </Text>
-            <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.subtitleText}>Be informed! View the latest happenings and updates from CICS. </Text>
+            {/* {user.email} */}
+            <Text
+              adjustsFontSizeToFit={true}
+              style={announcementComponentStyles.titleText}>
+              Announcements{' '}
+            </Text>
+            <Text
+              adjustsFontSizeToFit={true}
+              style={announcementComponentStyles.subtitleText}>
+              Be informed! View the latest happenings and updates from CICS.{' '}
+            </Text>
           </View>
-          
         </View>
-
       </View>
 
       <View style={announcementComponentStyles.vSearchBar}>
-          
-          <Icon name="search" color="#B2B2B2" style={announcementComponentStyles.searchBaricon} size={19}/>
-          <TextInput adjustsFontSizeToFit={true}
+        <Icon
+          name="search"
+          color="#B2B2B2"
+          style={announcementComponentStyles.searchBaricon}
+          size={19}
+        />
+        <TextInput
+          adjustsFontSizeToFit={true}
           style={announcementComponentStyles.tiSearch}
-            numberOfLines={1}
-            maxLength={50}
-            placeholder={'Search'}
-            placeholderTextColor={'#B2B2B2'}
-            onChangeText={text => {
-              setSearchTerm(text);
-              console.log(`search: ${searchTerm}`);
-            }}>
-            </TextInput>
-
+          numberOfLines={1}
+          maxLength={50}
+          placeholder={'Search'}
+          placeholderTextColor={'#B2B2B2'}
+          onChangeText={text => {
+            setSearchTerm(text);
+            console.log(`search: ${searchTerm}`);
+          }}></TextInput>
       </View>
 
       <View style={announcementComponentStyles.vAnnouncements}>
-          <TouchableOpacity style={announcementComponentStyles.addBtn} onPress={() => navigation.navigate('AddAnnouncement')} >
-            <Icon name="plus-circle"  style={announcementComponentStyles.plusicon} size={17}/>
-            <Text style={announcementComponentStyles.txtAdd}>   Add an Announcement</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          style={announcementComponentStyles.addBtn}
+          onPress={() => navigation.navigate('AddAnnouncement')}>
+          <Icon
+            name="plus-circle"
+            style={announcementComponentStyles.plusicon}
+            size={17}
+          />
+          <Text style={announcementComponentStyles.txtAdd}>
+            {' '}
+            Add an Announcement
+          </Text>
+        </TouchableOpacity>
 
-        <ScrollView adjustsFontSizeToFit
-           contentContainerStyle={{ paddingBottom: 45}}>
+        <ScrollView
+          adjustsFontSizeToFit
+          contentContainerStyle={{paddingBottom: 45}}>
           {searchtitles}
         </ScrollView>
       </View>
 
-      {uploading ? 
-           (
-            <Modal >
-              <View style={{flexDirection: 'column', 
+      {uploading ? (
+        <Modal>
+          <View
+            style={{
+              flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',
               height: '100%',
-              }}>
-                <ImageBackground  source={require('../../assets/aicslogo.png')} 
-                style={{width: 250, height: 150, resizeMode:'contain'}}
-                ></ImageBackground>
-  
-                <ActivityIndicator size="large" color='purple'></ActivityIndicator>
-                <Text>{transferred} % Completed </Text>
-              </View>
-            </Modal>
-            )  : null
-      }
+            }}>
+            <ImageBackground
+              source={require('../../assets/aicslogo.png')}
+              style={{
+                width: 250,
+                height: 150,
+                resizeMode: 'contain',
+              }}></ImageBackground>
 
-   
-       
+            <ActivityIndicator size="large" color="purple"></ActivityIndicator>
+            <Text>{transferred} % Completed </Text>
+          </View>
+        </Modal>
+      ) : null}
     </View>
   );
 };
