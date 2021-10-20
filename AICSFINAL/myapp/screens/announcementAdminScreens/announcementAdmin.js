@@ -489,19 +489,13 @@ const handleCancelDelete = () => {
                 <View style={announcementComponentStyles.vSaveCancel}>
 
                   
-                {
-                      validate ? 
+                
                       <TouchableOpacity style={announcementComponentStyles.btnSave}
                       onPress={() => onPressSave(newID)}>
                         <Text style={announcementComponentStyles.txtSave}>Save</Text>
                       </TouchableOpacity>
-                      :
-                      <TouchableOpacity style={announcementComponentStyles.btnNotSave}>
-                        <Text style={announcementComponentStyles.txtSave}>Save</Text>
-                      </TouchableOpacity>
-
-                  }  
-
+                   
+                  
                   <TouchableOpacity style={announcementComponentStyles.btnCancel}
                   onPress={() => setisModalVisible(false)}>
                     <Text style={announcementComponentStyles.txtCancel}>Cancel</Text>
