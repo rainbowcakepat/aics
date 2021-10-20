@@ -42,24 +42,25 @@ const LoginScreen = ({navigation}) => {
         await auth.signInWithEmailAndPassword(email, password);
 
         const ids2 = await firestore().collection('allSystemLogs').doc();
-    
-        ids2.set({
-          activity: 'Successful Login',
-          posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-        })
-        .then(() => {
-          console.log('system log: Successful Login');
-        }).catch((error) => {
-          console.log('Something went wrong', error);
-        })
-        
-      }
 
-      else {
+        ids2
+          .set({
+            activity: 'Successful Login',
+            posttime: new Date(
+              firestore.Timestamp.now().seconds * 1000,
+            ).toLocaleString(),
+          })
+          .then(() => {
+            console.log('system log: Successful Login');
+          })
+          .catch(error => {
+            console.log('Something went wrong', error);
+          });
+      } else {
         Alert.alert('Please enter your credentials correctly');
       }
     } catch (error) {
-      Alert.alert(error.message);
+      Alert.alert('Please enter your credentials correctly');
     }
   };
 
@@ -108,7 +109,8 @@ const LoginScreen = ({navigation}) => {
               color: 'white',
             }}>
             {' '}
-          Welcome, Admin! </Text>
+            Welcome, Admin!{' '}
+          </Text>
         </TouchableWithoutFeedback>
 
         <View style={{margin: 20}}>
@@ -194,7 +196,7 @@ const LoginScreen = ({navigation}) => {
             </Text>
           </TouchableOpacity>
 
-          <View style={{flexDirection:'row', alignSelf:'center'}}>
+          <View style={{flexDirection: 'row', alignSelf: 'center'}}>
             <TouchableOpacity>
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}
@@ -202,7 +204,8 @@ const LoginScreen = ({navigation}) => {
                   //Linking.openURL('https://console.firebase.google.com/u/0/')
                   navigation.navigate(ForgotPasswordScreen)
                 }>
-                Forgot Password?  </Text>
+                Forgot Password?{' '}
+              </Text>
             </TouchableOpacity>
 
             {/* <TouchableOpacity>
@@ -214,8 +217,6 @@ const LoginScreen = ({navigation}) => {
                 }>|  Change Password 
               </Text>
             </TouchableOpacity> */}
-
-
           </View>
         </View>
       </View>

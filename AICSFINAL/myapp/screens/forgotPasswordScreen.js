@@ -36,13 +36,18 @@ const ForgotPasswordScreen = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [isSecureEntry, setIsSecureEntry] = useState(true);
 
-  const signin = async () => {
+  const handleForgotPassword = async () => {
     try {
-      if (email !== '' && password !== '') {
-        await auth.signInWithEmailAndPassword(email, password);
+      if (email == 'aicschatbot@gmail.com') {
+        await auth.sendPasswordResetEmail(email);
+        Alert.alert('Check the code sent to your email to reset your password');
+      } else {
+        Alert.alert('Invalid email address. Please try again.');
       }
+      setEmail(null);
     } catch (error) {
-      Alert.alert(error.message);
+      Alert.alert('Invalid email address');
+      setEmail(null);
     }
   };
 
@@ -91,7 +96,8 @@ const ForgotPasswordScreen = ({navigation}) => {
               color: 'white',
             }}>
             {' '}
-          Forgot Password </Text>
+            Forgot Password{' '}
+          </Text>
         </TouchableWithoutFeedback>
 
         <View style={{margin: 20}}>
@@ -135,26 +141,6 @@ const ForgotPasswordScreen = ({navigation}) => {
 
           <TouchableOpacity
             style={{
-              marginTop: -45, //155
-              width: 30,
-              height: 30,
-              marginLeft: 325, //250
-              position: 'relative',
-            }}
-            onPress={() => {
-              setIsSecureEntry(prev => !prev);
-            }}>
-            <Text style={{color: 'black', width: 30, position: 'relative'}}>
-              {isSecureEntry ? (
-                <Icon name="eye-slash" size={20} />
-              ) : (
-                <Icon name="eye" size={20} />
-              )}
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={{
               width: 235,
               height: 35,
               flexDirection: 'row',
@@ -165,7 +151,7 @@ const ForgotPasswordScreen = ({navigation}) => {
               borderRadius: 25,
               alignSelf: 'center',
             }}
-            onPress={signin}>
+            onPress={handleForgotPassword}>
             <Text
               style={{
                 textAlignVertical: 'center',
@@ -177,17 +163,14 @@ const ForgotPasswordScreen = ({navigation}) => {
             </Text>
           </TouchableOpacity>
 
-          <View style={{flexDirection:'row', alignSelf:'center'}}>
+          <View style={{flexDirection: 'row', alignSelf: 'center'}}>
             <TouchableOpacity>
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}
-                onPress={() =>
-                  navigation.navigate(SignInScreen)
-                }>
-                Go back to Home  </Text>
+                onPress={() => navigation.navigate(SignInScreen)}>
+                Go back to Home{' '}
+              </Text>
             </TouchableOpacity>
-
-
           </View>
         </View>
       </View>
@@ -195,8 +178,6 @@ const ForgotPasswordScreen = ({navigation}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  
-});
+const styles = StyleSheet.create({});
 
 export default ForgotPasswordScreen;

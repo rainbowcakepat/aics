@@ -35,13 +35,29 @@ const ChangePasswordScreen = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [isSecureEntry, setIsSecureEntry] = useState(true);
 
-  const signin = async () => {
+  const handleChangePassword = async () => {
     try {
+      console.log('gumagana try');
+      /*if (email == 'aicschatbot@gmail.com') {
+        console.log('hell');
+        await auth.sendPasswordResetEmail(email);
+        Alert.alert(
+          'Check your the code sent to your email to reset your password',
+        );
+      }*/
       if (email !== '' && password !== '') {
         await auth.signInWithEmailAndPassword(email, password);
+        await auth.sendPasswordResetEmail(email);
+        Alert.alert('Check the code sent to your email to reset your password');
+      } else {
+        Alert.alert('Please enter your correct credentials');
       }
+      setEmail(null);
+      setPassword(null);
     } catch (error) {
-      Alert.alert(error.message);
+      Alert.alert('Please enter your correct credentials');
+      setEmail(null);
+      setPassword(null);
     }
   };
 
@@ -90,7 +106,8 @@ const ChangePasswordScreen = ({navigation}) => {
               color: 'white',
             }}>
             {' '}
-          Change Password </Text>
+            Change Password{' '}
+          </Text>
         </TouchableWithoutFeedback>
 
         <View style={{margin: 20}}>
@@ -114,7 +131,7 @@ const ChangePasswordScreen = ({navigation}) => {
             onChangeText={text => setEmail(text)}></TextInput>
 
           <Text style={{fontFamily: 'Poppins-Regular', fontSize: hp(2.1)}}>
-            Password:
+            Current Password:
           </Text>
 
           <TextInput
@@ -164,7 +181,7 @@ const ChangePasswordScreen = ({navigation}) => {
               borderRadius: 25,
               alignSelf: 'center',
             }}
-            onPress={signin}>
+            onPress={handleChangePassword}>
             <Text
               style={{
                 textAlignVertical: 'center',
@@ -176,19 +193,14 @@ const ChangePasswordScreen = ({navigation}) => {
             </Text>
           </TouchableOpacity>
 
-          <View style={{flexDirection:'row', alignSelf:'center'}}>
+          <View style={{flexDirection: 'row', alignSelf: 'center'}}>
             <TouchableOpacity>
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}
-                onPress={() =>
-                  navigation.toggleDrawer()
-                }>
-                Go back to Menu  </Text>
+                onPress={() => navigation.toggleDrawer()}>
+                Go back to Menu{' '}
+              </Text>
             </TouchableOpacity>
-
-           
-
-
           </View>
         </View>
       </View>
@@ -196,8 +208,6 @@ const ChangePasswordScreen = ({navigation}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  
-});
+const styles = StyleSheet.create({});
 
 export default ChangePasswordScreen;
