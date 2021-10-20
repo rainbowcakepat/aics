@@ -100,7 +100,7 @@ const howToUseStudent = ({navigation}) => {
   const getAnnouncements = item => {
     setNewId(item.key);
 
-    if (item.title == 'How to Select a Chatbot') {
+    if (item.title == 'Select a Chatbot') {
       setisModalVisibleSelectChatbot(true);
       setNewId(item.key);
       {
@@ -113,7 +113,7 @@ const howToUseStudent = ({navigation}) => {
       setNewSelectSylvia(item.selectsylvia);
     }
 
-    if (item.title == 'How to send queries to a chatbot') {
+    if (item.title == 'Send queries to chatbot') {
       setisModalVisibleSendQueries(true);
       setNewId(item.key);
       {
@@ -126,7 +126,7 @@ const howToUseStudent = ({navigation}) => {
       setNewAskSylvia(item.asksylvia);
     }
 
-    if (item.title == 'How to Login') {
+    if (item.title == 'Login') {
       setisModalVisibleStudentLogin(true);
       setNewId(item.key);
       {
@@ -136,7 +136,7 @@ const howToUseStudent = ({navigation}) => {
       setNewStudentLogin(item.maincontent);
     }
 
-    if (item.title == 'How to view About Us') {
+    if (item.title == 'View About Us') {
       setisModalVisibleViewAboutUs(true);
       setNewId(item.key);
       {
@@ -146,7 +146,7 @@ const howToUseStudent = ({navigation}) => {
       setNewViewAboutUs(item.maincontent);
     }
 
-    if (item.title == 'How to view Announcements') {
+    if (item.title == 'View Announcements') {
       setisModalVisibleViewAnnouncements(true);
       setNewId(item.key);
       {
