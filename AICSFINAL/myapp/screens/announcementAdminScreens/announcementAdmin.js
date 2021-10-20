@@ -105,10 +105,26 @@ const AnnouncementAdmin = ({navigation}) => {
           Platform.OS == 'ios' ? newPhoto.sourceURL : newPhoto.path;
         setNewPhoto(imageUri);
         console.log('Image Uri: ', imageUri);
-        Alert.alert('Attached an image', imageUri);
+        //Alert.alert('Attached an image', imageUri);
+        Alert.alert(
+          'Attached an image',
+          imageUri, 
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
         setphotoIsEdited(true);
       })
       .catch(e => {
+        Alert.alert(
+          'Failed to attach an image',
+          'Unable to attach the image, check your network connectivity', 
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
         console.log(e);
       });
   };
@@ -159,9 +175,25 @@ const AnnouncementAdmin = ({navigation}) => {
       setUploading(false);
       console.log('Photo uploaded in firestore cloud');
       // Alert.alert('Successfully edited an announcem!');
+      Alert.alert(
+        'Upload a photo',
+        'Successfully uploaded in firestore cloud', 
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
     } catch (e) {
       console.log(e);
-      Alert.alert('Something went wrong, please try again');
+      Alert.alert(
+        'Failed to upload a photo',
+        'Unable to upload a photo, please check your connectivity', 
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
+      //Alert.alert('Something went wrong, please try again');
       setUploading(false);
     }
     setNewPhoto(null);
@@ -189,7 +221,15 @@ const AnnouncementAdmin = ({navigation}) => {
     }
 
     handleEditAnnouncement(newID); //id
-    Alert.alert('Successfulyy edited an announcement!');
+    //Alert.alert('Successfulyy edited an announcement!');
+    Alert.alert(
+      'Edit Announcement',
+      'Successfully edited an announcement', 
+      [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      {cancelable: false},
+    );
 
     // if (newUrl == null) {
     //   handleEditAnnouncement(newID); //id
@@ -223,7 +263,15 @@ const AnnouncementAdmin = ({navigation}) => {
       })
       .catch(error => {
         console.log('Something went wrong', error);
-        Alert.alert('Unable to edit announcement, please try again');
+        //Alert.alert('Unable to edit announcement, please try again');
+        Alert.alert(
+          'Edit Announcement',
+          'Unable to edit announcement, please try again', 
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
       });
   };
 
@@ -313,7 +361,15 @@ const AnnouncementAdmin = ({navigation}) => {
       .delete()
       .then(() => {
         console.log('ID: User deleted!', id);
-        Alert.alert('Successfully Archived an Announcement');
+        //Alert.alert('Successfully Archived an Announcement');
+        Alert.alert(
+          'Archive Announcement',
+          'Successfully archived an announcement', 
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
       });
   };
 

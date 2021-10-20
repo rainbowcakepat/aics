@@ -66,14 +66,30 @@ const AddAnnouncement = ({navigation}) => {
       setValidation2(null);
 
       if (photo == null) {
-        Alert.alert('Successfully Posted!');
+        //Alert.alert('Successfully Posted!');
+        Alert.alert(
+          'Add Announcement',
+          'Successfully added an announcement', 
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
       } else {
         uploadPhoto(ids.id);
       }
 
     })
     .catch((error) => {
-      Alert.alert('Error', error.message);
+      //Alert.alert('Error', error.message);
+      Alert.alert(
+        'Add Announcement',
+        'Unable to add an announcement, please try again', 
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
       console.log('Something went wrong', error);
      
     })
@@ -96,9 +112,25 @@ navigation
       const imageUri = Platform.OS == 'ios' ? photo.sourceURL : photo.path;
       setPhoto(imageUri);
       console.log(photo);
-      Alert.alert('Attached an image', imageUri);
+      //Alert.alert('Attached an image', imageUri);
+      Alert.alert(
+        'Attached an image',
+        imageUri, 
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
     }).catch((e) => {
-      Alert.alert('Unable to attach file, please try again');
+      //Alert.alert('Unable to attach file, please try again');
+      Alert.alert(
+        'Failed to attach an image',
+        'Unable to attach the image, check your network connectivity', 
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
       console.log(e);
   });
   }
@@ -138,7 +170,15 @@ navigation
       await task;
       setUploading(false);
       console.log('Photo uploaded in firestore cloud');
-      Alert.alert('Successfully Posted!');
+      //Alert.alert('Successfully Posted!');
+      Alert.alert(
+        'Uploaded a photo',
+        'Successfully uploaded in firestore cloud', 
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
     }
     catch(e){
       console.log(e);

@@ -111,7 +111,15 @@ const UnansweredQuestions = ({navigation}) => {
       deleteQuestion(newID);
       setisModalConfirmDelete(false);
       handleSubmitDeleteSystemLogs();
-      Alert.alert('Successfully Deleted a Question');
+      //Alert.alert('Successfully Deleted a Question');
+      Alert.alert(
+        'Delete Question',
+        'Successfully deleted a question', 
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
     }
     else {
       handleCancelDelete();
@@ -159,11 +167,27 @@ const UnansweredQuestions = ({navigation}) => {
     if(inputText == 'answerQuestion') {
       handleDelete(newID);
       handleSubmitAnswerSystemLogs();
-      Alert.alert('Successfully answered a question');
+      // Alert.alert('Successfully answered a question');
+      Alert.alert(
+        'Answer Question',
+        'Successfully answered a question', 
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
     }
     else {
       handleCancel();
-      Alert.alert('Please try again');
+      //Alert.alert('Please try again');
+      Alert.alert(
+        'Cancelled',
+        'Please try again',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
     }
   }
 
