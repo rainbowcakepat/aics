@@ -104,7 +104,7 @@ const howToUseAdmin = ({navigation}) => {
   const getAnnouncements = item => {
     setNewId(item.key);
 
-    if (item.titles == 'How to Use Announcements Screen') {
+    if (item.titles == 'Announcements Screen') {
       setisModalVisibleAnnouncements(true);
       setNewId(item.key);
       setNewTitles(item.titles);
@@ -113,7 +113,7 @@ const howToUseAdmin = ({navigation}) => {
       setNewArchiveAnnouncement(item.archive);
     }
 
-    if (item.titles == 'How to Use About Us Screen') {
+    if (item.titles == 'About Us Screen') {
       setisModalVisibleAboutUs(true);
       setNewId(item.key);
       setNewTitles(item.titles);
@@ -121,7 +121,7 @@ const howToUseAdmin = ({navigation}) => {
       setNewSearchAboutUs(item.search);
     }
 
-    if (item.titles == 'How to Use Unanswered Questions Screen') {
+    if (item.titles == 'Unanswered Questions Screen') {
       setisModalVisibleUnanswered(true);
       setNewId(item.key);
       setNewTitles(item.titles);
@@ -129,16 +129,16 @@ const howToUseAdmin = ({navigation}) => {
       setNewArchiveUnanswered(item.archive);
     }
 
-    if (item.titles == 'How to Use Response List Screen') {
-      setisModalVisibleResponseList(true);
-      setNewId(item.key);
-      setNewTitles(item.titles);
-      setNewAddResponseList(item.add);
-      setNewEditResponseList(item.edit);
-      setNewArchiveResponseList(item.archive);
-    }
+    // if (item.titles == 'Response List Screen') {
+    //   setisModalVisibleResponseList(true);
+    //   setNewId(item.key);
+    //   setNewTitles(item.titles);
+    //   setNewAddResponseList(item.add);
+    //   setNewEditResponseList(item.edit);
+    //   setNewArchiveResponseList(item.archive);
+    // }
 
-    if (item.titles == 'How to Use Account Screen') {
+    if (item.titles == 'Account Screen') {
       setisModalVisibleAccountScreen(true);
       setNewId(item.key);
       setNewTitles(item.titles);
