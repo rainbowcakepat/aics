@@ -35,9 +35,9 @@ const win = Dimensions.get('window');
 
 import HowToUseAdminComponent from './howToUseAdminComponent';
 import {announcementStyles} from '../../styles/announcementStyles';
-import {announcementComponentStyles} from '../../styles/announcementComponentStyles';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {aboutUsStudentStyles} from '../../styles/aboutUsStudentStyles';
+import {howToUseAdminStyles} from '../../styles/howToUseAdminStyles';
 
 const howToUseAdmin = ({navigation}) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -107,9 +107,6 @@ const howToUseAdmin = ({navigation}) => {
     if (item.titles == 'How to Use Announcements Screen') {
       setisModalVisibleAnnouncements(true);
       setNewId(item.key);
-      {
-        /*kinukuha yung ID*/
-      }
       setNewTitles(item.titles);
       setNewAddAnnouncement(item.add);
       setNewEditAnnouncement(item.edit);
@@ -119,9 +116,6 @@ const howToUseAdmin = ({navigation}) => {
     if (item.titles == 'How to Use About Us Screen') {
       setisModalVisibleAboutUs(true);
       setNewId(item.key);
-      {
-        /*kinukuha yung ID*/
-      }
       setNewTitles(item.titles);
       setNewEditAboutUs(item.edit);
       setNewSearchAboutUs(item.search);
@@ -130,9 +124,6 @@ const howToUseAdmin = ({navigation}) => {
     if (item.titles == 'How to Use Unanswered Questions Screen') {
       setisModalVisibleUnanswered(true);
       setNewId(item.key);
-      {
-        /*kinukuha yung ID*/
-      }
       setNewTitles(item.titles);
       setNewAnswerUnanswered(item.answer);
       setNewArchiveUnanswered(item.archive);
@@ -141,9 +132,6 @@ const howToUseAdmin = ({navigation}) => {
     if (item.titles == 'How to Use Response List Screen') {
       setisModalVisibleResponseList(true);
       setNewId(item.key);
-      {
-        /*kinukuha yung ID*/
-      }
       setNewTitles(item.titles);
       setNewAddResponseList(item.add);
       setNewEditResponseList(item.edit);
@@ -153,9 +141,6 @@ const howToUseAdmin = ({navigation}) => {
     if (item.titles == 'How to Use Account Screen') {
       setisModalVisibleAccountScreen(true);
       setNewId(item.key);
-      {
-        /*kinukuha yung ID*/
-      }
       setNewTitles(item.titles);
       setNewViewActivityLog(item.activitylog);
       setNewChangePass(item.changePass);
@@ -181,7 +166,7 @@ const howToUseAdmin = ({navigation}) => {
       .map((item, key) => {
         return (
           <View key={key}>
-            <View style={announcementComponentStyles.vCardContainer}>
+            <View style={howToUseAdminStyles.vCardContainer}>
               <HowToUseAdminComponent
                 // item = {item}
                 propsnum={key}
@@ -193,7 +178,7 @@ const howToUseAdmin = ({navigation}) => {
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <TouchableOpacity
-                  style={announcementComponentStyles.toUpdate}
+                  style={howToUseAdminStyles.toUpdate}
                   onPress={() => getAnnouncements(item)}>
                   <Icon
                     name="eye"
@@ -201,9 +186,9 @@ const howToUseAdmin = ({navigation}) => {
                     size={16}
                     style={{marginBottom: 5}}
                   />
-                  <Text style={announcementComponentStyles.txtUpdateArchive}>
+                  <Text style={howToUseAdminStyles.txtUpdateArchive}>
                     {' '}
-                    View{' '}
+                    View information{' '}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -214,15 +199,15 @@ const howToUseAdmin = ({navigation}) => {
               animationType="fade"
               visible={isModalVisibleAnnouncements}
               onRequestClose={() => setisModalVisibleAnnouncements(false)}>
-              <View style={announcementComponentStyles.vModalContainer}>
+              <View style={howToUseAdminStyles.vModalContainer}>
                 <View style={{flex: 1, backgroundColor: 'white'}}></View>
                 <ImageBackground
                   source={require('../../assets/./bg/annoucementsbg.png')}
-                  style={announcementComponentStyles.vtxtTitle}>
+                  style={howToUseAdminStyles.vtxtTitle}>
                   <TouchableWithoutFeedback
-                    style={announcementComponentStyles.toAnnouncement}>
+                    style={howToUseAdminStyles.toAnnouncement}>
                     {/* <Icon name="edit-2" color="white" size={19}/> */}
-                    <Text style={announcementComponentStyles.txtEdit}>
+                    <Text style={howToUseAdminStyles.txtEdit}>
                       {' '}
                       How To Use Admin{' '}
                     </Text>
@@ -239,12 +224,10 @@ const howToUseAdmin = ({navigation}) => {
                     College of Information and Computing Sciences{' '}
                   </Text>
 
-                  <Text style={announcementComponentStyles.txtTitle}>
-                    {newTitles}
-                  </Text>
+                  <Text style={howToUseAdminStyles.txtTitle}>{newTitles}</Text>
                 </ImageBackground>
 
-                <View style={announcementComponentStyles.vtxtContent}>
+                <View style={howToUseAdminStyles.vtxtContent}>
                   <ScrollView>
                     <View style={{flexDirection: 'row'}}>
                       <Icon
@@ -323,15 +306,15 @@ const howToUseAdmin = ({navigation}) => {
               animationType="fade"
               visible={isModalVisibleAboutUs}
               onRequestClose={() => setisModalVisibleAboutUs(false)}>
-              <View style={announcementComponentStyles.vModalContainer}>
+              <View style={howToUseAdminStyles.vModalContainer}>
                 <View style={{flex: 1, backgroundColor: 'white'}}></View>
                 <ImageBackground
                   source={require('../../assets/./bg/annoucementsbg.png')}
-                  style={announcementComponentStyles.vtxtTitle}>
+                  style={howToUseAdminStyles.vtxtTitle}>
                   <TouchableWithoutFeedback
-                    style={announcementComponentStyles.toAnnouncement}>
+                    style={howToUseAdminStyles.toAnnouncement}>
                     {/* <Icon name="edit-2" color="white" size={19}/> */}
-                    <Text style={announcementComponentStyles.txtEdit}>
+                    <Text style={howToUseAdminStyles.txtEdit}>
                       {' '}
                       How To Use Admin{' '}
                     </Text>
@@ -348,12 +331,10 @@ const howToUseAdmin = ({navigation}) => {
                     College of Information and Computing Sciences{' '}
                   </Text>
 
-                  <Text style={announcementComponentStyles.txtTitle}>
-                    {newTitles}
-                  </Text>
+                  <Text style={howToUseAdminStyles.txtTitle}>{newTitles}</Text>
                 </ImageBackground>
 
-                <View style={announcementComponentStyles.vtxtContent}>
+                <View style={howToUseAdminStyles.vtxtContent}>
                   <ScrollView>
                     <View style={{flexDirection: 'row'}}>
                       <Icon
@@ -415,15 +396,15 @@ const howToUseAdmin = ({navigation}) => {
               animationType="fade"
               visible={isModalVisibleUnanswered}
               onRequestClose={() => setisModalVisibleUnanswered(false)}>
-              <View style={announcementComponentStyles.vModalContainer}>
+              <View style={howToUseAdminStyles.vModalContainer}>
                 <View style={{flex: 1, backgroundColor: 'white'}}></View>
                 <ImageBackground
                   source={require('../../assets/./bg/annoucementsbg.png')}
-                  style={announcementComponentStyles.vtxtTitle}>
+                  style={howToUseAdminStyles.vtxtTitle}>
                   <TouchableWithoutFeedback
-                    style={announcementComponentStyles.toAnnouncement}>
+                    style={howToUseAdminStyles.toAnnouncement}>
                     {/* <Icon name="edit-2" color="white" size={19}/> */}
-                    <Text style={announcementComponentStyles.txtEdit}>
+                    <Text style={howToUseAdminStyles.txtEdit}>
                       {' '}
                       How To Use Admin{' '}
                     </Text>
@@ -440,12 +421,10 @@ const howToUseAdmin = ({navigation}) => {
                     College of Information and Computing Sciences{' '}
                   </Text>
 
-                  <Text style={announcementComponentStyles.txtTitle}>
-                    {newTitles}
-                  </Text>
+                  <Text style={howToUseAdminStyles.txtTitle}>{newTitles}</Text>
                 </ImageBackground>
 
-                <View style={announcementComponentStyles.vtxtContent}>
+                <View style={howToUseAdminStyles.vtxtContent}>
                   <ScrollView>
                     <View style={{flexDirection: 'row'}}>
                       <Icon
@@ -507,15 +486,15 @@ const howToUseAdmin = ({navigation}) => {
               animationType="fade"
               visible={isModalVisibleResponseList}
               onRequestClose={() => setisModalVisibleResponseList(false)}>
-              <View style={announcementComponentStyles.vModalContainer}>
+              <View style={howToUseAdminStyles.vModalContainer}>
                 <View style={{flex: 1, backgroundColor: 'white'}}></View>
                 <ImageBackground
                   source={require('../../assets/./bg/annoucementsbg.png')}
-                  style={announcementComponentStyles.vtxtTitle}>
+                  style={howToUseAdminStyles.vtxtTitle}>
                   <TouchableWithoutFeedback
-                    style={announcementComponentStyles.toAnnouncement}>
+                    style={howToUseAdminStyles.toAnnouncement}>
                     {/* <Icon name="edit-2" color="white" size={19}/> */}
-                    <Text style={announcementComponentStyles.txtEdit}>
+                    <Text style={howToUseAdminStyles.txtEdit}>
                       {' '}
                       How To Use Admin{' '}
                     </Text>
@@ -532,12 +511,10 @@ const howToUseAdmin = ({navigation}) => {
                     College of Information and Computing Sciences{' '}
                   </Text>
 
-                  <Text style={announcementComponentStyles.txtTitle}>
-                    {newTitles}
-                  </Text>
+                  <Text style={howToUseAdminStyles.txtTitle}>{newTitles}</Text>
                 </ImageBackground>
 
-                <View style={announcementComponentStyles.vtxtContent}>
+                <View style={howToUseAdminStyles.vtxtContent}>
                   <ScrollView>
                     <View style={{flexDirection: 'row'}}>
                       <Icon
@@ -616,15 +593,15 @@ const howToUseAdmin = ({navigation}) => {
               animationType="fade"
               visible={isModalVisibleAccountScreen}
               onRequestClose={() => setisModalVisibleAccountScreen(false)}>
-              <View style={announcementComponentStyles.vModalContainer}>
+              <View style={howToUseAdminStyles.vModalContainer}>
                 <View style={{flex: 1, backgroundColor: 'white'}}></View>
                 <ImageBackground
                   source={require('../../assets/./bg/annoucementsbg.png')}
-                  style={announcementComponentStyles.vtxtTitle}>
+                  style={howToUseAdminStyles.vtxtTitle}>
                   <TouchableWithoutFeedback
-                    style={announcementComponentStyles.toAnnouncement}>
+                    style={howToUseAdminStyles.toAnnouncement}>
                     {/* <Icon name="edit-2" color="white" size={19}/> */}
-                    <Text style={announcementComponentStyles.txtEdit}>
+                    <Text style={howToUseAdminStyles.txtEdit}>
                       {' '}
                       How To Use Admin{' '}
                     </Text>
@@ -641,12 +618,10 @@ const howToUseAdmin = ({navigation}) => {
                     College of Information and Computing Sciences{' '}
                   </Text>
 
-                  <Text style={announcementComponentStyles.txtTitle}>
-                    {newTitles}
-                  </Text>
+                  <Text style={howToUseAdminStyles.txtTitle}>{newTitles}</Text>
                 </ImageBackground>
 
-                <View style={announcementComponentStyles.vtxtContent}>
+                <View style={howToUseAdminStyles.vtxtContent}>
                   <ScrollView>
                     <View style={{flexDirection: 'row'}}>
                       <Icon
@@ -732,10 +707,10 @@ const howToUseAdmin = ({navigation}) => {
   }
 
   return (
-    <View style={announcementComponentStyles.lgOverallContainer}>
-      <View style={announcementComponentStyles.lgTopHeader}>
+    <View style={howToUseAdminStyles.lgOverallContainer}>
+      <View style={howToUseAdminStyles.lgTopHeader}>
         <Icon
-          style={announcementComponentStyles.menuBarIcon}
+          style={howToUseAdminStyles.menuBarIcon}
           name="menu"
           color="white"
           type="ionicons"
@@ -743,9 +718,7 @@ const howToUseAdmin = ({navigation}) => {
           onPress={() => navigation.toggleDrawer()}
         />
         <TouchableOpacity
-          style={
-            announcementComponentStyles.aicsLogoContainer
-          }></TouchableOpacity>
+          style={howToUseAdminStyles.aicsLogoContainer}></TouchableOpacity>
         <Image
           source={require('../../assets/aicsfin.png')}
           style={announcementStyles.aicsLogo}
@@ -756,29 +729,29 @@ const howToUseAdmin = ({navigation}) => {
           <View>
             <Text
               adjustsFontSizeToFit={true}
-              style={announcementComponentStyles.titleText}>
+              style={howToUseAdminStyles.titleText}>
               How To Use Admin
             </Text>
             <Text
               adjustsFontSizeToFit={true}
-              style={announcementComponentStyles.subtitleText}>
+              style={howToUseAdminStyles.subtitleText}>
               Learn how to use the application as an AICS Administrator{' '}
             </Text>
           </View>
         </View>
       </View>
 
-      <View style={announcementComponentStyles.vSearchBar}>
+      <View style={howToUseAdminStyles.vSearchBar}>
         {/* Text input = yung issearch ni user */}
         <Icon
           name="search"
           color="#B2B2B2"
-          style={announcementComponentStyles.searchBaricon}
+          style={howToUseAdminStyles.searchBaricon}
           size={19}
         />
         <TextInput
           adjustsFontSizeToFit={true}
-          style={announcementComponentStyles.tiSearch}
+          style={howToUseAdminStyles.tiSearch}
           numberOfLines={1}
           maxLength={50}
           placeholder={'Search'}
@@ -789,7 +762,7 @@ const howToUseAdmin = ({navigation}) => {
           }}></TextInput>
       </View>
 
-      <View style={announcementComponentStyles.vAnnouncements}>
+      <View style={howToUseAdminStyles.vAnnouncements}>
         {/* TouchableOpacity = button */}
 
         <ScrollView
