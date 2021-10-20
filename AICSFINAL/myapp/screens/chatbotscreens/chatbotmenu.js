@@ -187,7 +187,7 @@ const ChatbotMenu = ({navigation}) => {
       <View style={chatbotMenuStyles.lgTopHeader}>
         
         <Icon style= {chatbotMenuStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={chatbotMenuStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
+        <TouchableOpacity style={chatbotMenuStyles.aicsLogoContainer} >
         </TouchableOpacity>
         <Image source={require('../../assets/aicsfin.png')} style={announcementStyles.aicsLogo}/>
         
