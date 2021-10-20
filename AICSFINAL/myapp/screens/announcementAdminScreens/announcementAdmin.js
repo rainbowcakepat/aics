@@ -693,7 +693,7 @@ const AnnouncementAdmin = ({navigation}) => {
             announcementComponentStyles.aicsLogoContainer
           }></TouchableOpacity>
         <Image
-          source={require('../../assets/aics.png')}
+          source={require('../../assets/aicsfin.png')}
           style={announcementStyles.aicsLogo}
         />
 

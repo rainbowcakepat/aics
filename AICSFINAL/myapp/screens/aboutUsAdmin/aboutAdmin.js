@@ -1041,7 +1041,7 @@ const AboutUsAdmin = ({navigation}) => {
         <TouchableOpacity
           style={aboutUsAdminStyles.aicsLogoContainer}></TouchableOpacity>
         <Image
-          source={require('../../assets/aics.png')}
+          source={require('../../assets/aicsfin.png')}
           style={announcementStyles.aicsLogo}
         />
 

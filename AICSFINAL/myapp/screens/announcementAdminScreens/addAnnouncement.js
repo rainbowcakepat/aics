@@ -199,7 +199,7 @@ navigation
 
             <TouchableOpacity style={announcementStyles.aicsLogoContainer}>
             </TouchableOpacity>
-            <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
+            <Image source={require('../../assets/aicsfin.png')} style={announcementStyles.aicsLogo}/>
         </LinearGradient>
 
         <View style={announcementStyles.vBodyContainer}>

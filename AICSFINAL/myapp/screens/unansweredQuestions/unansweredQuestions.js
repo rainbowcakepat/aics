@@ -377,9 +377,9 @@ const UnansweredQuestions = ({navigation}) => {
       <View style={unansweredQuestionsStyles.lgTopHeader}>
         
         <Icon style= {unansweredQuestionsStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={unansweredQuestionsStyles.aicsLogoContainer} onPress={() => navigation.toggleDrawer()}>
+        <TouchableOpacity style={unansweredQuestionsStyles.aicsLogoContainer} >
         </TouchableOpacity>
-        <Image source={require('../../assets/aics.png')} style={unansweredQuestionsStyles.aicsLogo}/>
+        <Image source={require('../../assets/aicsfin.png')} style={unansweredQuestionsStyles.aicsLogo}/>
         
         <View style={{flexDirection: 'row'}}>
           <View>

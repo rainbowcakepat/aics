@@ -497,7 +497,7 @@ const AboutUsAdmin = ({navigation}) => {
         <Icon style= {aboutUsStudentStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
         <TouchableOpacity style={aboutUsStudentStyles.aicsLogoContainer}>
         </TouchableOpacity>
-        <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
+        <Image source={require('../../assets/aicsfin.png')} style={announcementStyles.aicsLogo}/>
         
         <View style={{flexDirection: 'row'}}>
           <View>

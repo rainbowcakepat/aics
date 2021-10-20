@@ -148,7 +148,7 @@ const SystemLogs = ({navigation}) => {
         <Icon style= {systemLogsStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
         <TouchableOpacity style={systemLogsStyles.aicsLogoContainer}>
         </TouchableOpacity>
-        <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
+        <Image source={require('../../assets/aicsfin.png')} style={announcementStyles.aicsLogo}/>
         
         <View style={{flexDirection: 'row'}}>
           <View>
