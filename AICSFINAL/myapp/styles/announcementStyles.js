@@ -15,6 +15,7 @@ export const announcementStyles = StyleSheet.create({
     lgOverallContainer: {
         height: win.height,
         width: win.width,
+        flex:1
     },
 
     //Top Header: Black

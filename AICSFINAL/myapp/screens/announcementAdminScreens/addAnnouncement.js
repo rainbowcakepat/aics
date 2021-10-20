@@ -129,7 +129,7 @@ navigation
 
         await firestore().collection('allAnnouncements').doc(id).update({url: url});
       // setURL(url);
-      console.log(url);
+      console.log('firebase url: ' ,url);
       });
     });
 
