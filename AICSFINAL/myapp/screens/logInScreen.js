@@ -57,10 +57,22 @@ const LoginScreen = ({navigation}) => {
             console.log('Something went wrong', error);
           });
       } else {
-        Alert.alert('Please enter your credentials correctly');
+        Alert.alert(
+          'Login',
+          'Please enter your credentials correctly', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Please enter your credentials correctly');
       }
     } catch (error) {
-      Alert.alert('Please enter your credentials correctly');
+      Alert.alert(
+        'Login',
+        'Please enter your credentials correctly', // <- this part is optional, you can pass an empty string
+        [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
+      //Alert.alert('Please enter your credentials correctly');
     }
   };
 

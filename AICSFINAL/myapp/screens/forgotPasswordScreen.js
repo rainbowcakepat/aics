@@ -40,13 +40,31 @@ const ForgotPasswordScreen = ({navigation}) => {
     try {
       if (email == 'aicschatbot@gmail.com') {
         await auth.sendPasswordResetEmail(email);
-        Alert.alert('Check the code sent to your email to reset your password');
+        Alert.alert(
+          'Forgot Password',
+          'Check the code sent to your email to reset your password', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Check the code sent to your email to reset your password');
       } else {
+        Alert.alert(
+          'Forgot Password',
+          'Invalid email address. Please try again.', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
         Alert.alert('Invalid email address. Please try again.');
       }
       setEmail(null);
     } catch (error) {
-      Alert.alert('Invalid email address');
+      //Alert.alert('Invalid email address');
+      Alert.alert(
+        'Forgot Password',
+        'Invalid email address. Please try again.', // <- this part is optional, you can pass an empty string
+        [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
       setEmail(null);
     }
   };

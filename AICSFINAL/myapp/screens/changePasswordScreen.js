@@ -37,25 +37,35 @@ const ChangePasswordScreen = ({navigation}) => {
 
   const handleChangePassword = async () => {
     try {
-      console.log('gumagana try');
-      /*if (email == 'aicschatbot@gmail.com') {
-        console.log('hell');
-        await auth.sendPasswordResetEmail(email);
-        Alert.alert(
-          'Check your the code sent to your email to reset your password',
-        );
-      }*/
       if (email !== '' && password !== '') {
         await auth.signInWithEmailAndPassword(email, password);
         await auth.sendPasswordResetEmail(email);
-        Alert.alert('Check the code sent to your email to reset your password');
+        Alert.alert(
+          'Change Password',
+          'Check the code sent to your email to reset your password', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Check the code sent to your email to reset your password');
       } else {
-        Alert.alert('Please enter your correct credentials');
+        Alert.alert(
+          'Change Password',
+          'Please enter your correct credentials', // <- this part is optional, you can pass an empty string
+          [{text: 'Understood', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Please enter your correct credentials');
       }
       setEmail(null);
       setPassword(null);
     } catch (error) {
-      Alert.alert('Please enter your correct credentials');
+      //Alert.alert('Please enter your correct credentials');
+      Alert.alert(
+        'Change Password',
+        'Please enter your correct credentials', // <- this part is optional, you can pass an empty string
+        [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
       setEmail(null);
       setPassword(null);
     }

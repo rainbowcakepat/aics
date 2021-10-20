@@ -12,7 +12,7 @@ import {
   ActivityIndicator,
   Dimensions,
   Button,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -24,14 +24,19 @@ import ImageModal from 'react-native-image-modal';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  widthPercentageToFonts as wf,
+  heightPercentageToFonts as hf,
+} from 'react-native-responsive-screen';
 
 const win = Dimensions.get('window');
 
 import HowToUseAdminComponent from './howToUseAdminComponent';
 import {announcementStyles} from '../../styles/announcementStyles';
 import {announcementComponentStyles} from '../../styles/announcementComponentStyles';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {aboutUsStudentStyles} from '../../styles/aboutUsStudentStyles';
 
 const howToUseAdmin = ({navigation}) => {
@@ -41,13 +46,13 @@ const howToUseAdmin = ({navigation}) => {
 
   const [newTitles, setNewTitles] = useState('');
 
-
   const [newID, setNewId] = useState('');
 
   const [uploading, setUploading] = useState(false);
 
   // FOR HOW TO USE ANNOUNCEMENTS
-  const [isModalVisibleAnnouncements, setisModalVisibleAnnouncements] = useState(false);
+  const [isModalVisibleAnnouncements, setisModalVisibleAnnouncements] =
+    useState(false);
   const [newAddAnnouncement, setNewAddAnnouncement] = useState('');
   const [newEditAnnouncement, setNewEditAnnouncement] = useState('');
   const [newArchiveAnnouncement, setNewArchiveAnnouncement] = useState('');
@@ -58,21 +63,23 @@ const howToUseAdmin = ({navigation}) => {
   const [newSearchAboutUs, setNewSearchAboutUs] = useState('');
 
   //FOR HOW TO USE UNANSWERED QUESTIONS
-  const [isModalVisibleUnanswered, setisModalVisibleUnanswered] = useState(false);
+  const [isModalVisibleUnanswered, setisModalVisibleUnanswered] =
+    useState(false);
   const [newAnswerUnanswered, setNewAnswerUnanswered] = useState('');
   const [newArchiveUnanswered, setNewArchiveUnanswered] = useState('');
 
   //FOR HOW TO USE RESPONSE LIST
-  const [isModalVisibleResponseList, setisModalVisibleResponseList] = useState(false);
+  const [isModalVisibleResponseList, setisModalVisibleResponseList] =
+    useState(false);
   const [newAddResponseList, setNewAddResponseList] = useState('');
   const [newEditResponseList, setNewEditResponseList] = useState('');
   const [newArchiveResponseList, setNewArchiveResponseList] = useState('');
 
   //FOR HOW TO USE ACCOUNT SCREEN
-  const [isModalVisibleAccountScreen, setisModalVisibleAccountScreen] = useState(false);
+  const [isModalVisibleAccountScreen, setisModalVisibleAccountScreen] =
+    useState(false);
   const [newViewActivityLog, setNewViewActivityLog] = useState('');
   const [newChangePass, setNewChangePass] = useState('');
-
 
   useEffect(() => {
     const fetchHowToUse = firestore()
@@ -94,52 +101,66 @@ const howToUseAdmin = ({navigation}) => {
     return () => fetchHowToUse();
   }, []);
 
-  const getAnnouncements = (item) => {
-
+  const getAnnouncements = item => {
     setNewId(item.key);
 
     if (item.titles == 'How to Use Announcements Screen') {
       setisModalVisibleAnnouncements(true);
-       setNewId(item.key); {/*kinukuha yung ID*/}
-       setNewTitles(item.titles);
-       setNewAddAnnouncement(item.add);
-       setNewEditAnnouncement(item.edit);
-       setNewArchiveAnnouncement(item.archive);
-     }
+      setNewId(item.key);
+      {
+        /*kinukuha yung ID*/
+      }
+      setNewTitles(item.titles);
+      setNewAddAnnouncement(item.add);
+      setNewEditAnnouncement(item.edit);
+      setNewArchiveAnnouncement(item.archive);
+    }
 
-     if (item.titles == 'How to Use About Us Screen') {
+    if (item.titles == 'How to Use About Us Screen') {
       setisModalVisibleAboutUs(true);
-       setNewId(item.key); {/*kinukuha yung ID*/}
-       setNewTitles(item.titles);
-       setNewEditAboutUs(item.edit);
-       setNewSearchAboutUs(item.search);
-     }
+      setNewId(item.key);
+      {
+        /*kinukuha yung ID*/
+      }
+      setNewTitles(item.titles);
+      setNewEditAboutUs(item.edit);
+      setNewSearchAboutUs(item.search);
+    }
 
-     if (item.titles == 'How to Use Unanswered Questions Screen') {
+    if (item.titles == 'How to Use Unanswered Questions Screen') {
       setisModalVisibleUnanswered(true);
-       setNewId(item.key); {/*kinukuha yung ID*/}
-       setNewTitles(item.titles);
-       setNewAnswerUnanswered(item.answer);
-       setNewArchiveUnanswered(item.archive);
-     }
+      setNewId(item.key);
+      {
+        /*kinukuha yung ID*/
+      }
+      setNewTitles(item.titles);
+      setNewAnswerUnanswered(item.answer);
+      setNewArchiveUnanswered(item.archive);
+    }
 
-     if (item.titles == 'How to Use Response List Screen') {
+    if (item.titles == 'How to Use Response List Screen') {
       setisModalVisibleResponseList(true);
-       setNewId(item.key); {/*kinukuha yung ID*/}
-       setNewTitles(item.titles);
-       setNewAddResponseList(item.add);
-       setNewEditResponseList(item.edit);
-       setNewArchiveResponseList(item.archive);
-     }
+      setNewId(item.key);
+      {
+        /*kinukuha yung ID*/
+      }
+      setNewTitles(item.titles);
+      setNewAddResponseList(item.add);
+      setNewEditResponseList(item.edit);
+      setNewArchiveResponseList(item.archive);
+    }
 
-     if (item.titles == 'How to Use Account Screen') {
+    if (item.titles == 'How to Use Account Screen') {
       setisModalVisibleAccountScreen(true);
-       setNewId(item.key); {/*kinukuha yung ID*/}
-       setNewTitles(item.titles);
-       setNewViewActivityLog(item.activitylog);
-       setNewChangePass(item.changePass);
-     }
-};
+      setNewId(item.key);
+      {
+        /*kinukuha yung ID*/
+      }
+      setNewTitles(item.titles);
+      setNewViewActivityLog(item.activitylog);
+      setNewChangePass(item.changePass);
+    }
+  };
 
   let searchtitles = null;
 
@@ -159,10 +180,8 @@ const howToUseAdmin = ({navigation}) => {
       })
       .map((item, key) => {
         return (
-          <View key={key} >
-
+          <View key={key}>
             <View style={announcementComponentStyles.vCardContainer}>
-              
               <HowToUseAdminComponent
                 // item = {item}
                 propsnum={key}
@@ -171,354 +190,517 @@ const howToUseAdmin = ({navigation}) => {
                 propskeywords={item.keywords}
               />
 
-              <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
-
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <TouchableOpacity
                   style={announcementComponentStyles.toUpdate}
                   onPress={() => getAnnouncements(item)}>
-                  <Icon name="eye" color="white" size={16} style={{ marginBottom: 5 }}/>
-                  <Text style={announcementComponentStyles.txtUpdateArchive}> View </Text>
+                  <Icon
+                    name="eye"
+                    color="white"
+                    size={16}
+                    style={{marginBottom: 5}}
+                  />
+                  <Text style={announcementComponentStyles.txtUpdateArchive}>
+                    {' '}
+                    View{' '}
+                  </Text>
                 </TouchableOpacity>
-
               </View>
-
             </View>
 
             {/*MODAL: HOW TO USE ANNOUNCEMENTS*/}
-            <Modal 
+            <Modal
               animationType="fade"
               visible={isModalVisibleAnnouncements}
-              onRequestClose={() => setisModalVisibleAnnouncements(false)}
-              
-            >
+              onRequestClose={() => setisModalVisibleAnnouncements(false)}>
               <View style={announcementComponentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={announcementComponentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={announcementComponentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={announcementComponentStyles.txtEdit}> How To Use Admin </Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'#F5F5F5', }}> College of Information and Computing Sciences </Text>
-                        
-                    <Text style = {announcementComponentStyles.txtTitle}>
-                        {newTitles}
-                </Text>
-                 
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/annoucementsbg.png')}
+                  style={announcementComponentStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={announcementComponentStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={announcementComponentStyles.txtEdit}>
+                      {' '}
+                      How To Use Admin{' '}
+                    </Text>
+                  </TouchableWithoutFeedback>
+
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(2),
+                      color: '#F5F5F5',
+                    }}>
+                    {' '}
+                    College of Information and Computing Sciences{' '}
+                  </Text>
+
+                  <Text style={announcementComponentStyles.txtTitle}>
+                    {newTitles}
+                  </Text>
                 </ImageBackground>
-                
+
                 <View style={announcementComponentStyles.vtxtContent}>
-                  
                   <ScrollView>
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="file-plus" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Add Announcement: </Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="file-plus"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Add Announcement:{' '}
+                      </Text>
                     </View>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newAddAnnouncement}</Text>
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="edit" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Edit Announcement: </Text>
-                    </View>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newEditAnnouncement}</Text>
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newAddAnnouncement}
+                    </Text>
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="archive" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Archive Announcement: </Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="edit"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Edit Announcement:{' '}
+                      </Text>
                     </View>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newArchiveAnnouncement}</Text>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newEditAnnouncement}
+                    </Text>
+
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="archive"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Archive Announcement:{' '}
+                      </Text>
+                    </View>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newArchiveAnnouncement}
+                    </Text>
 
                     <Text></Text>
                   </ScrollView>
-
                 </View>
 
                 <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleAnnouncements(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  <TouchableOpacity
+                    style={aboutUsStudentStyles.btnBack}
+                    onPress={() => setisModalVisibleAnnouncements(false)}>
+                    <Icon
+                      name="arrow-left"
+                      color="white"
+                      type="ionicons"
+                      size={18}
+                      style={{marginBottom: 2, paddingLeft: -20}}
+                    />
+                    <Text style={aboutUsStudentStyles.txtBack}> Back</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
-
             </Modal>
 
             {/*MODAL: HOW TO USE ABOUT US SCREEN*/}
-            <Modal 
+            <Modal
               animationType="fade"
               visible={isModalVisibleAboutUs}
-              onRequestClose={() => setisModalVisibleAboutUs(false)}
-              
-            >
+              onRequestClose={() => setisModalVisibleAboutUs(false)}>
               <View style={announcementComponentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={announcementComponentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={announcementComponentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={announcementComponentStyles.txtEdit}> How To Use Admin </Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'#F5F5F5', }}> College of Information and Computing Sciences </Text>
-                        
-                    <Text style = {announcementComponentStyles.txtTitle}>
-                        {newTitles}
-                </Text>
-                 
-                </ImageBackground>
-                
-                <View style={announcementComponentStyles.vtxtContent}>
-                  
-                  <ScrollView>
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="edit" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Edit About Us: </Text>
-                    </View>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newEditAboutUs}</Text>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/annoucementsbg.png')}
+                  style={announcementComponentStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={announcementComponentStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={announcementComponentStyles.txtEdit}>
+                      {' '}
+                      How To Use Admin{' '}
+                    </Text>
+                  </TouchableWithoutFeedback>
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="search" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Search About Us: </Text>
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(2),
+                      color: '#F5F5F5',
+                    }}>
+                    {' '}
+                    College of Information and Computing Sciences{' '}
+                  </Text>
+
+                  <Text style={announcementComponentStyles.txtTitle}>
+                    {newTitles}
+                  </Text>
+                </ImageBackground>
+
+                <View style={announcementComponentStyles.vtxtContent}>
+                  <ScrollView>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="edit"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Edit About Us:{' '}
+                      </Text>
                     </View>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newSearchAboutUs}</Text>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newEditAboutUs}
+                    </Text>
+
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="search"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Search About Us:{' '}
+                      </Text>
+                    </View>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newSearchAboutUs}
+                    </Text>
 
                     <Text></Text>
                   </ScrollView>
-
                 </View>
 
                 <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleAboutUs(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  <TouchableOpacity
+                    style={aboutUsStudentStyles.btnBack}
+                    onPress={() => setisModalVisibleAboutUs(false)}>
+                    <Icon
+                      name="arrow-left"
+                      color="white"
+                      type="ionicons"
+                      size={18}
+                      style={{marginBottom: 2, paddingLeft: -20}}
+                    />
+                    <Text style={aboutUsStudentStyles.txtBack}> Back</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
-
             </Modal>
 
             {/* HOW TO USE UNANSWERED QUESTIONS = di ko to matest kasi nakasagad sa dulo yung button :-(*/}
-            <Modal 
+            <Modal
               animationType="fade"
               visible={isModalVisibleUnanswered}
-              onRequestClose={() => setisModalVisibleUnanswered(false)}
-              
-            >
+              onRequestClose={() => setisModalVisibleUnanswered(false)}>
               <View style={announcementComponentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={announcementComponentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={announcementComponentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={announcementComponentStyles.txtEdit}> How To Use Admin </Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'#F5F5F5', }}> College of Information and Computing Sciences </Text>
-                        
-                    <Text style = {announcementComponentStyles.txtTitle}>
-                        {newTitles}
-                </Text>
-                 
-                </ImageBackground>
-                
-                <View style={announcementComponentStyles.vtxtContent}>
-                  
-                  <ScrollView>
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="search" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Answer Unanswered Questions: </Text>
-                    </View>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newAnswerUnanswered}</Text>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/annoucementsbg.png')}
+                  style={announcementComponentStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={announcementComponentStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={announcementComponentStyles.txtEdit}>
+                      {' '}
+                      How To Use Admin{' '}
+                    </Text>
+                  </TouchableWithoutFeedback>
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="search" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Archive Unanswered Questions: </Text>
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(2),
+                      color: '#F5F5F5',
+                    }}>
+                    {' '}
+                    College of Information and Computing Sciences{' '}
+                  </Text>
+
+                  <Text style={announcementComponentStyles.txtTitle}>
+                    {newTitles}
+                  </Text>
+                </ImageBackground>
+
+                <View style={announcementComponentStyles.vtxtContent}>
+                  <ScrollView>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="search"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Answer Unanswered Questions:{' '}
+                      </Text>
                     </View>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newArchiveUnanswered}</Text>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newAnswerUnanswered}
+                    </Text>
+
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="search"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Archive Unanswered Questions:{' '}
+                      </Text>
+                    </View>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newArchiveUnanswered}
+                    </Text>
 
                     <Text></Text>
                   </ScrollView>
-
                 </View>
 
                 <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleUnanswered(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  <TouchableOpacity
+                    style={aboutUsStudentStyles.btnBack}
+                    onPress={() => setisModalVisibleUnanswered(false)}>
+                    <Icon
+                      name="arrow-left"
+                      color="white"
+                      type="ionicons"
+                      size={18}
+                      style={{marginBottom: 2, paddingLeft: -20}}
+                    />
+                    <Text style={aboutUsStudentStyles.txtBack}> Back</Text>
                   </TouchableOpacity>
                 </View>
               </View>
             </Modal>
 
             {/*MODAL: HOW TO USE RESPONSE LIST SCREEN*/}
-            <Modal 
+            <Modal
               animationType="fade"
               visible={isModalVisibleResponseList}
-              onRequestClose={() => setisModalVisibleResponseList(false)}
-              
-            >
+              onRequestClose={() => setisModalVisibleResponseList(false)}>
               <View style={announcementComponentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={announcementComponentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={announcementComponentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={announcementComponentStyles.txtEdit}> How To Use Admin </Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'#F5F5F5', }}> College of Information and Computing Sciences </Text>
-                        
-                    <Text style = {announcementComponentStyles.txtTitle}>
-                        {newTitles}
-                </Text>
-                 
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/annoucementsbg.png')}
+                  style={announcementComponentStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={announcementComponentStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={announcementComponentStyles.txtEdit}>
+                      {' '}
+                      How To Use Admin{' '}
+                    </Text>
+                  </TouchableWithoutFeedback>
+
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(2),
+                      color: '#F5F5F5',
+                    }}>
+                    {' '}
+                    College of Information and Computing Sciences{' '}
+                  </Text>
+
+                  <Text style={announcementComponentStyles.txtTitle}>
+                    {newTitles}
+                  </Text>
                 </ImageBackground>
-                
+
                 <View style={announcementComponentStyles.vtxtContent}>
-                  
                   <ScrollView>
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="file-plus" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Add Question with Answer: </Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="file-plus"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Add Question with Answer:{' '}
+                      </Text>
                     </View>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newAddResponseList}</Text>
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="edit" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Edit Question and Answer: </Text>
-                    </View>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newEditResponseList}</Text>
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newAddResponseList}
+                    </Text>
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="archive" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Archive Question and Answer: </Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="edit"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Edit Question and Answer:{' '}
+                      </Text>
                     </View>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newArchiveResponseList}</Text>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newEditResponseList}
+                    </Text>
+
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="archive"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Archive Question and Answer:{' '}
+                      </Text>
+                    </View>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newArchiveResponseList}
+                    </Text>
 
                     <Text></Text>
                   </ScrollView>
-
                 </View>
 
                 <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleResponseList(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  <TouchableOpacity
+                    style={aboutUsStudentStyles.btnBack}
+                    onPress={() => setisModalVisibleResponseList(false)}>
+                    <Icon
+                      name="arrow-left"
+                      color="white"
+                      type="ionicons"
+                      size={18}
+                      style={{marginBottom: 2, paddingLeft: -20}}
+                    />
+                    <Text style={aboutUsStudentStyles.txtBack}> Back</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
-
             </Modal>
-            
+
             {/*MODAL: HOW TO USE ACCOUNT SCREEN*/}
-            <Modal 
+            <Modal
               animationType="fade"
               visible={isModalVisibleAccountScreen}
-              onRequestClose={() => setisModalVisibleAccountScreen(false)}
-              
-            >
+              onRequestClose={() => setisModalVisibleAccountScreen(false)}>
               <View style={announcementComponentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={announcementComponentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={announcementComponentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={announcementComponentStyles.txtEdit}> How To Use Admin </Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'#F5F5F5', }}> College of Information and Computing Sciences </Text>
-                        
-                    <Text style = {announcementComponentStyles.txtTitle}>
-                        {newTitles}
-                </Text>
-                 
-                </ImageBackground>
-                
-                <View style={announcementComponentStyles.vtxtContent}>
-                  
-                  <ScrollView>
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="activity" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> View Activity Log: </Text>
-                    </View>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newViewActivityLog}</Text>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/annoucementsbg.png')}
+                  style={announcementComponentStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={announcementComponentStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={announcementComponentStyles.txtEdit}>
+                      {' '}
+                      How To Use Admin{' '}
+                    </Text>
+                  </TouchableWithoutFeedback>
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="lock" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Change Password: </Text>
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(2),
+                      color: '#F5F5F5',
+                    }}>
+                    {' '}
+                    College of Information and Computing Sciences{' '}
+                  </Text>
+
+                  <Text style={announcementComponentStyles.txtTitle}>
+                    {newTitles}
+                  </Text>
+                </ImageBackground>
+
+                <View style={announcementComponentStyles.vtxtContent}>
+                  <ScrollView>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="activity"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        View Activity Log:{' '}
+                      </Text>
                     </View>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newChangePass}</Text>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newViewActivityLog}
+                    </Text>
+
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="lock"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Change Password:{' '}
+                      </Text>
+                    </View>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newChangePass}
+                    </Text>
                     <Text></Text>
                   </ScrollView>
-
                 </View>
 
                 <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleAccountScreen(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  <TouchableOpacity
+                    style={aboutUsStudentStyles.btnBack}
+                    onPress={() => setisModalVisibleAccountScreen(false)}>
+                    <Icon
+                      name="arrow-left"
+                      color="white"
+                      type="ionicons"
+                      size={18}
+                      style={{marginBottom: 2, paddingLeft: -20}}
+                    />
+                    <Text style={aboutUsStudentStyles.txtBack}> Back</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
-
             </Modal>
-
           </View>
         );
       });
@@ -536,81 +718,110 @@ const howToUseAdmin = ({navigation}) => {
   }
 
   if (searchtitles.length < 1) {
-    
-    searchtitles = 
-    <ImageBackground  source={require('../../assets/./icons/aicsnoabout.png')} 
-    style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
-    </ImageBackground>
-    
+    searchtitles = (
+      <ImageBackground
+        source={require('../../assets/./icons/aicsnoabout.png')}
+        style={{
+          width: 350,
+          height: 220,
+          alignSelf: 'auto',
+          margin: 32,
+          resizeMode: 'contain',
+        }}></ImageBackground>
+    );
   }
 
   return (
     <View style={announcementComponentStyles.lgOverallContainer}>
-
       <View style={announcementComponentStyles.lgTopHeader}>
-        
-        <Icon style= {announcementComponentStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={announcementComponentStyles.aicsLogoContainer} >
-        </TouchableOpacity>
-        <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
-        
-        {/* display to */}
-        <View style={{flexDirection: 'row'}}> 
-          <View>
-            <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.titleText}>How To Use Admin</Text>
-            <Text adjustsFontSizeToFit={true} style={announcementComponentStyles.subtitleText}>Learn how to use blahblah </Text>
-          </View>
-          
-        </View>
+        <Icon
+          style={announcementComponentStyles.menuBarIcon}
+          name="menu"
+          color="white"
+          type="ionicons"
+          size={23}
+          onPress={() => navigation.toggleDrawer()}
+        />
+        <TouchableOpacity
+          style={
+            announcementComponentStyles.aicsLogoContainer
+          }></TouchableOpacity>
+        <Image
+          source={require('../../assets/aics.png')}
+          style={announcementStyles.aicsLogo}
+        />
 
+        {/* display to */}
+        <View style={{flexDirection: 'row'}}>
+          <View>
+            <Text
+              adjustsFontSizeToFit={true}
+              style={announcementComponentStyles.titleText}>
+              How To Use Admin
+            </Text>
+            <Text
+              adjustsFontSizeToFit={true}
+              style={announcementComponentStyles.subtitleText}>
+              Learn how to use the application as an AICS Administrator{' '}
+            </Text>
+          </View>
+        </View>
       </View>
 
       <View style={announcementComponentStyles.vSearchBar}>
-          
-          {/* Text input = yung issearch ni user */}
-          <Icon name="search" color="#B2B2B2" style={announcementComponentStyles.searchBaricon} size={19}/>
-          <TextInput adjustsFontSizeToFit={true}
+        {/* Text input = yung issearch ni user */}
+        <Icon
+          name="search"
+          color="#B2B2B2"
+          style={announcementComponentStyles.searchBaricon}
+          size={19}
+        />
+        <TextInput
+          adjustsFontSizeToFit={true}
           style={announcementComponentStyles.tiSearch}
-            numberOfLines={1}
-            maxLength={50}
-            placeholder={'Search'}
-            placeholderTextColor={'#B2B2B2'}
-            onChangeText={text => {
-              setSearchTerm(text);
-              console.log(`search: ${searchTerm}`);
-            }}>
-            </TextInput>
-
+          numberOfLines={1}
+          maxLength={50}
+          placeholder={'Search'}
+          placeholderTextColor={'#B2B2B2'}
+          onChangeText={text => {
+            setSearchTerm(text);
+            console.log(`search: ${searchTerm}`);
+          }}></TextInput>
       </View>
 
       <View style={announcementComponentStyles.vAnnouncements}>
-        
         {/* TouchableOpacity = button */}
-        
-        <ScrollView adjustsFontSizeToFit
-          pagingEnabled={true}  contentContainerStyle={{ paddingBottom: 45}}>
+
+        <ScrollView
+          adjustsFontSizeToFit
+          pagingEnabled={true}
+          contentContainerStyle={{paddingBottom: 45}}>
           {searchtitles}
         </ScrollView>
       </View>
 
-      {uploading ? 
-           (
-            <Modal >
-              <View style={{flexDirection: 'column', 
+      {uploading ? (
+        <Modal>
+          <View
+            style={{
+              flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',
               height: '100%',
-              }}>
-                <ImageBackground  source={require('../../assets/aicslogo.png')} 
-                style={{width: 250, height: 150, resizeMode:'contain'}}
-                ></ImageBackground>
-  
-                <ActivityIndicator size="large" color='purple'></ActivityIndicator>
-                <Text>{transferred} % Completed </Text>
-              </View>
-            </Modal>
-            )  : null
-      }
+            }}>
+            <ImageBackground
+              source={require('../../assets/aicslogo.png')}
+              style={{
+                width: 250,
+                height: 150,
+                resizeMode: 'contain',
+              }}></ImageBackground>
+
+            <ActivityIndicator size="large" color="purple"></ActivityIndicator>
+            <Text>{transferred} % Completed </Text>
+          </View>
+        </Modal>
+      ) : null}
 
       {/* {uploading ? (
           <Modal style={{flex:1, flexDirection: 'row'}}>

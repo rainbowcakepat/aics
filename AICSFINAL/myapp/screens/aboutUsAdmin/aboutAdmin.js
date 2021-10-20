@@ -12,7 +12,7 @@ import {
   ActivityIndicator,
   Dimensions,
   Button,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -24,14 +24,17 @@ import ImageModal from 'react-native-image-modal';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const win = Dimensions.get('window');
 
 import AboutUsComponents from '../aboutUsAdmin/aboutUsComponent';
 import {announcementStyles} from '../../styles/announcementStyles';
 import {aboutUsAdminStyles} from '../../styles/aboutUsAdminStyles';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
 const AboutUsAdmin = ({navigation}) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -40,8 +43,12 @@ const AboutUsAdmin = ({navigation}) => {
 
   const [isModalVisibleVision, setisModalVisibleVision] = useState(false);
   const [isModalVisibleMission, setisModalVisibleMission] = useState(false);
-  const [isModalVisibleTheCollege, setisModalVisibleTheCollege] = useState(false);
-  const [isModalVisibleContactInformation, setisModalVisibleContactInformation] = useState(false);
+  const [isModalVisibleTheCollege, setisModalVisibleTheCollege] =
+    useState(false);
+  const [
+    isModalVisibleContactInformation,
+    setisModalVisibleContactInformation,
+  ] = useState(false);
   const [isModalCollegeOfferings, setisModalCollegeOfferings] = useState(false);
 
   const [newAbout, setnewAbout] = useState('');
@@ -64,30 +71,29 @@ const AboutUsAdmin = ({navigation}) => {
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
 
-      useEffect(() => {
-      const fecthAboutUs = firestore()
-        .collection('allAboutUs')
-        .orderBy('titles', 'asc')
-        .onSnapshot(querySnapshot => {
-          const posts = [];
-          console.log('Total users: ', querySnapshot.size);
-      
-          querySnapshot.forEach(documentSnapshot => {
-            posts.push({
-              ...documentSnapshot.data(),
-              key: documentSnapshot.id,
-            });
+  useEffect(() => {
+    const fecthAboutUs = firestore()
+      .collection('allAboutUs')
+      .orderBy('titles', 'asc')
+      .onSnapshot(querySnapshot => {
+        const posts = [];
+        console.log('Total users: ', querySnapshot.size);
+
+        querySnapshot.forEach(documentSnapshot => {
+          posts.push({
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
           });
-          setPosts(posts);
-          setLoading(true);
-          console.log('Reading firebase');
         });
-        
-        return () => fecthAboutUs();
-      }, []);
+        setPosts(posts);
+        setLoading(true);
+        console.log('Reading firebase');
+      });
 
-  const getAnnouncements = (item) => {
+    return () => fecthAboutUs();
+  }, []);
 
+  const getAnnouncements = item => {
     setNewId(item.key);
 
     if (item.titles == 'About the College') {
@@ -101,8 +107,8 @@ const AboutUsAdmin = ({navigation}) => {
       setnewDegreePrograms(item.degreePrograms);
       setnewDepartments(item.departments);
       setnewOtherInformation(item.otherinformation);
-       setisModalCollegeOfferings(true);
-     }
+      setisModalCollegeOfferings(true);
+    }
 
     if (item.titles == 'The Mission') {
       setNewId(item.key);
@@ -118,218 +124,295 @@ const AboutUsAdmin = ({navigation}) => {
 
     if (item.titles == 'UST CICS Contact Information') {
       setNewId(item.key);
-     setnewContactInfoEmail(item.email);
-     setnewContactInfoFacebook(item.facebook);
-     setnewContactInfoLocation(item.location);
-     setnewContactInfoNumber(item.number);
-     setnewContactInfoSchedule(item.schedule);
-    //  setnewContactInfoWebsite(item.email);
+      setnewContactInfoEmail(item.email);
+      setnewContactInfoFacebook(item.facebook);
+      setnewContactInfoLocation(item.location);
+      setnewContactInfoNumber(item.number);
+      setnewContactInfoSchedule(item.schedule);
+      //  setnewContactInfoWebsite(item.email);
       setisModalVisibleContactInformation(true);
     }
   };
 
-  const onPressSave = (newID) => {
+  const onPressSave = newID => {
     console.log('Gumagana ba to', newID);
 
-      if(newID == '0generalAbout') {
-        handleEditAbout(newID);
-        setisModalVisibleTheCollege(false);
-        console.log('id: ', newID);
-      }
-
-      else if(newID == '1mission') {
-        handleEditMission(newID);
-        setisModalVisibleMission(false);
-        console.log('id: ', newID);
-      }
-
-      else if(newID == '2vision') {
-        handleEditVision(newID);
-        setisModalVisibleVision(false);
-        console.log('id: ', newID);
-      }
-
-      else if(newID == '3contactInformation') {
-        handleEditContactInformation(newID);
-        setisModalVisibleContactInformation(false);
-        console.log('id: ', newID);
-      }
-
-      else if(newID == '4offerings') {
-        handleEditCollegeOfferings(newID);
-        setisModalCollegeOfferings(false);
-        console.log('id: ', newID);
-      }
+    if (newID == '0generalAbout') {
+      handleEditAbout(newID);
+      setisModalVisibleTheCollege(false);
+      console.log('id: ', newID);
+    } else if (newID == '1mission') {
+      handleEditMission(newID);
+      setisModalVisibleMission(false);
+      console.log('id: ', newID);
+    } else if (newID == '2vision') {
+      handleEditVision(newID);
+      setisModalVisibleVision(false);
+      console.log('id: ', newID);
+    } else if (newID == '3contactInformation') {
+      handleEditContactInformation(newID);
+      setisModalVisibleContactInformation(false);
+      console.log('id: ', newID);
+    } else if (newID == '4offerings') {
+      handleEditCollegeOfferings(newID);
+      setisModalCollegeOfferings(false);
+      console.log('id: ', newID);
+    }
   };
 
-  const handleEditAbout = (newID) => {
+  const handleEditAbout = newID => {
     firestore()
-    .collection('allAboutUs')
-    .doc(newID)
-    .update({  
-      about: newAbout,
-    })
-    .then(() => {
-      EditAboutTheCollege();
-      setnewAbout('');
-      Alert.alert('Information Updated!');
-      console.log('all set!');
-    });
+      .collection('allAboutUs')
+      .doc(newID)
+      .update({
+        about: newAbout,
+      })
+      .then(() => {
+        EditAboutTheCollege();
+        setnewAbout('');
+        Alert.alert(
+          'About Us: About the College',
+          'Information Updated!', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Information Updated!');
+        console.log('all set!');
+      })
+      .catch(error => {
+        Alert.alert(
+          'About Us: About the College',
+          'Incomplete details', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Incomplete details');
+      });
   };
 
-  const handleEditMission = (newID) => {
+  const handleEditMission = newID => {
     firestore()
-    .collection('allAboutUs')
-    .doc(newID)
-    .update({  
-      mission: newMission,
-    })
-    .then(() => {
-EditMission();
-      setnewMission('');
-      Alert.alert('Information Updated!');
-      console.log('all set!');
-    });
+      .collection('allAboutUs')
+      .doc(newID)
+      .update({
+        mission: newMission,
+      })
+      .then(() => {
+        EditMission();
+        setnewMission('');
+        Alert.alert(
+          'About Us: The Mission',
+          'Information Updated!', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Information Updated!');
+        console.log('all set!');
+      })
+      .catch(error => {
+        Alert.alert(
+          'About Us: The Mission',
+          'Incomplete details', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Incomplete details');
+      });
   };
 
-  const handleEditVision = (newID) => {
+  const handleEditVision = newID => {
     firestore()
-    .collection('allAboutUs')
-    .doc(newID)
-    .update({  
-      vision: newVision,
-    })
-    .then(() => {
-      EditVision();
-      setnewVision('');
-      Alert.alert('Information Updated!');
-      console.log('all set!');
-    });
+      .collection('allAboutUs')
+      .doc(newID)
+      .update({
+        vision: newVision,
+      })
+      .then(() => {
+        EditVision();
+        setnewVision('');
+        Alert.alert(
+          'About Us: The Vision',
+          'Information Updated!', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Information Updated!');
+        console.log('all set!');
+      })
+      .catch(error => {
+        Alert.alert(
+          'About Us: The Vision',
+          'Incomplete details', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Incomplete details');
+      });
   };
 
-  const handleEditContactInformation = (newID) => {
+  const handleEditContactInformation = newID => {
     firestore()
-    .collection('allAboutUs')
-    .doc(newID)
-    .update({  
-      email: newContactInfoEmail,
-      facebook: newContactInfoFacebook,
-      location: newContactInfoLocation,
-      number: newContactInfoNumber,
-      schedule: newContactInfoSchedule,
-    })
-    .then(() => {
-      EditContactInformation();
-      setnewContactInfoEmail('');
-      setnewContactInfoFacebook('');
-      setnewContactInfoLocation('');
-      setnewContactInfoNumber('');
-      setnewContactInfoSchedule('');
-      Alert.alert('Information Updated!');
-      console.log('all set!');
-    });
+      .collection('allAboutUs')
+      .doc(newID)
+      .update({
+        email: newContactInfoEmail,
+        facebook: newContactInfoFacebook,
+        location: newContactInfoLocation,
+        number: newContactInfoNumber,
+        schedule: newContactInfoSchedule,
+      })
+      .then(() => {
+        EditContactInformation();
+        setnewContactInfoEmail('');
+        setnewContactInfoFacebook('');
+        setnewContactInfoLocation('');
+        setnewContactInfoNumber('');
+        setnewContactInfoSchedule('');
+
+        Alert.alert(
+          'About Us: Contact Information',
+          'Information Updated!', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Information Updated!');
+        console.log('all set!');
+      })
+      .catch(error => {
+        Alert.alert(
+          'About Us: Contact Information',
+          'Incomplete details', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Incomplete details');
+      });
   };
 
-  const handleEditCollegeOfferings = (newID) => {
+  const handleEditCollegeOfferings = newID => {
     firestore()
-    .collection('allAboutUs')
-    .doc(newID)
-    .update({  
-      degreePrograms: newDegreePrograms,
-      departments: newDepartments,
-      otherinformation: newOtherInformation,
-    })
-    .then(() => {
-      EditCollegeOfferings();
-      setnewDegreePrograms('');
-      setnewDepartments('');
-      setnewOtherInformation('');
-      Alert.alert('Information Updated!');
-      console.log('all set!');
-    });
+      .collection('allAboutUs')
+      .doc(newID)
+      .update({
+        degreePrograms: newDegreePrograms,
+        departments: newDepartments,
+        otherinformation: newOtherInformation,
+      })
+      .then(() => {
+        EditCollegeOfferings();
+        setnewDegreePrograms('');
+        setnewDepartments('');
+        setnewOtherInformation('');
+
+        Alert.alert(
+          'About Us: Course Offerings',
+          'Information Updated!', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Information Updated!');
+        console.log('all set!');
+      })
+      .catch(error => {
+        Alert.alert(
+          'About Us: Course Offerings',
+          'Incomplete details', // <- this part is optional, you can pass an empty string
+          [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+        //Alert.alert('Incomplete details');
+      });
   };
 
-  const EditAboutTheCollege = async() => {
+  const EditAboutTheCollege = async () => {
     const ids2 = await firestore().collection('allSystemLogs').doc();
-    
-    ids2.set({
-      activity: 'Successfully Edited About the College',
-      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-    })
-    .then(() => {
-      console.log('system log: Successfully Edited About Us');
-    }).catch((error) => {
-      console.log('Something went wrong', error);
-    })
-    
-  }
 
-  const EditCollegeOfferings = async() => {
+    ids2
+      .set({
+        activity: 'Successfully Edited About the College',
+        posttime: new Date(
+          firestore.Timestamp.now().seconds * 1000,
+        ).toLocaleString(),
+      })
+      .then(() => {
+        console.log('system log: Successfully Edited About Us');
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      });
+  };
+
+  const EditCollegeOfferings = async () => {
     const ids2 = await firestore().collection('allSystemLogs').doc();
-    
-    ids2.set({
-      activity: 'Successfully Edited College Offerings',
-      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-    })
-    .then(() => {
-      console.log('system log: Successfully Edited College Offerings');
-    }).catch((error) => {
-      console.log('Something went wrong', error);
-    })
-    
-  }
 
-  const EditMission = async() => {
+    ids2
+      .set({
+        activity: 'Successfully Edited College Offerings',
+        posttime: new Date(
+          firestore.Timestamp.now().seconds * 1000,
+        ).toLocaleString(),
+      })
+      .then(() => {
+        console.log('system log: Successfully Edited College Offerings');
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      });
+  };
+
+  const EditMission = async () => {
     const ids2 = await firestore().collection('allSystemLogs').doc();
-    
-    ids2.set({
-      activity: 'Successfully Edited Mission',
-      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-    })
-    .then(() => {
-      console.log('system log: Successfully Edited Mission');
-    }).catch((error) => {
-      console.log('Something went wrong', error);
-    })
-    
-  }
 
-  
-  const EditVision = async() => {
+    ids2
+      .set({
+        activity: 'Successfully Edited Mission',
+        posttime: new Date(
+          firestore.Timestamp.now().seconds * 1000,
+        ).toLocaleString(),
+      })
+      .then(() => {
+        console.log('system log: Successfully Edited Mission');
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      });
+  };
+
+  const EditVision = async () => {
     const ids2 = await firestore().collection('allSystemLogs').doc();
-    
-    ids2.set({
-      activity: 'Successfully Edited Vision',
-      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-    })
-    .then(() => {
-      console.log('system log: Successfully Edited Vision');
-    }).catch((error) => {
-      console.log('Something went wrong', error);
-    })
-    
-  }
 
-  
-  const EditContactInformation = async() => {
+    ids2
+      .set({
+        activity: 'Successfully Edited Vision',
+        posttime: new Date(
+          firestore.Timestamp.now().seconds * 1000,
+        ).toLocaleString(),
+      })
+      .then(() => {
+        console.log('system log: Successfully Edited Vision');
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      });
+  };
+
+  const EditContactInformation = async () => {
     const ids2 = await firestore().collection('allSystemLogs').doc();
-    
-    ids2.set({
-      activity: 'Successfully Edited Contact Information',
-      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-    })
-    .then(() => {
-      console.log('system log: Successfully Edited Contact Information');
-    }).catch((error) => {
-      console.log('Something went wrong', error);
-    })
-    
-  }
-  
 
-  
-  
-  
+    ids2
+      .set({
+        activity: 'Successfully Edited Contact Information',
+        posttime: new Date(
+          firestore.Timestamp.now().seconds * 1000,
+        ).toLocaleString(),
+      })
+      .then(() => {
+        console.log('system log: Successfully Edited Contact Information');
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      });
+  };
 
   let searchtitles = null;
 
@@ -349,11 +432,9 @@ EditMission();
       })
       .map((item, key) => {
         return (
-          <View key={key} >
-
+          <View key={key}>
             <View style={aboutUsAdminStyles.vCardContainer}>
-              
-              <AboutUsComponents 
+              <AboutUsComponents
                 // item = {item}
                 propsnum={key}
                 propsid={item.key}
@@ -361,49 +442,71 @@ EditMission();
                 propskeywords={item.keywords}
               />
 
-              <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
-
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <TouchableOpacity
                   style={aboutUsAdminStyles.toUpdate}
                   onPress={() => getAnnouncements(item)}>
-                  <Icon name="edit-2" color="white" size={16} style={{ marginBottom: 5 }}/>
-                  <Text style={aboutUsAdminStyles.txtUpdateArchive}> Edit information </Text>
+                  <Icon
+                    name="edit-2"
+                    color="white"
+                    size={16}
+                    style={{marginBottom: 5}}
+                  />
+                  <Text style={aboutUsAdminStyles.txtUpdateArchive}>
+                    {' '}
+                    Edit information{' '}
+                  </Text>
                 </TouchableOpacity>
-
               </View>
-
             </View>
 
             {/* MODAL: ABOUT THE COLLEGE */}
-          <Modal
-           animationType="slide"
-           visible={isModalVisibleTheCollege}
-           onRequestClose={() => setisModalVisibleTheCollege(false)}
-          >
-            <View style={aboutUsAdminStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsAdminStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsAdminStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsAdminStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsAdminStyles.txtTitle}>About the College</Text>
-                 
+            <Modal
+              animationType="slide"
+              visible={isModalVisibleTheCollege}
+              onRequestClose={() => setisModalVisibleTheCollege(false)}>
+              <View style={aboutUsAdminStyles.vModalContainer}>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/ustbg.png')}
+                  style={aboutUsAdminStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={aboutUsAdminStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={aboutUsAdminStyles.txtEdit}>
+                      {' '}
+                      Edit About Us Information
+                    </Text>
+                  </TouchableWithoutFeedback>
+
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(1.8),
+                      color: '#F5F5F5',
+                    }}>
+                    College of Information and Computing Sciences
+                  </Text>
+
+                  <Text style={aboutUsAdminStyles.txtTitle}>
+                    About the College
+                  </Text>
                 </ImageBackground>
-                
+
                 <View style={aboutUsAdminStyles.vtxtContent}>
-                  
                   <ScrollView>
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Description:</Text>
-                      
+                    <Text
+                      style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: 'gray',
+                      }}>
+                      Description:
+                    </Text>
+
                     <TextInput
                       style={aboutUsAdminStyles.txtContent}
                       onChangeText={text => setnewAbout(text)}
@@ -414,54 +517,69 @@ EditMission();
                       numberOfLines={10}
                       maxLength={800}></TextInput>
                   </ScrollView>
-
                 </View>
 
                 <View style={aboutUsAdminStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsAdminStyles.btnSave}
-                  onPress={() => onPressSave(newID)}>
+                  <TouchableOpacity
+                    style={aboutUsAdminStyles.btnSave}
+                    onPress={() => onPressSave(newID)}>
                     <Text style={aboutUsAdminStyles.txtSave}>Save</Text>
                   </TouchableOpacity>
 
-                  <TouchableOpacity style={aboutUsAdminStyles.btnCancel}
-                  onPress={() => setisModalVisibleTheCollege(false)}>
+                  <TouchableOpacity
+                    style={aboutUsAdminStyles.btnCancel}
+                    onPress={() => setisModalVisibleTheCollege(false)}>
                     <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
+            </Modal>
 
-          </Modal>
+            <Modal
+              animationType="slide"
+              visible={isModalCollegeOfferings}
+              onRequestClose={() => setisModalCollegeOfferings(false)}>
+              <View style={aboutUsAdminStyles.vModalContainer}>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/ustbg.png')}
+                  style={aboutUsAdminStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={aboutUsAdminStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={aboutUsAdminStyles.txtEdit}>
+                      {' '}
+                      Edit About Us Information
+                    </Text>
+                  </TouchableWithoutFeedback>
 
-          <Modal
-           animationType="slide"
-           visible={isModalCollegeOfferings}
-           onRequestClose={() => setisModalCollegeOfferings(false)}
-          >
-            <View style={aboutUsAdminStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsAdminStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsAdminStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsAdminStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsAdminStyles.txtTitle}>College Offerings</Text>
-                 
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(1.8),
+                      color: '#F5F5F5',
+                    }}>
+                    College of Information and Computing Sciences
+                  </Text>
+
+                  <Text style={aboutUsAdminStyles.txtTitle}>
+                    College Offerings
+                  </Text>
                 </ImageBackground>
-                
+
                 <View style={aboutUsAdminStyles.vtxtContent}>
-                  
                   <ScrollView>
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Degree Programs:</Text>
-                      
+                    <Text
+                      style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: 'gray',
+                      }}>
+                      Degree Programs:
+                    </Text>
+
                     <TextInput
                       style={aboutUsAdminStyles.txtContent}
                       onChangeText={text => setnewDegreePrograms(text)}
@@ -472,9 +590,16 @@ EditMission();
                       numberOfLines={5}
                       maxLength={400}></TextInput>
 
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Degree Departments:</Text>
-                      
+                    <Text
+                      style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: 'gray',
+                      }}>
+                      Degree Departments:
+                    </Text>
+
                     <TextInput
                       style={aboutUsAdminStyles.txtContent}
                       onChangeText={text => setnewDepartments(text)}
@@ -485,10 +610,17 @@ EditMission();
                       numberOfLines={2}
                       maxLength={400}></TextInput>
 
-                  <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Other information:</Text>
-                      
-                      <TextInput
+                    <Text
+                      style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: 'gray',
+                      }}>
+                      Other information:
+                    </Text>
+
+                    <TextInput
                       style={aboutUsAdminStyles.txtContent}
                       onChangeText={text => setnewOtherInformation(text)}
                       placeholder={'Other Information'}
@@ -497,56 +629,68 @@ EditMission();
                       multiline={true}
                       numberOfLines={2}
                       maxLength={400}></TextInput>
-                 
                   </ScrollView>
-
                 </View>
 
                 <View style={aboutUsAdminStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsAdminStyles.btnSave}
-                  onPress={() => onPressSave(newID)}>
+                  <TouchableOpacity
+                    style={aboutUsAdminStyles.btnSave}
+                    onPress={() => onPressSave(newID)}>
                     <Text style={aboutUsAdminStyles.txtSave}>Save</Text>
                   </TouchableOpacity>
 
-                  <TouchableOpacity style={aboutUsAdminStyles.btnCancel}
-                  onPress={() => setisModalCollegeOfferings(false)}>
+                  <TouchableOpacity
+                    style={aboutUsAdminStyles.btnCancel}
+                    onPress={() => setisModalCollegeOfferings(false)}>
                     <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
+            </Modal>
 
-          </Modal>
-         
-          <Modal
-           animationType="slide"
-           visible={isModalVisibleMission}
-           onRequestClose={() => setisModalVisibleMission(false)}
-          >
-            <View style={aboutUsAdminStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsAdminStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsAdminStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsAdminStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsAdminStyles.txtTitle}>Mission</Text>
-                 
+            <Modal
+              animationType="slide"
+              visible={isModalVisibleMission}
+              onRequestClose={() => setisModalVisibleMission(false)}>
+              <View style={aboutUsAdminStyles.vModalContainer}>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/ustbg.png')}
+                  style={aboutUsAdminStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={aboutUsAdminStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={aboutUsAdminStyles.txtEdit}>
+                      {' '}
+                      Edit About Us Information
+                    </Text>
+                  </TouchableWithoutFeedback>
+
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(1.8),
+                      color: '#F5F5F5',
+                    }}>
+                    College of Information and Computing Sciences
+                  </Text>
+
+                  <Text style={aboutUsAdminStyles.txtTitle}>Mission</Text>
                 </ImageBackground>
-                
+
                 <View style={aboutUsAdminStyles.vtxtContent}>
-                  
                   <ScrollView>
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Description:</Text>
-                      
+                    <Text
+                      style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: 'gray',
+                      }}>
+                      Description:
+                    </Text>
+
                     <TextInput
                       style={aboutUsAdminStyles.txtContent}
                       onChangeText={text => setnewMission(text)}
@@ -556,56 +700,68 @@ EditMission();
                       multiline={true}
                       numberOfLines={5}
                       maxLength={600}></TextInput>
-                                 
                   </ScrollView>
-
                 </View>
 
                 <View style={aboutUsAdminStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsAdminStyles.btnSave}
-                  onPress={() => onPressSave(newID)}>
+                  <TouchableOpacity
+                    style={aboutUsAdminStyles.btnSave}
+                    onPress={() => onPressSave(newID)}>
                     <Text style={aboutUsAdminStyles.txtSave}>Save</Text>
                   </TouchableOpacity>
 
-                  <TouchableOpacity style={aboutUsAdminStyles.btnCancel}
-                  onPress={() => setisModalVisibleMission(false)}>
+                  <TouchableOpacity
+                    style={aboutUsAdminStyles.btnCancel}
+                    onPress={() => setisModalVisibleMission(false)}>
                     <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
+            </Modal>
 
-          </Modal>
+            <Modal
+              animationType="slide"
+              visible={isModalVisibleVision}
+              onRequestClose={() => setisModalVisibleVision(false)}>
+              <View style={aboutUsAdminStyles.vModalContainer}>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/ustbg.png')}
+                  style={aboutUsAdminStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={aboutUsAdminStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={aboutUsAdminStyles.txtEdit}>
+                      {' '}
+                      Edit About Us Information
+                    </Text>
+                  </TouchableWithoutFeedback>
 
-          <Modal
-           animationType="slide"
-           visible={isModalVisibleVision}
-           onRequestClose={() => setisModalVisibleVision(false)}
-          >
-            <View style={aboutUsAdminStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsAdminStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsAdminStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsAdminStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsAdminStyles.txtTitle}>Vision</Text>
-                 
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(1.8),
+                      color: '#F5F5F5',
+                    }}>
+                    College of Information and Computing Sciences
+                  </Text>
+
+                  <Text style={aboutUsAdminStyles.txtTitle}>Vision</Text>
                 </ImageBackground>
-                
+
                 <View style={aboutUsAdminStyles.vtxtContent}>
-                  
                   <ScrollView>
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Description:</Text>
-                      
+                    <Text
+                      style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: 'gray',
+                      }}>
+                      Description:
+                    </Text>
+
                     <TextInput
                       style={aboutUsAdminStyles.txtContent}
                       onChangeText={text => setnewVision(text)}
@@ -615,59 +771,79 @@ EditMission();
                       multiline={true}
                       numberOfLines={5}
                       maxLength={400}></TextInput>
-                                 
                   </ScrollView>
-
                 </View>
 
                 <View style={aboutUsAdminStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsAdminStyles.btnSave}
-                  onPress={() => onPressSave(newID)}>
+                  <TouchableOpacity
+                    style={aboutUsAdminStyles.btnSave}
+                    onPress={() => onPressSave(newID)}>
                     <Text style={aboutUsAdminStyles.txtSave}>Save</Text>
                   </TouchableOpacity>
 
-                  <TouchableOpacity style={aboutUsAdminStyles.btnCancel}
-                  onPress={() => setisModalVisibleVision(false)}>
+                  <TouchableOpacity
+                    style={aboutUsAdminStyles.btnCancel}
+                    onPress={() => setisModalVisibleVision(false)}>
                     <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
+            </Modal>
 
-          </Modal>
+            <Modal
+              animationType="slide"
+              visible={isModalVisibleContactInformation}
+              onRequestClose={() => setisModalVisibleContactInformation(false)}>
+              <View style={aboutUsAdminStyles.vModalContainer}>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/ustbg.png')}
+                  style={aboutUsAdminStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={aboutUsAdminStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={aboutUsAdminStyles.txtEdit}>
+                      {' '}
+                      Edit About Us Information
+                    </Text>
+                  </TouchableWithoutFeedback>
 
-          <Modal
-           animationType="slide"
-           visible={isModalVisibleContactInformation}
-           onRequestClose={() => setisModalVisibleContactInformation(false)}
-          >
-            <View style={aboutUsAdminStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsAdminStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsAdminStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsAdminStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsAdminStyles.txtTitle}>Contact Details</Text>
-                 
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(1.8),
+                      color: '#F5F5F5',
+                    }}>
+                    College of Information and Computing Sciences
+                  </Text>
+
+                  <Text style={aboutUsAdminStyles.txtTitle}>
+                    Contact Details
+                  </Text>
                 </ImageBackground>
-                
+
                 <View style={aboutUsAdminStyles.vtxtContent}>
-                  
                   <ScrollView>
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="map-pin" color="black" type= 'ionicons' size={18}/>
-                      <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                      color:'gray', }}> Location:</Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="map-pin"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text
+                        style={{
+                          fontFamily: 'Poppins-Regular',
+                          textAlign: 'left',
+                          fontSize: hp(2),
+                          color: 'gray',
+                        }}>
+                        {' '}
+                        Location:
+                      </Text>
                     </View>
-                   
+
                     <TextInput
                       style={aboutUsAdminStyles.txtContent}
                       onChangeText={text => setnewContactInfoLocation(text)}
@@ -679,12 +855,25 @@ EditMission();
                       maxLength={400}></TextInput>
 
                     <Text></Text>
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="clock" color="black" type= 'ionicons' size={18}/>
-                      <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                      color:'gray', }}> Office hours:</Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="clock"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text
+                        style={{
+                          fontFamily: 'Poppins-Regular',
+                          textAlign: 'left',
+                          fontSize: hp(2),
+                          color: 'gray',
+                        }}>
+                        {' '}
+                        Office hours:
+                      </Text>
                     </View>
-                   
+
                     <TextInput
                       style={aboutUsAdminStyles.txtContent}
                       onChangeText={text => setnewContactInfoSchedule(text)}
@@ -694,15 +883,28 @@ EditMission();
                       multiline={true}
                       numberOfLines={2}
                       maxLength={300}></TextInput>
-                    
-                    <Text></Text>    
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="phone" color="black" type= 'ionicons' size={18}/>
-                      <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                      color:'gray', }}> Office Contact Number:</Text>
+                    <Text></Text>
+
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="phone"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text
+                        style={{
+                          fontFamily: 'Poppins-Regular',
+                          textAlign: 'left',
+                          fontSize: hp(2),
+                          color: 'gray',
+                        }}>
+                        {' '}
+                        Office Contact Number:
+                      </Text>
                     </View>
-                   
+
                     <TextInput
                       style={aboutUsAdminStyles.txtContent}
                       onChangeText={text => setnewContactInfoNumber(text)}
@@ -712,14 +914,27 @@ EditMission();
                       multiline={true}
                       numberOfLines={1}
                       maxLength={100}></TextInput>
-                      <Text></Text> 
+                    <Text></Text>
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="facebook" color="black" type= 'ionicons' size={18}/>
-                      <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                      color:'gray', }}> Facebook Page:</Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="facebook"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text
+                        style={{
+                          fontFamily: 'Poppins-Regular',
+                          textAlign: 'left',
+                          fontSize: hp(2),
+                          color: 'gray',
+                        }}>
+                        {' '}
+                        Facebook Page:
+                      </Text>
                     </View>
-                   
+
                     <TextInput
                       style={aboutUsAdminStyles.txtContent}
                       onChangeText={text => setnewContactInfoFacebook(text)}
@@ -729,14 +944,27 @@ EditMission();
                       multiline={true}
                       numberOfLines={1}
                       maxLength={100}></TextInput>
-                      <Text></Text> 
+                    <Text></Text>
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="mail" color="black" type= 'ionicons' size={18}/>
-                      <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                      color:'gray', }}> UST CICS Email :</Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="mail"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text
+                        style={{
+                          fontFamily: 'Poppins-Regular',
+                          textAlign: 'left',
+                          fontSize: hp(2),
+                          color: 'gray',
+                        }}>
+                        {' '}
+                        UST CICS Email :
+                      </Text>
                     </View>
-                   
+
                     <TextInput
                       style={aboutUsAdminStyles.txtContent}
                       onChangeText={text => setnewContactInfoEmail(text)}
@@ -746,97 +974,121 @@ EditMission();
                       multiline={true}
                       numberOfLines={1}
                       maxLength={50}></TextInput>
-                      <Text></Text> 
-
-
+                    <Text></Text>
                   </ScrollView>
-
                 </View>
 
                 <View style={aboutUsAdminStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsAdminStyles.btnSave}
-                  onPress={() => onPressSave(newID)}>
+                  <TouchableOpacity
+                    style={aboutUsAdminStyles.btnSave}
+                    onPress={() => onPressSave(newID)}>
                     <Text style={aboutUsAdminStyles.txtSave}>Save</Text>
                   </TouchableOpacity>
 
-                  <TouchableOpacity style={aboutUsAdminStyles.btnCancel}
-                  onPress={() => setisModalVisibleContactInformation(false)}>
+                  <TouchableOpacity
+                    style={aboutUsAdminStyles.btnCancel}
+                    onPress={() => setisModalVisibleContactInformation(false)}>
                     <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
-
-          </Modal>
-
+            </Modal>
           </View>
         );
       });
   } else {
     searchtitles = (
-      <View style={{flexDirection: 'column', 
-      justifyContent: 'center',
-      }}>
-        <ImageBackground  source={require('../../assets/aicslogo.png')} 
-        style={{width: 250, height: 150, alignSelf:'center', margin: 32, resizeMode:'contain'}}
-        ></ImageBackground>
-        <ActivityIndicator size="large" color='purple'></ActivityIndicator>
+      <View style={{flexDirection: 'column', justifyContent: 'center'}}>
+        <ImageBackground
+          source={require('../../assets/aicslogo.png')}
+          style={{
+            width: 250,
+            height: 150,
+            alignSelf: 'center',
+            margin: 32,
+            resizeMode: 'contain',
+          }}></ImageBackground>
+        <ActivityIndicator size="large" color="purple"></ActivityIndicator>
       </View>
     );
   }
 
   if (searchtitles.length < 1) {
-    searchtitles = 
-    <ImageBackground  source={require('../../assets/./icons/aicsnoabout.png')} 
-    style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
-    </ImageBackground>
+    searchtitles = (
+      <ImageBackground
+        source={require('../../assets/./icons/aicsnoabout.png')}
+        style={{
+          width: 350,
+          height: 220,
+          alignSelf: 'auto',
+          margin: 32,
+          resizeMode: 'contain',
+        }}></ImageBackground>
+    );
   }
 
   return (
     <View style={aboutUsAdminStyles.lgOverallContainer}>
-
       <View style={aboutUsAdminStyles.lgTopHeader}>
-        
-        <Icon style= {aboutUsAdminStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={aboutUsAdminStyles.aicsLogoContainer}>
-        </TouchableOpacity>
-        <Image source={require('../../assets/aics.png')} style={announcementStyles.aicsLogo}/>
-        
+        <Icon
+          style={aboutUsAdminStyles.menuBarIcon}
+          name="menu"
+          color="white"
+          type="ionicons"
+          size={23}
+          onPress={() => navigation.toggleDrawer()}
+        />
+        <TouchableOpacity
+          style={aboutUsAdminStyles.aicsLogoContainer}></TouchableOpacity>
+        <Image
+          source={require('../../assets/aics.png')}
+          style={announcementStyles.aicsLogo}
+        />
+
         <View style={{flexDirection: 'row'}}>
           <View>
-            <Text adjustsFontSizeToFit={true} style={aboutUsAdminStyles.titleText}>About Us</Text>
-            <Text adjustsFontSizeToFit={true} style={aboutUsAdminStyles.subtitleText}>Welcome to the College of Information and Computing Sciences, know about us! </Text>
+            <Text
+              adjustsFontSizeToFit={true}
+              style={aboutUsAdminStyles.titleText}>
+              About Us
+            </Text>
+            <Text
+              adjustsFontSizeToFit={true}
+              style={aboutUsAdminStyles.subtitleText}>
+              Welcome to the College of Information and Computing Sciences, know
+              about us!{' '}
+            </Text>
           </View>
-          
         </View>
-
       </View>
 
       <View style={aboutUsAdminStyles.vSearchBar}>
-          
-          <Icon name="search" color="#B2B2B2" style={aboutUsAdminStyles.searchBaricon} size={19}/>
-          <TextInput adjustsFontSizeToFit={true}
+        <Icon
+          name="search"
+          color="#B2B2B2"
+          style={aboutUsAdminStyles.searchBaricon}
+          size={19}
+        />
+        <TextInput
+          adjustsFontSizeToFit={true}
           style={aboutUsAdminStyles.tiSearch}
-            numberOfLines={1}
-            maxLength={50}
-            placeholder={'Search'}
-            placeholderTextColor={'#B2B2B2'}
-            onChangeText={text => {
-              setSearchTerm(text);
-              console.log(`search: ${searchTerm}`);
-            }}>
-            </TextInput>
-
+          numberOfLines={1}
+          maxLength={50}
+          placeholder={'Search'}
+          placeholderTextColor={'#B2B2B2'}
+          onChangeText={text => {
+            setSearchTerm(text);
+            console.log(`search: ${searchTerm}`);
+          }}></TextInput>
       </View>
 
       <View style={aboutUsAdminStyles.vAnnouncements}>
-
-        <ScrollView adjustsFontSizeToFit
-           contentContainerStyle={{ paddingBottom: 15}}>
+        <ScrollView
+          adjustsFontSizeToFit
+          contentContainerStyle={{paddingBottom: 15}}>
           {searchtitles}
         </ScrollView>
       </View>
-
     </View>
   );
 };
