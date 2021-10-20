@@ -101,6 +101,7 @@ const UnansweredQuestions = ({navigation}) => {
       .delete()
       .then(() => {
         console.log('ID: User deleted!', newID);
+       
       });
       
   };
@@ -110,9 +111,11 @@ const UnansweredQuestions = ({navigation}) => {
       deleteQuestion(newID);
       setisModalConfirmDelete(false);
       handleSubmitDeleteSystemLogs();
+      Alert.alert('Successfully Deleted a Question');
     }
     else {
       handleCancelDelete();
+      Alert.alert('Please try again');
     }
   }
 
@@ -156,9 +159,11 @@ const UnansweredQuestions = ({navigation}) => {
     if(inputText == 'answerQuestion') {
       handleDelete(newID);
       handleSubmitAnswerSystemLogs();
+      Alert.alert('Successfully answered a question');
     }
     else {
       handleCancel();
+      Alert.alert('Please try again');
     }
   }
 

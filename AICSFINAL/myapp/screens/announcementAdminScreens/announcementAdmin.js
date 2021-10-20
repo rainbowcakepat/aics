@@ -313,6 +313,7 @@ const AnnouncementAdmin = ({navigation}) => {
       .delete()
       .then(() => {
         console.log('ID: User deleted!', id);
+        Alert.alert('Successfully Archived an Announcement');
       });
   };
 
