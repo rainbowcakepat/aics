@@ -220,6 +220,7 @@ const AnnouncementAdmin = ({navigation}) => {
       console.log('may photo na nabago');
     }
 
+
     handleEditAnnouncement(newID); //id
     //Alert.alert('Successfulyy edited an announcement!');
     Alert.alert(

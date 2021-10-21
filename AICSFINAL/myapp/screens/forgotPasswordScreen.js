@@ -182,10 +182,10 @@ const ForgotPasswordScreen = ({navigation}) => {
           </TouchableOpacity>
 
           <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate(SignInScreen)}>
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}
-                onPress={() => navigation.navigate(SignInScreen)}>
+                >
                 Go back to Home{' '}
               </Text>
             </TouchableOpacity>

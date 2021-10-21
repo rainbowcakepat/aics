@@ -17,6 +17,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
+  widthPercentageToFonts as wf,
+  heightPercentageToFonts as hf,
 } from 'react-native-responsive-screen';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -209,13 +211,9 @@ const LoginScreen = ({navigation}) => {
           </TouchableOpacity>
 
           <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate(ForgotPasswordScreen)}>
               <Text
-                style={{color: 'gray', fontSize: hp(2)}}
-                onPress={() =>
-                  //Linking.openURL('https://console.firebase.google.com/u/0/')
-                  navigation.navigate(ForgotPasswordScreen)
-                }>
+                style={{color: 'gray', fontSize: hp(2)}}>
                 Forgot Password?{' '}
               </Text>
             </TouchableOpacity>
