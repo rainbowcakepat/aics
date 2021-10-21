@@ -63,7 +63,7 @@ export const aboutUsStudentStyles = StyleSheet.create({
     titleText: {
         marginLeft: 15, 
        marginTop: -28,
-        fontSize: wf(8.2), //34
+        fontSize: wf(7.7), //8.2
         fontFamily: 'Poppins-Medium',
         color: 'white', 
     },
@@ -73,7 +73,7 @@ export const aboutUsStudentStyles = StyleSheet.create({
         marginRight: 45,
         marginBottom: 3,
         lineHeight: 20,
-        fontSize: wf(3.5),  //14
+        fontSize: wf(3.5),  //3.8
         fontFamily: 'Poppins-Italic',
         color: 'white',  
     },

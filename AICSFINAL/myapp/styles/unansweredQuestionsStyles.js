@@ -43,7 +43,7 @@ export const unansweredQuestionsStyles = StyleSheet.create({
         marginLeft: 15, 
         marginTop: 22, 
         // fontSize: hp(4), //34
-        fontSize: wf(8.2),
+        fontSize: wf(7.7), //8.2
         marginBottom: -5,
         fontFamily: 'Poppins-Medium',
         color: 'white', 
@@ -55,7 +55,7 @@ export const unansweredQuestionsStyles = StyleSheet.create({
         marginBottom: 3,
         lineHeight: 20,
         // fontSize: hp(1.85),  //14
-        fontSize: wf(3.8), 
+        fontSize: wf(3.5), //3.8 
         fontFamily: 'Poppins-Italic',
         color: 'white',  
     },
@@ -273,7 +273,7 @@ export const unansweredQuestionsStyles = StyleSheet.create({
 
     txtTitle: {
         padding: 0,
-        fontSize: hp(3.30), //18
+        fontSize: hp(3.30), //3.30
         // fontSize: wf(4.0), //18
         color: 'white',
         fontFamily: 'Poppins-Medium',

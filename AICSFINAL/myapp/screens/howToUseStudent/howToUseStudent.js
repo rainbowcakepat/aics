@@ -726,7 +726,7 @@ const howToUseStudent = ({navigation}) => {
             <Text
               adjustsFontSizeToFit={true}
               style={howToUseStudentStyles.subtitleText}>
-              Learn how to use the application
+              Learn how to use the different features in the AICS application
             </Text>
           </View>
         </View>
@@ -758,7 +758,7 @@ const howToUseStudent = ({navigation}) => {
 
         <ScrollView
           adjustsFontSizeToFit
-          pagingEnabled={true}
+          
           contentContainerStyle={{paddingBottom: 45}}>
           {searchtitle}
         </ScrollView>

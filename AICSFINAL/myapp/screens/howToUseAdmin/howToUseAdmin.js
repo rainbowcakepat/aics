@@ -735,7 +735,7 @@ const howToUseAdmin = ({navigation}) => {
             <Text
               adjustsFontSizeToFit={true}
               style={howToUseAdminStyles.subtitleText}>
-              Learn how to use the application as an AICS Administrator{' '}
+              Learn how to use the different features of the AICS application as an AICS Administrator{' '}
             </Text>
           </View>
         </View>
@@ -767,7 +767,6 @@ const howToUseAdmin = ({navigation}) => {
 
         <ScrollView
           adjustsFontSizeToFit
-          pagingEnabled={true}
           contentContainerStyle={{paddingBottom: 45}}>
           {searchtitles}
         </ScrollView>
