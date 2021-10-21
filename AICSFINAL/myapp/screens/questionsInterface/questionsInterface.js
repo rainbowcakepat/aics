@@ -30,7 +30,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 const win = Dimensions.get('window');
 
 import {announcementStyles} from '../../styles/announcementStyles';
-import {chatbotMenuStyles} from '../../styles/chatbotMenuStyles';
+import {questionStyles} from '../../styles/questionStyles';
 
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import ChatbotComponent from '../chatbotscreens/chatbotComponent'; 
@@ -130,7 +130,7 @@ const ChatbotMenu = ({navigation}) => {
         return (
           <View key={key} >
 
-            <View style={chatbotMenuStyles.vCardContainer}>
+            <View style={questionStyles.vCardContainer}>
               
               <ChatbotComponent 
                 // item = {item}
@@ -145,10 +145,10 @@ const ChatbotMenu = ({navigation}) => {
               <View style={{flexDirection:'row', justifyContent: 'flex-end'}}>
 
                 <TouchableOpacity
-                  style={chatbotMenuStyles.toUpdate}
+                  style={questionStyles.toUpdate}
                   onPress={() => getAnnouncements(item)}>
                   <Icon name="message-square" color="white" size={18} style={{ marginBottom: 2}}/>
-                  <Text style={chatbotMenuStyles.txtUpdateArchive}> Modify </Text>
+                  <Text style={questionStyles.txtUpdateArchive}> Modify </Text>
                 </TouchableOpacity>
          
               </View>
@@ -179,30 +179,30 @@ const ChatbotMenu = ({navigation}) => {
   }
 
   return (
-    <View style={chatbotMenuStyles.lgOverallContainer}>
+    <View style={questionStyles.lgOverallContainer}>
 
-      <View style={chatbotMenuStyles.lgTopHeader}>
+      <View style={questionStyles.lgTopHeader}>
         
-        <Icon style= {chatbotMenuStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={chatbotMenuStyles.aicsLogoContainer} >
+        <Icon style= {questionStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
+        <TouchableOpacity style={questionStyles.aicsLogoContainer} >
         </TouchableOpacity>
         <Image source={require('../../assets/aicsfin.png')} style={announcementStyles.aicsLogo}/>
         
         <View style={{flexDirection: 'row'}}>
           <View>
-            <Text adjustsFontSizeToFit={true} style={chatbotMenuStyles.titleText}>Questions Interface</Text>
-            <Text adjustsFontSizeToFit={true} style={chatbotMenuStyles.subtitleText}>Add, Edit, and View Questions and Answers to CICS Chatbots! </Text>
+            <Text adjustsFontSizeToFit={true} style={questionStyles.titleText}>Questions Interface</Text>
+            <Text adjustsFontSizeToFit={true} style={questionStyles.subtitleText}>Add, Edit, and View Questions and Answers to CICS Chatbots! </Text>
           </View>
           
         </View>
 
       </View>
 
-      <View style={chatbotMenuStyles.vSearchBar}>
+      <View style={questionStyles.vSearchBar}>
           
-          <Icon name="search" color="#B2B2B2" style={chatbotMenuStyles.searchBaricon} size={19}/>
+          <Icon name="search" color="#B2B2B2" style={questionStyles.searchBaricon} size={19}/>
           <TextInput adjustsFontSizeToFit={true}
-          style={chatbotMenuStyles.tiSearch}
+          style={questionStyles.tiSearch}
             numberOfLines={1}
             maxLength={50}
             placeholder={'Search'}
@@ -215,7 +215,7 @@ const ChatbotMenu = ({navigation}) => {
 
       </View>
 
-      <View style={chatbotMenuStyles.vAnnouncements}>
+      <View style={questionStyles.vAnnouncements}>
          
         <ScrollView adjustsFontSizeToFit
           >
