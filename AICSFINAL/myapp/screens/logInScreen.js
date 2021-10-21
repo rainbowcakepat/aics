@@ -12,6 +12,7 @@ import {
   Alert,
   ImageBackground,
   TouchableWithoutFeedback,
+  KeyboardAvoidingView
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {
@@ -97,7 +98,7 @@ const LoginScreen = ({navigation}) => {
         style={{flex: 2, backgroundColor: 'red'}}
         source={require('../assets/./bg/annoucementsbg.png')}></ImageBackground>
 
-      <View
+      <KeyboardAvoidingView behavior = "padding"
         style={{
           flex: 2.5,
           backgroundColor: 'white',
@@ -140,6 +141,7 @@ const LoginScreen = ({navigation}) => {
               marginVertical: 10,
               paddingHorizontal: 10,
               paddingRight: 20,
+              color: 'black'
             }}
             placeholder="  enter your username"
             placeholderTextColor="gray"
@@ -159,6 +161,7 @@ const LoginScreen = ({navigation}) => {
               marginVertical: 10,
               paddingHorizontal: 10,
               paddingRight: 60,
+              color: 'black'
             }}
             placeholder="  enter your password"
             placeholderTextColor="gray"
@@ -229,7 +232,7 @@ const LoginScreen = ({navigation}) => {
             </TouchableOpacity> */}
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };

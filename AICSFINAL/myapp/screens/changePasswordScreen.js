@@ -12,6 +12,7 @@ import {
   Alert,
   ImageBackground,
   TouchableWithoutFeedback,
+  KeyboardAvoidingView
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {
@@ -90,7 +91,7 @@ const ChangePasswordScreen = ({navigation}) => {
         style={{flex: 2, backgroundColor: 'red'}}
         source={require('../assets/./bg/annoucementsbg.png')}></ImageBackground>
 
-      <View
+      <KeyboardAvoidingView behavior='padding'
         style={{
           flex: 2.5,
           backgroundColor: 'white',
@@ -204,16 +205,16 @@ const ChangePasswordScreen = ({navigation}) => {
           </TouchableOpacity>
 
           <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}
-                onPress={() => navigation.toggleDrawer()}>
+                >
                 Go back to Menu{' '}
               </Text>
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };
