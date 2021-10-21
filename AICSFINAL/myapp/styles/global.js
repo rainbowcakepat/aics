@@ -19,6 +19,8 @@ export const globalStyles = StyleSheet.create({
       flex: 1,
       flexDirection: 'column',
       padding: '0%',
+      alignContent:'center',
+      justifyContent:'center'
     }, 
     
   pageHeaderContainer: {

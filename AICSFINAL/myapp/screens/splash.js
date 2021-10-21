@@ -37,7 +37,7 @@ const Splash = ({navigation}) => {
                 width={240}
               />
               <Text style={styles.progressText}>
-                Waiting for Sylvia Bot to gather questions...
+                Waiting for CICS Chatbots to gather questions...
               </Text>
             </View>
           </View>
