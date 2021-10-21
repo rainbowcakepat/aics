@@ -44,7 +44,7 @@ export const systemLogsStyles = StyleSheet.create({
         marginLeft: 15, 
         marginTop: 22, 
         // fontSize: hp(4.6), //34
-        fontSize: wf(8.2), 
+        fontSize: wf(8), //8.2
         marginBottom: -5,
         fontFamily: 'Poppins-Medium',
         color: 'white', 
@@ -56,7 +56,7 @@ export const systemLogsStyles = StyleSheet.create({
         marginBottom: 3,
         lineHeight: 20,
         // fontSize: hp(1.85),  //14
-        fontSize: wf(3.8), 
+        fontSize: wf(3.5), //3.8
         fontFamily: 'Poppins-Italic',
         color: 'white',  
     },
