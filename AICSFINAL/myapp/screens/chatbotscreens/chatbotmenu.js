@@ -60,7 +60,7 @@ const chatbotData = [
       id: 3,
       imgpath: require('../../assets/./chatbots/sylvia.png'),
       name: 'Sylvia Chatbot',
-      subtitle: 'Directly chat and ask your inquiries and concerns',
+      subtitle: 'Directly chat and ask your unanswered inquiries and concerns',
       keywords: 'Others, No category, etc, none',
     },
   
