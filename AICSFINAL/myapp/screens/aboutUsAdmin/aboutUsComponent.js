@@ -20,7 +20,7 @@ function AboutUsComponents(props){
                     <View style={{flexDirection:'row',}}>
                         <Icon name="bookmark" color="gray" size={18} style={{ marginBottom: 5 }}/>
                         {/* <Text numberOfLines={2}  style={{paddingLeft: 2,fontFamily: 'Lato-Regular',  color: 'gray', fontSize: hp(1.8), marginBottom: 3, marginTop: 1}}> {props.propskeywords}</Text> */}
-                        <Text numberOfLines={2}  style={{paddingLeft: 2,fontFamily: 'Lato-Regular',  color: 'gray', fontSize: wf(3.5), marginBottom: 3, marginTop: 1}}> {props.propskeywords}</Text>
+                        <Text numberOfLines={2}  style={{paddingLeft: 2,fontFamily: 'Lato-Regular',  color: 'gray', fontSize: wf(3.5), marginBottom: 3, marginTop: 1, paddingHorizontal: 10,}}> {props.propskeywords}</Text>
 
                     </View>
                     
