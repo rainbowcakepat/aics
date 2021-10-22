@@ -174,7 +174,7 @@ const AboutUsAdmin = ({navigation}) => {
 
             {/* MODAL: ABOUT THE COLLEGE */}
           <Modal
-           animationType="slide"
+           animationType="fade"
            visible={isModalVisibleTheCollege}
            onRequestClose={() => setisModalVisibleTheCollege(false)}
           >
@@ -221,7 +221,7 @@ const AboutUsAdmin = ({navigation}) => {
           </Modal>
 
           <Modal
-           animationType="slide"
+           animationType="fade"
            visible={isModalCollegeOfferings}
            onRequestClose={() => setisModalCollegeOfferings(false)}
           >
@@ -279,7 +279,7 @@ const AboutUsAdmin = ({navigation}) => {
           </Modal>
          
           <Modal
-           animationType="slide"
+           animationType="fade"
            visible={isModalVisibleMission}
            onRequestClose={() => setisModalVisibleMission(false)}
           >
@@ -325,7 +325,7 @@ const AboutUsAdmin = ({navigation}) => {
           </Modal>
 
           <Modal
-           animationType="slide"
+           animationType="fade"
            visible={isModalVisibleVision}
            onRequestClose={() => setisModalVisibleVision(false)}
           >
@@ -372,7 +372,7 @@ const AboutUsAdmin = ({navigation}) => {
           </Modal>
 
           <Modal
-           animationType="slide"
+           animationType="fade"
            visible={isModalVisibleContactInformation}
            onRequestClose={() => setisModalVisibleContactInformation(false)}
           >

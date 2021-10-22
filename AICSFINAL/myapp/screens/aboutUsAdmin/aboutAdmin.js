@@ -463,7 +463,7 @@ const AboutUsAdmin = ({navigation}) => {
 
             {/* MODAL: ABOUT THE COLLEGE */}
             <Modal
-              animationType="slide"
+              animationType="fade"
               visible={isModalVisibleTheCollege}
               onRequestClose={() => setisModalVisibleTheCollege(false)}>
               <View style={aboutUsAdminStyles.vModalContainer}>
@@ -536,7 +536,7 @@ const AboutUsAdmin = ({navigation}) => {
             </Modal>
 
             <Modal
-              animationType="slide"
+              animationType="fade"
               visible={isModalCollegeOfferings}
               onRequestClose={() => setisModalCollegeOfferings(false)}>
               <View style={aboutUsAdminStyles.vModalContainer}>
@@ -649,7 +649,7 @@ const AboutUsAdmin = ({navigation}) => {
             </Modal>
 
             <Modal
-              animationType="slide"
+              animationType="fade"
               visible={isModalVisibleMission}
               onRequestClose={() => setisModalVisibleMission(false)}>
               <View style={aboutUsAdminStyles.vModalContainer}>
@@ -720,7 +720,7 @@ const AboutUsAdmin = ({navigation}) => {
             </Modal>
 
             <Modal
-              animationType="slide"
+              animationType="fade"
               visible={isModalVisibleVision}
               onRequestClose={() => setisModalVisibleVision(false)}>
               <View style={aboutUsAdminStyles.vModalContainer}>
@@ -791,7 +791,7 @@ const AboutUsAdmin = ({navigation}) => {
             </Modal>
 
             <Modal
-              animationType="slide"
+              animationType="fade"
               visible={isModalVisibleContactInformation}
               onRequestClose={() => setisModalVisibleContactInformation(false)}>
               <View style={aboutUsAdminStyles.vModalContainer}>
