@@ -151,6 +151,7 @@ export const howToUseAdminStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 160,
+    marginBottom: 5, 
   },
 
   txtUpdateArchive: {
