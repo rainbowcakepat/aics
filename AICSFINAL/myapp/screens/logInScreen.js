@@ -25,7 +25,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {globalStyles} from '../styles/global';
 import {auth} from '../firebase';
-import ForgotPasswordScreen from './forgotPasswordScreen';
+
 import ChangePasswordScreen from './changePasswordScreen';
 import firestore from '@react-native-firebase/firestore';
 
@@ -214,7 +214,7 @@ const LoginScreen = ({navigation}) => {
           </TouchableOpacity>
 
           <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-            <TouchableOpacity onPress={() => navigation.navigate(ForgotPasswordScreen)}>
+            <TouchableOpacity onPress={() => navigation.navigate('ForgotPasswordScreen')}>
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}>
                 Forgot Password?{' '}
