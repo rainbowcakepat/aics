@@ -19,7 +19,7 @@ class AkishaChatbot extends Component {
       messages: [
         {
           _id: 1,
-          text: `Hi! It's your girl, Akisha from UST-CICS.\n\nHow may I help you today?`,
+          text: "Hi! It's your girl, Akisha from UST-CICS.\n\nHow may I help you today?",
           createdAt: new Date(),
           user: akisha,
         },
