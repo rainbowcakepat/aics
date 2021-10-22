@@ -109,10 +109,13 @@ const styles = StyleSheet.create({
 
   sideBarTitle: {
     marginHorizontal: '2%',
-    fontFamily: 'Roboto-Medium',
+    fontFamily: 'Poppins-Medium',
     alignSelf: 'center',
+    justifyContent:'center',
+    alignItems:'center',
+    alignContent:'center',
     color: 'white',
-    fontSize: hp('1.82%'), // > 500 ? hp('1.82%') : hp('2%'),
+    fontSize: wp('3%'), // > 500 ? hp('1.82%') : hp('2%'),
   },
 
   // sideMenuProfileIcon: {

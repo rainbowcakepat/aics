@@ -14,8 +14,10 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 import {
-  heightPercentageToDP as hp,
   widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  widthPercentageToFonts as wf,
+  heightPercentageToFonts as hf,
 } from 'react-native-responsive-screen';
 
 import {AuthenticatedUserContext} from '../screens/AuthUserProvider';
@@ -79,10 +81,13 @@ const styles = StyleSheet.create({
 
   sideBarTitle: {
     marginHorizontal: '2%',
-    fontFamily: 'Roboto-Medium',
+    fontFamily: 'Poppins-Medium',
     alignSelf: 'center',
+    justifyContent:'center',
+    alignItems:'center',
+    alignContent:'center',
     color: 'white',
-    fontSize: hp('1.82%'), // > 500 ? hp('1.82%') : hp('2%'),
+    fontSize: wp('3%'), // > 500 ? hp('1.82%') : hp('2%'),
   },
 
   // sideMenuProfileIcon: {
