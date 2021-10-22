@@ -158,6 +158,7 @@ export const aboutUsAdminStyles = StyleSheet.create({
         justifyContent: "center", 
         alignItems: "center",    
         marginLeft: 170,    
+        marginBottom: 10,
 
     },
 

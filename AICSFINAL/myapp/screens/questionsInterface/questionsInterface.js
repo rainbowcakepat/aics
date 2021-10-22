@@ -217,7 +217,7 @@ const ChatbotMenu = ({navigation}) => {
 
       <View style={questionStyles.vAnnouncements}>
          
-        <ScrollView adjustsFontSizeToFit
+        <ScrollView adjustsFontSizeToFit contentContainerStyle={{paddingBottom: 35}}
           >
           {searchtitles}
         </ScrollView>

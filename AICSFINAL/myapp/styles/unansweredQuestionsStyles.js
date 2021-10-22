@@ -43,7 +43,7 @@ export const unansweredQuestionsStyles = StyleSheet.create({
         marginLeft: 15, 
         marginTop: 22, 
         // fontSize: hp(4), //34
-        fontSize: wf(7.7), //8.2
+        fontSize: wf(7.2), //8.2
         marginBottom: -5,
         fontFamily: 'Poppins-Medium',
         color: 'white', 
