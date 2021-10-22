@@ -18,32 +18,33 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import { AuthenticatedUserContext } from '../screens/AuthUserProvider';
+import {AuthenticatedUserContext} from '../screens/AuthUserProvider';
 import {auth} from '../firebase';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firestore from '@react-native-firebase/firestore';
 
 const CustomSidebarMenu = props => {
-
-  const { user } = useContext(AuthenticatedUserContext);
+  const {user} = useContext(AuthenticatedUserContext);
 
   const handleSignOut = async () => {
     try {
       await auth.signOut();
 
       const ids2 = await firestore().collection('allSystemLogs').doc();
-    
-      ids2.set({
-        activity: 'Successful Logout',
-        posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-      })
-      .then(() => {
-        console.log('system log: Successful Logout');
-      }).catch((error) => {
-        console.log('Something went wrong', error);
-      })
-      
 
+      ids2
+        .set({
+          activity: 'Successful Logout',
+          posttime: new Date(
+            firestore.Timestamp.now().seconds * 1000,
+          ).toLocaleString(),
+        })
+        .then(() => {
+          console.log('system log: Successful Logout');
+        })
+        .catch(error => {
+          console.log('Something went wrong', error);
+        });
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +55,7 @@ const CustomSidebarMenu = props => {
       <View style={styles.sideBarHeader}>
         <Image
           style={styles.sideMenuProfileIcon}
-          source={require('../assets/iicsLogo.png')}
+          source={require('../assets/ustiics.png')}
         />
         <Text style={styles.sideBarTitle}>
           {' '}
@@ -66,15 +67,17 @@ const CustomSidebarMenu = props => {
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
 
-
         <DrawerItem
           label="Logout"
           onPress={handleSignOut}
-          icon={({focused, size }) => 
-          <Icon color={focused ? '#E0394D' : '#ccc'} size={size} name={"sign-out"} />
-          }
+          icon={({focused, size}) => (
+            <Icon
+              color={focused ? '#E0394D' : '#ccc'}
+              size={size}
+              name={'sign-out'}
+            />
+          )}
         />
-
       </DrawerContentScrollView>
     </SafeAreaView>
   );

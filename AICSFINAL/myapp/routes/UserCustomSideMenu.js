@@ -18,20 +18,18 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import { AuthenticatedUserContext } from '../screens/AuthUserProvider';
+import {AuthenticatedUserContext} from '../screens/AuthUserProvider';
 //import {auth} from '../firebase';
 
-
 const UserCustomSideMenu = props => {
-
-  const { user } = useContext(AuthenticatedUserContext);
+  const {user} = useContext(AuthenticatedUserContext);
 
   return (
     <SafeAreaView style={styles.sideBarContainer}>
       <View style={styles.sideBarHeader}>
         <Image
           style={styles.sideMenuProfileIcon}
-          source={require('../assets/iicsLogo.png')}
+          source={require('../assets/ustiics.png')}
         />
         <Text style={styles.sideBarTitle}>
           {' '}
@@ -43,7 +41,6 @@ const UserCustomSideMenu = props => {
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
 
-
         {/* <DrawerItem
           label="Go Back to Home Screen"
           component={AuthStack}
@@ -51,7 +48,6 @@ const UserCustomSideMenu = props => {
           <Icon color={focused ? '#E0394D' : '#ccc'} size={size} name={"sign-out"} />
           }
         /> */}
-
       </DrawerContentScrollView>
     </SafeAreaView>
   );
