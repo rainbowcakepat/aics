@@ -154,7 +154,7 @@ export const systemLogsStyles = StyleSheet.create({
         paddingRight: 20,
         paddingBottom: 18,
 
-        height: 125, 
+        height: 127, 
         borderRadius: 20,  
         justifyContent:'space-between',
 

@@ -131,7 +131,7 @@ export const questionStyles = StyleSheet.create({
         paddingRight: 20,
         paddingBottom: 18,
 
-        height: 165, 
+        // height: 165, 
         borderRadius: 20,  
         justifyContent:'space-between',
 
