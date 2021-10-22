@@ -153,7 +153,7 @@ export const unansweredQuestionsStyles = StyleSheet.create({
         paddingRight: 20,
         paddingBottom: 18,
 
-        height: 155, 
+        // height: 155, 
         borderRadius: 20,  
         justifyContent:'space-between',
 

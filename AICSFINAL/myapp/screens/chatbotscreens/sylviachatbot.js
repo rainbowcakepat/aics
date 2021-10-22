@@ -89,7 +89,7 @@ class SylviaChatbot extends React.Component {
       })
 
       if (this.state.apiStatus == 200) {
-        if(newMessage.length > 5) {
+        if(newMessage.length >= 4) {
           isNotAWord = false;
         } else {
           isNotAWord = true;
