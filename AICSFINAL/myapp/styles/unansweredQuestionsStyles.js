@@ -343,13 +343,14 @@ export const unansweredQuestionsStyles = StyleSheet.create({
 
     btnSave: {
         width: 160,
-        height: 35,
+       // height: 35,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'flex-end',
         flexDirection:'row',
         borderRadius: 20,
         backgroundColor: '#CB0A0D',
+        marginBottom: 10,
 
         shadowColor: "#000",
         shadowOffset: {
@@ -385,7 +386,7 @@ export const unansweredQuestionsStyles = StyleSheet.create({
 
     btnCancel: {
         width: 160,
-        height: 35,
+        //height: 35,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'flex-end',
@@ -394,6 +395,7 @@ export const unansweredQuestionsStyles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#CB0A0D',
         backgroundColor: 'white',
+        marginBottom: 10,
 
         shadowColor: "#000",
         shadowOffset: {
@@ -407,13 +409,13 @@ export const unansweredQuestionsStyles = StyleSheet.create({
     },
 
     txtSave: {
-        fontSize: hp(2.3),
+        fontSize: hp(2.6),
         color: 'white',
         fontFamily: 'Poppins-Regular',
     },
 
     txtCancel: {
-        fontSize: hp(2.3),
+        fontSize: hp(2.5),
         color: 'black',
         fontFamily: 'Poppins-Regular',
     },

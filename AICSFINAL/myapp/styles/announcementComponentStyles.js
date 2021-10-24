@@ -264,7 +264,7 @@ export const announcementComponentStyles = StyleSheet.create({
 
     txtTitle: {
         padding: 0,
-        fontSize: hp(3.30), //18
+        fontSize: hf(3.29), //3.30
         color: 'white',
         fontFamily: 'Poppins-Medium',
     },
@@ -333,13 +333,14 @@ export const announcementComponentStyles = StyleSheet.create({
 
     btnSave: {
         width: 160,
-        height: 35,
+        //height: 35,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'flex-end',
         flexDirection:'row',
         borderRadius: 20,
         backgroundColor: '#CB0A0D',
+        marginBottom: 10,
 
         shadowColor: "#000",
         shadowOffset: {
@@ -375,7 +376,7 @@ export const announcementComponentStyles = StyleSheet.create({
     
     btnCancel: {
         width: 160,
-        height: 35,
+        //height: 35,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'flex-end',
@@ -384,6 +385,7 @@ export const announcementComponentStyles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#CB0A0D',
         backgroundColor: 'white',
+        marginBottom: 10,
 
         shadowColor: "#000",
         shadowOffset: {
@@ -397,13 +399,13 @@ export const announcementComponentStyles = StyleSheet.create({
     },
 
     txtSave: {
-        fontSize: hp(2.3),
+        fontSize: hp(2.6), //2.3
         color: 'white',
         fontFamily: 'Poppins-Regular',
     },
 
     txtCancel: {
-        fontSize: hp(2.3),
+        fontSize: hp(2.5),
         color: 'black',
         fontFamily: 'Poppins-Regular',
     },

@@ -56,7 +56,7 @@ export const chatbotMenuStyles = StyleSheet.create({
         marginBottom: 3,
         lineHeight: 20,
         // fontSize: hp(1.85),  //14
-        fontSize: wf(3.8), 
+        fontSize: wf(3),  //3.8
         fontFamily: 'Poppins-Italic',
         color: 'white',  
     },
