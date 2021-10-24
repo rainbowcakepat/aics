@@ -263,7 +263,7 @@ export const announcementComponentStudentStyles = StyleSheet.create({
 
     txtTitle: {
         padding: 0,
-        fontSize: hp(3.30), //18
+        fontSize: hf(3.26), //18
         color: 'white',
         fontFamily: 'Poppins-Medium',
     },
@@ -331,13 +331,14 @@ export const announcementComponentStudentStyles = StyleSheet.create({
 
     btnBack: {
         width: 160,
-        height: 35,
+        //height: 35,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'flex-end',
         flexDirection:'row',
         borderRadius: 20,
         backgroundColor: '#CB0A0D',
+        marginBottom: 13,
 
         shadowColor: "#000",
         shadowOffset: {
@@ -351,7 +352,7 @@ export const announcementComponentStudentStyles = StyleSheet.create({
     },
 
     txtBack: {
-        fontSize: hp(2.3),
+        fontSize: hf(2.6), //hp 2.3
         color: 'white',
         fontFamily: 'Poppins-Regular',
     },
