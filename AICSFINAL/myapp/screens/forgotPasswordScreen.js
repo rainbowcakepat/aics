@@ -49,7 +49,7 @@ const ForgotPasswordScreen = ({navigation}) => {
         );
       } else {
         Alert.alert(
-          'Forgot Password',
+          'Failed Forgot Password',
           'Invalid email address. Please try again.', // <- this part is optional, you can pass an empty string
           [{text: 'ok', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},         
@@ -59,8 +59,8 @@ const ForgotPasswordScreen = ({navigation}) => {
     } catch (error) {
       //Alert.alert('Invalid email address');
       Alert.alert(
-        'Forgot Password',
-        'Invalid email address. Please try again.', // <- this part is optional, you can pass an empty string
+        'Network Failed',
+        'Kindly check your internet connectivity.', // <- this part is optional, you can pass an empty string
         [{text: 'ok', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},
       );
