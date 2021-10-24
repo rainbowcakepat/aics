@@ -138,24 +138,99 @@ const AboutUsAdmin = ({navigation}) => {
     console.log('Gumagana ba to', newID);
 
     if (newID == '0generalAbout') {
-      handleEditAbout(newID);
-      setisModalVisibleTheCollege(false);
       console.log('id: ', newID);
+      console.log('length', newAbout.length);
+     
+      if(newAbout.length < 3) {
+        Alert.alert(
+          'Failed to edit information',
+          'Information cannot be blank, minimum length is 3', 
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
+      }
+      else {
+        handleEditAbout(newID);
+        setisModalVisibleTheCollege(false);
+      }
+      
+      
     } else if (newID == '1mission') {
-      handleEditMission(newID);
-      setisModalVisibleMission(false);
       console.log('id: ', newID);
+
+      if(newMission.length < 3) {
+        Alert.alert(
+          'Failed to edit information',
+          'Information cannot be blank, minimum length is 3', 
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
+      }
+      else {
+        handleEditMission(newID);
+        setisModalVisibleMission(false);
+      }
+ 
     } else if (newID == '2vision') {
-      handleEditVision(newID);
-      setisModalVisibleVision(false);
+
+      if(newVision.length < 3) {
+        Alert.alert(
+          'Failed to edit information',
+          'Information cannot be blank, minimum length is 3', 
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
+      }
+      else {
+        handleEditVision(newID);
+        setisModalVisibleVision(false);
+      }
       console.log('id: ', newID);
-    } else if (newID == '3contactInformation') {
+    } 
+    
+    else if (newID == '3contactInformation') {
+
+      if(newContactInfoEmail.length == 0 || newContactInfoFacebook.length == 0 || newContactInfoLocation.length == 0 ||
+        newContactInfoNumber.length == 0 || newContactInfoSchedule.length == 0 ) {
+        Alert.alert(
+          'Failed to edit information',
+          'Information cannot be blank, please try again', 
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
+      } 
+      else {   
       handleEditContactInformation(newID);
       setisModalVisibleContactInformation(false);
+      }
+
       console.log('id: ', newID);
     } else if (newID == '4offerings') {
-      handleEditCollegeOfferings(newID);
+
+      if(newDegreePrograms.length < 3 || newDepartments.length < 3 || newOtherInformation.length < 3) {
+        Alert.alert(
+          'Failed to edit information',
+          'Information cannot be blank, minimum length is 3', 
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
+      } 
+      else {   
+        handleEditCollegeOfferings(newID);
       setisModalCollegeOfferings(false);
+      }
+
+    
       console.log('id: ', newID);
     }
   };

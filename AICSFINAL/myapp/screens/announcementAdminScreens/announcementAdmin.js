@@ -215,7 +215,7 @@ const AnnouncementAdmin = ({navigation}) => {
     console.log('Gumagana ba to', newID);
     console.log('titles length', newTitles.length);
     
-    if(newTitles.length == 3 || newContents.length == 3) {
+    if(newTitles.length < 3 || newContents.length < 3) {
       Alert.alert(
         'Failed to edit an announcement',
         'Announcement cannot be blank, minimum length is 3', 
