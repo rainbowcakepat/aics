@@ -47,15 +47,13 @@ const ForgotPasswordScreen = ({navigation}) => {
           [{text: 'ok', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
-        //Alert.alert('Check the code sent to your email to reset your password');
       } else {
         Alert.alert(
           'Forgot Password',
           'Invalid email address. Please try again.', // <- this part is optional, you can pass an empty string
           [{text: 'ok', onPress: () => console.log('OK Pressed')}],
-          {cancelable: false},
+          {cancelable: false},         
         );
-        Alert.alert('Invalid email address. Please try again.');
       }
       setEmail(null);
     } catch (error) {
