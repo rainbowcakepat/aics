@@ -213,32 +213,54 @@ const AnnouncementAdmin = ({navigation}) => {
 
   const onPressSave = newID => {
     console.log('Gumagana ba to', newID);
-    setisModalVisible(false);
+    console.log('titles length', newTitles.length);
+    
+    if(newTitles.length == 3 || newContents.length == 3) {
+      Alert.alert(
+        'Failed to edit an announcement',
+        'Announcement cannot be blank, minimum length is 3', 
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
+      console.log('null');
+      
+    }
+    else {
+      setisModalVisible(false);
+      if (photoIsEdited) {
+        uploadPhoto(newID);
+        console.log('may photo na nabago');
+        handleEditAnnouncement(newID); //id
+        Alert.alert(
+          'Edit Announcement',
+          'Successfully edited an announcement', 
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
+      }
+      else {
+        handleEditAnnouncement(newID); //id
+        Alert.alert(
+          'Edit Announcement',
+          'Successfully edited an announcement', 
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
+      }
 
-    if (photoIsEdited) {
-      uploadPhoto(newID);
-      console.log('may photo na nabago');
+
     }
 
+   
 
-    handleEditAnnouncement(newID); //id
-    //Alert.alert('Successfulyy edited an announcement!');
-    Alert.alert(
-      'Edit Announcement',
-      'Successfully edited an announcement', 
-      [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ],
-      {cancelable: false},
-    );
+  
 
-    // if (newUrl == null) {
-    //   handleEditAnnouncement(newID); //id
-    //   Alert.alert('Successfully Posted!');
-    // } else {
-    //   handleEditAnnouncement(newID); //id
-    //   uploadPhoto(newID);
-    // }
   };
 
   const handleEditAnnouncement = id => {
