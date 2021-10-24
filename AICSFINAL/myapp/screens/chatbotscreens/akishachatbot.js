@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
+import {Alert, StyleSheet} from 'react-native';
 import {GiftedChat, Bubble} from 'react-native-gifted-chat';
 
 import {Dialogflow_V2} from 'react-native-dialogflow';
@@ -38,6 +38,13 @@ class AkishaChatbot extends Component {
       message,
       result => this.handleGoogleResponse(result),
       error => console.log(error),
+      error => Alert.alert(
+        'Network Failed ', 
+        [
+          {text: 'Kindly check your internet connectivity', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      ),
     );
   }
 
@@ -47,7 +54,14 @@ class AkishaChatbot extends Component {
     Dialogflow_V2.requestQuery(
       message,
       result => this.handleGoogleResponse(result),
-      error => console.log(error),
+      //error => console.log(error),
+      error => Alert.alert(
+        'Network Failed ', 
+        [
+          {text: 'Kindly check your internet connectivity', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      ),
     );
     let msg = {
       _id: this.state.messages.length + 1,
