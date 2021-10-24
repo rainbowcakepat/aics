@@ -44,7 +44,7 @@ export const announcementStyles = StyleSheet.create({
         marginLeft: 15, 
         marginTop: 18, 
         // fontSize: hp(4.4), //34
-        fontSize: wf(8.2), 
+        fontSize: hf(4), 
         marginBottom: -5,
         fontFamily: 'Poppins-Medium',
         color: 'white', 
@@ -56,7 +56,7 @@ export const announcementStyles = StyleSheet.create({
         marginBottom: 3,
         lineHeight: 20,
         // fontSize: hp(1.85),  //14
-        fontSize: wf(3.8), 
+        fontSize: hf(2), 
         fontFamily: 'Poppins-Italic',
         color: 'white',  
     },
