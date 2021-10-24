@@ -224,7 +224,7 @@ export const howToUseStudentStyles = StyleSheet.create({
   txtTitle: {
     padding: 0,
     paddingVertical: 20,
-    fontSize: hp(5), //18
+    fontSize: hp(3.5), //18
     color: 'white',
     fontFamily: 'Poppins-Medium',
   },

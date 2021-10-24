@@ -264,7 +264,7 @@ export const announcementComponentStyles = StyleSheet.create({
 
     txtTitle: {
         padding: 0,
-        fontSize: hf(3.29), //3.30
+        fontSize: hf(3.26), //3.30
         color: 'white',
         fontFamily: 'Poppins-Medium',
     },

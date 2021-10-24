@@ -181,7 +181,7 @@ export const howToUseAdminStyles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 5,
     marginBottom: 20,
-    backgroundColor: '#B4940D',
+    backgroundColor: '#B65858',
     justifyContent: 'center',
     // alignSelf: 'center',
 
@@ -225,7 +225,7 @@ export const howToUseAdminStyles = StyleSheet.create({
   txtTitle: {
     padding: 0,
     paddingVertical: 20,
-    fontSize: hp(5), //18
+    fontSize: hf(3.5), //18
     color: 'white',
     fontFamily: 'Poppins-Medium',
   },
