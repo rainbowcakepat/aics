@@ -134,6 +134,7 @@ const ChangePasswordScreen = ({navigation}) => {
               marginVertical: 10,
               paddingHorizontal: 10,
               paddingRight: 20,
+              color: 'black',
             }}
             placeholder="  enter your email address"
             placeholderTextColor="gray"
@@ -153,6 +154,7 @@ const ChangePasswordScreen = ({navigation}) => {
               marginVertical: 10,
               paddingHorizontal: 10,
               paddingRight: 60,
+              color: 'black',
             }}
             placeholder="  enter your current password"
             placeholderTextColor="gray"

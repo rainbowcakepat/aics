@@ -130,6 +130,7 @@ const ForgotPasswordScreen = ({navigation}) => {
               marginVertical: 10,
               paddingHorizontal: 10,
               paddingRight: 20,
+              color: 'black',
             }}
             placeholder="  enter your email address"
             placeholderTextColor="gray"
