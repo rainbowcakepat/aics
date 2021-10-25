@@ -474,9 +474,13 @@ const AnnouncementAdmin = ({navigation}) => {
               onRequestClose={() => setisModalVisible(false)}>
               <View style={announcementComponentStyles.vModalContainer}>
                 <View style={{flex: 1, backgroundColor: 'white'}}></View>
+               
+               
+                  
                 <ImageBackground
                   source={require('../../assets/./bg/annoucementsbg.png')}
                   style={announcementComponentStyles.vtxtTitle}>
+                     <ScrollView >
                   <TouchableWithoutFeedback
                     style={announcementComponentStyles.toAnnouncement}>
                     {/* <Icon name="edit-2" color="white" size={19}/> */}
@@ -485,6 +489,7 @@ const AnnouncementAdmin = ({navigation}) => {
                       Edit Announcement
                     </Text>
                   </TouchableWithoutFeedback>
+
 
                   <Text
                     style={{
@@ -496,6 +501,7 @@ const AnnouncementAdmin = ({navigation}) => {
                     Announcement Title
                   </Text>
 
+
                   <TextInput
                     style={announcementComponentStyles.txtTitle}
                     onChangeText={text => setNewTitles(text)}
@@ -505,7 +511,10 @@ const AnnouncementAdmin = ({navigation}) => {
                     multiline={true}
                     numberOfLines={2}
                     maxLength={50}></TextInput>
+
+</ScrollView>
                 </ImageBackground>
+               
 
                 <View style={announcementComponentStyles.vtxtContent}>
                   <ScrollView contentContainerStyle={{paddingBottom: 20}}> 
@@ -590,23 +599,29 @@ const AnnouncementAdmin = ({navigation}) => {
                   </ScrollView>
                 </View>
 
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    backgroundColor: '#272323', //767474
-                    paddingTop: 10,
-                    paddingBottom: 5,
-                    justifyContent: 'space-around',
-                  }}>
+                <View style={{flex:1, alignContent:'flex-end', justifyContent:'flex-end', backgroundColor:'#F5F5F5'}}>
+
+                <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    
+    elevation: 15,
+
+}}>
                   <TouchableOpacity
                     onPress={choosePhotoFromImageLibrary}
                     style={{flexDirection: 'column', alignItems: 'center'}}>
-                    <Icon name="image" color="white" size={21} />
+                    <Icon name="image" color="maroon" size={22} />
                     <Text
                       style={{
-                        color: 'white',
+                        color: 'maroon',
                         fontFamily: 'Poppins-Medium',
-                        fontSize: hp(1.8),
+                        fontSize: hp(1.5),
                       }}>
                       {' '}
                      Add/Replace
@@ -618,13 +633,13 @@ const AnnouncementAdmin = ({navigation}) => {
                   <TouchableOpacity
                     onPress={() => setisModalVisible(false)}
                     style={{flexDirection: 'column', alignItems: 'center'}}>
-                    <Icon name="x-circle" color="white" size={21} />
+                    <Icon name="x-circle" color="maroon" size={22} />
                     <Text
                       style={{
-                        color: 'white',
+                        color: 'maroon',
                         fontFamily: 'Poppins-Medium',
                         marginTop: 1,
-                        fontSize: hp(1.8),
+                        fontSize: hp(1.5),
                       }}>
                       {' '}
                       Cancel Edit
@@ -634,18 +649,19 @@ const AnnouncementAdmin = ({navigation}) => {
                   <TouchableOpacity
                     onPress={() => onPressSave(newID)}
                     style={{flexDirection: 'column', alignItems: 'center'}}>
-                    <Icon name="check-circle" color="white" size={20} />
+                    <Icon name="check-circle" color="maroon" size={22} />
                     <Text
                       style={{
-                        color: 'white',
+                        color: 'maroon',
                         fontFamily: 'Poppins-Medium',
-                        fontSize: hp(1.8),
+                        fontSize: hp(1.5),
                         marginTop: 2,
                       }}>
                       Save Changes
                     </Text>
                   </TouchableOpacity>
                  
+                </View>
                 </View>
 
                 {/*<View style={{backgroundColor: '#F5F5F5', flex: 1}}>

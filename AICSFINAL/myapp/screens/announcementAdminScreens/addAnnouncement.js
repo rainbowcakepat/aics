@@ -231,19 +231,31 @@ navigation
           </ScrollView>
         </View>
 
-       <View style={{flexDirection:'row', backgroundColor:'#272323', padding:5, justifyContent:'space-around', }}>
-     
+
+       <View style={{backgroundColor:'white'}}>
+     <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    
+    elevation: 15,
+
+}}>
           <TouchableOpacity  onPress={choosePhotoFromImageLibrary} style={{flexDirection:'column', alignItems:'center', }} >
            {/* <Image source={require('../../assets/./icons/addimage.png')} style={{height: 30, width: 40}}></Image> */}
-           <Icon name="image" color="white" size={20}/>
-           <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(1.8)}}> Add Image</Text>
+           <Icon name="image" color="maroon" size={22}/>
+           <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Add Image</Text>
 
           </TouchableOpacity>
 
           <TouchableOpacity 
                   onPress={() => navigation.navigate("Announcements")} style={{flexDirection:'column', alignItems:'center'}}>
-                    <Icon name="x-circle" color="white" size={20}/>
-                    <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(1.8)}}> Cancel</Text>
+                    <Icon name="x-circle" color="maroon" size={22}/>
+                    <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
           </TouchableOpacity>
      
           {
@@ -252,8 +264,8 @@ navigation
             
 
             <TouchableOpacity onPress={addAnnouncementNow} style={{flexDirection:'column', alignItems:'center'}}>
-            <Icon name="check-circle" color="white" size={20}/>
-            <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(1.8)}}> Submit </Text>
+            <Icon name="check-circle" color="maroon" size={22}/>
+            <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
             </TouchableOpacity>
 
             
@@ -261,6 +273,7 @@ navigation
           : 
          null
         }
+        </View>
       </View>
 
 

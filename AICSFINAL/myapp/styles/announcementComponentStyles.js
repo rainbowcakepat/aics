@@ -210,7 +210,7 @@ export const announcementComponentStyles = StyleSheet.create({
         height: win.height,
         // backgroundColor: '#FDDFE2' 
         backgroundColor: 'white',
-        flex:1,
+       flex:1,
     },
    
 
@@ -249,6 +249,7 @@ export const announcementComponentStyles = StyleSheet.create({
         flexDirection: 'column',
         overflow: 'hidden',
         resizeMode: 'cover',
+       
 
         shadowColor: "#000",
         shadowOffset: {
@@ -267,6 +268,7 @@ export const announcementComponentStyles = StyleSheet.create({
         fontSize: hf(3.26), //3.30
         color: 'white',
         fontFamily: 'Poppins-Medium',
+        
     },
   
     vtxtContent:{

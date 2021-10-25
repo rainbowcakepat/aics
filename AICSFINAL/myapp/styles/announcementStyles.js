@@ -138,6 +138,8 @@ export const announcementStyles = StyleSheet.create({
         paddingLeft: 40,
         paddingRight: 25,
         marginBottom: 20,
+        textAlignVertical: 'top',
+        paddingTop: 15,
         borderLeftWidth: 12,
         borderColor: '#CB0A0D',
         borderRadius: 18,
