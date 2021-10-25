@@ -611,14 +611,14 @@ const AboutUsAdmin = ({navigation}) => {
 
 <TouchableOpacity 
                  onPress={() => setisModalVisibleTheCollege(false)} style={{flexDirection:'column', alignItems:'center'}}>
-                    <Icon name="x-circle" color="maroon" size={22}/>
-                    <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
+                    <Icon name="x-circle" color="#B00A0A" size={22}/>
+                    <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
           </TouchableOpacity>
      
 
 <TouchableOpacity  onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
-            <Icon name="check-circle" color="maroon" size={22}/>
-            <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
+            <Icon name="check-circle" color="#B00A0A" size={22}/>
+            <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
             </TouchableOpacity>
 
            
@@ -755,14 +755,14 @@ const AboutUsAdmin = ({navigation}) => {
 
 <TouchableOpacity 
                     onPress={() => setisModalCollegeOfferings(false)} style={{flexDirection:'column', alignItems:'center'}}>
-                    <Icon name="x-circle" color="maroon" size={22}/>
-                    <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
+                    <Icon name="x-circle" color="#B00A0A" size={22}/>
+                    <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
           </TouchableOpacity>
      
 
 <TouchableOpacity   onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
-            <Icon name="check-circle" color="maroon" size={22}/>
-            <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
+            <Icon name="check-circle" color="#B00A0A" size={22}/>
+            <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
             </TouchableOpacity>
 
            
@@ -856,14 +856,14 @@ const AboutUsAdmin = ({navigation}) => {
 
 <TouchableOpacity 
                 onPress={() => setisModalVisibleMission(false)} style={{flexDirection:'column', alignItems:'center'}}>
-                    <Icon name="x-circle" color="maroon" size={22}/>
-                    <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
+                    <Icon name="x-circle" color="#B00A0A" size={22}/>
+                    <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
           </TouchableOpacity>
      
 
 <TouchableOpacity  onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
-            <Icon name="check-circle" color="maroon" size={22}/>
-            <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
+            <Icon name="check-circle" color="#B00A0A" size={22}/>
+            <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
             </TouchableOpacity>
 
            
@@ -958,14 +958,14 @@ const AboutUsAdmin = ({navigation}) => {
 
 <TouchableOpacity 
                  onPress={() => setisModalVisibleVision(false)} style={{flexDirection:'column', alignItems:'center'}}>
-                    <Icon name="x-circle" color="maroon" size={22}/>
-                    <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
+                    <Icon name="x-circle" color="#B00A0A" size={22}/>
+                    <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
           </TouchableOpacity>
      
 
 <TouchableOpacity  onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
-            <Icon name="check-circle" color="maroon" size={22}/>
-            <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
+            <Icon name="check-circle" color="#B00A0A" size={22}/>
+            <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
             </TouchableOpacity>
 
            
@@ -1193,14 +1193,14 @@ const AboutUsAdmin = ({navigation}) => {
 
 <TouchableOpacity 
                   onPress={() => setisModalVisibleContactInformation(false)} style={{flexDirection:'column', alignItems:'center'}}>
-                    <Icon name="x-circle" color="maroon" size={22}/>
-                    <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
+                    <Icon name="x-circle" color="#B00A0A" size={22}/>
+                    <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
           </TouchableOpacity>
      
 
 <TouchableOpacity  onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
-            <Icon name="check-circle" color="maroon" size={22}/>
-            <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
+            <Icon name="check-circle" color="#B00A0A" size={22}/>
+            <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
             </TouchableOpacity>
 
            

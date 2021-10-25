@@ -616,10 +616,10 @@ const AnnouncementAdmin = ({navigation}) => {
                   <TouchableOpacity
                     onPress={choosePhotoFromImageLibrary}
                     style={{flexDirection: 'column', alignItems: 'center'}}>
-                    <Icon name="image" color="maroon" size={22} />
+                    <Icon name="image" color="#B00A0A" size={22} />
                     <Text
                       style={{
-                        color: 'maroon',
+                        color: '#B00A0A',
                         fontFamily: 'Poppins-Medium',
                         fontSize: hp(1.5),
                       }}>
@@ -633,10 +633,10 @@ const AnnouncementAdmin = ({navigation}) => {
                   <TouchableOpacity
                     onPress={() => setisModalVisible(false)}
                     style={{flexDirection: 'column', alignItems: 'center'}}>
-                    <Icon name="x-circle" color="maroon" size={22} />
+                    <Icon name="x-circle" color="#B00A0A" size={22} />
                     <Text
                       style={{
-                        color: 'maroon',
+                        color: '#B00A0A',
                         fontFamily: 'Poppins-Medium',
                         marginTop: 1,
                         fontSize: hp(1.5),
@@ -649,10 +649,10 @@ const AnnouncementAdmin = ({navigation}) => {
                   <TouchableOpacity
                     onPress={() => onPressSave(newID)}
                     style={{flexDirection: 'column', alignItems: 'center'}}>
-                    <Icon name="check-circle" color="maroon" size={22} />
+                    <Icon name="check-circle" color="#B00A0A" size={22} />
                     <Text
                       style={{
-                        color: 'maroon',
+                        color: '#B00A0A',
                         fontFamily: 'Poppins-Medium',
                         fontSize: hp(1.5),
                         marginTop: 2,
