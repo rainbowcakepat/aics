@@ -270,7 +270,7 @@ export const announcementComponentStyles = StyleSheet.create({
     },
   
     vtxtContent:{
-        flex: 4, 
+        flex: 6, 
         backgroundColor: '#F5F5F5',
         // borderTopLeftRadius: 30,
         // borderTopRightRadius: 30,      

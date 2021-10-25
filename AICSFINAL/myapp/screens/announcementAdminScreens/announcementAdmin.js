@@ -108,10 +108,8 @@ const AnnouncementAdmin = ({navigation}) => {
         //Alert.alert('Attached an image', imageUri);
         Alert.alert(
           'Attached an image',
-          imageUri, 
-          [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
+          imageUri,
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
         setphotoIsEdited(true);
@@ -119,10 +117,8 @@ const AnnouncementAdmin = ({navigation}) => {
       .catch(e => {
         Alert.alert(
           'Failed to attach an image',
-          'Unable to attach the image, check your network connectivity', 
-          [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
+          'Unable to attach the image, check your network connectivity',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
         console.log(e);
@@ -177,20 +173,16 @@ const AnnouncementAdmin = ({navigation}) => {
       // Alert.alert('Successfully edited an announcem!');
       Alert.alert(
         'Upload a photo',
-        'Successfully uploaded in firestore cloud', 
-        [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
+        'Successfully uploaded in firestore cloud',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},
       );
     } catch (e) {
       console.log(e);
       Alert.alert(
         'Failed to upload a photo',
-        'Unable to upload a photo, please check your connectivity', 
-        [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
+        'Unable to upload a photo, please check your connectivity',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},
       );
       //Alert.alert('Something went wrong, please try again');
@@ -214,20 +206,16 @@ const AnnouncementAdmin = ({navigation}) => {
   const onPressSave = newID => {
     console.log('Gumagana ba to', newID);
     console.log('titles length', newTitles.length);
-    
-    if(newTitles.length < 3 || newContents.length < 3) {
+
+    if (newTitles.length < 3 || newContents.length < 3) {
       Alert.alert(
         'Failed to edit an announcement',
-        'Announcement cannot be blank, minimum length is 3', 
-        [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
+        'Announcement cannot be blank, minimum length is 3',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},
       );
       console.log('null');
-      
-    }
-    else {
+    } else {
       setisModalVisible(false);
       if (photoIsEdited) {
         uploadPhoto(newID);
@@ -235,32 +223,20 @@ const AnnouncementAdmin = ({navigation}) => {
         handleEditAnnouncement(newID); //id
         Alert.alert(
           'Edit Announcement',
-          'Successfully edited an announcement', 
-          [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
+          'Successfully edited an announcement',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
-      }
-      else {
+      } else {
         handleEditAnnouncement(newID); //id
         Alert.alert(
           'Edit Announcement',
-          'Successfully edited an announcement', 
-          [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
+          'Successfully edited an announcement',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
       }
-
-
     }
-
-   
-
-  
-
   };
 
   const handleEditAnnouncement = id => {
@@ -289,10 +265,8 @@ const AnnouncementAdmin = ({navigation}) => {
         //Alert.alert('Unable to edit announcement, please try again');
         Alert.alert(
           'Edit Announcement',
-          'Unable to edit announcement, please try again', 
-          [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
+          'Unable to edit announcement, please try again',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
       });
@@ -387,10 +361,8 @@ const AnnouncementAdmin = ({navigation}) => {
         //Alert.alert('Successfully Archived an Announcement');
         Alert.alert(
           'Archive Announcement',
-          'Successfully archived an announcement', 
-          [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
+          'Successfully archived an announcement',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
       });
@@ -536,7 +508,7 @@ const AnnouncementAdmin = ({navigation}) => {
                 </ImageBackground>
 
                 <View style={announcementComponentStyles.vtxtContent}>
-                  <ScrollView>
+                  <ScrollView contentContainerStyle={{paddingBottom: 20}}> 
                     <Text
                       style={{
                         fontFamily: 'Poppins-Regular',
@@ -559,77 +531,139 @@ const AnnouncementAdmin = ({navigation}) => {
                       multiline={true}
                       numberOfLines={5}
                       maxLength={550}></TextInput>
+
+                    {photoIsEdited ? 
+                    <View style={announcementStyles.vtxtContent}>
+                      <Text  style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: 'gray',paddingBottom: 10,
+                      }}>Click Image to view</Text>
+                  <ImageModal source={{uri: newPhoto}} style={{ width: 500, height: 250, resizeMode: 'contain'}}></ImageModal>  
+                 </View> : newUrl ?
+               <View style={announcementStyles.vtxtContent}>
+                   <Text  style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: 'gray',paddingBottom: 10,
+                      }}>Click for full image preview:</Text>
+               <ImageModal source={{uri: newUrl}} style={{ width: 500, height: 250, resizeMode: 'contain'}}></ImageModal>  
+              </View> : null
+
+                  
+                  
+                  
+                  }
+
+
+                   {/* } {photoIsEdited ? (
+                      <ImageModal
+                        source={{
+                          uri: newPhoto
+                            ? newPhoto
+                            : 'https://firebasestorage.googleapis.com/v0/b/samplelogin-37250.appspot.com/o/aicsnoimage.png?alt=media&token=c32b87b2-ea3e-48f7-9ddb-decb500a12e0',
+                        }}
+                        style={{
+                          width: win.width,
+                          height: 500,
+                          resizeMode: 'contain',
+                        }}
+                      />
+                    ) : (
+                      <ImageModal
+                        source={{
+                          uri: newUrl
+                            ? newUrl
+                            : 'https://firebasestorage.googleapis.com/v0/b/samplelogin-37250.appspot.com/o/aicsnoimage.png?alt=media&token=c32b87b2-ea3e-48f7-9ddb-decb500a12e0',
+                        }}
+                        style={{
+                          width: 250,
+                          height: 500,
+                          resizeMode: 'contain',
+                        }}
+                      />
+                    )} 
+
+                      */}
                   </ScrollView>
                 </View>
 
-                <View style={{backgroundColor: '#F5F5F5', flex: 1}}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    backgroundColor: '#272323', //767474
+                    paddingTop: 10,
+                    paddingBottom: 5,
+                    justifyContent: 'space-around',
+                  }}>
+                  <TouchableOpacity
+                    onPress={choosePhotoFromImageLibrary}
+                    style={{flexDirection: 'column', alignItems: 'center'}}>
+                    <Icon name="image" color="white" size={21} />
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontFamily: 'Poppins-Medium',
+                        fontSize: hp(1.8),
+                      }}>
+                      {' '}
+                     Add/Replace
+                    </Text>
+                  </TouchableOpacity>
+
+                 
+
+                  <TouchableOpacity
+                    onPress={() => setisModalVisible(false)}
+                    style={{flexDirection: 'column', alignItems: 'center'}}>
+                    <Icon name="x-circle" color="white" size={21} />
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontFamily: 'Poppins-Medium',
+                        marginTop: 1,
+                        fontSize: hp(1.8),
+                      }}>
+                      {' '}
+                      Cancel Edit
+                    </Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => onPressSave(newID)}
+                    style={{flexDirection: 'column', alignItems: 'center'}}>
+                    <Icon name="check-circle" color="white" size={20} />
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontFamily: 'Poppins-Medium',
+                        fontSize: hp(1.8),
+                        marginTop: 2,
+                      }}>
+                      Save Changes
+                    </Text>
+                  </TouchableOpacity>
+                 
+                </View>
+
+                {/*<View style={{backgroundColor: '#F5F5F5', flex: 1}}>
                   <TouchableOpacity
                     style={announcementComponentStyles.toPhoto}
                     onPress={choosePhotoFromImageLibrary}>
                     {/* <Icon name="plus" color="white" size={21}/>
-                    <Icon name="image" color="white" size={21}/> */}
+                    <Icon name="image" color="white" size={21}/>
                     <Image
                       source={require('../../assets/./icons/addimage.png')}
                       style={{height: 40, width: 45}}></Image>
-                    {/* <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(2)}}> Attach an image</Text> */}
+                    {/* <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(2)}}> Attach an image</Text>
                   </TouchableOpacity>
                 </View>
 
-                {/* {newUrl == null && newPhoto == null ? */}
-                <ScrollView style={announcementComponentStyles.imageContainer}>
-                  {/* <Image
-                   source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : null}}
-                   style={{
-                     width: 500,
-                     height: 500,
-                     resizeMode: 'contain',
-                   }}>
-                   </Image> */}
-                  {/* 
-                  {
-                    newUrl && newPhoto ? 
-                    <ImageModal
-                    source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : null}}
-                    style={{
-                      width: 500,
-                      height: 500,
-                      resizeMode: 'contain',}}
-                  />
-                 :
-                    <Text>Meron</Text>
-                  } */}
 
-                  {photoIsEdited ? (
-                    <ImageModal
-                      source={{
-                        uri: newPhoto
-                          ? newPhoto
-                          : 'https://firebasestorage.googleapis.com/v0/b/samplelogin-37250.appspot.com/o/aicsnoimage.png?alt=media&token=c32b87b2-ea3e-48f7-9ddb-decb500a12e0',
-                      }}
-                      style={{
-                        width: win.width,
-                        height: 500,
-                        resizeMode: 'contain',
-                      }}
-                    />
-                  ) : (
-                    <ImageModal
-                      source={{
-                        uri: newUrl
-                          ? newUrl
-                          : 'https://firebasestorage.googleapis.com/v0/b/samplelogin-37250.appspot.com/o/aicsnoimage.png?alt=media&token=c32b87b2-ea3e-48f7-9ddb-decb500a12e0',
-                      }}
-                      style={{
-                        width: win.width,
-                        height: 500,
-                        resizeMode: 'contain',
-                      }}
-                    />
-                  )}
-                </ScrollView>
-                {/* : 
-                  null
-                } */}
+
+
 
                 <View style={announcementComponentStyles.vSaveCancel}>
                   <TouchableOpacity
@@ -648,6 +682,7 @@ const AnnouncementAdmin = ({navigation}) => {
                     </Text>
                   </TouchableOpacity>
                 </View>
+                */}
               </View>
             </Modal>
 

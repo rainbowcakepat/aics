@@ -231,19 +231,19 @@ navigation
           </ScrollView>
         </View>
 
-       <View style={{flexDirection:'row', backgroundColor:'#F6F6F6', padding:5, justifyContent:'space-around', }}>
+       <View style={{flexDirection:'row', backgroundColor:'#272323', padding:5, justifyContent:'space-around', }}>
      
           <TouchableOpacity  onPress={choosePhotoFromImageLibrary} style={{flexDirection:'column', alignItems:'center', }} >
            {/* <Image source={require('../../assets/./icons/addimage.png')} style={{height: 30, width: 40}}></Image> */}
-           <Icon name="image" color="gray" size={20}/>
-           <Text style={{color: 'gray', fontFamily: 'Poppins-Medium', fontSize: hp(1.8)}}> Add Image</Text>
+           <Icon name="image" color="white" size={20}/>
+           <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(1.8)}}> Add Image</Text>
 
           </TouchableOpacity>
 
           <TouchableOpacity 
                   onPress={() => navigation.navigate("Announcements")} style={{flexDirection:'column', alignItems:'center'}}>
-                    <Icon name="x-circle" color="gray" size={20}/>
-                    <Text style={{color: 'gray', fontFamily: 'Poppins-Medium', fontSize: hp(1.8)}}> Cancel</Text>
+                    <Icon name="x-circle" color="white" size={20}/>
+                    <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(1.8)}}> Cancel</Text>
           </TouchableOpacity>
      
           {
@@ -252,8 +252,8 @@ navigation
             
 
             <TouchableOpacity onPress={addAnnouncementNow} style={{flexDirection:'column', alignItems:'center'}}>
-            <Icon name="check-circle" color="gray" size={20}/>
-            <Text style={{color: 'gray', fontFamily: 'Poppins-Medium', fontSize: hp(1.8)}}> Submit</Text>
+            <Icon name="check-circle" color="white" size={20}/>
+            <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(1.8)}}> Submit </Text>
             </TouchableOpacity>
 
             
