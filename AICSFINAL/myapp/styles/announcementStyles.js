@@ -20,7 +20,7 @@ export const announcementStyles = StyleSheet.create({
 
     //Top Header: Black
     lgTopHeader: {
-        flex: 2.2, 
+        flex: 2, 
         backgroundColor: '#CB0A0D',
     },
 
@@ -41,19 +41,23 @@ export const announcementStyles = StyleSheet.create({
     },
 
     titleText: {
-        marginLeft: 15, 
-        marginTop: 18, 
+        //marginLeft: 15, 
+        //marginTop: 30,
+        paddingHorizontal:20,
+        paddingTop: 20, 
         // fontSize: hp(4.4), //34
         fontSize: hf(4), 
-        marginBottom: -5,
+        //marginBottom: -5,
         fontFamily: 'Poppins-Medium',
         color: 'white', 
     },
 
     subtitleText: {
-        marginLeft: 20, 
-        marginRight: 35,
-        marginBottom: 3,
+        paddingHorizontal:25,
+        paddingTop: 5, 
+        // marginLeft: 20, 
+        // marginRight: 35,
+        // marginBottom: 3,
         lineHeight: 20,
         // fontSize: hp(1.85),  //14
         fontSize: hf(2), 
@@ -85,7 +89,7 @@ export const announcementStyles = StyleSheet.create({
 
     vBodyContainer:{
         flex: 4, 
-        marginTop: -20,
+        marginTop: 0,
         backgroundColor: 'white', 
         borderTopLeftRadius: 30, 
         borderTopRightRadius: 30, 
@@ -93,13 +97,14 @@ export const announcementStyles = StyleSheet.create({
     
     svBody: {
         marginHorizontal: 30,
-        marginTop: 25
+        marginTop: 15
 
     },
 
     announcementTitleLabel:{
+        marginTop: 12,
         marginBottom: 8,
-        fontSize: hp(2.5), //18
+        fontSize: hf(2.2), //18
         color: '#A70B0E',
         fontFamily: 'Poppins-Medium',
     },
@@ -111,7 +116,7 @@ export const announcementStyles = StyleSheet.create({
         borderLeftWidth: 12,
         borderColor: '#CB0A0D',
         borderRadius: 18,
-        fontSize: hp(2), //14
+        fontSize: hf(2), //14
         color: 'black',
         backgroundColor: '#FCF6F6',
         fontFamily: 'Poppins-Medium',
@@ -119,11 +124,13 @@ export const announcementStyles = StyleSheet.create({
 
     announcementContentLabel: {
         marginBottom: 8,
-        fontSize: hp(2.5), //18
+        fontSize: hp(2.2), //18
         color: '#A70B0E',
         fontFamily: 'Poppins-Medium',
         // fontFamily: 'Roboto-Medium',
     },
+
+
 
     announcementContentText:{
         paddingLeft: 40,
@@ -136,8 +143,15 @@ export const announcementStyles = StyleSheet.create({
         color: 'black',
         backgroundColor: '#FCF6F6',
         fontFamily: 'Poppins-Medium',
-
         
+    },
+
+    announcementNoImage: {
+        fontSize: hf(2.2),  //18
+        marginBottom: 20,
+        color: '#A70B0E',
+        fontFamily: 'Poppins-Medium',
+        // fontFamily: 'Roboto-Medium',
     },
 
     //Buttons:
@@ -173,16 +187,16 @@ export const announcementStyles = StyleSheet.create({
     //Image Container:
 
     imgContainer: {
-        flex: 1,
+        //flex: 1,
         backgroundColor: 'white',
-        paddingBottom: 10,
-        paddingTop: 10,
+        // paddingBottom: 10,
+        // paddingTop: 5,
+        alignSelf:'center',
+        justifyContent:'center',
+        alignItems:'center'
     },
 
-    svImage: {
-        backgroundColor: 'white',
-    },
-
+    
     //Submit Container:
 
     submitContainer: {

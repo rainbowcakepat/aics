@@ -203,16 +203,35 @@ navigation
         </LinearGradient>
 
         <View style={announcementStyles.vBodyContainer}>
-          <ScrollView style={announcementStyles.svBody}>
+          <ScrollView style={announcementStyles.svBody} contentContainerStyle={{ paddingBottom: 10}}>
             <Text adjustsFontSizeToFit={true} style={announcementStyles.announcementTitleLabel}>Announcement Title: </Text>
             <TextInput adjustsFontSizeToFit={true}  style={announcementStyles.announcementTitleText} placeholder={"Your Title here..."} placeholderTextColor={'gray'} value={titles} maxLength={50} multiline={true} numberOfLines={2} onChangeText={(titles) => {setTitle(titles); setValidation1(titles); console.log(`title: ${titles}`)}}></TextInput>
             <Text adjustsFontSizeToFit={true}  style={announcementStyles.announcementContentLabel}>What's the latest news?</Text>
             <TextInput adjustsFontSizeToFit={true}  style={announcementStyles.announcementContentText} placeholder={"Your Content here..."} placeholderTextColor={'gray'} value={contents} maxLength={550} numberOfLines={7} multiline={true} onChangeText={(contents) => {setContent(contents); setValidation2(contents); console.log(`content: ${contents}`)}}></TextInput>
-            {/* <Text>Link</Text>
-            <TextInput placeholder={"Link here"} value={links}  maxLength={150} numberOfLines={3} multiline={true} onChangeText={(links) => {setLink(links); console.log(`link: ${links}`)}}></TextInput> */}
+            
+            
+
+            { photo ?  
+            <View>
+             <Text style={announcementStyles.announcementNoImage}>Click for full image preview:</Text>
+              <View style={announcementStyles.imgContainer}>
+                <ImageModal source={{uri: photo}} style={{ width: 100, height: 150, resizeMode: 'contain'}}></ImageModal> 
+             </View>
+            </View>
+            :  
+            <View style={announcementStyles.imgContainer}>
+            <Text adjustsFontSizeToFit={true} style={{color: '#A70B0E',
+        fontFamily: 'Poppins-Medium', marginBottom: 8, }}>No attached image</Text>
+            </View>
+
+
+            }
+           
+        
           </ScrollView>
         </View>
-   
+
+       
         <View style={announcementStyles.btnContainer}>
           <TouchableOpacity style={announcementStyles.toImage} onPress={choosePhotoFromImageLibrary} >
             {/* <Icon name="image" color="white" size={24}/>
@@ -223,11 +242,11 @@ navigation
 
         </View>
 
-        <View style={announcementStyles.imgContainer}>
+        {/* <View style={announcementStyles.imgContainer}>
           <ScrollView style={announcementStyles.svImage}>
             <ImageModal source={{uri: photo ? photo : null}} style={{ width: 500, height: 500, resizeMode: 'contain', alignSelf: 'center'}}></ImageModal>
           </ScrollView>
-        </View>
+        </View> */}
 
         
         <View style={announcementStyles.submitContainer}>
