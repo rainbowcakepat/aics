@@ -642,7 +642,7 @@ const AnnouncementAdmin = ({navigation}) => {
                         fontSize: hp(1.5),
                       }}>
                       {' '}
-                      Cancel Edit
+                      Cancel 
                     </Text>
                   </TouchableOpacity>
 
