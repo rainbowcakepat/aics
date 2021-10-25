@@ -247,15 +247,13 @@ const AnnouncementStudent = ({navigation}) => {
                 </ScrollView>
                 </View>
 
-            
-
-
-                <View style={announcementComponentStudentStyles.vSaveCancel}>
+              
+                 <View style={announcementComponentStudentStyles.vSaveCancel}>
                   <TouchableOpacity style={announcementComponentStudentStyles.btnBack}  onPress={() => setisModalVisible(false)}>
                     <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
                     <Text style={announcementComponentStudentStyles.txtBack}>  Back</Text>
                   </TouchableOpacity>
-                </View>
+                </View> 
                 
               </View>
 

@@ -210,7 +210,7 @@ export const announcementComponentStyles = StyleSheet.create({
         height: win.height,
         // backgroundColor: '#FDDFE2' 
         backgroundColor: 'white',
-        // flex:1,
+        flex:1,
     },
    
 
