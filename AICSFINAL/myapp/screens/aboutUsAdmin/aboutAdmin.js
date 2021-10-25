@@ -593,8 +593,40 @@ const AboutUsAdmin = ({navigation}) => {
                       maxLength={800}></TextInput>
                   </ScrollView>
                 </View>
+                </View>
 
-                <View style={aboutUsAdminStyles.vSaveCancel}>
+                <View style={{backgroundColor:'#F5F5F5', alignContent:'flex-end', justifyContent:'flex-end',}}>
+     <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    
+    elevation: 15,
+
+}}>
+
+<TouchableOpacity 
+                 onPress={() => setisModalVisibleTheCollege(false)} style={{flexDirection:'column', alignItems:'center'}}>
+                    <Icon name="x-circle" color="maroon" size={22}/>
+                    <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
+          </TouchableOpacity>
+     
+
+<TouchableOpacity  onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
+            <Icon name="check-circle" color="maroon" size={22}/>
+            <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
+            </TouchableOpacity>
+
+           
+
+  </View>
+  </View>
+
+                {/* <View style={aboutUsAdminStyles.vSaveCancel}>
                   <TouchableOpacity
                     style={aboutUsAdminStyles.btnSave}
                     onPress={() => onPressSave(newID)}>
@@ -607,7 +639,7 @@ const AboutUsAdmin = ({navigation}) => {
                     <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
                   </TouchableOpacity>
                 </View>
-              </View>
+              </View> */}
             </Modal>
 
             <Modal
@@ -707,10 +739,41 @@ const AboutUsAdmin = ({navigation}) => {
                   </ScrollView>
                 </View>
 
-                <View style={aboutUsAdminStyles.vSaveCancel}>
+                <View style={{backgroundColor:'#F5F5F5', alignContent:'flex-end', justifyContent:'flex-end',}}>
+     <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    
+    elevation: 15,
+
+}}>
+
+<TouchableOpacity 
+                    onPress={() => setisModalCollegeOfferings(false)} style={{flexDirection:'column', alignItems:'center'}}>
+                    <Icon name="x-circle" color="maroon" size={22}/>
+                    <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
+          </TouchableOpacity>
+     
+
+<TouchableOpacity   onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
+            <Icon name="check-circle" color="maroon" size={22}/>
+            <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
+            </TouchableOpacity>
+
+           
+
+  </View>
+  </View>
+
+                {/* <View style={aboutUsAdminStyles.vSaveCancel}>
                   <TouchableOpacity
                     style={aboutUsAdminStyles.btnSave}
-                    onPress={() => onPressSave(newID)}>
+                   >
                     <Text style={aboutUsAdminStyles.txtSave}>Save</Text>
                   </TouchableOpacity>
 
@@ -719,7 +782,7 @@ const AboutUsAdmin = ({navigation}) => {
                     onPress={() => setisModalCollegeOfferings(false)}>
                     <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
                   </TouchableOpacity>
-                </View>
+                </View> */}
               </View>
             </Modal>
 
@@ -777,7 +840,38 @@ const AboutUsAdmin = ({navigation}) => {
                       maxLength={600}></TextInput>
                   </ScrollView>
                 </View>
+                <View style={{backgroundColor:'#F5F5F5', alignContent:'flex-end', justifyContent:'flex-end',}}>
+     <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    
+    elevation: 15,
 
+}}>
+
+<TouchableOpacity 
+                onPress={() => setisModalVisibleMission(false)} style={{flexDirection:'column', alignItems:'center'}}>
+                    <Icon name="x-circle" color="maroon" size={22}/>
+                    <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
+          </TouchableOpacity>
+     
+
+<TouchableOpacity  onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
+            <Icon name="check-circle" color="maroon" size={22}/>
+            <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
+            </TouchableOpacity>
+
+           
+
+  </View>
+  </View>
+                
+{/* 
                 <View style={aboutUsAdminStyles.vSaveCancel}>
                   <TouchableOpacity
                     style={aboutUsAdminStyles.btnSave}
@@ -790,7 +884,7 @@ const AboutUsAdmin = ({navigation}) => {
                     onPress={() => setisModalVisibleMission(false)}>
                     <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
                   </TouchableOpacity>
-                </View>
+                </View> */}
               </View>
             </Modal>
 
@@ -848,8 +942,37 @@ const AboutUsAdmin = ({navigation}) => {
                       maxLength={400}></TextInput>
                   </ScrollView>
                 </View>
+                <View style={{backgroundColor:'#F5F5F5', alignContent:'flex-end', justifyContent:'flex-end',}}>
+     <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    
+    elevation: 15,
 
-                <View style={aboutUsAdminStyles.vSaveCancel}>
+}}>
+
+<TouchableOpacity 
+                 onPress={() => setisModalVisibleVision(false)} style={{flexDirection:'column', alignItems:'center'}}>
+                    <Icon name="x-circle" color="maroon" size={22}/>
+                    <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
+          </TouchableOpacity>
+     
+
+<TouchableOpacity  onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
+            <Icon name="check-circle" color="maroon" size={22}/>
+            <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
+            </TouchableOpacity>
+
+           
+
+  </View>
+  </View>
+                {/* <View style={aboutUsAdminStyles.vSaveCancel}>
                   <TouchableOpacity
                     style={aboutUsAdminStyles.btnSave}
                     onPress={() => onPressSave(newID)}>
@@ -861,7 +984,7 @@ const AboutUsAdmin = ({navigation}) => {
                     onPress={() => setisModalVisibleVision(false)}>
                     <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
                   </TouchableOpacity>
-                </View>
+                </View> */}
               </View>
             </Modal>
 
@@ -1053,7 +1176,39 @@ const AboutUsAdmin = ({navigation}) => {
                   </ScrollView>
                 </View>
 
-                <View style={aboutUsAdminStyles.vSaveCancel}>
+
+                <View style={{backgroundColor:'#F5F5F5', alignContent:'flex-end', justifyContent:'flex-end',}}>
+     <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    
+    elevation: 15,
+
+}}>
+
+<TouchableOpacity 
+                  onPress={() => setisModalVisibleContactInformation(false)} style={{flexDirection:'column', alignItems:'center'}}>
+                    <Icon name="x-circle" color="maroon" size={22}/>
+                    <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
+          </TouchableOpacity>
+     
+
+<TouchableOpacity  onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
+            <Icon name="check-circle" color="maroon" size={22}/>
+            <Text style={{color: 'maroon', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
+            </TouchableOpacity>
+
+           
+
+  </View>
+  </View>
+
+                {/* <View style={aboutUsAdminStyles.vSaveCancel}>
                   <TouchableOpacity
                     style={aboutUsAdminStyles.btnSave}
                     onPress={() => onPressSave(newID)}>
@@ -1065,7 +1220,7 @@ const AboutUsAdmin = ({navigation}) => {
                     onPress={() => setisModalVisibleContactInformation(false)}>
                     <Text style={aboutUsAdminStyles.txtCancel}>Cancel</Text>
                   </TouchableOpacity>
-                </View>
+                </View> */}
               </View>
             </Modal>
           </View>
