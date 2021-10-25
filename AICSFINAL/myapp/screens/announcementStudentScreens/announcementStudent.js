@@ -220,47 +220,34 @@ const AnnouncementStudent = ({navigation}) => {
                     maxLength={550}>
                     {newContents}</Text>
 
+                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
+                  color:'gray', paddingBottom:10, paddingTop: 10}}>Click Image to view:</Text>
+
+                    <View style={announcementComponentStudentStyles.imageContainer}>
+                   
+                   {newUrl ? 
+                   <ImageModal
+                   source={{uri: newUrl ? newUrl : newPhoto}}
+                   style={{
+                     width: 500,
+                     height: 220,
+                     resizeMode: 'contain',
+                   }} />
+                   : null
+                  }
+                    
+                 
+                 
+                
+      
+</View>
+
+                   
+
                 </ScrollView>
                 </View>
 
-
-                {/* {newUrl == null && newPhoto == null ? */}
-                  <View style={announcementComponentStudentStyles.imageContainer}>
-
-                  {/* <Image
-                   source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : null}}
-                   style={{
-                     width: 500,
-                     height: 500,
-                     resizeMode: 'contain',
-                   }}>
-                   </Image> */}
-{/* 
-                  {
-                    newUrl && newPhoto ? 
-                    <ImageModal
-                    source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : null}}
-                    style={{
-                      width: 500,
-                      height: 500,
-                      resizeMode: 'contain',}}
-                  />
-                 :
-                    <Text>Meron</Text>
-                  } */}
-                 <ImageModal
-                    source={{uri: newUrl ? newUrl : newPhoto ? newPhoto : 'https://firebasestorage.googleapis.com/v0/b/samplelogin-37250.appspot.com/o/aicsnoimage.png?alt=media&token=c32b87b2-ea3e-48f7-9ddb-decb500a12e0'}}
-                    style={{
-                      width: win.width,
-                      height: 500,
-                      resizeMode: 'contain',
-                    }}
-                 />
-      
-               </View>
-                  {/* : 
-                  null
-                } */}
+            
 
 
                 <View style={announcementComponentStudentStyles.vSaveCancel}>

@@ -322,9 +322,10 @@ export const announcementComponentStudentStyles = StyleSheet.create({
     vSaveCancel:{
         flexDirection: 'row', 
         justifyContent:'flex-end',
-        flex: 1,
-        paddingHorizontal: 20,
-        paddingBottom: 20,
+        flex: 0.5,
+        margin: 10,
+        // paddingHorizontal: 20,
+        // paddingBottom: 20,
         // backgroundColor: '#F5F5F5', 
         backgroundColor: 'white',
     },
@@ -338,7 +339,7 @@ export const announcementComponentStudentStyles = StyleSheet.create({
         flexDirection:'row',
         borderRadius: 20,
         backgroundColor: '#CB0A0D',
-        marginBottom: 13,
+        marginBottom: 2,
 
         shadowColor: "#000",
         shadowOffset: {

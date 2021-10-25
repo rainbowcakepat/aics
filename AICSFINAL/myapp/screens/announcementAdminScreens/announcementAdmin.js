@@ -694,6 +694,7 @@ const AnnouncementAdmin = ({navigation}) => {
                   'Confirm to archive this announcement by typing: archiveAnnouncement'
                 }
                 hintInput={'archiveAnnouncement'}
+                hintTextColor={'gray'}
                 submitInput={inputText => {
                   handleSubmitDelete(inputText, newID);
                 }}

@@ -329,6 +329,7 @@ const UnansweredQuestions = ({navigation}) => {
               title={"Answer question"}
               message={"Confirm you want to answer this question by typing: answerQuestion."}
               hintInput ={"answerQuestion"}
+              hintTextColor={'gray'}
               submitInput={(inputText) => {handleSubmit(inputText)} }
               closeDialog={ () => {handleCancel()}}>
           </DialogInput>
@@ -342,6 +343,7 @@ const UnansweredQuestions = ({navigation}) => {
               title={"Delete question"}
               message={"Confirm you want to delete this question by typing: deleteQuestion."}
               hintInput ={"deleteQuestion"}
+              hintTextColor={'gray'}
               submitInput={(inputText) => {handleSubmitDelete(inputText, newID)} }
               closeDialog={ () => {handleCancelDelete()}}>
           </DialogInput>
