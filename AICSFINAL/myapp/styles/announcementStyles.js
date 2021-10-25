@@ -15,7 +15,8 @@ export const announcementStyles = StyleSheet.create({
     lgOverallContainer: {
         height: win.height,
         width: win.width,
-        flex:1
+        flex:1,
+        backgroundColor: '#CB0A0D',
     },
 
     //Top Header: Black
@@ -88,7 +89,7 @@ export const announcementStyles = StyleSheet.create({
     //Body: White
 
     vBodyContainer:{
-        flex: 4, 
+        flex: 5.5, 
         marginTop: 0,
         backgroundColor: 'white', 
         borderTopLeftRadius: 30, 
@@ -97,7 +98,8 @@ export const announcementStyles = StyleSheet.create({
     
     svBody: {
         marginHorizontal: 30,
-        marginTop: 15
+        marginTop: 15,
+         
 
     },
 
@@ -204,6 +206,16 @@ export const announcementStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         backgroundColor: 'white',
+        // paddingHorizontal: 15,
+        
+    },
+
+    //submit
+    submitContainer2: {
+        flex: 1, 
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+      
         // paddingHorizontal: 15,
         
     },

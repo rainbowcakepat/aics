@@ -172,8 +172,8 @@ navigation
       console.log('Photo uploaded in firestore cloud');
       //Alert.alert('Successfully Posted!');
       Alert.alert(
-        'Uploaded a photo',
-        'Successfully uploaded in firestore cloud', 
+        'Add Announcement',
+        'Successfully added an announcement', 
         [
           {text: 'OK', onPress: () => console.log('OK Pressed')},
         ],
@@ -189,7 +189,7 @@ navigation
 
 
   return (
-    <LinearGradient style={announcementStyles.lgOverallContainer} colors= {['#c31432', '#A82712', '#c31432', '#c31432']} >
+    <LinearGradient style={announcementStyles.lgOverallContainer} colors= {['#CB0A0D', '#CB0A0D']} >
       
         <LinearGradient style={announcementStyles.lgTopHeader} colors= {['#CB0A0D', '#CB0A0D', ]}>
             {/* <TouchableOpacity style={announcementStyles.menuBarContainer}></TouchableOpacity> */}
@@ -203,7 +203,7 @@ navigation
         </LinearGradient>
 
         <View style={announcementStyles.vBodyContainer}>
-          <ScrollView style={announcementStyles.svBody} contentContainerStyle={{ paddingBottom: 10}}>
+          <ScrollView style={announcementStyles.svBody} contentContainerStyle={{ paddingBottom: 20}}>
             <Text adjustsFontSizeToFit={true} style={announcementStyles.announcementTitleLabel}>Announcement Title: </Text>
             <TextInput adjustsFontSizeToFit={true}  style={announcementStyles.announcementTitleText} placeholder={"Your Title here..."} placeholderTextColor={'gray'} value={titles} maxLength={50} multiline={true} numberOfLines={2} onChangeText={(titles) => {setTitle(titles); setValidation1(titles); console.log(`title: ${titles}`)}}></TextInput>
             <Text adjustsFontSizeToFit={true}  style={announcementStyles.announcementContentLabel}>What's the latest news?</Text>
@@ -215,7 +215,7 @@ navigation
             <View>
              <Text style={announcementStyles.announcementNoImage}>Click for full image preview:</Text>
               <View style={announcementStyles.imgContainer}>
-                <ImageModal source={{uri: photo}} style={{ width: 100, height: 150, resizeMode: 'contain'}}></ImageModal> 
+                <ImageModal source={{uri: photo}} style={{ width: 500, height: 250, resizeMode: 'contain'}}></ImageModal> 
              </View>
             </View>
             :  
@@ -231,16 +231,48 @@ navigation
           </ScrollView>
         </View>
 
-       
-        <View style={announcementStyles.btnContainer}>
+       <View style={{flexDirection:'row', backgroundColor:'#F6F6F6', padding:5, justifyContent:'space-around', }}>
+     
+          <TouchableOpacity  onPress={choosePhotoFromImageLibrary} style={{flexDirection:'column', alignItems:'center', }} >
+           {/* <Image source={require('../../assets/./icons/addimage.png')} style={{height: 30, width: 40}}></Image> */}
+           <Icon name="image" color="gray" size={20}/>
+           <Text style={{color: 'gray', fontFamily: 'Poppins-Medium', fontSize: hp(1.8)}}> Add Image</Text>
+
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+                  onPress={() => navigation.navigate("Announcements")} style={{flexDirection:'column', alignItems:'center'}}>
+                    <Icon name="x-circle" color="gray" size={20}/>
+                    <Text style={{color: 'gray', fontFamily: 'Poppins-Medium', fontSize: hp(1.8)}}> Cancel</Text>
+          </TouchableOpacity>
+     
+          {
+          validate2 && validate1 ? 
+          <View >
+            
+
+            <TouchableOpacity onPress={addAnnouncementNow} style={{flexDirection:'column', alignItems:'center'}}>
+            <Icon name="check-circle" color="gray" size={20}/>
+            <Text style={{color: 'gray', fontFamily: 'Poppins-Medium', fontSize: hp(1.8)}}> Submit</Text>
+            </TouchableOpacity>
+
+            
+          </View> 
+          : 
+         null
+        }
+      </View>
+
+
+       {/*} <View style={announcementStyles.btnContainer}>
           <TouchableOpacity style={announcementStyles.toImage} onPress={choosePhotoFromImageLibrary} >
-            {/* <Icon name="image" color="white" size={24}/>
-            <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(2)}}> Attach an image</Text> */}
+             <Icon name="image" color="white" size={24}/>
+            <Text style={{color: 'white', fontFamily: 'Poppins-Medium', fontSize: hp(2)}}> Attach an image</Text> 
            <Image source={require('../../assets/./icons/addimage.png')} style={{height: 40, width: 45}}></Image>
 
           </TouchableOpacity>
 
-        </View>
+          </View> */}
 
         {/* <View style={announcementStyles.imgContainer}>
           <ScrollView style={announcementStyles.svImage}>
@@ -249,10 +281,12 @@ navigation
         </View> */}
 
         
+
+        {/* FINAL CANCEL ETO
+        
+      }
         <View style={announcementStyles.submitContainer}>
-            {/* <TouchableOpacity style={ announcementStyles.toSubmit} onPress={addAnnouncementNow} >
-                <Text style={announcementStyles.submitText}> SUBMIT</Text>
-            </TouchableOpacity> */}
+           
              {
           validate2 && validate1 ? 
           <View style={announcementStyles.submitContainer}>
@@ -268,10 +302,11 @@ navigation
           : 
          null
         }
+     
 
        
 
-          </View> 
+          </View>  */}
          
 
         {uploading ? (
