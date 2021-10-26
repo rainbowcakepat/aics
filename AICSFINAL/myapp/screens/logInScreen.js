@@ -28,6 +28,7 @@ import {auth} from '../firebase';
 
 import ChangePasswordScreen from './changePasswordScreen';
 import firestore from '@react-native-firebase/firestore';
+import { SafeAreaView } from 'react-navigation';
 
 const screenwidth = Dimensions.get('window').width;
 const screenheight = Dimensions.get('window').height;
@@ -93,20 +94,22 @@ const LoginScreen = ({navigation}) => {
   }, []);
 
   return (
-    <View style={{flex: 1, backgroundColor: 'violet'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white', paddingBottom: 20}}>
+      
       <ImageBackground
         style={{flex: 2, backgroundColor: 'red'}}
         source={require('../assets/./bg/annoucementsbg.png')}></ImageBackground>
 
       <KeyboardAvoidingView behavior = "padding"
         style={{
-          flex: 2.5,
+          flex: 3,
           backgroundColor: 'white',
           marginTop: -30,
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
+          flexDirection: 'column',
         }}>
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback >
           <Text
             style={{
               backgroundColor: 'black',
@@ -114,21 +117,22 @@ const LoginScreen = ({navigation}) => {
               marginTop: 20,
               marginLeft: 15,
               borderColor: 'black',
-              height: 40,
+              padding: 7,
               width: 195,
-              fontSize: hp(2.1),
+              fontSize: hp(2.5),
               textAlign: 'center',
               justifyContent: 'center',
               textAlignVertical: 'center',
               fontFamily: 'Poppins-Medium',
               color: 'white',
+              marginBottom: 10,
             }}>
             {' '}
             Welcome, Admin!{' '}
           </Text>
         </TouchableWithoutFeedback>
 
-        <View style={{margin: 20}}>
+        <View style={{paddingHorizontal: 20, paddingBottom:10}}>
           <Text style={{fontFamily: 'Poppins-Regular', fontSize: hp(2.1)}}>
             Email Address:
           </Text>
@@ -171,11 +175,11 @@ const LoginScreen = ({navigation}) => {
 
           <TouchableOpacity
             style={{
-              marginTop: -45, //155
-              width: 30,
-              height: 30,
-              marginLeft: 325, //250
-              position: 'relative',
+             alignContent:'flex-end',
+             justifyContent:'flex-end',
+             alignItems:'flex-end',
+             marginTop: -45, //-45
+             position:'relative'
             }}
             onPress={() => {
               setIsSecureEntry(prev => !prev);
@@ -192,10 +196,11 @@ const LoginScreen = ({navigation}) => {
           <TouchableOpacity
             style={{
               width: 235,
-              height: 35,
+              padding: 2,
+              //height: 35,
               flexDirection: 'row',
               marginTop: 40,
-              marginBottom: 20,
+              marginBottom: 15,
               backgroundColor: '#FF8080',
               justifyContent: 'center',
               borderRadius: 25,
@@ -204,36 +209,27 @@ const LoginScreen = ({navigation}) => {
             onPress={signin}>
             <Text
               style={{
-                textAlignVertical: 'center',
+                alignContent:'center',
+                justifyContent:'center',
                 fontFamily: 'Poppins-Medium',
                 color: 'white',
-                fontSize: hp(2.3),
+                fontSize: hp(2.5),
               }}>
               Login
             </Text>
           </TouchableOpacity>
 
-          <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-            <TouchableOpacity onPress={() => navigation.navigate('ForgotPasswordScreen')}>
+
+            <TouchableOpacity style={{alignSelf: 'center', marginBottom: 10}} onPress={() => navigation.navigate('ForgotPasswordScreen')}>
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}>
                 Forgot Password?{' '}
               </Text>
             </TouchableOpacity>
-
-            {/* <TouchableOpacity>
-              <Text
-                style={{color: 'gray', fontSize: hp(2)}}
-                onPress={() =>
-                  //Linking.openURL('https://console.firebase.google.com/u/0/')
-                  navigation.navigate(ChangePasswordScreen)
-                }>|  Change Password 
-              </Text>
-            </TouchableOpacity> */}
-          </View>
+          
         </View>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   );
 };
 
