@@ -70,8 +70,8 @@ const LoginScreen = ({navigation}) => {
       }
     } catch (error) {
       Alert.alert(
-        'Failed Login',
-        'Kindly check your internet connectivity', // <- this part is optional, you can pass an empty string
+        'Login',
+        'Please enter your credentials correctly', // <- this part is optional, you can pass an empty string
         [{text: 'ok', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},
       );

@@ -171,27 +171,55 @@ export const announcementComponentStyles = StyleSheet.create({
 
     },
 
+    // toUpdate:{
+    //     width: 150, 
+    //     height: 30, 
+    //     flexDirection: 'row',
+    //     backgroundColor: '#FF8080',  //#FFC1CE FB6D77
+    //     borderRadius: 20, 
+    //     justifyContent: "center", 
+    //     alignItems: "center",        
+
+    // },
+
     toUpdate:{
-        width: 150, 
+        //width: 150, 
+        //paddingHorizontal: 32,
+        width:'50%',
         height: 30, 
         flexDirection: 'row',
         backgroundColor: '#FF8080',  //#FFC1CE FB6D77
         borderRadius: 20, 
         justifyContent: "center", 
-        alignItems: "center",        
+        alignItems: "center",  
+        position:'relative'         
 
     },
 
     toArchive:{
-        width: 150, 
+        width:'48%',
+        //width: 150, 
+        //paddingHorizontal: 32,
         height: 30, 
         flexDirection: 'row',
         backgroundColor: '#ACABAB',  //#FFC1CE FB6D77
         borderRadius: 20, 
         justifyContent: "center", 
-        alignItems: "center",        
+        alignItems: "center",     
+        position:'relative'   
 
     },
+
+    // toArchive:{
+    //     width: 150, 
+    //     height: 30, 
+    //     flexDirection: 'row',
+    //     backgroundColor: '#ACABAB',  //#FFC1CE FB6D77
+    //     borderRadius: 20, 
+    //     justifyContent: "center", 
+    //     alignItems: "center",        
+
+    // },
 
     txtUpdateArchive: {
         textAlignVertical: 'center',

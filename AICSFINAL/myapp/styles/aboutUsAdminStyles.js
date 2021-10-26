@@ -149,19 +149,35 @@ export const aboutUsAdminStyles = StyleSheet.create({
 
     },
 
+    // toUpdate:{
+    //     width: 160, 
+    //     height: 30, 
+    //     flexDirection: 'row',
+    //     backgroundColor: '#FF8080',  //#FFC1CE FB6D77
+    //     borderRadius: 20, 
+    //     justifyContent: "center", 
+    //     alignItems: "center",    
+    //     marginLeft: 170,    
+    //     marginBottom: 10,
+
+    // },
+
     toUpdate:{
-        width: 160, 
+        //width: 150, 
+        //paddingHorizontal: 32,
+        width:'50%',
         height: 30, 
         flexDirection: 'row',
         backgroundColor: '#FF8080',  //#FFC1CE FB6D77
         borderRadius: 20, 
         justifyContent: "center", 
-        alignItems: "center",    
-        marginLeft: 170,    
-        marginBottom: 10,
+        alignItems: "center",  
+        position:'relative',
+        marginLeft:'auto'
 
     },
 
+  
 
     txtUpdateArchive: {
         textAlignVertical: 'center',

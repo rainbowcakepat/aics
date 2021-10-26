@@ -62,10 +62,10 @@ const ChangePasswordScreen = ({navigation}) => {
     } catch (error) {
       //Alert.alert('Please enter your correct credentials');
       Alert.alert(
-        'Network Failed',
-        'Kindly check your internet connectivity', // <- this part is optional, you can pass an empty string
-        [{text: 'ok', onPress: () => console.log('OK Pressed')}],
-        {cancelable: false},
+        'Change Password',
+          'Please enter your correct credentials', // <- this part is optional, you can pass an empty string
+          [{text: 'Understood', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
       );
       setEmail(null);
       setPassword(null);

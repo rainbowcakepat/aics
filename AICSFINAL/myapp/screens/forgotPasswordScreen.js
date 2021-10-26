@@ -59,10 +59,10 @@ const ForgotPasswordScreen = ({navigation}) => {
     } catch (error) {
       //Alert.alert('Invalid email address');
       Alert.alert(
-        'Network Failed',
-        'Kindly check your internet connectivity.', // <- this part is optional, you can pass an empty string
+        'Failed Forgot Password',
+        'Invalid email address. Please try again.', // <- this part is optional, you can pass an empty string
         [{text: 'ok', onPress: () => console.log('OK Pressed')}],
-        {cancelable: false},
+        {cancelable: false},  
       );
       setEmail(null);
     }
