@@ -772,8 +772,8 @@ const AnnouncementAdmin = ({navigation}) => {
           style={announcementStyles.aicsLogo}
         />
 
-        <View style={{flexDirection: 'row'}}>
-          <View>
+        <View style={{flexDirection: 'row', }}>
+          <View >
             {/* {user.email} */}
             <Text
               adjustsFontSizeToFit={true}

@@ -22,7 +22,8 @@ export const announcementComponentStyles = StyleSheet.create({
     //Top Header: Black
     lgTopHeader: {
         backgroundColor: '#CB0A0D',
-        flex: 1.30,
+        flex: 1,
+        
     },
 
     menuBarContainer: {
@@ -86,12 +87,13 @@ export const announcementComponentStyles = StyleSheet.create({
     //Search Bar 
     vSearchBar: {
         flex: 0.1, 
-        width: 380,
+        //width: 380,
+        width: win.width/1.05,
         paddingTop: 10, 
         paddingBottom: 10,
         flexDirection: 'row', 
-        borderRadius: 12,
-        marginTop: -40,
+        borderRadius: 10, //12
+        //marginTop: -40,
         marginBottom: 22,
         backgroundColor: '#EDEDED',
         alignSelf: 'center' 

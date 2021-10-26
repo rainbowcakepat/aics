@@ -102,7 +102,7 @@ const LoginScreen = ({navigation}) => {
 
       <KeyboardAvoidingView behavior = "padding"
         style={{
-          flex: 3,
+          flex: 2,
           backgroundColor: 'white',
           marginTop: -30,
           borderTopLeftRadius: 30,
@@ -120,14 +120,14 @@ const LoginScreen = ({navigation}) => {
               borderColor: 'black',
               //padding: 7,
               width: 195,
-              fontSize: hp(2.5),
+              fontSize: hp(2.2),
               textAlign: 'center',
               justifyContent: 'center',
               textAlignVertical: 'center',
               fontFamily: 'Poppins-Medium',
               color: 'white',
               marginBottom: 20,
-              height: 35
+              height: 40
             }}>
             {' '}
             Welcome, Admin!{' '}
