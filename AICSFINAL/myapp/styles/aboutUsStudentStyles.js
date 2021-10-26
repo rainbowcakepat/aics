@@ -165,15 +165,29 @@ export const aboutUsStudentStyles = StyleSheet.create({
 
     },
 
+    // toUpdate:{
+    //     width: 170, 
+    //     height: 30, 
+    //     flexDirection: 'row',
+    //     backgroundColor: '#FF8080',  //#FFC1CE FB6D77
+    //     borderRadius: 20, 
+    //     justifyContent: "center", 
+    //     alignItems: "center",    
+    //     marginLeft: 160,    
+
+    // },
     toUpdate:{
-        width: 170, 
+        //width: 150, 
+        //paddingHorizontal: 32,
+        width:'50%',
         height: 30, 
         flexDirection: 'row',
         backgroundColor: '#FF8080',  //#FFC1CE FB6D77
         borderRadius: 20, 
         justifyContent: "center", 
-        alignItems: "center",    
-        marginLeft: 160,    
+        alignItems: "center",  
+        position:'relative',
+        marginLeft:'auto'
 
     },
 
