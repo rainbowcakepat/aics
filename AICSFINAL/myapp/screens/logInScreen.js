@@ -94,7 +94,7 @@ const LoginScreen = ({navigation}) => {
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white', paddingBottom: 20}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white', paddingBottom: 5}}>
       
       <ImageBackground
         style={{flex: 2, backgroundColor: 'red'}}
@@ -108,6 +108,7 @@ const LoginScreen = ({navigation}) => {
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
           flexDirection: 'column',
+          paddingBottom:10
         }}>
         <TouchableWithoutFeedback >
           <Text
@@ -117,7 +118,7 @@ const LoginScreen = ({navigation}) => {
               marginTop: 20,
               marginLeft: 15,
               borderColor: 'black',
-              padding: 7,
+              //padding: 7,
               width: 195,
               fontSize: hp(2.5),
               textAlign: 'center',
@@ -125,14 +126,15 @@ const LoginScreen = ({navigation}) => {
               textAlignVertical: 'center',
               fontFamily: 'Poppins-Medium',
               color: 'white',
-              marginBottom: 10,
+              marginBottom: 20,
+              height: 35
             }}>
             {' '}
             Welcome, Admin!{' '}
           </Text>
         </TouchableWithoutFeedback>
 
-        <View style={{paddingHorizontal: 20, paddingBottom:10}}>
+        <View style={{paddingHorizontal: 20, paddingBottom: 10}}>
           <Text style={{fontFamily: 'Poppins-Regular', fontSize: hp(2.1)}}>
             Email Address:
           </Text>
@@ -178,8 +180,13 @@ const LoginScreen = ({navigation}) => {
              alignContent:'flex-end',
              justifyContent:'flex-end',
              alignItems:'flex-end',
-             marginTop: -45, //-45
-             position:'relative'
+             alignSelf:'flex-end',
+             marginTop: -57, //-45
+            
+             position:'relative',
+             width: 30,
+             height: 30,
+             //backgroundColor:'black'
             }}
             onPress={() => {
               setIsSecureEntry(prev => !prev);

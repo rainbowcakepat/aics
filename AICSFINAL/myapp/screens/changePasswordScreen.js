@@ -12,7 +12,8 @@ import {
   Alert,
   ImageBackground,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  SafeAreaView
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {
@@ -60,11 +61,12 @@ const ChangePasswordScreen = ({navigation}) => {
       setEmail(null);
       setPassword(null);
     } catch (error) {
+      console.log(error.message);
       //Alert.alert('Please enter your correct credentials');
       Alert.alert(
-        'Network Failed',
-        'Kindly check your internet connectivity', // <- this part is optional, you can pass an empty string
-        [{text: 'ok', onPress: () => console.log('OK Pressed')}],
+        'Change Password',
+        'Please enter your correct credentials', // <- this part is optional, you can pass an empty string
+        [{text: 'Understood', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},
       );
       setEmail(null);
@@ -86,28 +88,32 @@ const ChangePasswordScreen = ({navigation}) => {
   }, []);
 
   return (
-    <View style={{flex: 1, backgroundColor: 'violet'}}>
+    <View style={{flex: 1, backgroundColor: 'white', paddingBottom: 10}}>
       <ImageBackground
         style={{flex: 2, backgroundColor: 'red'}}
         source={require('../assets/./bg/annoucementsbg.png')}></ImageBackground>
 
       <KeyboardAvoidingView behavior='padding'
         style={{
-          flex: 2.5,
+          flex: 3,
           backgroundColor: 'white',
           marginTop: -30,
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
+          
+          
+        
         }}>
         <TouchableWithoutFeedback>
           <Text
             style={{
               backgroundColor: 'black',
               borderRadius: 12,
+              padding: 8,
               marginTop: 20,
               marginLeft: 15,
               borderColor: 'black',
-              height: 40,
+              //height: 40,
               width: 195,
               fontSize: hp(2.1),
               textAlign: 'center',
@@ -121,7 +127,7 @@ const ChangePasswordScreen = ({navigation}) => {
           </Text>
         </TouchableWithoutFeedback>
 
-        <View style={{margin: 20}}>
+        <SafeAreaView style={{paddingTop: 20, paddingHorizontal: 20, }}>
           <Text style={{fontFamily: 'Poppins-Regular', fontSize: hp(2.1)}}>
             Email Address:
           </Text>
@@ -155,6 +161,7 @@ const ChangePasswordScreen = ({navigation}) => {
               paddingHorizontal: 10,
               paddingRight: 60,
               color: 'black',
+              marginBottom: 30,
             }}
             placeholder="  enter your current password"
             placeholderTextColor="gray"
@@ -164,11 +171,15 @@ const ChangePasswordScreen = ({navigation}) => {
 
           <TouchableOpacity
             style={{
-              marginTop: -45, //155
-              width: 30,
-              height: 30,
-              marginLeft: 325, //250
-              position: 'relative',
+              marginTop: -65, //155
+              //width: 30,
+              //height: 30,
+              marginLeft:'auto',
+              //marginLeft: 325, //250
+              // /position: 'relative',
+              marginBottom: 30,
+              
+              
             }}
             onPress={() => {
               setIsSecureEntry(prev => !prev);
@@ -182,17 +193,21 @@ const ChangePasswordScreen = ({navigation}) => {
             </Text>
           </TouchableOpacity>
 
+
           <TouchableOpacity
             style={{
               width: 235,
+             
               height: 35,
-              flexDirection: 'row',
-              marginTop: 40,
-              marginBottom: 20,
+              //flexDirection: 'row',
+             // marginTop:'10%',
+             
+             // marginBottom: 16,
               backgroundColor: '#FF8080',
               justifyContent: 'center',
               borderRadius: 25,
               alignSelf: 'center',
+              marginBottom:12,
             }}
             onPress={handleChangePassword}>
             <Text
@@ -201,21 +216,22 @@ const ChangePasswordScreen = ({navigation}) => {
                 fontFamily: 'Poppins-Medium',
                 color: 'white',
                 fontSize: hp(2.3),
+                textAlign:'center'
               }}>
               Send Confirmation
             </Text>
           </TouchableOpacity>
 
-          <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-            <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+         
+            <TouchableOpacity style={{flexDirection: 'row', alignSelf: 'center', marginBottom:10}} onPress={() => navigation.toggleDrawer()}>
               <Text
                 style={{color: 'gray', fontSize: hp(2)}}
                 >
                 Go back to Menu{' '}
               </Text>
             </TouchableOpacity>
-          </View>
-        </View>
+       
+        </SafeAreaView>
       </KeyboardAvoidingView>
     </View>
   );
