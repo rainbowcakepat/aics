@@ -210,7 +210,7 @@ const AnnouncementAdmin = ({navigation}) => {
     if (newTitles.length < 3 || newContents.length < 3) {
       Alert.alert(
         'Failed to edit an announcement',
-        'Announcement cannot be blank, minimum length is 3',
+        'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.',
         [{text: 'OK', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},
       );

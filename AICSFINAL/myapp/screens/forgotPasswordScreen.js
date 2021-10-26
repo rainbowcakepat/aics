@@ -50,7 +50,7 @@ const ForgotPasswordScreen = ({navigation}) => {
       } else {
         Alert.alert(
           'Failed Forgot Password',
-          'Invalid email address. Please try again.', // <- this part is optional, you can pass an empty string
+          'The email address you have entered is not registered. Please try again.', // <- this part is optional, you can pass an empty string
           [{text: 'ok', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},         
         );
@@ -60,7 +60,7 @@ const ForgotPasswordScreen = ({navigation}) => {
       //Alert.alert('Invalid email address');
       Alert.alert(
         'Failed Forgot Password',
-        'Invalid email address. Please try again.', // <- this part is optional, you can pass an empty string
+        'The email address you have entered is not registered. Please try again.', // <- this part is optional, you can pass an empty string
         [{text: 'ok', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},  
       );

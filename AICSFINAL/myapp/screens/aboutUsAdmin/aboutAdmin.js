@@ -144,7 +144,7 @@ const AboutUsAdmin = ({navigation}) => {
       if(newAbout.length < 3) {
         Alert.alert(
           'Failed to edit information',
-          'Information cannot be blank, minimum length is 3', 
+          'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.', 
           [
             {text: 'OK', onPress: () => console.log('OK Pressed')},
           ],
@@ -163,7 +163,7 @@ const AboutUsAdmin = ({navigation}) => {
       if(newMission.length < 3) {
         Alert.alert(
           'Failed to edit information',
-          'Information cannot be blank, minimum length is 3', 
+          'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.', 
           [
             {text: 'OK', onPress: () => console.log('OK Pressed')},
           ],
@@ -180,7 +180,7 @@ const AboutUsAdmin = ({navigation}) => {
       if(newVision.length < 3) {
         Alert.alert(
           'Failed to edit information',
-          'Information cannot be blank, minimum length is 3', 
+          'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.', 
           [
             {text: 'OK', onPress: () => console.log('OK Pressed')},
           ],
@@ -218,7 +218,7 @@ const AboutUsAdmin = ({navigation}) => {
       if(newDegreePrograms.length < 3 || newDepartments.length < 3 || newOtherInformation.length < 3) {
         Alert.alert(
           'Failed to edit information',
-          'Information cannot be blank, minimum length is 3', 
+          'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.', 
           [
             {text: 'OK', onPress: () => console.log('OK Pressed')},
           ],
