@@ -167,7 +167,8 @@ const ChangePasswordScreen = ({navigation}) => {
               marginTop: -45, //155
               width: 30,
               height: 30,
-              marginLeft: 325, //250
+              marginLeft: 'auto',
+              //marginLeft: 325, //250
               position: 'relative',
             }}
             onPress={() => {
