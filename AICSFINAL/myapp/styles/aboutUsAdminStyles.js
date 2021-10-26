@@ -165,7 +165,7 @@ export const aboutUsAdminStyles = StyleSheet.create({
     toUpdate:{
         //width: 150, 
         //paddingHorizontal: 32,
-        width:'50%',
+        width:'65%',
         height: 30, 
         flexDirection: 'row',
         backgroundColor: '#FF8080',  //#FFC1CE FB6D77
@@ -183,6 +183,7 @@ export const aboutUsAdminStyles = StyleSheet.create({
         textAlignVertical: 'center',
         fontFamily: 'Poppins-Medium',
         color: 'white',
+        fontSize: wf(3.8),
     },
 
     txtAdd: {
