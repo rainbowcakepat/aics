@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
   },
 
   akisha: {
-    marginTop: 210,
-    marginLeft: 210,
+    marginTop: win.height >= 534 ? 210 : 110, //210
+    marginLeft: win.height >= 534 ? 210 : 155, //210
     width: 100,
     height: 110,
     shadowColor: 'white',
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
   },
 
   iicsboy: {
-    marginTop: 200,
-    marginLeft: 100,
+    marginTop: win.height >= 534 ? 200 : 100, //200
+    marginLeft: win.height >= 534 ? 100 : 55, //100
     width: 110,
     height: 120,
     position: 'absolute',
@@ -97,13 +97,13 @@ const styles = StyleSheet.create({
   },
 
   progress: {
-    marginTop: 347,
+    marginTop: win.height >= 534 ? 347 : 242.5, //347
     alignSelf: 'center',
     position: 'absolute',
   },
 
   progressContainer: {
-    marginTop: 340,
+    marginTop: win.height >= 534 ? 340 : 235, //340
     alignSelf: 'center',
     position: 'absolute',
     width: 270,
@@ -116,9 +116,9 @@ const styles = StyleSheet.create({
   },
 
   progressText: {
-    fontSize: 14,
+    fontSize: win.height >= 534 ? 14 : 12, //14
     color: 'white', //black white
-    marginTop: 382,
+    marginTop: win.height >= 534 ? 382 : 275, //382
     alignSelf: 'center',
     position: 'absolute',
     fontFamily: 'Poppins-Medium',
