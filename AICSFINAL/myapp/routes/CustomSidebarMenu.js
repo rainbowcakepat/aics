@@ -23,6 +23,8 @@ import {auth} from '../firebase';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firestore from '@react-native-firebase/firestore';
 
+const win = Dimensions.get('window');
+
 const CustomSidebarMenu = props => {
   const {user} = useContext(AuthenticatedUserContext);
 
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
   },
 
   sideBarTitle: {
-    marginHorizontal: '2%',
+    marginHorizontal: win.height >= 534 ? '2%' : '10%',
     fontFamily: 'Poppins-Medium',
     alignSelf: 'center',
     justifyContent:'center',

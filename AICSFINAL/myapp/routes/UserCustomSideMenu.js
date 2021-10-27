@@ -20,6 +20,8 @@ import {
   heightPercentageToFonts as hf,
 } from 'react-native-responsive-screen';
 
+const win = Dimensions.get('window');
+
 import {AuthenticatedUserContext} from '../screens/AuthUserProvider';
 //import {auth} from '../firebase';
 
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
   },
 
   sideBarTitle: {
-    marginHorizontal: '2%',
+    marginHorizontal: win.height >= 534 ? '2%' : '10%',
     fontFamily: 'Poppins-Medium',
     alignSelf: 'center',
     justifyContent:'center',
