@@ -40,6 +40,7 @@ const LoginScreen = ({navigation}) => {
   const [isSecureEntry, setIsSecureEntry] = useState(true);
 
   const signin = async () => {
+    console.log('Width: ', win.width, 'Height', win.height);
     try {
       if (email !== '' && password !== '') {
         await auth.signInWithEmailAndPassword(email, password);
@@ -95,12 +96,12 @@ const LoginScreen = ({navigation}) => {
   return (
     <View style={{flex: 1, backgroundColor: 'violet'}}>
       <ImageBackground
-        style={{flex: 2, backgroundColor: 'red'}}
+        style={{ flex: win.height > 535 ? 2 : 1, backgroundColor: 'red'}}
         source={require('../assets/./bg/annoucementsbg.png')}></ImageBackground>
 
       <KeyboardAvoidingView behavior = "padding"
         style={{
-          flex: 2.5,
+          flex: 2.5, //2.5
           backgroundColor: 'white',
           marginTop: -30,
           borderTopLeftRadius: 30,
