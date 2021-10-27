@@ -474,50 +474,44 @@ const AnnouncementAdmin = ({navigation}) => {
               onRequestClose={() => setisModalVisible(false)}>
               <View style={announcementComponentStyles.vModalContainer}>
                 <View style={{flex: 1, backgroundColor: 'white'}}></View>
-               
-               
-                  
+
                 <ImageBackground
                   source={require('../../assets/./bg/annoucementsbg.png')}
                   style={announcementComponentStyles.vtxtTitle}>
-                     <ScrollView >
-                  <TouchableWithoutFeedback
-                    style={announcementComponentStyles.toAnnouncement}>
-                    {/* <Icon name="edit-2" color="white" size={19}/> */}
-                    <Text style={announcementComponentStyles.txtEdit}>
-                      {' '}
-                      Edit Announcement
+                  <ScrollView>
+                    <TouchableWithoutFeedback
+                      style={announcementComponentStyles.toAnnouncement}>
+                      {/* <Icon name="edit-2" color="white" size={19}/> */}
+                      <Text style={announcementComponentStyles.txtEdit}>
+                        {' '}
+                        Edit Announcement
+                      </Text>
+                    </TouchableWithoutFeedback>
+
+                    <Text
+                      style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: '#F5F5F5',
+                      }}>
+                      Announcement Title
                     </Text>
-                  </TouchableWithoutFeedback>
 
-
-                  <Text
-                    style={{
-                      fontFamily: 'Poppins-Regular',
-                      textAlign: 'left',
-                      fontSize: hp(2),
-                      color: '#F5F5F5',
-                    }}>
-                    Announcement Title
-                  </Text>
-
-
-                  <TextInput
-                    style={announcementComponentStyles.txtTitle}
-                    onChangeText={text => setNewTitles(text)}
-                    placeholder={'Title'}
-                    placeholderTextColor={'#B2B2B2'}
-                    value={newTitles}
-                    multiline={true}
-                    numberOfLines={2}
-                    maxLength={50}></TextInput>
-
-</ScrollView>
+                    <TextInput
+                      style={announcementComponentStyles.txtTitle}
+                      onChangeText={text => setNewTitles(text)}
+                      placeholder={'Title'}
+                      placeholderTextColor={'#B2B2B2'}
+                      value={newTitles}
+                      multiline={true}
+                      numberOfLines={2}
+                      maxLength={50}></TextInput>
+                  </ScrollView>
                 </ImageBackground>
-               
 
                 <View style={announcementComponentStyles.vtxtContent}>
-                  <ScrollView contentContainerStyle={{paddingBottom: 20}}> 
+                  <ScrollView contentContainerStyle={{paddingBottom: 20}}>
                     <Text
                       style={{
                         fontFamily: 'Poppins-Regular',
@@ -541,33 +535,49 @@ const AnnouncementAdmin = ({navigation}) => {
                       numberOfLines={5}
                       maxLength={550}></TextInput>
 
-                    {photoIsEdited ? 
-                    <View style={announcementStyles.vtxtContent}>
-                      <Text  style={{
-                        fontFamily: 'Poppins-Regular',
-                        textAlign: 'left',
-                        fontSize: hp(2),
-                        color: 'gray',paddingBottom: 10,
-                      }}>Click Image to view</Text>
-                  <ImageModal source={{uri: newPhoto}} style={{ width: 500, height: 250, resizeMode: 'contain'}}></ImageModal>  
-                 </View> : newUrl ?
-               <View style={announcementStyles.vtxtContent}>
-                   <Text  style={{
-                        fontFamily: 'Poppins-Regular',
-                        textAlign: 'left',
-                        fontSize: hp(2),
-                        color: 'gray',paddingBottom: 10,
-                      }}>Click for full image preview:</Text>
-               <ImageModal source={{uri: newUrl}} style={{ width: 500, height: 250, resizeMode: 'contain'}}></ImageModal>  
-              </View> : null
+                    {photoIsEdited ? (
+                      <View style={announcementStyles.vtxtContent}>
+                        <Text
+                          style={{
+                            fontFamily: 'Poppins-Regular',
+                            textAlign: 'left',
+                            fontSize: hp(2),
+                            color: 'gray',
+                            paddingBottom: 10,
+                          }}>
+                          Click Image to view
+                        </Text>
+                        <ImageModal
+                          source={{uri: newPhoto}}
+                          style={{
+                            width: 500,
+                            height: 250,
+                            resizeMode: 'contain',
+                          }}></ImageModal>
+                      </View>
+                    ) : newUrl ? (
+                      <View style={announcementStyles.vtxtContent}>
+                        <Text
+                          style={{
+                            fontFamily: 'Poppins-Regular',
+                            textAlign: 'left',
+                            fontSize: hp(2),
+                            color: 'gray',
+                            paddingBottom: 10,
+                          }}>
+                          Click for full image preview:
+                        </Text>
+                        <ImageModal
+                          source={{uri: newUrl}}
+                          style={{
+                            width: 500,
+                            height: 250,
+                            resizeMode: 'contain',
+                          }}></ImageModal>
+                      </View>
+                    ) : null}
 
-                  
-                  
-                  
-                  }
-
-
-                   {/* } {photoIsEdited ? (
+                    {/* } {photoIsEdited ? (
                       <ImageModal
                         source={{
                           uri: newPhoto
@@ -599,69 +609,83 @@ const AnnouncementAdmin = ({navigation}) => {
                   </ScrollView>
                 </View>
 
-                <View style={{flex:1, alignContent:'flex-end', justifyContent:'flex-end', backgroundColor:'#F5F5F5'}}>
+                <View
+                  style={{
+                    flex: 1,
+                    alignContent: 'flex-end',
+                    justifyContent: 'flex-end',
+                    backgroundColor: '#F5F5F5',
+                  }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignSelf: 'center',
+                      backgroundColor: 'white',
+                      marginBottom: 0,
+                      paddingTop: 5,
+                      paddingLeft: 8,
+                      paddingRight: 8,
+                      paddingBottom: 0,
+                      justifyContent: 'space-around',
+                      borderTopLeftRadius: 30,
+                      borderTopRightRadius: 30,
+                      width: win.width / 1.2,
+                      shadowColor: '#000',
+                      shadowOffset: {
+                        width: 0,
+                        height: 7,
+                      },
+                      shadowOpacity: 0.43,
+                      shadowRadius: 9.51,
 
-                <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-    
-    elevation: 15,
+                      elevation: 15,
+                    }}>
+                    <TouchableOpacity
+                      onPress={choosePhotoFromImageLibrary}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="image" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          fontSize: hp(1.5),
+                        }}>
+                        {' '}
+                        Add/Replace
+                      </Text>
+                    </TouchableOpacity>
 
-}}>
-                  <TouchableOpacity
-                    onPress={choosePhotoFromImageLibrary}
-                    style={{flexDirection: 'column', alignItems: 'center'}}>
-                    <Icon name="image" color="#B00A0A" size={22} />
-                    <Text
-                      style={{
-                        color: '#B00A0A',
-                        fontFamily: 'Poppins-Medium',
-                        fontSize: hp(1.5),
-                      }}>
-                      {' '}
-                     Add/Replace
-                    </Text>
-                  </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => setisModalVisible(false)}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="x-circle" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          marginTop: 1,
+                          fontSize: hp(1.5),
+                        }}>
+                        {' '}
+                        Cancel
+                      </Text>
+                    </TouchableOpacity>
 
-                 
-
-                  <TouchableOpacity
-                    onPress={() => setisModalVisible(false)}
-                    style={{flexDirection: 'column', alignItems: 'center'}}>
-                    <Icon name="x-circle" color="#B00A0A" size={22} />
-                    <Text
-                      style={{
-                        color: '#B00A0A',
-                        fontFamily: 'Poppins-Medium',
-                        marginTop: 1,
-                        fontSize: hp(1.5),
-                      }}>
-                      {' '}
-                      Cancel 
-                    </Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    onPress={() => onPressSave(newID)}
-                    style={{flexDirection: 'column', alignItems: 'center'}}>
-                    <Icon name="check-circle" color="#B00A0A" size={22} />
-                    <Text
-                      style={{
-                        color: '#B00A0A',
-                        fontFamily: 'Poppins-Medium',
-                        fontSize: hp(1.5),
-                        marginTop: 2,
-                      }}>
-                      Save Changes
-                    </Text>
-                  </TouchableOpacity>
-                 
-                </View>
+                    <TouchableOpacity
+                      onPress={() => onPressSave(newID)}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="check-circle" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          fontSize: hp(1.5),
+                          marginTop: 2,
+                        }}>
+                        Save Changes
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
 
                 {/*<View style={{backgroundColor: '#F5F5F5', flex: 1}}>
@@ -755,22 +779,20 @@ const AnnouncementAdmin = ({navigation}) => {
   return (
     <View style={announcementComponentStyles.lgOverallContainer}>
       <View style={announcementComponentStyles.lgTopHeader}>
-        <Icon
-          style={announcementComponentStyles.menuBarIcon}
-          name="menu"
-          color="white"
-          type="ionicons"
-          size={23}
-          onPress={() => navigation.toggleDrawer()}
-        />
-        <TouchableOpacity
-          style={
-            announcementComponentStyles.aicsLogoContainer
-          }></TouchableOpacity>
-        <Image
-          source={require('../../assets/aicsfin.png')}
-          style={announcementStyles.aicsLogo}
-        />
+        <View style={announcementComponentStyles.headerIconsMenu}>
+          <Icon
+            style={announcementComponentStyles.menuBarIcon}
+            name="menu"
+            color="white"
+            type="ionicons"
+            size={23}
+            onPress={() => navigation.toggleDrawer()}
+          />
+          <Image
+            source={require('../../assets/aicsfin.png')}
+            style={announcementComponentStyles.aicsLogo}
+          />
+        </View>
 
         <View style={{flexDirection: 'row'}}>
           <View>

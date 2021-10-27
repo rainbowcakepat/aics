@@ -12,29 +12,31 @@ import {
   ActivityIndicator,
   Dimensions,
   Button,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 
 import firestore from '@react-native-firebase/firestore';
-import Dialog from "react-native-dialog";
+import Dialog from 'react-native-dialog';
 import DialogInput from 'react-native-dialog-input';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const win = Dimensions.get('window');
 
 import UnansweredQuestionComponent from './unansweredQuestionComponents';
 import {unansweredQuestionsStyles} from '../../styles/unansweredQuestionsStyles';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
 const UnansweredQuestions = ({navigation}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [posts, setPosts] = useState(null);
   const [loader, setLoading] = useState(false);
 
-  
   const [isModalConfirmVisible, setisModalConfirm] = useState(false);
   const [isModalConfirmDelete, setisModalConfirmDelete] = useState(false);
   const [isModalVisible, setisModalVisible] = useState(false);
@@ -69,8 +71,7 @@ const UnansweredQuestions = ({navigation}) => {
     return () => fetchUnansweredQuestions();
   }, []);
 
- 
-  const getQuestions = (item) => {
+  const getQuestions = item => {
     setisModalVisible(true);
     setNewQuestion(item.text);
     setNewTime(item.createdAt.toDate().toLocaleString());
@@ -78,20 +79,18 @@ const UnansweredQuestions = ({navigation}) => {
     console.log(item.text, item.key);
   };
 
-  const onPressSave = (newID) => {
+  const onPressSave = newID => {
     console.log('Gumagana ba to', newID);
     // setisModalVisible(false);
-    setisModalConfirm(true);  
+    setisModalConfirm(true);
   };
 
-  const onPressDelete = (newID) => {
+  const onPressDelete = newID => {
     console.log('lalabas pop up', newID);
-    setisModalConfirmDelete(true);  
+    setisModalConfirmDelete(true);
     setNewID(newID);
   };
 
-
- 
   let orig;
 
   const deleteQuestion = newID => {
@@ -101,59 +100,62 @@ const UnansweredQuestions = ({navigation}) => {
       .delete()
       .then(() => {
         console.log('ID: User deleted!', newID);
-       
       });
-      
   };
 
-  const handleSubmitDelete = (inputText, newID) =>{
-    if(inputText == 'deleteQuestion') {
+  const handleSubmitDelete = (inputText, newID) => {
+    if (inputText == 'deleteQuestion') {
       deleteQuestion(newID);
       setisModalConfirmDelete(false);
       handleSubmitDeleteSystemLogs();
       //Alert.alert('Successfully Deleted a Question');
       Alert.alert(
         'Delete Question',
-        'Successfully deleted a question', 
-        [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
+        'Successfully deleted a question',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},
       );
-    }
-    else {
+    } else {
       handleCancelDelete();
       Alert.alert('Please try again');
     }
-  }
+  };
 
-  const handleSubmitDeleteSystemLogs = async() => {
+  const handleSubmitDeleteSystemLogs = async () => {
     const ids2 = await firestore().collection('allSystemLogs').doc();
-    
-    ids2.set({
-      activity: 'Successfully Deleted a Question',
-      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-    })
-    .then(() => {
-      console.log('system log: Successfully Deleted a Question');
-    }).catch((error) => {
-      console.log('Something went wrong', error);
-    })
-  }
 
-  const handleSubmitAnswerSystemLogs = async() => {
+    ids2
+      .set({
+        activity: 'Successfully Deleted a Question',
+        posttime: new Date(
+          firestore.Timestamp.now().seconds * 1000,
+        ).toLocaleString(),
+      })
+      .then(() => {
+        console.log('system log: Successfully Deleted a Question');
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      });
+  };
+
+  const handleSubmitAnswerSystemLogs = async () => {
     const ids2 = await firestore().collection('allSystemLogs').doc();
-    
-    ids2.set({
-      activity: 'Successfully Answered a Question',
-      posttime: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-    })
-    .then(() => {
-      console.log('system log: Successfully Answered a Question');
-    }).catch((error) => {
-      console.log('Something went wrong', error);
-    })
-  }
+
+    ids2
+      .set({
+        activity: 'Successfully Answered a Question',
+        posttime: new Date(
+          firestore.Timestamp.now().seconds * 1000,
+        ).toLocaleString(),
+      })
+      .then(() => {
+        console.log('system log: Successfully Answered a Question');
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      });
+  };
 
   const handleCancelDelete = () => {
     setisModalConfirmDelete(false);
@@ -163,49 +165,46 @@ const UnansweredQuestions = ({navigation}) => {
     setisModalConfirm(false);
   };
 
-  const handleSubmit = (inputText) =>{
-    if(inputText == 'answerQuestion') {
+  const handleSubmit = inputText => {
+    if (inputText == 'answerQuestion') {
       handleDelete(newID);
       handleSubmitAnswerSystemLogs();
       // Alert.alert('Successfully answered a question');
       Alert.alert(
         'Answer Question',
-        'Successfully answered a question', 
-        [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
+        'Successfully answered a question',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},
       );
-    }
-    else {
+    } else {
       handleCancel();
       //Alert.alert('Please try again');
       Alert.alert(
         'Cancelled',
         'Please try again',
-        [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
         {cancelable: false},
       );
     }
-  }
+  };
 
-  const handleDelete = (id) => {
+  const handleDelete = id => {
     firestore()
-    .collection('allAnsweredQuestions')
-    .doc()
-    .set({
-      question: newText,
-      createdAt: new Date(firestore.Timestamp.now().seconds*1000).toLocaleString(),
-      // answer: newAnswer,
-    })
-    .then(() => {
+      .collection('allAnsweredQuestions')
+      .doc()
+      .set({
+        question: newText,
+        createdAt: new Date(
+          firestore.Timestamp.now().seconds * 1000,
+        ).toLocaleString(),
+        // answer: newAnswer,
+      })
+      .then(() => {
         setNewQuestion('');
         // setnewAnswer('');
-      console.log('Answered!', id);
-      deleteQuestion(newID);
-    });
+        console.log('Answered!', id);
+        deleteQuestion(newID);
+      });
 
     setisModalConfirm(false);
     setisModalVisible(false);
@@ -229,11 +228,9 @@ const UnansweredQuestions = ({navigation}) => {
       })
       .map((item, key) => {
         return (
-          <View key={key} >
-
+          <View key={key}>
             <View style={unansweredQuestionsStyles.vCardContainer}>
-              
-              <UnansweredQuestionComponent 
+              <UnansweredQuestionComponent
                 // item = {item}
                 propsnum={key}
                 propsid={item.key}
@@ -241,186 +238,248 @@ const UnansweredQuestions = ({navigation}) => {
                 propstime={item.createdAt}
               />
 
-              <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
-
-              <TouchableOpacity
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <TouchableOpacity
                   style={unansweredQuestionsStyles.toUpdate}
                   onPress={() => getQuestions(item)}>
-                  <Icon name="edit" color="white" size={16} style={{ marginBottom: 5 }}/>
-                  <Text style={unansweredQuestionsStyles.txtUpdateArchive}> Answer question</Text>
-              </TouchableOpacity>
+                  <Icon
+                    name="edit"
+                    color="white"
+                    size={16}
+                    style={{marginBottom: 5}}
+                  />
+                  <Text style={unansweredQuestionsStyles.txtUpdateArchive}>
+                    {' '}
+                    Answer question
+                  </Text>
+                </TouchableOpacity>
 
-              <TouchableOpacity
+                <TouchableOpacity
                   style={unansweredQuestionsStyles.toArchive}
                   onPress={() => onPressDelete(item.key)}>
-                  <Icon name="delete" color="white" size={16} style={{ marginBottom: 5 }}/>
-                  <Text style={unansweredQuestionsStyles.txtUpdateArchive}>  Delete </Text>
-              </TouchableOpacity>
-            
+                  <Icon
+                    name="delete"
+                    color="white"
+                    size={16}
+                    style={{marginBottom: 5}}
+                  />
+                  <Text style={unansweredQuestionsStyles.txtUpdateArchive}>
+                    {' '}
+                    Delete{' '}
+                  </Text>
+                </TouchableOpacity>
               </View>
-
             </View>
 
             <Modal
               animationType="fade"
               visible={isModalVisible}
               onRequestClose={() => setisModalVisible(false)}>
-
               <View style={unansweredQuestionsStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={unansweredQuestionsStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={unansweredQuestionsStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={unansweredQuestionsStyles.txtEdit}> Answer Question</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'#F5F5F5', }}>Submission Date: </Text>
-                        
-                    <Text
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/annoucementsbg.png')}
+                  style={unansweredQuestionsStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={unansweredQuestionsStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={unansweredQuestionsStyles.txtEdit}>
+                      {' '}
+                      Answer Question
+                    </Text>
+                  </TouchableWithoutFeedback>
+
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(2),
+                      color: '#F5F5F5',
+                    }}>
+                    Submission Date:{' '}
+                  </Text>
+
+                  <Text
                     style={unansweredQuestionsStyles.txtTitle}
                     numberOfLines={2}>
-                {newcreatedAt}</Text> 
-                {/* newText */}
-                 
+                    {newcreatedAt}
+                  </Text>
+                  {/* newText */}
                 </ImageBackground>
-                
+
                 <View style={unansweredQuestionsStyles.vtxtContent}>
-                  
                   <ScrollView>
-            
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'gray', }}>Question Content:</Text>
-                      
+                    <Text
+                      style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: 'gray',
+                      }}>
+                      Question Content:
+                    </Text>
+
                     <Text
                       style={unansweredQuestionsStyles.txtContent}
                       numberOfLines={5}
-                      maxLength={550}>{newText}</Text>
+                      maxLength={550}>
+                      {newText}
+                    </Text>
                   </ScrollView>
-
                 </View>
 
-                  <ScrollView style={unansweredQuestionsStyles.imageContainer}>
-
-               </ScrollView>
-               
+                <ScrollView
+                  style={unansweredQuestionsStyles.imageContainer}></ScrollView>
 
                 <View style={unansweredQuestionsStyles.vSaveCancel}>
-
-                  <TouchableOpacity style={unansweredQuestionsStyles.btnSave}
+                  <TouchableOpacity
+                    style={unansweredQuestionsStyles.btnSave}
                     onPress={() => onPressSave(newID)}>
-                    <Text style={unansweredQuestionsStyles.txtSave}>Answer</Text>
+                    <Text style={unansweredQuestionsStyles.txtSave}>
+                      Answer
+                    </Text>
                   </TouchableOpacity>
 
-                  <TouchableOpacity style={unansweredQuestionsStyles.btnCancel}
-                  onPress={() => setisModalVisible(false)}>
-                    <Text style={unansweredQuestionsStyles.txtCancel}>Cancel</Text>
+                  <TouchableOpacity
+                    style={unansweredQuestionsStyles.btnCancel}
+                    onPress={() => setisModalVisible(false)}>
+                    <Text style={unansweredQuestionsStyles.txtCancel}>
+                      Cancel
+                    </Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
             </Modal>
 
-            {isModalConfirmVisible ? 
-           <DialogInput isDialogVisible={isModalConfirmVisible}
-              title={"Answer question"}
-              message={"Confirm you want to answer this question by typing: answerQuestion."}
-              hintInput ={"answerQuestion"}
-              hintTextColor={'gray'}
-              submitInput={(inputText) => {handleSubmit(inputText)} }
-              closeDialog={ () => {handleCancel()}}>
-          </DialogInput>
-          : 
-            null}
-          
+            {isModalConfirmVisible ? (
+              <DialogInput
+                isDialogVisible={isModalConfirmVisible}
+                title={'Answer question'}
+                message={
+                  'Confirm you want to answer this question by typing: answerQuestion.'
+                }
+                hintInput={'answerQuestion'}
+                hintTextColor={'gray'}
+                submitInput={inputText => {
+                  handleSubmit(inputText);
+                }}
+                closeDialog={() => {
+                  handleCancel();
+                }}></DialogInput>
+            ) : null}
 
-            
-           {isModalConfirmDelete ? 
-           <DialogInput isDialogVisible={isModalConfirmDelete}
-              title={"Delete question"}
-              message={"Confirm you want to delete this question by typing: deleteQuestion."}
-              hintInput ={"deleteQuestion"}
-              hintTextColor={'gray'}
-              submitInput={(inputText) => {handleSubmitDelete(inputText, newID)} }
-              closeDialog={ () => {handleCancelDelete()}}>
-          </DialogInput>
-          : 
-            null}
+            {isModalConfirmDelete ? (
+              <DialogInput
+                isDialogVisible={isModalConfirmDelete}
+                title={'Delete question'}
+                message={
+                  'Confirm you want to delete this question by typing: deleteQuestion.'
+                }
+                hintInput={'deleteQuestion'}
+                hintTextColor={'gray'}
+                submitInput={inputText => {
+                  handleSubmitDelete(inputText, newID);
+                }}
+                closeDialog={() => {
+                  handleCancelDelete();
+                }}></DialogInput>
+            ) : null}
           </View>
         );
-
       });
   } else {
     searchtitles = (
-      <View style={{flexDirection: 'column', 
-      justifyContent: 'center',
-      }}>
-        <ImageBackground  source={require('../../assets/aicslogo.png')} 
-        style={{width: 250, height: 150, alignSelf:'center', margin: 32, resizeMode:'contain'}}
-        ></ImageBackground>
-        <ActivityIndicator size="large" color='purple'></ActivityIndicator>
+      <View style={{flexDirection: 'column', justifyContent: 'center'}}>
+        <ImageBackground
+          source={require('../../assets/aicslogo.png')}
+          style={{
+            width: 250,
+            height: 150,
+            alignSelf: 'center',
+            margin: 32,
+            resizeMode: 'contain',
+          }}></ImageBackground>
+        <ActivityIndicator size="large" color="purple"></ActivityIndicator>
       </View>
     );
   }
 
   if (searchtitles.length < 1) {
-    searchtitles = 
-    <ImageBackground  source={require('../../assets/./icons/aicsnoabout.png')} 
-    style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
-    </ImageBackground>
+    searchtitles = (
+      <ImageBackground
+        source={require('../../assets/./icons/aicsnoabout.png')}
+        style={{
+          width: 350,
+          height: 220,
+          alignSelf: 'auto',
+          margin: 32,
+          resizeMode: 'contain',
+        }}></ImageBackground>
+    );
   }
 
   return (
     <View style={unansweredQuestionsStyles.lgOverallContainer}>
-
       <View style={unansweredQuestionsStyles.lgTopHeader}>
-        
-        <Icon style= {unansweredQuestionsStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={unansweredQuestionsStyles.aicsLogoContainer} >
-        </TouchableOpacity>
-        <Image source={require('../../assets/aicsfin.png')} style={unansweredQuestionsStyles.aicsLogo}/>
-        
-        <View style={{flexDirection: 'row'}}>
-          <View>
-            <Text adjustsFontSizeToFit={true} style={unansweredQuestionsStyles.titleText}>Unanswered Questions</Text>
-            <Text adjustsFontSizeToFit={true} style={unansweredQuestionsStyles.subtitleText}>Answer inquiries and concerns from the CICS Community. </Text>
-          </View>
-          
+        <View style={unansweredQuestionsStyles.headerIconsMenu}>
+          <Icon
+            style={unansweredQuestionsStyles.menuBarIcon}
+            name="menu"
+            color="white"
+            type="ionicons"
+            size={23}
+            onPress={() => navigation.toggleDrawer()}
+          />
+          <Image
+            source={require('../../assets/aicsfin.png')}
+            style={unansweredQuestionsStyles.aicsLogo}
+          />
         </View>
 
+        <View style={{flexDirection: 'row'}}>
+          <View>
+            <Text
+              adjustsFontSizeToFit={true}
+              style={unansweredQuestionsStyles.titleText}>
+              Unanswered Questions
+            </Text>
+            <Text
+              adjustsFontSizeToFit={true}
+              style={unansweredQuestionsStyles.subtitleText}>
+              Answer inquiries and concerns from the CICS Community.{' '}
+            </Text>
+          </View>
+        </View>
       </View>
 
       <View style={unansweredQuestionsStyles.vSearchBar}>
-          
-          <Icon name="search" color="#B2B2B2" style={unansweredQuestionsStyles.searchBaricon} size={19}/>
-          <TextInput adjustsFontSizeToFit={true}
+        <Icon
+          name="search"
+          color="#B2B2B2"
+          style={unansweredQuestionsStyles.searchBaricon}
+          size={19}
+        />
+        <TextInput
+          adjustsFontSizeToFit={true}
           style={unansweredQuestionsStyles.tiSearch}
-            numberOfLines={1}
-            maxLength={50}
-            placeholder={'Search'}
-            placeholderTextColor={'#B2B2B2'}
-            onChangeText={text => {
-              setSearchTerm(text);
-              console.log(`search: ${searchTerm}`);
-            }}>
-            </TextInput>
-
+          numberOfLines={1}
+          maxLength={50}
+          placeholder={'Search'}
+          placeholderTextColor={'#B2B2B2'}
+          onChangeText={text => {
+            setSearchTerm(text);
+            console.log(`search: ${searchTerm}`);
+          }}></TextInput>
       </View>
 
       <View style={unansweredQuestionsStyles.vAnnouncements}>
-        
-        <ScrollView adjustsFontSizeToFit
-           contentContainerStyle={{ paddingBottom: 45}}>
+        <ScrollView
+          adjustsFontSizeToFit
+          contentContainerStyle={{paddingBottom: 45}}>
           {searchtitles}
         </ScrollView>
       </View>
-
-     
-      
-      
     </View>
   );
 };

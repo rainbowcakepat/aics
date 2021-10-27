@@ -12,7 +12,7 @@ import {
   ActivityIndicator,
   Dimensions,
   Button,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -24,14 +24,17 @@ import ImageModal from 'react-native-image-modal';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const win = Dimensions.get('window');
 
 import AboutUsComponents from '../aboutUsAdmin/aboutUsComponent';
 import {announcementStyles} from '../../styles/announcementStyles';
 import {aboutUsStudentStyles} from '../../styles/aboutUsStudentStyles';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
 const AboutUsAdmin = ({navigation}) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -40,8 +43,12 @@ const AboutUsAdmin = ({navigation}) => {
 
   const [isModalVisibleVision, setisModalVisibleVision] = useState(false);
   const [isModalVisibleMission, setisModalVisibleMission] = useState(false);
-  const [isModalVisibleTheCollege, setisModalVisibleTheCollege] = useState(false);
-  const [isModalVisibleContactInformation, setisModalVisibleContactInformation] = useState(false);
+  const [isModalVisibleTheCollege, setisModalVisibleTheCollege] =
+    useState(false);
+  const [
+    isModalVisibleContactInformation,
+    setisModalVisibleContactInformation,
+  ] = useState(false);
   const [isModalCollegeOfferings, setisModalCollegeOfferings] = useState(false);
 
   const [newAbout, setnewAbout] = useState('');
@@ -64,30 +71,29 @@ const AboutUsAdmin = ({navigation}) => {
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
 
-      useEffect(() => {
-      const fecthAboutUs = firestore()
-        .collection('allAboutUs')
-        .orderBy('titles', 'asc')
-        .onSnapshot(querySnapshot => {
-          const posts = [];
-          console.log('Total users: ', querySnapshot.size);
-      
-          querySnapshot.forEach(documentSnapshot => {
-            posts.push({
-              ...documentSnapshot.data(),
-              key: documentSnapshot.id,
-            });
+  useEffect(() => {
+    const fecthAboutUs = firestore()
+      .collection('allAboutUs')
+      .orderBy('titles', 'asc')
+      .onSnapshot(querySnapshot => {
+        const posts = [];
+        console.log('Total users: ', querySnapshot.size);
+
+        querySnapshot.forEach(documentSnapshot => {
+          posts.push({
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
           });
-          setPosts(posts);
-          setLoading(true);
-          console.log('Reading firebase');
         });
-        
-        return () => fecthAboutUs();
-      }, []);
+        setPosts(posts);
+        setLoading(true);
+        console.log('Reading firebase');
+      });
 
-  const getAnnouncements = (item) => {
+    return () => fecthAboutUs();
+  }, []);
 
+  const getAnnouncements = item => {
     setNewId(item.key);
 
     if (item.titles == 'About the College') {
@@ -101,8 +107,8 @@ const AboutUsAdmin = ({navigation}) => {
       setnewDegreePrograms(item.degreePrograms);
       setnewDepartments(item.departments);
       setnewOtherInformation(item.otherinformation);
-       setisModalCollegeOfferings(true);
-     }
+      setisModalCollegeOfferings(true);
+    }
 
     if (item.titles == 'The Mission') {
       setNewId(item.key);
@@ -118,17 +124,16 @@ const AboutUsAdmin = ({navigation}) => {
 
     if (item.titles == 'UST CICS Contact Information') {
       setNewId(item.key);
-     setnewContactInfoEmail(item.email);
-     setnewContactInfoFacebook(item.facebook);
-     setnewContactInfoLocation(item.location);
-     setnewContactInfoNumber(item.number);
-     setnewContactInfoSchedule(item.schedule);
-    //  setnewContactInfoWebsite(item.email);
+      setnewContactInfoEmail(item.email);
+      setnewContactInfoFacebook(item.facebook);
+      setnewContactInfoLocation(item.location);
+      setnewContactInfoNumber(item.number);
+      setnewContactInfoSchedule(item.schedule);
+      //  setnewContactInfoWebsite(item.email);
       setisModalVisibleContactInformation(true);
     }
   };
 
- 
   let searchtitles = null;
 
   if (loader) {
@@ -147,11 +152,9 @@ const AboutUsAdmin = ({navigation}) => {
       })
       .map((item, key) => {
         return (
-          <View key={key} >
-
+          <View key={key}>
             <View style={aboutUsStudentStyles.vCardContainer}>
-              
-              <AboutUsComponents 
+              <AboutUsComponents
                 // item = {item}
                 propsnum={key}
                 propsid={item.key}
@@ -159,382 +162,526 @@ const AboutUsAdmin = ({navigation}) => {
                 propskeywords={item.keywords}
               />
 
-              <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
-
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <TouchableOpacity
                   style={aboutUsStudentStyles.toUpdate}
                   onPress={() => getAnnouncements(item)}>
-                  <Icon name="eye" color="white" size={16} style={{ marginBottom: 5 }}/>
-                  <Text style={aboutUsStudentStyles.txtUpdateArchive}> View information </Text>
+                  <Icon
+                    name="eye"
+                    color="white"
+                    size={16}
+                    style={{marginBottom: 5}}
+                  />
+                  <Text style={aboutUsStudentStyles.txtUpdateArchive}>
+                    {' '}
+                    View information{' '}
+                  </Text>
                 </TouchableOpacity>
-
               </View>
-
             </View>
 
             {/* MODAL: ABOUT THE COLLEGE */}
-          <Modal
-           animationType="fade"
-           visible={isModalVisibleTheCollege}
-           onRequestClose={() => setisModalVisibleTheCollege(false)}
-          >
-            <View style={aboutUsStudentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsStudentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsStudentStyles.txtTitle}>About the College</Text>
-                 
+            <Modal
+              animationType="fade"
+              visible={isModalVisibleTheCollege}
+              onRequestClose={() => setisModalVisibleTheCollege(false)}>
+              <View style={aboutUsStudentStyles.vModalContainer}>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/ustbg.png')}
+                  style={aboutUsStudentStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={aboutUsStudentStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={aboutUsStudentStyles.txtEdit}>
+                      {' '}
+                      Edit About Us Information
+                    </Text>
+                  </TouchableWithoutFeedback>
+
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(1.8),
+                      color: '#F5F5F5',
+                    }}>
+                    College of Information and Computing Sciences
+                  </Text>
+
+                  <Text style={aboutUsStudentStyles.txtTitle}>
+                    About the College
+                  </Text>
                 </ImageBackground>
-                
+
                 <View style={aboutUsStudentStyles.vtxtContent}>
-                  
                   <ScrollView>
-                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Description:</Text>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                    >{newAbout}</Text>
+                    <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                      Description:
+                    </Text>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newAbout}
+                    </Text>
                   </ScrollView>
-
-                </View>
-    
-                <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleTheCollege(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
-                  </TouchableOpacity>
-                </View>
-               
-                
-              </View>
-
-          </Modal>
-
-          <Modal
-           animationType="fade"
-           visible={isModalCollegeOfferings}
-           onRequestClose={() => setisModalCollegeOfferings(false)}
-          >
-            <View style={aboutUsStudentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsStudentStyles.toAnnouncement}>
-                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsStudentStyles.txtTitle}>College Offerings</Text>
-                 
-                </ImageBackground>
-                
-                <View style={aboutUsStudentStyles.vtxtContent}>
-                  
-                  <ScrollView>
-                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Degree Programs:</Text>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                     >{newDegreePrograms}</Text>
-
-                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Degree Departments:</Text>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                     >{newDepartments}</Text>
-
-                  <Text style={aboutUsStudentStyles.txtLabelDescription}>Other information:</Text>
-                      
-                      <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newOtherInformation}</Text>
-                 
-                  </ScrollView>
-
                 </View>
 
                 <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalCollegeOfferings(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  <TouchableOpacity
+                    style={aboutUsStudentStyles.btnBack}
+                    onPress={() => setisModalVisibleTheCollege(false)}>
+                    <Icon
+                      name="arrow-left"
+                      color="white"
+                      type="ionicons"
+                      size={18}
+                      style={{marginBottom: 2, paddingLeft: -20}}
+                    />
+                    <Text style={aboutUsStudentStyles.txtBack}> Back</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
+            </Modal>
 
-          </Modal>
-         
-          <Modal
-           animationType="fade"
-           visible={isModalVisibleMission}
-           onRequestClose={() => setisModalVisibleMission(false)}
-          >
-            <View style={aboutUsStudentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsStudentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsStudentStyles.txtTitle}>Mission</Text>
-                 
+            <Modal
+              animationType="fade"
+              visible={isModalCollegeOfferings}
+              onRequestClose={() => setisModalCollegeOfferings(false)}>
+              <View style={aboutUsStudentStyles.vModalContainer}>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/ustbg.png')}
+                  style={aboutUsStudentStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={aboutUsStudentStyles.toAnnouncement}>
+                    <Text style={aboutUsStudentStyles.txtEdit}>
+                      {' '}
+                      Edit About Us Information
+                    </Text>
+                  </TouchableWithoutFeedback>
+
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(1.8),
+                      color: '#F5F5F5',
+                    }}>
+                    College of Information and Computing Sciences
+                  </Text>
+
+                  <Text style={aboutUsStudentStyles.txtTitle}>
+                    College Offerings
+                  </Text>
                 </ImageBackground>
-                
-                <View style={aboutUsStudentStyles.vtxtContent}>
-                  
-                  <ScrollView>
-                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Description:</Text>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newMission}</Text>
-                                 
-                  </ScrollView>
 
+                <View style={aboutUsStudentStyles.vtxtContent}>
+                  <ScrollView>
+                    <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                      Degree Programs:
+                    </Text>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newDegreePrograms}
+                    </Text>
+
+                    <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                      Degree Departments:
+                    </Text>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newDepartments}
+                    </Text>
+
+                    <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                      Other information:
+                    </Text>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newOtherInformation}
+                    </Text>
+                  </ScrollView>
                 </View>
 
                 <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleMission(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  <TouchableOpacity
+                    style={aboutUsStudentStyles.btnBack}
+                    onPress={() => setisModalCollegeOfferings(false)}>
+                    <Icon
+                      name="arrow-left"
+                      color="white"
+                      type="ionicons"
+                      size={18}
+                      style={{marginBottom: 2, paddingLeft: -20}}
+                    />
+                    <Text style={aboutUsStudentStyles.txtBack}> Back</Text>
                   </TouchableOpacity>
                 </View>
               </View>
+            </Modal>
 
-          </Modal>
+            <Modal
+              animationType="fade"
+              visible={isModalVisibleMission}
+              onRequestClose={() => setisModalVisibleMission(false)}>
+              <View style={aboutUsStudentStyles.vModalContainer}>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/ustbg.png')}
+                  style={aboutUsStudentStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={aboutUsStudentStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={aboutUsStudentStyles.txtEdit}>
+                      {' '}
+                      Edit About Us Information
+                    </Text>
+                  </TouchableWithoutFeedback>
 
-          <Modal
-           animationType="fade"
-           visible={isModalVisibleVision}
-           onRequestClose={() => setisModalVisibleVision(false)}
-          >
-            <View style={aboutUsStudentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsStudentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsStudentStyles.txtTitle}>Vision</Text>
-                 
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(1.8),
+                      color: '#F5F5F5',
+                    }}>
+                    College of Information and Computing Sciences
+                  </Text>
+
+                  <Text style={aboutUsStudentStyles.txtTitle}>Mission</Text>
                 </ImageBackground>
-                
-                <View style={aboutUsStudentStyles.vtxtContent}>
-                  
-                  <ScrollView>
-                    <Text style={aboutUsStudentStyles.txtLabelDescription}>Description:</Text>
-                      
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                    >{newVision}</Text>
-                                 
-                  </ScrollView>
 
+                <View style={aboutUsStudentStyles.vtxtContent}>
+                  <ScrollView>
+                    <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                      Description:
+                    </Text>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newMission}
+                    </Text>
+                  </ScrollView>
                 </View>
 
                 <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleVision(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  <TouchableOpacity
+                    style={aboutUsStudentStyles.btnBack}
+                    onPress={() => setisModalVisibleMission(false)}>
+                    <Icon
+                      name="arrow-left"
+                      color="white"
+                      type="ionicons"
+                      size={18}
+                      style={{marginBottom: 2, paddingLeft: -20}}
+                    />
+                    <Text style={aboutUsStudentStyles.txtBack}> Back</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
+            </Modal>
 
-          </Modal>
+            <Modal
+              animationType="fade"
+              visible={isModalVisibleVision}
+              onRequestClose={() => setisModalVisibleVision(false)}>
+              <View style={aboutUsStudentStyles.vModalContainer}>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/ustbg.png')}
+                  style={aboutUsStudentStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={aboutUsStudentStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={aboutUsStudentStyles.txtEdit}>
+                      {' '}
+                      Edit About Us Information
+                    </Text>
+                  </TouchableWithoutFeedback>
 
-          <Modal
-           animationType="fade"
-           visible={isModalVisibleContactInformation}
-           onRequestClose={() => setisModalVisibleContactInformation(false)}
-          >
-            <View style={aboutUsStudentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/ustbg.png')} style={aboutUsStudentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={aboutUsStudentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={aboutUsStudentStyles.txtEdit}> Edit About Us Information</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(1.8), 
-                    color:'#F5F5F5', }}>College of Information and Computing Sciences</Text>
-                        
-                    <Text style={aboutUsStudentStyles.txtTitle}>Contact Details</Text>
-                 
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(1.8),
+                      color: '#F5F5F5',
+                    }}>
+                    College of Information and Computing Sciences
+                  </Text>
+
+                  <Text style={aboutUsStudentStyles.txtTitle}>Vision</Text>
                 </ImageBackground>
-                
+
                 <View style={aboutUsStudentStyles.vtxtContent}>
-                  
                   <ScrollView>
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="map-pin" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Location:</Text>
+                    <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                      Description:
+                    </Text>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newVision}
+                    </Text>
+                  </ScrollView>
+                </View>
+
+                <View style={aboutUsStudentStyles.vSaveCancel}>
+                  <TouchableOpacity
+                    style={aboutUsStudentStyles.btnBack}
+                    onPress={() => setisModalVisibleVision(false)}>
+                    <Icon
+                      name="arrow-left"
+                      color="white"
+                      type="ionicons"
+                      size={18}
+                      style={{marginBottom: 2, paddingLeft: -20}}
+                    />
+                    <Text style={aboutUsStudentStyles.txtBack}> Back</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Modal>
+
+            <Modal
+              animationType="fade"
+              visible={isModalVisibleContactInformation}
+              onRequestClose={() => setisModalVisibleContactInformation(false)}>
+              <View style={aboutUsStudentStyles.vModalContainer}>
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/ustbg.png')}
+                  style={aboutUsStudentStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={aboutUsStudentStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={aboutUsStudentStyles.txtEdit}>
+                      {' '}
+                      Edit About Us Information
+                    </Text>
+                  </TouchableWithoutFeedback>
+
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(1.8),
+                      color: '#F5F5F5',
+                    }}>
+                    College of Information and Computing Sciences
+                  </Text>
+
+                  <Text style={aboutUsStudentStyles.txtTitle}>
+                    Contact Details
+                  </Text>
+                </ImageBackground>
+
+                <View style={aboutUsStudentStyles.vtxtContent}>
+                  <ScrollView>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="map-pin"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Location:
+                      </Text>
                     </View>
-                   
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newContactInfoLocation}</Text>
+
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newContactInfoLocation}
+                    </Text>
 
                     <Text></Text>
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="clock" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Office hours:</Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="clock"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Office hours:
+                      </Text>
                     </View>
-                   
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newContactInfoSchedule}</Text>
-                    
-                    <Text></Text>    
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="phone" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Office Contact Number:</Text>
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newContactInfoSchedule}
+                    </Text>
+
+                    <Text></Text>
+
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="phone"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Office Contact Number:
+                      </Text>
                     </View>
-                   
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newContactInfoNumber}</Text>
-                      <Text></Text> 
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="facebook" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> Facebook Page:</Text>
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newContactInfoNumber}
+                    </Text>
+                    <Text></Text>
+
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="facebook"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        Facebook Page:
+                      </Text>
                     </View>
-                   
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                     >{newContactInfoFacebook}</Text>
-                      <Text></Text> 
 
-                    <View style={{flexDirection:'row'}}>
-                      <Icon name="mail" color="black" type= 'ionicons' size={18}/>
-                      <Text style={aboutUsStudentStyles.txtLabelDescription}> UST CICS Email :</Text>
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newContactInfoFacebook}
+                    </Text>
+                    <Text></Text>
+
+                    <View style={{flexDirection: 'row'}}>
+                      <Icon
+                        name="mail"
+                        color="black"
+                        type="ionicons"
+                        size={18}
+                      />
+                      <Text style={aboutUsStudentStyles.txtLabelDescription}>
+                        {' '}
+                        UST CICS Email :
+                      </Text>
                     </View>
-                   
-                    <Text
-                      style={aboutUsStudentStyles.txtContent}
-                      >{newContactInfoEmail}</Text>
-                      <Text></Text> 
 
-
+                    <Text style={aboutUsStudentStyles.txtContent}>
+                      {newContactInfoEmail}
+                    </Text>
+                    <Text></Text>
                   </ScrollView>
-
                 </View>
 
                 <View style={aboutUsStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={aboutUsStudentStyles.btnBack}  onPress={() => setisModalVisibleContactInformation(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={aboutUsStudentStyles.txtBack}>  Back</Text>
+                  <TouchableOpacity
+                    style={aboutUsStudentStyles.btnBack}
+                    onPress={() => setisModalVisibleContactInformation(false)}>
+                    <Icon
+                      name="arrow-left"
+                      color="white"
+                      type="ionicons"
+                      size={18}
+                      style={{marginBottom: 2, paddingLeft: -20}}
+                    />
+                    <Text style={aboutUsStudentStyles.txtBack}> Back</Text>
                   </TouchableOpacity>
                 </View>
-                
               </View>
-
-          </Modal>
-
+            </Modal>
           </View>
         );
       });
   } else {
     searchtitles = (
-      <View style={{flexDirection: 'column', 
-      justifyContent: 'center',
-      }}>
-        <ImageBackground  source={require('../../assets/aicslogo.png')} 
-        style={{width: 250, height: 150, alignSelf:'center', margin: 32, resizeMode:'contain'}}
-        ></ImageBackground>
-        <ActivityIndicator size="large" color='purple'></ActivityIndicator>
+      <View style={{flexDirection: 'column', justifyContent: 'center'}}>
+        <ImageBackground
+          source={require('../../assets/aicslogo.png')}
+          style={{
+            width: 250,
+            height: 150,
+            alignSelf: 'center',
+            margin: 32,
+            resizeMode: 'contain',
+          }}></ImageBackground>
+        <ActivityIndicator size="large" color="purple"></ActivityIndicator>
       </View>
     );
   }
 
   if (searchtitles.length < 1) {
-    
-    searchtitles = 
-    <ImageBackground  source={require('../../assets/./icons/aicsnoabout.png')} 
-    style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
-    </ImageBackground>
-    
+    searchtitles = (
+      <ImageBackground
+        source={require('../../assets/./icons/aicsnoabout.png')}
+        style={{
+          width: 350,
+          height: 220,
+          alignSelf: 'auto',
+          margin: 32,
+          resizeMode: 'contain',
+        }}></ImageBackground>
+    );
   }
 
   return (
     <View style={aboutUsStudentStyles.lgOverallContainer}>
-
       <View style={aboutUsStudentStyles.lgTopHeader}>
-        
-        <Icon style= {aboutUsStudentStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={aboutUsStudentStyles.aicsLogoContainer}>
-        </TouchableOpacity>
-        <Image source={require('../../assets/aicsfin.png')} style={announcementStyles.aicsLogo}/>
-        
-        <View style={{flexDirection: 'row'}}>
-          <View>
-            <Text adjustsFontSizeToFit={true} style={aboutUsStudentStyles.titleText}>About Us</Text>
-            <Text adjustsFontSizeToFit={true} style={aboutUsStudentStyles.subtitleText}>Welcome to the College of Information and Computing Sciences, know about us! </Text>
-          </View>
-          
+        <View style={aboutUsStudentStyles.headerIconsMenu}>
+          <Icon
+            style={aboutUsStudentStyles.menuBarIcon}
+            name="menu"
+            color="white"
+            type="ionicons"
+            size={23}
+            onPress={() => navigation.toggleDrawer()}
+          />
+          <Image
+            source={require('../../assets/aicsfin.png')}
+            style={aboutUsStudentStyles.aicsLogo}
+          />
         </View>
 
+        <View style={{flexDirection: 'row'}}>
+          <View>
+            <Text
+              adjustsFontSizeToFit={true}
+              style={aboutUsStudentStyles.titleText}>
+              About Us
+            </Text>
+            <Text
+              adjustsFontSizeToFit={true}
+              style={aboutUsStudentStyles.subtitleText}>
+              Welcome to the College of Information and Computing Sciences, know
+              about us!{' '}
+            </Text>
+          </View>
+        </View>
       </View>
 
       <View style={aboutUsStudentStyles.vSearchBar}>
-          
-          <Icon name="search" color="#B2B2B2" style={aboutUsStudentStyles.searchBaricon} size={19}/>
-          <TextInput adjustsFontSizeToFit={true}
+        <Icon
+          name="search"
+          color="#B2B2B2"
+          style={aboutUsStudentStyles.searchBaricon}
+          size={19}
+        />
+        <TextInput
+          adjustsFontSizeToFit={true}
           style={aboutUsStudentStyles.tiSearch}
-            numberOfLines={1}
-            maxLength={50}
-            placeholder={'Search'}
-            placeholderTextColor={'#B2B2B2'}
-            onChangeText={text => {
-              setSearchTerm(text);
-              console.log(`search: ${searchTerm}`);
-            }}>
-            </TextInput>
-
+          numberOfLines={1}
+          maxLength={50}
+          placeholder={'Search'}
+          placeholderTextColor={'#B2B2B2'}
+          onChangeText={text => {
+            setSearchTerm(text);
+            console.log(`search: ${searchTerm}`);
+          }}></TextInput>
       </View>
 
       <View style={aboutUsStudentStyles.vAnnouncements}>
-
-        <ScrollView adjustsFontSizeToFit
-           contentContainerStyle={{ paddingBottom: 35}}>
+        <ScrollView
+          adjustsFontSizeToFit
+          contentContainerStyle={{paddingBottom: 35}}>
           {/* contentContainerStyle={{ paddingBottom: 20}}> */}
           {searchtitles}
         </ScrollView>
       </View>
-
     </View>
   );
 };

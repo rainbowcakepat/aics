@@ -140,97 +140,82 @@ const AboutUsAdmin = ({navigation}) => {
     if (newID == '0generalAbout') {
       console.log('id: ', newID);
       console.log('length', newAbout.length);
-     
-      if(newAbout.length < 3) {
+
+      if (newAbout.length < 3) {
         Alert.alert(
           'Failed to edit information',
-          'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.', 
-          [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
+          'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
-      }
-      else {
+      } else {
         handleEditAbout(newID);
         setisModalVisibleTheCollege(false);
       }
-      
-      
     } else if (newID == '1mission') {
       console.log('id: ', newID);
 
-      if(newMission.length < 3) {
+      if (newMission.length < 3) {
         Alert.alert(
           'Failed to edit information',
-          'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.', 
-          [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
+          'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
-      }
-      else {
+      } else {
         handleEditMission(newID);
         setisModalVisibleMission(false);
       }
- 
     } else if (newID == '2vision') {
-
-      if(newVision.length < 3) {
+      if (newVision.length < 3) {
         Alert.alert(
           'Failed to edit information',
-          'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.', 
-          [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
+          'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
-      }
-      else {
+      } else {
         handleEditVision(newID);
         setisModalVisibleVision(false);
       }
       console.log('id: ', newID);
-    } 
-    
-    else if (newID == '3contactInformation') {
-
-      if(newContactInfoEmail.length == 0 || newContactInfoFacebook.length == 0 || newContactInfoLocation.length == 0 ||
-        newContactInfoNumber.length == 0 || newContactInfoSchedule.length == 0 ) {
+    } else if (newID == '3contactInformation') {
+      if (
+        newContactInfoEmail.length == 0 ||
+        newContactInfoFacebook.length == 0 ||
+        newContactInfoLocation.length == 0 ||
+        newContactInfoNumber.length == 0 ||
+        newContactInfoSchedule.length == 0
+      ) {
         Alert.alert(
           'Failed to edit information',
-          'Information cannot be blank, please try again', 
-          [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
+          'Information cannot be blank, please try again',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
-      } 
-      else {   
-      handleEditContactInformation(newID);
-      setisModalVisibleContactInformation(false);
+      } else {
+        handleEditContactInformation(newID);
+        setisModalVisibleContactInformation(false);
       }
 
       console.log('id: ', newID);
     } else if (newID == '4offerings') {
-
-      if(newDegreePrograms.length < 3 || newDepartments.length < 3 || newOtherInformation.length < 3) {
+      if (
+        newDegreePrograms.length < 3 ||
+        newDepartments.length < 3 ||
+        newOtherInformation.length < 3
+      ) {
         Alert.alert(
           'Failed to edit information',
-          'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.', 
-          [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
+          'You cannot save this module while it is empty. Please enter information with a minimum length of 3 characters.',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
           {cancelable: false},
         );
-      } 
-      else {   
+      } else {
         handleEditCollegeOfferings(newID);
-      setisModalCollegeOfferings(false);
+        setisModalCollegeOfferings(false);
       }
 
-    
       console.log('id: ', newID);
     }
   };
@@ -593,40 +578,71 @@ const AboutUsAdmin = ({navigation}) => {
                       maxLength={800}></TextInput>
                   </ScrollView>
                 </View>
+              </View>
+
+              <View
+                style={{
+                  backgroundColor: '#F5F5F5',
+                  alignContent: 'flex-end',
+                  justifyContent: 'flex-end',
+                }}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignSelf: 'center',
+                    backgroundColor: 'white',
+                    marginBottom: 0,
+                    paddingTop: 5,
+                    paddingLeft: 8,
+                    paddingRight: 8,
+                    paddingBottom: 0,
+                    justifyContent: 'space-around',
+                    borderTopLeftRadius: 30,
+                    borderTopRightRadius: 30,
+                    width: win.width / 1.2,
+                    shadowColor: '#000',
+                    shadowOffset: {
+                      width: 0,
+                      height: 7,
+                    },
+                    shadowOpacity: 0.43,
+                    shadowRadius: 9.51,
+
+                    elevation: 15,
+                  }}>
+                  <TouchableOpacity
+                    onPress={() => setisModalVisibleTheCollege(false)}
+                    style={{flexDirection: 'column', alignItems: 'center'}}>
+                    <Icon name="x-circle" color="#B00A0A" size={22} />
+                    <Text
+                      style={{
+                        color: '#B00A0A',
+                        fontFamily: 'Poppins-Medium',
+                        fontSize: hp(1.5),
+                      }}>
+                      {' '}
+                      Cancel
+                    </Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => onPressSave(newID)}
+                    style={{flexDirection: 'column', alignItems: 'center'}}>
+                    <Icon name="check-circle" color="#B00A0A" size={22} />
+                    <Text
+                      style={{
+                        color: '#B00A0A',
+                        fontFamily: 'Poppins-Medium',
+                        fontSize: hp(1.5),
+                      }}>
+                      {' '}
+                      Submit{' '}
+                    </Text>
+                  </TouchableOpacity>
                 </View>
+              </View>
 
-                <View style={{backgroundColor:'#F5F5F5', alignContent:'flex-end', justifyContent:'flex-end',}}>
-     <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-    
-    elevation: 15,
-
-}}>
-
-<TouchableOpacity 
-                 onPress={() => setisModalVisibleTheCollege(false)} style={{flexDirection:'column', alignItems:'center'}}>
-                    <Icon name="x-circle" color="#B00A0A" size={22}/>
-                    <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
-          </TouchableOpacity>
-     
-
-<TouchableOpacity  onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
-            <Icon name="check-circle" color="#B00A0A" size={22}/>
-            <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
-            </TouchableOpacity>
-
-           
-
-  </View>
-  </View>
-
-                {/* <View style={aboutUsAdminStyles.vSaveCancel}>
+              {/* <View style={aboutUsAdminStyles.vSaveCancel}>
                   <TouchableOpacity
                     style={aboutUsAdminStyles.btnSave}
                     onPress={() => onPressSave(newID)}>
@@ -739,36 +755,67 @@ const AboutUsAdmin = ({navigation}) => {
                   </ScrollView>
                 </View>
 
-                <View style={{backgroundColor:'#F5F5F5', alignContent:'flex-end', justifyContent:'flex-end',}}>
-     <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-    
-    elevation: 15,
+                <View
+                  style={{
+                    backgroundColor: '#F5F5F5',
+                    alignContent: 'flex-end',
+                    justifyContent: 'flex-end',
+                  }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignSelf: 'center',
+                      backgroundColor: 'white',
+                      marginBottom: 0,
+                      paddingTop: 5,
+                      paddingLeft: 8,
+                      paddingRight: 8,
+                      paddingBottom: 0,
+                      justifyContent: 'space-around',
+                      borderTopLeftRadius: 30,
+                      borderTopRightRadius: 30,
+                      width: win.width / 1.2,
+                      shadowColor: '#000',
+                      shadowOffset: {
+                        width: 0,
+                        height: 7,
+                      },
+                      shadowOpacity: 0.43,
+                      shadowRadius: 9.51,
 
-}}>
+                      elevation: 15,
+                    }}>
+                    <TouchableOpacity
+                      onPress={() => setisModalCollegeOfferings(false)}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="x-circle" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          fontSize: hp(1.5),
+                        }}>
+                        {' '}
+                        Cancel
+                      </Text>
+                    </TouchableOpacity>
 
-<TouchableOpacity 
-                    onPress={() => setisModalCollegeOfferings(false)} style={{flexDirection:'column', alignItems:'center'}}>
-                    <Icon name="x-circle" color="#B00A0A" size={22}/>
-                    <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
-          </TouchableOpacity>
-     
-
-<TouchableOpacity   onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
-            <Icon name="check-circle" color="#B00A0A" size={22}/>
-            <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
-            </TouchableOpacity>
-
-           
-
-  </View>
-  </View>
+                    <TouchableOpacity
+                      onPress={() => onPressSave(newID)}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="check-circle" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          fontSize: hp(1.5),
+                        }}>
+                        {' '}
+                        Submit{' '}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
 
                 {/* <View style={aboutUsAdminStyles.vSaveCancel}>
                   <TouchableOpacity
@@ -840,38 +887,69 @@ const AboutUsAdmin = ({navigation}) => {
                       maxLength={600}></TextInput>
                   </ScrollView>
                 </View>
-                <View style={{backgroundColor:'#F5F5F5', alignContent:'flex-end', justifyContent:'flex-end',}}>
-     <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-    
-    elevation: 15,
+                <View
+                  style={{
+                    backgroundColor: '#F5F5F5',
+                    alignContent: 'flex-end',
+                    justifyContent: 'flex-end',
+                  }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignSelf: 'center',
+                      backgroundColor: 'white',
+                      marginBottom: 0,
+                      paddingTop: 5,
+                      paddingLeft: 8,
+                      paddingRight: 8,
+                      paddingBottom: 0,
+                      justifyContent: 'space-around',
+                      borderTopLeftRadius: 30,
+                      borderTopRightRadius: 30,
+                      width: win.width / 1.2,
+                      shadowColor: '#000',
+                      shadowOffset: {
+                        width: 0,
+                        height: 7,
+                      },
+                      shadowOpacity: 0.43,
+                      shadowRadius: 9.51,
 
-}}>
+                      elevation: 15,
+                    }}>
+                    <TouchableOpacity
+                      onPress={() => setisModalVisibleMission(false)}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="x-circle" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          fontSize: hp(1.5),
+                        }}>
+                        {' '}
+                        Cancel
+                      </Text>
+                    </TouchableOpacity>
 
-<TouchableOpacity 
-                onPress={() => setisModalVisibleMission(false)} style={{flexDirection:'column', alignItems:'center'}}>
-                    <Icon name="x-circle" color="#B00A0A" size={22}/>
-                    <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
-          </TouchableOpacity>
-     
+                    <TouchableOpacity
+                      onPress={() => onPressSave(newID)}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="check-circle" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          fontSize: hp(1.5),
+                        }}>
+                        {' '}
+                        Submit{' '}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
 
-<TouchableOpacity  onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
-            <Icon name="check-circle" color="#B00A0A" size={22}/>
-            <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
-            </TouchableOpacity>
-
-           
-
-  </View>
-  </View>
-                
-{/* 
+                {/* 
                 <View style={aboutUsAdminStyles.vSaveCancel}>
                   <TouchableOpacity
                     style={aboutUsAdminStyles.btnSave}
@@ -942,36 +1020,67 @@ const AboutUsAdmin = ({navigation}) => {
                       maxLength={400}></TextInput>
                   </ScrollView>
                 </View>
-                <View style={{backgroundColor:'#F5F5F5', alignContent:'flex-end', justifyContent:'flex-end',}}>
-     <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-    
-    elevation: 15,
+                <View
+                  style={{
+                    backgroundColor: '#F5F5F5',
+                    alignContent: 'flex-end',
+                    justifyContent: 'flex-end',
+                  }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignSelf: 'center',
+                      backgroundColor: 'white',
+                      marginBottom: 0,
+                      paddingTop: 5,
+                      paddingLeft: 8,
+                      paddingRight: 8,
+                      paddingBottom: 0,
+                      justifyContent: 'space-around',
+                      borderTopLeftRadius: 30,
+                      borderTopRightRadius: 30,
+                      width: win.width / 1.2,
+                      shadowColor: '#000',
+                      shadowOffset: {
+                        width: 0,
+                        height: 7,
+                      },
+                      shadowOpacity: 0.43,
+                      shadowRadius: 9.51,
 
-}}>
+                      elevation: 15,
+                    }}>
+                    <TouchableOpacity
+                      onPress={() => setisModalVisibleVision(false)}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="x-circle" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          fontSize: hp(1.5),
+                        }}>
+                        {' '}
+                        Cancel
+                      </Text>
+                    </TouchableOpacity>
 
-<TouchableOpacity 
-                 onPress={() => setisModalVisibleVision(false)} style={{flexDirection:'column', alignItems:'center'}}>
-                    <Icon name="x-circle" color="#B00A0A" size={22}/>
-                    <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
-          </TouchableOpacity>
-     
-
-<TouchableOpacity  onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
-            <Icon name="check-circle" color="#B00A0A" size={22}/>
-            <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
-            </TouchableOpacity>
-
-           
-
-  </View>
-  </View>
+                    <TouchableOpacity
+                      onPress={() => onPressSave(newID)}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="check-circle" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          fontSize: hp(1.5),
+                        }}>
+                        {' '}
+                        Submit{' '}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
                 {/* <View style={aboutUsAdminStyles.vSaveCancel}>
                   <TouchableOpacity
                     style={aboutUsAdminStyles.btnSave}
@@ -1176,37 +1285,67 @@ const AboutUsAdmin = ({navigation}) => {
                   </ScrollView>
                 </View>
 
+                <View
+                  style={{
+                    backgroundColor: '#F5F5F5',
+                    alignContent: 'flex-end',
+                    justifyContent: 'flex-end',
+                  }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignSelf: 'center',
+                      backgroundColor: 'white',
+                      marginBottom: 0,
+                      paddingTop: 5,
+                      paddingLeft: 8,
+                      paddingRight: 8,
+                      paddingBottom: 0,
+                      justifyContent: 'space-around',
+                      borderTopLeftRadius: 30,
+                      borderTopRightRadius: 30,
+                      width: win.width / 1.2,
+                      shadowColor: '#000',
+                      shadowOffset: {
+                        width: 0,
+                        height: 7,
+                      },
+                      shadowOpacity: 0.43,
+                      shadowRadius: 9.51,
 
-                <View style={{backgroundColor:'#F5F5F5', alignContent:'flex-end', justifyContent:'flex-end',}}>
-     <View style={{flexDirection:'row', alignSelf:'center' , backgroundColor:'white', marginBottom: 0, paddingTop:5, paddingLeft:8, paddingRight:8, paddingBottom:0, justifyContent:'space-around', borderTopLeftRadius: 30,borderTopRightRadius: 30, width:win.width/1.2, 
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-    
-    elevation: 15,
+                      elevation: 15,
+                    }}>
+                    <TouchableOpacity
+                      onPress={() => setisModalVisibleContactInformation(false)}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="x-circle" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          fontSize: hp(1.5),
+                        }}>
+                        {' '}
+                        Cancel
+                      </Text>
+                    </TouchableOpacity>
 
-}}>
-
-<TouchableOpacity 
-                  onPress={() => setisModalVisibleContactInformation(false)} style={{flexDirection:'column', alignItems:'center'}}>
-                    <Icon name="x-circle" color="#B00A0A" size={22}/>
-                    <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Cancel</Text>
-          </TouchableOpacity>
-     
-
-<TouchableOpacity  onPress={() => onPressSave(newID)} style={{flexDirection:'column', alignItems:'center'}}>
-            <Icon name="check-circle" color="#B00A0A" size={22}/>
-            <Text style={{color: '#B00A0A', fontFamily: 'Poppins-Medium', fontSize: hp(1.5)}}> Submit </Text>
-            </TouchableOpacity>
-
-           
-
-  </View>
-  </View>
+                    <TouchableOpacity
+                      onPress={() => onPressSave(newID)}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="check-circle" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          fontSize: hp(1.5),
+                        }}>
+                        {' '}
+                        Submit{' '}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
 
                 {/* <View style={aboutUsAdminStyles.vSaveCancel}>
                   <TouchableOpacity
@@ -1260,20 +1399,20 @@ const AboutUsAdmin = ({navigation}) => {
   return (
     <View style={aboutUsAdminStyles.lgOverallContainer}>
       <View style={aboutUsAdminStyles.lgTopHeader}>
-        <Icon
-          style={aboutUsAdminStyles.menuBarIcon}
-          name="menu"
-          color="white"
-          type="ionicons"
-          size={23}
-          onPress={() => navigation.toggleDrawer()}
-        />
-        <TouchableOpacity
-          style={aboutUsAdminStyles.aicsLogoContainer}></TouchableOpacity>
-        <Image
-          source={require('../../assets/aicsfin.png')}
-          style={announcementStyles.aicsLogo}
-        />
+        <View style={aboutUsAdminStyles.headerIconsMenu}>
+          <Icon
+            style={aboutUsAdminStyles.menuBarIcon}
+            name="menu"
+            color="white"
+            type="ionicons"
+            size={23}
+            onPress={() => navigation.toggleDrawer()}
+          />
+          <Image
+            source={require('../../assets/aicsfin.png')}
+            style={aboutUsAdminStyles.aicsLogo}
+          />
+        </View>
 
         <View style={{flexDirection: 'row'}}>
           <View>
@@ -1316,7 +1455,7 @@ const AboutUsAdmin = ({navigation}) => {
         <ScrollView
           adjustsFontSizeToFit
           contentContainerStyle={{paddingBottom: 35}}>
-            {/* contentContainerStyle={{paddingBottom: 15}}> */}
+          {/* contentContainerStyle={{paddingBottom: 15}}> */}
           {searchtitles}
         </ScrollView>
       </View>

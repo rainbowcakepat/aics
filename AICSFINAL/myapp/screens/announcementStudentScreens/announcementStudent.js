@@ -12,7 +12,7 @@ import {
   ActivityIndicator,
   Dimensions,
   Button,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -24,15 +24,17 @@ import ImageModal from 'react-native-image-modal';
 
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const win = Dimensions.get('window');
 
 import AnnouncementComponent from '../announcementAdminScreens/announcementComponent';
 import {announcementStyles} from '../../styles/announcementStyles';
 import {announcementComponentStudentStyles} from '../../styles/announcementStudentStyles';
-
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
 const AnnouncementStudent = ({navigation}) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -76,19 +78,18 @@ const AnnouncementStudent = ({navigation}) => {
     return () => fetchAnnouncements();
   }, []);
 
-  
-  const getAnnouncements = (item) => {
+  const getAnnouncements = item => {
     setisModalVisible(true);
     setNewTitles(item.titles);
     setNewContents(item.contents);
     setNewPhoto(item.photo);
     setNewId(item.key);
     setNewURL(item.url);
-    setImageModal(true)
+    setImageModal(true);
     console.log(item.titles, item.key, item.url);
   };
 
-  const onPressSave = (newID) => {
+  const onPressSave = newID => {
     console.log('Gumagana ba to', newID);
     setisModalVisible(false);
 
@@ -122,9 +123,6 @@ const AnnouncementStudent = ({navigation}) => {
       });
   };
 
- 
- 
-
   let searchtitles = null;
 
   if (loader) {
@@ -139,8 +137,7 @@ const AnnouncementStudent = ({navigation}) => {
             .includes(searchTerm.toString().toLowerCase())
         ) {
           return item;
-        }
-        else if (
+        } else if (
           item.posttime
             ?.toString()
             .toLowerCase()
@@ -151,11 +148,9 @@ const AnnouncementStudent = ({navigation}) => {
       })
       .map((item, key) => {
         return (
-          <View key={key} >
-
+          <View key={key}>
             <View style={announcementComponentStudentStyles.vCardContainer}>
-              
-              <AnnouncementComponent 
+              <AnnouncementComponent
                 // item = {item}
                 propsnum={key}
                 propsid={item.key}
@@ -165,169 +160,223 @@ const AnnouncementStudent = ({navigation}) => {
                 // propsimage={item.url}
               />
 
-              <View style={{flexDirection:'row', justifyContent: 'flex-end'}}>
-
+              <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
                 <TouchableOpacity
                   style={announcementComponentStudentStyles.toUpdate}
                   onPress={() => getAnnouncements(item)}>
-                  <Icon name="eye" color="white" size={18} style={{ marginBottom: 2}}/>
-                  <Text style={announcementComponentStudentStyles.txtUpdateArchive}> View post </Text>
+                  <Icon
+                    name="eye"
+                    color="white"
+                    size={18}
+                    style={{marginBottom: 2}}
+                  />
+                  <Text
+                    style={announcementComponentStudentStyles.txtUpdateArchive}>
+                    {' '}
+                    View post{' '}
+                  </Text>
                 </TouchableOpacity>
-         
               </View>
-
             </View>
 
             <Modal
               animationType="fade"
               visible={isModalVisible}
-              onRequestClose={() => setisModalVisible(false)}
-              
-            >
-
+              onRequestClose={() => setisModalVisible(false)}>
               <View style={announcementComponentStudentStyles.vModalContainer}>
-                
-                <View style={{flex:1, backgroundColor:'white',}}></View>
-                <ImageBackground  source={require('../../assets/./bg/annoucementsbg.png')} style={announcementComponentStudentStyles.vtxtTitle} >
-                    
-                    <TouchableWithoutFeedback
-                      style={announcementComponentStudentStyles.toAnnouncement}>
-                      {/* <Icon name="edit-2" color="white" size={19}/> */}
-                      <Text style={announcementComponentStudentStyles.txtEdit}> View Announcement</Text>
-                    </TouchableWithoutFeedback>
-  
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                    color:'#F5F5F5', }}>Announcement Title</Text>
-                        
+                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                <ImageBackground
+                  source={require('../../assets/./bg/annoucementsbg.png')}
+                  style={announcementComponentStudentStyles.vtxtTitle}>
+                  <TouchableWithoutFeedback
+                    style={announcementComponentStudentStyles.toAnnouncement}>
+                    {/* <Icon name="edit-2" color="white" size={19}/> */}
+                    <Text style={announcementComponentStudentStyles.txtEdit}>
+                      {' '}
+                      View Announcement
+                    </Text>
+                  </TouchableWithoutFeedback>
+
+                  <Text
+                    style={{
+                      fontFamily: 'Poppins-Regular',
+                      textAlign: 'left',
+                      fontSize: hp(2),
+                      color: '#F5F5F5',
+                    }}>
+                    Announcement Title
+                  </Text>
+
                   <Text
                     style={announcementComponentStudentStyles.txtTitle}
                     multiline={true}
                     numberOfLines={2}
                     maxLength={50}>
-                  {newTitles}</Text>
-                 
+                    {newTitles}
+                  </Text>
                 </ImageBackground>
-                
+
                 <View style={announcementComponentStudentStyles.vtxtContent}>
-                <ScrollView >
-                  
-                  <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                  color:'gray', }}>Announcement Content:</Text>
-                    
-                  <Text
-                    style={announcementComponentStudentStyles.txtContent}
-                    multiline={true}
-                    maxLength={550}>
-                    {newContents}</Text>
+                  <ScrollView>
+                    <Text
+                      style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: 'gray',
+                      }}>
+                      Announcement Content:
+                    </Text>
 
-                    <Text style={{fontFamily: 'Poppins-Regular', textAlign: 'left', fontSize: hp(2), 
-                  color:'gray', paddingBottom:10, paddingTop: 10}}>Click Image to view:</Text>
+                    <Text
+                      style={announcementComponentStudentStyles.txtContent}
+                      multiline={true}
+                      maxLength={550}>
+                      {newContents}
+                    </Text>
 
-                    <View style={announcementComponentStudentStyles.imageContainer}>
-                   
-                   {newUrl ? 
-                   <ImageModal
-                   source={{uri: newUrl ? newUrl : newPhoto}}
-                   style={{
-                     width: 500,
-                     height: 220,
-                     resizeMode: 'contain',
-                   }} />
-                   : null
-                  }
-                    
-                 
-                 
-                
-      
-</View>
+                    <Text
+                      style={{
+                        fontFamily: 'Poppins-Regular',
+                        textAlign: 'left',
+                        fontSize: hp(2),
+                        color: 'gray',
+                        paddingBottom: 10,
+                        paddingTop: 10,
+                      }}>
+                      Click Image to view:
+                    </Text>
 
-                   
-
-                </ScrollView>
+                    <View
+                      style={announcementComponentStudentStyles.imageContainer}>
+                      {newUrl ? (
+                        <ImageModal
+                          source={{uri: newUrl ? newUrl : newPhoto}}
+                          style={{
+                            width: 500,
+                            height: 220,
+                            resizeMode: 'contain',
+                          }}
+                        />
+                      ) : null}
+                    </View>
+                  </ScrollView>
                 </View>
 
-              
-                 <View style={announcementComponentStudentStyles.vSaveCancel}>
-                  <TouchableOpacity style={announcementComponentStudentStyles.btnBack}  onPress={() => setisModalVisible(false)}>
-                    <Icon name="arrow-left" color="white" type= 'ionicons' size={18} style={{marginBottom: 2, paddingLeft: -20}}/>
-                    <Text style={announcementComponentStudentStyles.txtBack}>  Back</Text>
+                <View style={announcementComponentStudentStyles.vSaveCancel}>
+                  <TouchableOpacity
+                    style={announcementComponentStudentStyles.btnBack}
+                    onPress={() => setisModalVisible(false)}>
+                    <Icon
+                      name="arrow-left"
+                      color="white"
+                      type="ionicons"
+                      size={18}
+                      style={{marginBottom: 2, paddingLeft: -20}}
+                    />
+                    <Text style={announcementComponentStudentStyles.txtBack}>
+                      {' '}
+                      Back
+                    </Text>
                   </TouchableOpacity>
-                </View> 
-                
+                </View>
               </View>
-
             </Modal>
           </View>
         );
       });
   } else {
     searchtitles = (
-      <View style={{flexDirection: 'column', 
-      justifyContent: 'center',
-      }}>
-        <ImageBackground  source={require('../../assets/aicslogo.png')} 
-        style={{width: 250, height: 150, alignSelf:'center', margin: 32, resizeMode:'contain'}}
-        ></ImageBackground>
-        <ActivityIndicator size="large" color='purple'></ActivityIndicator>
+      <View style={{flexDirection: 'column', justifyContent: 'center'}}>
+        <ImageBackground
+          source={require('../../assets/aicslogo.png')}
+          style={{
+            width: 250,
+            height: 150,
+            alignSelf: 'center',
+            margin: 32,
+            resizeMode: 'contain',
+          }}></ImageBackground>
+        <ActivityIndicator size="large" color="purple"></ActivityIndicator>
       </View>
     );
   }
 
   if (searchtitles.length < 1) {
-    searchtitles = 
-    <ImageBackground  source={require('../../assets/./icons/aicsnoannouncements.png')} 
-    style={{width: 350, height: 220, alignSelf:'auto', margin: 32, resizeMode:'contain'}}>
-    </ImageBackground>
+    searchtitles = (
+      <ImageBackground
+        source={require('../../assets/./icons/aicsnoannouncements.png')}
+        style={{
+          width: 350,
+          height: 220,
+          alignSelf: 'auto',
+          margin: 32,
+          resizeMode: 'contain',
+        }}></ImageBackground>
+    );
   }
 
   return (
     <View style={announcementComponentStudentStyles.lgOverallContainer}>
-
       <View style={announcementComponentStudentStyles.lgTopHeader}>
-        
-        <Icon style= {announcementComponentStudentStyles.menuBarIcon} name="menu" color="white" type= 'ionicons' size={23} onPress={() => navigation.toggleDrawer()}/>
-        <TouchableOpacity style={announcementComponentStudentStyles.aicsLogoContainer} >
-        </TouchableOpacity>
-        <Image source={require('../../assets/aicsfin.png')} style={announcementStyles.aicsLogo}/>
-        
-        <View style={{flexDirection: 'row'}}>
-          <View>
-            <Text adjustsFontSizeToFit={true} style={announcementComponentStudentStyles.titleText}>Announcements</Text>
-            <Text adjustsFontSizeToFit={true} style={announcementComponentStudentStyles.subtitleText}>Be informed! View the latest happenings and updates from CICS. </Text>
-          </View>
-          
+        <View style={announcementComponentStudentStyles.headerIconsMenu}>
+          <Icon
+            style={announcementComponentStudentStyles.menuBarIcon}
+            name="menu"
+            color="white"
+            type="ionicons"
+            size={23}
+            onPress={() => navigation.toggleDrawer()}
+          />
+          <Image
+            source={require('../../assets/aicsfin.png')}
+            style={announcementComponentStudentStyles.aicsLogo}
+          />
         </View>
 
+        <View style={{flexDirection: 'row'}}>
+          <View>
+            <Text
+              adjustsFontSizeToFit={true}
+              style={announcementComponentStudentStyles.titleText}>
+              Announcements
+            </Text>
+            <Text
+              adjustsFontSizeToFit={true}
+              style={announcementComponentStudentStyles.subtitleText}>
+              Be informed! View the latest happenings and updates from CICS.{' '}
+            </Text>
+          </View>
+        </View>
       </View>
 
       <View style={announcementComponentStudentStyles.vSearchBar}>
-          
-          <Icon name="search" color="#B2B2B2" style={announcementComponentStudentStyles.searchBaricon} size={19}/>
-          <TextInput adjustsFontSizeToFit={true}
+        <Icon
+          name="search"
+          color="#B2B2B2"
+          style={announcementComponentStudentStyles.searchBaricon}
+          size={19}
+        />
+        <TextInput
+          adjustsFontSizeToFit={true}
           style={announcementComponentStudentStyles.tiSearch}
-            numberOfLines={1}
-            maxLength={50}
-            placeholder={'Search'}
-            placeholderTextColor={'#B2B2B2'}
-            onChangeText={text => {
-              setSearchTerm(text);
-              console.log(`search: ${searchTerm}`);
-            }}>
-            </TextInput>
-
+          numberOfLines={1}
+          maxLength={50}
+          placeholder={'Search'}
+          placeholderTextColor={'#B2B2B2'}
+          onChangeText={text => {
+            setSearchTerm(text);
+            console.log(`search: ${searchTerm}`);
+          }}></TextInput>
       </View>
 
       <View style={announcementComponentStudentStyles.vAnnouncements}>
-         
-        <ScrollView adjustsFontSizeToFit
-           contentContainerStyle={{ paddingBottom: 45}}>
+        <ScrollView
+          adjustsFontSizeToFit
+          contentContainerStyle={{paddingBottom: 45}}>
           {searchtitles}
         </ScrollView>
       </View>
-
-    
-      
     </View>
   );
 };

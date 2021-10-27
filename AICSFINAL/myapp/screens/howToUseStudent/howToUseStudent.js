@@ -700,20 +700,20 @@ const howToUseStudent = ({navigation}) => {
   return (
     <View style={howToUseStudentStyles.lgOverallContainer}>
       <View style={howToUseStudentStyles.lgTopHeader}>
-        <Icon
-          style={howToUseStudentStyles.menuBarIcon}
-          name="menu"
-          color="white"
-          type="ionicons"
-          size={23}
-          onPress={() => navigation.toggleDrawer()}
-        />
-        <TouchableOpacity
-          style={howToUseStudentStyles.aicsLogoContainer}></TouchableOpacity>
-        <Image
-          source={require('../../assets/aicsfin.png')}
-          style={announcementStyles.aicsLogo}
-        />
+        <View style={howToUseStudentStyles.headerIconsMenu}>
+          <Icon
+            style={howToUseStudentStyles.menuBarIcon}
+            name="menu"
+            color="white"
+            type="ionicons"
+            size={23}
+            onPress={() => navigation.toggleDrawer()}
+          />
+          <Image
+            source={require('../../assets/aicsfin.png')}
+            style={howToUseStudentStyles.aicsLogo}
+          />
+        </View>
 
         {/* display to */}
         <View style={{flexDirection: 'row'}}>
@@ -758,7 +758,6 @@ const howToUseStudent = ({navigation}) => {
 
         <ScrollView
           adjustsFontSizeToFit
-          
           contentContainerStyle={{paddingBottom: 45}}>
           {searchtitle}
         </ScrollView>

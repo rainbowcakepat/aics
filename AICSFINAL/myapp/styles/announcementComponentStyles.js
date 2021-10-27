@@ -17,25 +17,14 @@ export const announcementComponentStyles = StyleSheet.create({
   },
 
   //Top Header: Black
-  lgTopHeader: {
+  /*lgTopHeader: {
     backgroundColor: '#CB0A0D',
     flex: 1.3,
-  },
+  },*/
 
-  menuBarContainer: {
-    height: 35,
-    width: 40,
-    marginTop: 13,
-    marginLeft: 17,
-    opacity: 0.2,
-    borderRadius: 10,
-    backgroundColor: 'black',
-    position: 'absolute',
-  },
-
-  menuBarIcon: {
-    marginTop: 16,
-    marginLeft: 17,
+  lgTopHeader: {
+    backgroundColor: '#CB0A0D',
+    flex: win.height >= 534 ? 1.3 : 1.8, //1.3
   },
 
   titleText: {
@@ -58,7 +47,7 @@ export const announcementComponentStyles = StyleSheet.create({
     fontFamily: 'Poppins-Italic',
     color: 'white',
   },
-
+  /*
   aicsLogo: {
     width: 70,
     height: 48,
@@ -77,6 +66,36 @@ export const announcementComponentStyles = StyleSheet.create({
     marginTop: 2,
     marginLeft: 334,
     position: 'absolute',
+  },
+*/
+
+  headerIconsMenu: {
+    flexDirection: 'row',
+    //backgroundColor: 'black',
+    paddingVertical: 10,
+    paddingLeft: 15,
+    paddingRight: 10,
+
+    //marginBottom: 27,
+    alignContent: 'space-between',
+    justifyContent: 'space-between',
+    //paddingHorizontal: 20,
+    //alignItems: 'space-around',
+    //alignSelf: 'space-around',
+  },
+
+  aicsLogo: {
+    //backgroundColor: 'yellow',
+    width: '20%',
+    height: '50%',
+    padding: 15,
+
+    resizeMode: 'cover',
+    //position: 'relative', //position: 'absolute',
+  },
+
+  menuBarIcon: {
+    marginTop: 4.8,
   },
 
   //Search Bar

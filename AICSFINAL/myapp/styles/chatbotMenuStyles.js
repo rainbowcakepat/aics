@@ -22,22 +22,6 @@ export const chatbotMenuStyles = StyleSheet.create({
     flex: 1.3,
   },
 
-  menuBarContainer: {
-    height: 35,
-    width: 40,
-    marginTop: 13,
-    marginLeft: 17,
-    opacity: 0.2,
-    borderRadius: 10,
-    backgroundColor: 'black',
-    position: 'absolute',
-  },
-
-  menuBarIcon: {
-    marginTop: 16,
-    marginLeft: 17,
-  },
-
   titleText: {
     marginLeft: 15,
     marginTop: 22,
@@ -59,26 +43,33 @@ export const chatbotMenuStyles = StyleSheet.create({
     color: 'white',
   },
 
+  headerIconsMenu: {
+    flexDirection: 'row',
+    //backgroundColor: 'black',
+    paddingVertical: 10,
+    paddingLeft: 15,
+    paddingRight: 10,
+    //marginBottom: 27,
+    alignContent: 'space-between',
+    justifyContent: 'space-between',
+    //paddingHorizontal: 20,
+    //alignItems: 'space-around',
+    //alignSelf: 'space-around',
+  },
+
   aicsLogo: {
-    width: 70,
-    height: 48,
-    marginTop: 5,
-    marginLeft: 334,
-    opacity: 1,
-    position: 'absolute',
-    resizeMode: 'contain',
-    position: 'absolute',
+    //backgroundColor: 'yellow',
+    width: '20%',
+    height: '50%',
+    padding: 15,
+
+    resizeMode: 'cover',
+    //position: 'relative', //position: 'absolute',
   },
 
-  aicsLogoContainer: {
-    zIndex: 100,
-    height: 50,
-    width: 70,
-    marginTop: 2,
-    marginLeft: 334,
-    position: 'absolute',
+  menuBarIcon: {
+    marginTop: 4.8,
   },
-
   //Search Bar
   vSearchBar: {
     flex: 0.1,

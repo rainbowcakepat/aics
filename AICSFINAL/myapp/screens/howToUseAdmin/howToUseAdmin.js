@@ -709,20 +709,20 @@ const howToUseAdmin = ({navigation}) => {
   return (
     <View style={howToUseAdminStyles.lgOverallContainer}>
       <View style={howToUseAdminStyles.lgTopHeader}>
-        <Icon
-          style={howToUseAdminStyles.menuBarIcon}
-          name="menu"
-          color="white"
-          type="ionicons"
-          size={23}
-          onPress={() => navigation.toggleDrawer()}
-        />
-        <TouchableOpacity
-          style={howToUseAdminStyles.aicsLogoContainer}></TouchableOpacity>
-        <Image
-          source={require('../../assets/aicsfin.png')}
-          style={announcementStyles.aicsLogo}
-        />
+        <View style={howToUseAdminStyles.headerIconsMenu}>
+          <Icon
+            style={howToUseAdminStyles.menuBarIcon}
+            name="menu"
+            color="white"
+            type="ionicons"
+            size={23}
+            onPress={() => navigation.toggleDrawer()}
+          />
+          <Image
+            source={require('../../assets/aicsfin.png')}
+            style={howToUseAdminStyles.aicsLogo}
+          />
+        </View>
 
         {/* display to */}
         <View style={{flexDirection: 'row'}}>
@@ -735,7 +735,8 @@ const howToUseAdmin = ({navigation}) => {
             <Text
               adjustsFontSizeToFit={true}
               style={howToUseAdminStyles.subtitleText}>
-              Learn how to use the features of the application as an AICS Administrator{' '}
+              Learn how to use the features of the application as an AICS
+              Administrator{' '}
             </Text>
           </View>
         </View>
