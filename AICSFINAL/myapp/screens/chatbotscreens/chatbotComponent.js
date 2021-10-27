@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, ScrollView, SafeAreaView, TouchableOpacity} from 'react-native';
+import { Text, View, Dimensions, Image, ScrollView, SafeAreaView, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import Iconss from 'react-native-vector-icons/FontAwesome5';
 import {
@@ -9,6 +9,7 @@ import {
     heightPercentageToFonts as hf,
   } from "react-native-responsive-screen-font";
   
+  const win = Dimensions.get('window');
 
 function ChatbotComponent(props){
     return (
@@ -16,7 +17,7 @@ function ChatbotComponent(props){
             <View style={{flexDirection: 'row'}}>
                 
                 <View>
-                    <Image style={{width: 100, height: 105, marginTop: 10}} source= {(props.propsimgpath)} ></Image>
+                    <Image style={{width: win.height >= 534 ? 100 : 80, height: win.height >= 534 ? 105 : 85, marginTop: 10}} source= {(props.propsimgpath)} ></Image>
                 </View>
                 
                 <View style={{alignContent: 'space-around', padding: 10}}>                  
