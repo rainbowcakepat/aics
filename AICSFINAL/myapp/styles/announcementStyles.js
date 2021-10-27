@@ -19,7 +19,7 @@ export const announcementStyles = StyleSheet.create({
 
   //Top Header: Black
   lgTopHeader: {
-    flex: 2,
+    flex: win.height >= 534 && win.height < 700 ? 1.3 : win.height >= 700 ? 1.25 : 1.8, //1.3
     backgroundColor: '#CB0A0D',
   },
 
