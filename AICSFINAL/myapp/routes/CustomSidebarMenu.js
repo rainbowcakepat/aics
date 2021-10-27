@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   sideMenuProfileIcon: {
     marginTop: '10%',
     marginBottom: '4%',
-    width: '50%',
+    width: win.height >= 534 ? '50%' : '30%', //'50%'
     height: '50%',
     borderRadius: 15,
     alignSelf: 'center',

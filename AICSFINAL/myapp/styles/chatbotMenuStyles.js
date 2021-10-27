@@ -86,19 +86,21 @@ export const chatbotMenuStyles = StyleSheet.create({
   },
 
   searchBaricon: {
-    marginTop: -2,
+    marginTop: win.height >= 534 ? -2 : -7, //-2
     marginLeft: 10,
+    
   },
 
   tiSearch: {
-    paddingTop: 1,
-    paddingBottom: 2,
-    marginBottom: -7,
+    paddingTop: win.height >= 534 ? 1 : 0,
+    paddingBottom: win.height >= 534 ? 2 : 0,
+    marginBottom: win.height >= 534 ? -7 : -8,
     marginLeft: 10,
     paddingRight: 40,
     width: 370,
     color: '#333244',
     fontFamily: 'Poppins-Medium',
+    //backgroundColor:'black'
   },
 
   vAnnouncements: {
