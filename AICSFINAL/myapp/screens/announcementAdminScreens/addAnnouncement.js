@@ -189,7 +189,7 @@ navigation
 
 
   return (
-    <LinearGradient style={announcementStyles.lgOverallContainer} colors= {['#CB0A0D', '#CB0A0D']} >
+    <LinearGradient style={announcementStyles.lgOverallContainer} colors= {['#CB0A0D', '#CB0A0D', '#CB0A0D']} >
       
         <LinearGradient style={announcementStyles.lgTopHeader} colors= {['#CB0A0D', '#CB0A0D', ]}>
             {/* <TouchableOpacity style={announcementStyles.menuBarContainer}></TouchableOpacity> */}
@@ -197,9 +197,6 @@ navigation
             <Text style={announcementStyles.titleText}>Add Announcements</Text>
             <Text style={announcementStyles.subtitleText}>Tell us the latest happenings and updates in CICS, post your announcements now! </Text>
 
-            <TouchableOpacity style={announcementStyles.aicsLogoContainer}>
-            </TouchableOpacity>
-            <Image source={require('../../assets/aicsfin.png')} style={announcementStyles.aicsLogo}/>
         </LinearGradient>
 
         <View style={announcementStyles.vBodyContainer}>

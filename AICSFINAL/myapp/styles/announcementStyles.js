@@ -19,7 +19,7 @@ export const announcementStyles = StyleSheet.create({
 
   //Top Header: Black
   lgTopHeader: {
-    flex: win.height >= 534 && win.height < 700 ? 1.5 : win.height >= 700 ? 1.3 : 1.8, //1.3
+    flex: win.height >= 534 && win.height < 700 ?  2 : win.height >= 700 ? 1.9 : 2.5, //1.3
     backgroundColor: '#CB0A0D',
   },
 
@@ -73,8 +73,9 @@ export const announcementStyles = StyleSheet.create({
   },
 
   menuBarIcon: {
-    marginTop: 4.8,
-  },
+    marginTop: 16, 
+    marginLeft: 17
+},
 
   //Body: White
 
