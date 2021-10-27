@@ -82,7 +82,7 @@ export const howToUseAdminStyles = StyleSheet.create({
   //Search Bar
   vSearchBar: {
     flex: 0.1,
-    width: 380,
+    width: win.width / 1.1, //380
     paddingTop: 10,
     paddingBottom: 10,
     flexDirection: 'row',
@@ -151,23 +151,22 @@ export const howToUseAdminStyles = StyleSheet.create({
   //   justifyContent: 'center',
   //   alignItems: 'center',
   //   marginLeft: 160,
-  //   marginBottom: 5, 
+  //   marginBottom: 5,
   // },
 
-  toUpdate:{
-    //width: 150, 
+  toUpdate: {
+    //width: 150,
     //paddingHorizontal: 32,
-    width:'65%',
-    height: 30, 
+    width: '65%',
+    height: 30,
     flexDirection: 'row',
-    backgroundColor: '#FF8080',  //#FFC1CE FB6D77
-    borderRadius: 20, 
-    justifyContent: "center", 
-    alignItems: "center",  
-    position:'relative',
-    marginLeft:'auto'
-
-},
+    backgroundColor: '#FF8080', //#FFC1CE FB6D77
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    marginLeft: 'auto',
+  },
 
   txtUpdateArchive: {
     textAlignVertical: 'center',
