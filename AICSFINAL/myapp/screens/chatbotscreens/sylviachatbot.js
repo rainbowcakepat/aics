@@ -5,6 +5,8 @@ import axios from 'axios';
 import Filter from 'bad-words';
 import badwords from './badwords.js';
 import tagbadwords from './badwords2.js';
+import customWords from './customWords.js';
+
 import urlExist from 'url-exist';
 
 const sylvia = {
@@ -62,12 +64,16 @@ class SylviaChatbot extends React.Component {
     var isNotAWord = false;
     var isNotAQuestion = false;
 
+    var wordsCustom = {};
     var wordsEnglish = {};
     var wordsTagalog = {};
     var words = {};
 
     const newBadEnglish = badwords.split(/[ ,]+/);
     const newBadTagalog = tagbadwords.split(/[ ,]+/);
+    const newCustomWords = customWords.split(/[ ,]+/);
+
+
     const newMessage = message
       .replace(/[&\/\\#,+()$~%!.„":*‚^_¤?<>|@ª{«»§}©®™ ]/g, ' ')
       .trim()
@@ -77,6 +83,7 @@ class SylviaChatbot extends React.Component {
     // Spam
     for (words of newMessage) {
       console.log(words);
+
 
      await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en_US/${words}`).then((val) => {
         this.setState({
@@ -89,23 +96,37 @@ class SylviaChatbot extends React.Component {
       })
 
       if (this.state.apiStatus == 200) {
-        if(newMessage.length >= 4) {
+        if(newMessage.length >= 2) {
           isNotAWord = false;
-        } else {
+        }
+        else {
           isNotAWord = true;
         }
-      } else { 
+      } 
+       else { 
         if(wordExists(words)) {
           isNotAWord = false;
-        } else {
-          isNotAWord = true;
-          break;
+        }  
+        else if (!wordExists(words)) {
+          for (wordsCustom of newCustomWords) {
+            if (message.includes(wordsCustom)) {
+              isNotAWord = false;
+            } 
+          }
+      
         }
+        else {
+             isNotAWord = true;
+              break;
+          }
+    
        
       }
 
       // console.log('word is', !isNotAWord);
     }
+
+   
 
     //Profane
     for (words of newMessage) {
@@ -126,15 +147,18 @@ class SylviaChatbot extends React.Component {
       }
     }
 
-    //Bad Tagalog Custom Words
-    for (wordsTagalog of newBadTagalog) {
-      if (message.includes(wordsTagalog)) {
-        isBadTagalog = true;
-        break;
-      } else {
-        isBadTagalog = false;
-      }
-    }
+    // //Bad Tagalog Custom Words
+    // for (wordsTagalog of newBadTagalog) {
+    //   if (message.includes(wordsTagalog)) {
+    //     isBadTagalog = true;
+    //     break;
+    //   } else if(message.includes(customWords)) {
+    //     console.log('IT');
+    //   }
+    //   else {
+    //     isBadTagalog = false;
+    //   }
+    // }
 
     if (isBadEnglish) {
       console.log('bad english word');
@@ -146,11 +170,16 @@ class SylviaChatbot extends React.Component {
       let reply =
         'Welp! Looks like I need to expand my vocabulary 🧐, can you rephrase your sentence?';
       this.sendBotResponse(reply);
-    } else if (isBadTagalog) {
-      console.log('bad tagalog word');
-      let reply = 'Hmmm...🤔 Lets try again with simple keywords';
-      this.sendBotResponse(reply);
-    } else if (isNotAWord) {
+    } 
+    
+    // else if (isBadTagalog) {
+    //   console.log('bad tagalog word');
+    //   let reply = 'Hmmm...🤔 Lets try again with simple keywords';
+    //   this.sendBotResponse(reply);
+
+
+    //}
+     else if (isNotAWord) {
       console.log('not word');
       let reply =
         "Oh no! I didn't get that, can you say that one more time? 🤔";
