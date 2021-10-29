@@ -357,12 +357,9 @@ export const announcementComponentStyles = StyleSheet.create({
 
   vSaveCancel: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    flex: 1,
-    paddingHorizontal: 30,
-    paddingBottom: 20,
-    // backgroundColor: '#F5F5F5',
-    backgroundColor: 'white',
+    alignContent: 'flex-end',
+    justifyContent: 'flex-end',
+    backgroundColor: '#F5F5F5',
   },
 
   btnSave: {

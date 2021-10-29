@@ -221,7 +221,7 @@ export const unansweredQuestionsStyles = StyleSheet.create({
     height: win.height,
     // backgroundColor: '#FDDFE2'
     backgroundColor: 'white',
-    // flex:1,
+    flex: 1,
   },
 
   toAnnouncement: {
@@ -331,14 +331,12 @@ export const unansweredQuestionsStyles = StyleSheet.create({
     backgroundColor: 'white',
   },
 
-  vSaveCancel: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flex: 1,
-    paddingHorizontal: 30,
-    paddingBottom: 20,
-    // backgroundColor: '#F5F5F5',
-    backgroundColor: 'white',
+  vSaveCancel: {  
+                    flex: 1,
+                    alignContent: 'flex-end',
+                    justifyContent: 'flex-end',
+                    backgroundColor: '#F5F5F5',
+                  
   },
 
   btnSave: {

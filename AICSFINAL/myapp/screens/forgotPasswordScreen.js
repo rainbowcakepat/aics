@@ -84,7 +84,7 @@ const ForgotPasswordScreen = ({navigation}) => {
   return (
     <View style={{flex: 1, backgroundColor: 'violet'}}>
       <ImageBackground
-        style={{flex: 2, backgroundColor: 'red'}}
+        style={{flex: win.height >= 534 ? 2 : 1.8, backgroundColor: 'red'}}
         source={require('../assets/./bg/annoucementsbg.png')}></ImageBackground>
 
       <KeyboardAvoidingView behavior='padding'

@@ -277,7 +277,8 @@ const UnansweredQuestions = ({navigation}) => {
               visible={isModalVisible}
               onRequestClose={() => setisModalVisible(false)}>
               <View style={unansweredQuestionsStyles.vModalContainer}>
-                <View style={{flex: 1, backgroundColor: 'white'}}></View>
+              <View style={{flex: 1, backgroundColor: 'white'}}></View>
+              
                 <ImageBackground
                   source={require('../../assets/./bg/annoucementsbg.png')}
                   style={unansweredQuestionsStyles.vtxtTitle}>
@@ -309,7 +310,7 @@ const UnansweredQuestions = ({navigation}) => {
                 </ImageBackground>
 
                 <View style={unansweredQuestionsStyles.vtxtContent}>
-                  <ScrollView>
+                  <ScrollView contentContainerStyle={{paddingBottom: 20}}>
                     <Text
                       style={{
                         fontFamily: 'Poppins-Regular',
@@ -329,26 +330,68 @@ const UnansweredQuestions = ({navigation}) => {
                   </ScrollView>
                 </View>
 
-                <ScrollView
-                  style={unansweredQuestionsStyles.imageContainer}></ScrollView>
+               
+                <View
+                style={unansweredQuestionsStyles.vSaveCancel}>
+           <View
+                    style={{
+                      flexDirection: 'row',
+                      alignSelf: 'center',
+                      backgroundColor: 'white',
+                      marginBottom: 0,
+                      paddingTop: 5,
+                      paddingLeft: 8,
+                      paddingRight: 8,
+                      paddingBottom: 0,
+                      justifyContent: 'space-around',
+                      borderTopLeftRadius: 30,
+                      borderTopRightRadius: 30,
+                      width: win.width / 1.2,
+                      shadowColor: '#000',
+                      shadowOffset: {
+                        width: 0,
+                        height: 7,
+                      },
+                      shadowOpacity: 0.43,
+                      shadowRadius: 9.51,
 
-                <View style={unansweredQuestionsStyles.vSaveCancel}>
-                  <TouchableOpacity
-                    style={unansweredQuestionsStyles.btnSave}
-                    onPress={() => onPressSave(newID)}>
-                    <Text style={unansweredQuestionsStyles.txtSave}>
-                      Answer
-                    </Text>
-                  </TouchableOpacity>
+                      elevation: 15,
+                    }}>        
+                <TouchableOpacity
+                      onPress={() => setisModalVisible(false)}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="x-circle" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          fontSize: hp(1.5),
+                        }}>
+                        {' '}
+                        Cancel
+                      </Text>
+                    </TouchableOpacity>
 
-                  <TouchableOpacity
-                    style={unansweredQuestionsStyles.btnCancel}
-                    onPress={() => setisModalVisible(false)}>
-                    <Text style={unansweredQuestionsStyles.txtCancel}>
-                      Cancel
-                    </Text>
-                  </TouchableOpacity>
+                    <TouchableOpacity
+                     onPress={() => onPressSave(newID)}
+                      style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Icon name="check-circle" color="#B00A0A" size={22} />
+                      <Text
+                        style={{
+                          color: '#B00A0A',
+                          fontFamily: 'Poppins-Medium',
+                          fontSize: hp(1.5),
+                        }}>
+                        {' '}
+                        Answer{' '}
+                      </Text>
+                    </TouchableOpacity>
+
+                
+                    </View>
+                
                 </View>
+                
               </View>
             </Modal>
 
