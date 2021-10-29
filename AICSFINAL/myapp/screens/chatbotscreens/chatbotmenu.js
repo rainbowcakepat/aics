@@ -50,7 +50,7 @@ const chatbotData = [
     imgpath: require('../../assets/./chatbots/ingrid.png'),
     name: 'Ingrid Chatbot',
     subtitle: 'Shifting, Change, Petition and Special cases',
-    keywords: 'Shifting and Special cases, units, add, drop, make-up class, cross-enrollments, crediting of courses, leave of absence, faculty application, community development, satisfaction, evaluation, faculty, organizations, site, cnag, iss, tgs, thomasian gaming society, cisco, networking, academy, academic gateway, society, enthusiasts, commission on elections',
+    keywords: 'Shifting and Special cases, units, add, drop, make-up class, cross-enrollments, crediting of courses, leave of absence',
   },
   {
     id: 2,
@@ -58,14 +58,14 @@ const chatbotData = [
     name: 'Christine Chatbot',
     subtitle: 'Faculty, Year level inquiries, Graduates and Alumni',
     keywords:
-      "Year level inquiries, Tracks, Alumni, Computer Science, Information Systems, Information technology, IT, IS, CS, Specialization, Programs, Degrees, dean's list, DL, Faculty Application, Gsuite, google activation, account activation, course descriptions, student appeal on course grade, acadmic concerns, NSTP, Student consultation, learner's category, excuse letters, student's locker, blackboard, freshmen, class schedule",
+      "Year level inquiries, Tracks, Alumni, Computer Science, Information Systems, Information technology, IT, IS, CS, Specialization, Programs, Degrees, dean's list, DL, Faculty Application, Gsuite, google activation, account activation, course descriptions, student appeal on course grade, acadmic concerns, NSTP, Student consultation, learner's category, excuse letters, student's locker, blackboard, freshmen, class schedule,  faculty application, community development, satisfaction, evaluation, faculty, organizations, site, cnag, iss, tgs, thomasian gaming society, cisco, networking, academy, academic gateway, society, enthusiasts, commission on elections, lockdown browser",
   },
   {
     id: 3,
     imgpath: require('../../assets/./chatbots/sylvia.png'),
     name: 'Sylvia Chatbot',
     subtitle: 'Directly chat and ask your unanswered inquiries and concerns',
-    keywords: 'Others, No category, etc, none',
+    keywords: 'Others, No category, etc, none, concerns, cics, iics',
   },
 ];
 
