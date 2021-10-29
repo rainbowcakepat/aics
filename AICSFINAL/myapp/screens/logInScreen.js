@@ -97,7 +97,7 @@ const LoginScreen = ({navigation}) => {
     <View style={{flex: 1, backgroundColor: 'violet'}}>
       <ImageBackground
         // style={{ flex: win.height >= 534 ? 2 : 0.85, backgroundColor: 'red'}}
-        style={{ flex: win.height >= 534 && win.height < 700 ? 2.2 : win.height >= 700 ? 2 : 0.85, backgroundColor: 'red'}}
+        style={{ flex: win.height >= 534 && win.height < 700 ? 1.5 : win.height >= 700 ? 2 : 0.85, backgroundColor: 'red'}}
         source={require('../assets/./bg/annoucementsbg.png')}></ImageBackground>
 
       <KeyboardAvoidingView behavior = "padding"

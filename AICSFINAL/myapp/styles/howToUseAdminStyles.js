@@ -19,8 +19,7 @@ export const howToUseAdminStyles = StyleSheet.create({
   //Top Header: Black
   lgTopHeader: {
     backgroundColor: '#CB0A0D',
-    flex: win.height >= 534 && win.height < 700 ? 1.5 : win.height >= 700 ? 1.3 : 1.8, //1.3
-
+    flex: win.height >= 534 && win.height < 700 ? 1.6 : win.height >= 700 ? 1.3 : 1.9,
   },
   headerIconsMenu: {
     flexDirection: 'row',
