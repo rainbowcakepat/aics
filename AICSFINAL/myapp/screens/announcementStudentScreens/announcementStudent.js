@@ -188,6 +188,7 @@ const AnnouncementStudent = ({navigation}) => {
                 <ImageBackground
                   source={require('../../assets/./bg/annoucementsbg.png')}
                   style={announcementComponentStudentStyles.vtxtTitle}>
+                  <ScrollView>
                   <TouchableWithoutFeedback
                     style={announcementComponentStudentStyles.toAnnouncement}>
                     {/* <Icon name="edit-2" color="white" size={19}/> */}
@@ -214,10 +215,11 @@ const AnnouncementStudent = ({navigation}) => {
                     maxLength={50}>
                     {newTitles}
                   </Text>
+                </ScrollView>
                 </ImageBackground>
 
                 <View style={announcementComponentStudentStyles.vtxtContent}>
-                  <ScrollView>
+                  <ScrollView contentContainerStyle={{paddingBottom: 20}}>
                     <Text
                       style={{
                         fontFamily: 'Poppins-Regular',
@@ -235,21 +237,23 @@ const AnnouncementStudent = ({navigation}) => {
                       {newContents}
                     </Text>
 
-                    <Text
-                      style={{
-                        fontFamily: 'Poppins-Regular',
-                        textAlign: 'left',
-                        fontSize: hp(2),
-                        color: 'gray',
-                        paddingBottom: 10,
-                        paddingTop: 10,
-                      }}>
-                      Click Image to view:
-                    </Text>
-
+                    {newUrl ? (
                     <View
-                      style={announcementComponentStudentStyles.imageContainer}>
-                      {newUrl ? (
+                                >
+               
+                           
+                               <Text
+                               style={{
+                                 fontFamily: 'Poppins-Regular',
+                                 textAlign: 'left',
+                                 fontSize: hp(2),
+                                 color: 'gray',
+                                 paddingBottom: 10,
+                                 paddingTop: 10,
+                               }}>
+                               Click Image to view:
+                             </Text>
+         
                         <ImageModal
                           source={{uri: newUrl ? newUrl : newPhoto}}
                           style={{
@@ -258,8 +262,9 @@ const AnnouncementStudent = ({navigation}) => {
                             resizeMode: 'contain',
                           }}
                         />
-                      ) : null}
-                    </View>
+                      
+                      </View> ) : null}
+                    
                   </ScrollView>
                 </View>
 
