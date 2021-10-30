@@ -24,7 +24,7 @@ export const announcementComponentStyles = StyleSheet.create({
 
   lgTopHeader: {
     backgroundColor: '#CB0A0D',
-    flex: win.height >= 534 && win.height < 700 ? 1.6 : win.height >= 700 ? 1.3 : 1.9,  },
+    flex: win.height >= 534 && win.height < 700 ? 1.6 : win.height >= 700 ? 1.4 : 1.9,  },
 
   titleText: {
     marginLeft: 15,
