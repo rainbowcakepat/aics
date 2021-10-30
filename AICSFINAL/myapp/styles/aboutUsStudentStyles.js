@@ -19,7 +19,7 @@ export const aboutUsStudentStyles = StyleSheet.create({
   //Top Header: Black
   lgTopHeader: {
     backgroundColor: '#CB0A0D',
-    flex: win.height >= 534 && win.height < 700 ? 1.6 : win.height >= 700 ? 1.4 : 1.8, //1.3
+    flex: win.height >= 534 && win.height < 700 ? 1.6 : win.height >= 700 ? 1.45 : 1.8, //1.3
     flexDirection: 'column',
   },
   /*
