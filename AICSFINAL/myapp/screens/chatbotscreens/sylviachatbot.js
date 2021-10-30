@@ -187,7 +187,7 @@ class SylviaChatbot extends React.Component {
     } else {
       console.log('OK');
       let reply =
-        'Thank you for your response. 🥰 Kindly revisit Akisha, Ingrid and Christine Chatbots after 2 days to answer your inquiry. Have a great day ahead! ✨';
+        'Thank you for your response. 🥰 Kindly revisit Akisha, Ingrid and Christine Chatbots after 2 working days to answer your inquiry. Have a great day ahead! ✨';
       // let reply = "Type this code to confirm: 100 ✨";
       this.sendBotResponse(reply);
       firestore().collection('allUnansweredQuestions').add({_id, createdAt,  text, user })
