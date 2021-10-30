@@ -231,7 +231,7 @@ const howToUseStudent = ({navigation}) => {
                       color: '#F5F5F5',
                     }}>
                     {' '}
-                    College of Information and Computing Sciences{' '}
+                  College of Information and Computing Sciences{' '}
                   </Text>
 
                   <Text style={howToUseStudentStyles.txtTitle}>{newTitle}</Text>
