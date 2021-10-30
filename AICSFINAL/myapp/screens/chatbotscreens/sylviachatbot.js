@@ -182,7 +182,7 @@ class SylviaChatbot extends React.Component {
      else if (isNotAWord) {
       console.log('not word');
       let reply =
-        "Oh no! I didn't get that, can you say that one more time? 🤔";
+        "Whoops! I only understand English, please try asking me questions with at least 3 words 👉👈";
       this.sendBotResponse(reply);
     } else {
       console.log('OK');
