@@ -29,7 +29,7 @@ class SylviaChatbot extends React.Component {
       messages: [
         {
           _id: 1,
-          text: "Hi! It's your girl, Sylvia from UST CICS. How may I help you?",
+          text: "Hi! It's your girl, Sylvia from UST CICS 🥰. Type in your unanswered question to update the knowledge of Akisha, Ingrid and Christine. Accepted responses will be forwarded to the CICS Admin.",
           createdAt: new Date(),
           user: sylvia,
           // user: {
@@ -96,10 +96,10 @@ class SylviaChatbot extends React.Component {
       })
 
       if (this.state.apiStatus == 200) {
-        if(newMessage.length >= 2) {
+        if(newMessage.length >= 3) {
           isNotAWord = false;
         }
-        else {
+        else if(newMessage.length <= 2){
           isNotAWord = true;
         }
       } 

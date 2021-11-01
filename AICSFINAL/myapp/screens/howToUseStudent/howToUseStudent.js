@@ -124,6 +124,7 @@ const howToUseStudent = ({navigation}) => {
       setNewAskIngrid(item.askingrid);
       setNewAskChristine(item.askchristine);
       setNewAskSylvia(item.asksylvia);
+
     }
 
     if (item.title == 'Login') {
@@ -372,7 +373,7 @@ const howToUseStudent = ({navigation}) => {
                       />
                       <Text style={howToUseStudentStyles.txtLabelDescription}>
                         {' '}
-                        Ask Akisha:{' '}
+                        Chatbot categories:{' '}
                       </Text>
                     </View>
 
@@ -389,7 +390,7 @@ const howToUseStudent = ({navigation}) => {
                       />
                       <Text style={howToUseStudentStyles.txtLabelDescription}>
                         {' '}
-                        Ask Ingrid:{' '}
+                        Do's and Dont's:{' '}
                       </Text>
                     </View>
 
@@ -406,7 +407,7 @@ const howToUseStudent = ({navigation}) => {
                       />
                       <Text style={howToUseStudentStyles.txtLabelDescription}>
                         {' '}
-                        Ask Christine:{' '}
+                        Navigation:{' '}
                       </Text>
                     </View>
 
@@ -423,7 +424,7 @@ const howToUseStudent = ({navigation}) => {
                       />
                       <Text style={howToUseStudentStyles.txtLabelDescription}>
                         {' '}
-                        Ask Sylvia:{' '}
+                        Sylvia Bot Rules:{' '}
                       </Text>
                     </View>
 

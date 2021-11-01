@@ -191,6 +191,7 @@ const AboutUsAdmin = ({navigation}) => {
                 <ImageBackground
                   source={require('../../assets/./bg/ustbg.png')}
                   style={aboutUsStudentStyles.vtxtTitle}>
+                  
                   <TouchableWithoutFeedback
                     style={aboutUsStudentStyles.toAnnouncement}>
                     {/* <Icon name="edit-2" color="white" size={19}/> */}
@@ -204,15 +205,19 @@ const AboutUsAdmin = ({navigation}) => {
                     style={{
                       fontFamily: 'Poppins-Regular',
                       textAlign: 'left',
-                      fontSize: hp(1.8),
+                      fontSize: win.height > 700 ? hp(1.8) : hp(1.5),
                       color: '#F5F5F5',
                     }}>
                     College of Information and Computing Sciences
                   </Text>
 
-                  <Text style={aboutUsStudentStyles.txtTitle}>
+                  <Text style={aboutUsStudentStyles.txtTitle}
+                   multiline={true}
+                   numberOfLines={2}
+                   maxLength={50}>
                     About the College
                   </Text>
+                  
                 </ImageBackground>
 
                 <View style={aboutUsStudentStyles.vtxtContent}>
@@ -265,13 +270,16 @@ const AboutUsAdmin = ({navigation}) => {
                     style={{
                       fontFamily: 'Poppins-Regular',
                       textAlign: 'left',
-                      fontSize: hp(1.8),
+                      fontSize: win.height > 700 ? hp(1.8) : hp(1.5),
                       color: '#F5F5F5',
                     }}>
                     College of Information and Computing Sciences
                   </Text>
 
-                  <Text style={aboutUsStudentStyles.txtTitle}>
+                  <Text style={aboutUsStudentStyles.txtTitle}
+                   multiline={true}
+                   numberOfLines={2}
+                   maxLength={50}>
                     College Offerings
                   </Text>
                 </ImageBackground>
@@ -343,13 +351,16 @@ const AboutUsAdmin = ({navigation}) => {
                     style={{
                       fontFamily: 'Poppins-Regular',
                       textAlign: 'left',
-                      fontSize: hp(1.8),
+                      fontSize: win.height > 700 ? hp(1.8) : hp(1.5),
                       color: '#F5F5F5',
                     }}>
                     College of Information and Computing Sciences
                   </Text>
 
-                  <Text style={aboutUsStudentStyles.txtTitle}>Mission</Text>
+                  <Text style={aboutUsStudentStyles.txtTitle}
+                   multiline={true}
+                   numberOfLines={2}
+                   maxLength={50}>Mission</Text>
                 </ImageBackground>
 
                 <View style={aboutUsStudentStyles.vtxtContent}>
@@ -403,13 +414,16 @@ const AboutUsAdmin = ({navigation}) => {
                     style={{
                       fontFamily: 'Poppins-Regular',
                       textAlign: 'left',
-                      fontSize: hp(1.8),
+                      fontSize: win.height > 700 ? hp(1.8) : hp(1.5),
                       color: '#F5F5F5',
                     }}>
                     College of Information and Computing Sciences
                   </Text>
 
-                  <Text style={aboutUsStudentStyles.txtTitle}>Vision</Text>
+                  <Text style={aboutUsStudentStyles.txtTitle}
+                   multiline={true}
+                   numberOfLines={2}
+                   maxLength={50}>Vision</Text>
                 </ImageBackground>
 
                 <View style={aboutUsStudentStyles.vtxtContent}>
@@ -463,13 +477,16 @@ const AboutUsAdmin = ({navigation}) => {
                     style={{
                       fontFamily: 'Poppins-Regular',
                       textAlign: 'left',
-                      fontSize: hp(1.8),
+                      fontSize: win.height > 700 ? hp(1.8) : hp(1.5),
                       color: '#F5F5F5',
                     }}>
                     College of Information and Computing Sciences
                   </Text>
 
-                  <Text style={aboutUsStudentStyles.txtTitle}>
+                  <Text style={aboutUsStudentStyles.txtTitle}
+                   multiline={true}
+                   numberOfLines={2}
+                   maxLength={50}>
                     Contact Details
                   </Text>
                 </ImageBackground>

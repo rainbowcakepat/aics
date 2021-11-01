@@ -1,3 +1,3 @@
-const tagbadwords = "puta, hayop, ako, kanya, na, siya";
+const tagbadwords = "puta, hayop, ako, kanya, na, siya, ka";
 // para, sa, ay, sila, maging, isa, mayroon, ito, mula, mainit, salita, ngunit, kung, ilang, nagkaroon, ang, ng, isang, namin, maaari, bahaghari, panalangin, ibang, kung, gawin, oras, pamanahan, pamuhunan, paano, sinabi, bawat, sabihin, gumagana, tite, puke, pepe, ulol, gago, pakyu, tangina, hanay, tatlo, maliit, matangkad, ilagay, tahanan, lupa, basahin, kamay, paa, pwet, burnik, malaki, kahit, lupa, dito, kailangan, mataas, mababa, tulad, sundin, kumilos, bakit, ayaw, tanong, lalaki, nagpunta, nagbago, uri, mula, kailangan, bahay, buhay, paraluman, ikaw, lang, subukan, atin, muli, hayop, mo, ko, kuya, punto, nanay, tatay, tinapay, kape, mundo, malapit, malayo, magtayo, sarili, lupa, lapa, ama"
  export default tagbadwords;
