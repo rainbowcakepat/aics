@@ -196,7 +196,7 @@ const AboutUsAdmin = ({navigation}) => {
                     {/* <Icon name="edit-2" color="white" size={19}/> */}
                     <Text style={aboutUsStudentStyles.txtEdit}>
                       {' '}
-                      Edit About Us Information
+                      About us Information
                     </Text>
                   </TouchableWithoutFeedback>
 
@@ -257,7 +257,7 @@ const AboutUsAdmin = ({navigation}) => {
                     style={aboutUsStudentStyles.toAnnouncement}>
                     <Text style={aboutUsStudentStyles.txtEdit}>
                       {' '}
-                      Edit About Us Information
+                      About us Information
                     </Text>
                   </TouchableWithoutFeedback>
 
@@ -335,7 +335,7 @@ const AboutUsAdmin = ({navigation}) => {
                     {/* <Icon name="edit-2" color="white" size={19}/> */}
                     <Text style={aboutUsStudentStyles.txtEdit}>
                       {' '}
-                      Edit About Us Information
+                      About us Information
                     </Text>
                   </TouchableWithoutFeedback>
 
@@ -395,7 +395,7 @@ const AboutUsAdmin = ({navigation}) => {
                     {/* <Icon name="edit-2" color="white" size={19}/> */}
                     <Text style={aboutUsStudentStyles.txtEdit}>
                       {' '}
-                      Edit About Us Information
+                      About us Information
                     </Text>
                   </TouchableWithoutFeedback>
 
@@ -455,7 +455,7 @@ const AboutUsAdmin = ({navigation}) => {
                     {/* <Icon name="edit-2" color="white" size={19}/> */}
                     <Text style={aboutUsStudentStyles.txtEdit}>
                       {' '}
-                      Edit About Us Information
+                      About us Information
                     </Text>
                   </TouchableWithoutFeedback>
 
