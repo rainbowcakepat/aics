@@ -73,7 +73,6 @@ class SylviaChatbot extends React.Component {
     const newBadTagalog = tagbadwords.split(/[ ,]+/);
     const newCustomWords = customWords.split(/[ ,]+/);
 
-
     const newMessage = message
       .replace(/[&\/\\#,+()$~%!.„":*‚^_¤?<>|@ª{«»§}©®™ ]/g, ' ')
       .trim()
@@ -84,49 +83,41 @@ class SylviaChatbot extends React.Component {
     for (words of newMessage) {
       console.log(words);
 
-
-     await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en_US/${words}`).then((val) => {
-        this.setState({
-          apiStatus: val.status,
+      await axios
+        .get(`https://api.dictionaryapi.dev/api/v2/entries/en_US/${words}`)
+        .then(val => {
+          this.setState({
+            apiStatus: val.status,
+          });
         })
-      }).catch(val => {
-        this.setState({
-          apiStatus: val.status,
-        })
-      })
+        .catch(val => {
+          this.setState({
+            apiStatus: val.status,
+          });
+        });
 
       if (this.state.apiStatus == 200) {
-
-        if(newMessage.length >= 3) {
+        if (newMessage.length >= 3) {
           isNotAWord = false;
-        } 
-        else if(newMessage.length <= 2){
+        } else if (newMessage.length <= 2) {
           isNotAWord = true;
         }
-      } 
-      else if (this.state.apiStatus != 200) {
+      } else if (this.state.apiStatus != 200) {
         for (wordsCustom of newCustomWords) {
           if (message.includes(wordsCustom)) {
             isNotAWord = false;
-          }
-          else { 
+          } else {
             isNotAWord = true;
-             break;
-     } 
+            break;
+          }
         }
-      }
-       else { 
-             isNotAWord = true;
-              break;
-
-    
-       
+      } else {
+        isNotAWord = true;
+        break;
       }
 
       // console.log('word is', !isNotAWord);
     }
-
-   
 
     //Profane
     for (words of newMessage) {
@@ -170,19 +161,18 @@ class SylviaChatbot extends React.Component {
       let reply =
         'Welp! Looks like I need to expand my vocabulary 🧐, can you rephrase your sentence?';
       this.sendBotResponse(reply);
-    } 
-    
+    }
+
     // else if (isBadTagalog) {
     //   console.log('bad tagalog word');
     //   let reply = 'Hmmm...🤔 Lets try again with simple keywords';
     //   this.sendBotResponse(reply);
 
-
     //}
-     else if (isNotAWord) {
+    else if (isNotAWord) {
       console.log('not word');
       let reply =
-        "Whoops! I only understand English, please try asking me questions with at least 3 words 👉👈";
+        'Whoops! I only understand English, please try asking me questions with at least 3 words 👉👈';
       this.sendBotResponse(reply);
     } else {
       console.log('OK');
@@ -190,7 +180,9 @@ class SylviaChatbot extends React.Component {
         'Thank you for your response. 🥰 Kindly revisit Akisha, Ingrid and Christine Chatbots after 2 working days to answer your inquiry. Have a great day ahead! ✨';
       // let reply = "Type this code to confirm: 100 ✨";
       this.sendBotResponse(reply);
-      firestore().collection('allUnansweredQuestions').add({_id, createdAt,  text, user })
+      firestore()
+        .collection('allUnansweredQuestions')
+        .add({_id, createdAt, text, user});
     }
   }
 
@@ -213,7 +205,7 @@ class SylviaChatbot extends React.Component {
         placeholder="Type in your concerns and inquiries."
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}
-        textInputStyle={{color:'black'}}
+        textInputStyle={{color: 'black'}}
         user={{
           _id: 1,
         }}
