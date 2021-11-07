@@ -62,13 +62,7 @@ const chatbotData = [
     keywords:
       "Year level inquiries, Tracks, Alumni, Computer Science, Information Systems, Information technology, IT, IS, CS, Specialization, Programs, Degrees, dean's list, DL, Faculty Application, Gsuite, google activation, account activation, course descriptions, student appeal on course grade, acadmic concerns, NSTP, Student consultation, learner's category, excuse letters, student's locker, blackboard, freshmen, class schedule,  faculty application, community development, satisfaction, evaluation, faculty, organizations, site, cnag, iss, tgs, thomasian gaming society, cisco, networking, academy, academic gateway, society, enthusiasts, commission on elections, lockdown browser",
   },
-  {
-    id: 3,
-    imgpath: require('../../assets/./chatbots/sylvia.png'),
-    name: 'Sylvia Chatbot',
-    subtitle: 'Submit your unanswered question to further improve Akisha, Ingrid, Christine chatbot knowledge',
-    keywords: 'Others, No category, etc, none, concerns, cics, iics',
-  },
+
 ];
 
 const ChatbotMenu = ({navigation}) => {
