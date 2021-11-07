@@ -55,7 +55,7 @@ const UnansweredQuestions = ({navigation}) => {
     const fetchUnansweredQuestions = firestore()
       .collection('allUnansweredQuestions')
       .orderBy('createdAt', 'desc')
-      .limit(15)
+      .limit(20)
       .onSnapshot(querySnapshot => {
         const posts = [];
 
