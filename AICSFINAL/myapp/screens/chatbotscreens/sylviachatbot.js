@@ -101,17 +101,11 @@ class SylviaChatbot extends React.Component {
           isNotAWord = false;
         } else if (newMessage.length <= 2) {
           isNotAWord = true;
+          break;
         }
-      } else if (this.state.apiStatus != 200) {
-        for (wordsCustom of newCustomWords) {
-          if (message.includes(wordsCustom)) {
-            isNotAWord = false;
-          } else {
-            isNotAWord = true;
-            break;
-          }
-        }
-      } else {
+      } else if (words == "ust" || words == "ust-cics" || words == "ust-iics" || words == "cics" || words == "cnag" || words == "tgs" || words == "pax"){
+        isNotAWord = false;
+      }else {
         isNotAWord = true;
         break;
       }
@@ -123,13 +117,29 @@ class SylviaChatbot extends React.Component {
     for (words of newMessage) {
       if (filter.isProfane(words)) {
         isProfane = true;
+        break;
       } else {
         isProfane = false;
       }
     }
 
+    //Bad english
+    let bdenglish = ["ka", "na", "ng", "sa", "ng", "ha", "ba", "nang", "mga", "pa", "KA", "NA", "NG", "SA", "HA", "BA", "NANG", "MGA"];
+
+    for (words of newMessage) {
+      for (let i = 0; i < bdenglish.length; i++) {
+        if(words == bdenglish[i]) {
+          isBadEnglish = true;
+          //console.log('w', words);
+          //console.log('beng', bdenglish[i]);
+          break;
+         }
+      }
+  }
+
+
     //Bad English Custom Words
-    for (wordsEnglish of newBadEnglish) {
+    /*for (wordsEnglish of newBadEnglish) {
       if (message.includes(wordsEnglish)) {
         isBadEnglish = true;
         break;
@@ -137,19 +147,8 @@ class SylviaChatbot extends React.Component {
         isBadEnglish = false;
       }
     }
+*/
 
-    // //Bad Tagalog Custom Words
-    // for (wordsTagalog of newBadTagalog) {
-    //   if (message.includes(wordsTagalog)) {
-    //     isBadTagalog = true;
-    //     break;
-    //   } else if(message.includes(customWords)) {
-    //     console.log('IT');
-    //   }
-    //   else {
-    //     isBadTagalog = false;
-    //   }
-    // }
 
     if (isBadEnglish) {
       console.log('bad english word');
@@ -163,12 +162,7 @@ class SylviaChatbot extends React.Component {
       this.sendBotResponse(reply);
     }
 
-    // else if (isBadTagalog) {
-    //   console.log('bad tagalog word');
-    //   let reply = 'Hmmm...🤔 Lets try again with simple keywords';
-    //   this.sendBotResponse(reply);
-
-    //}
+  
     else if (isNotAWord) {
       console.log('not word');
       let reply =
@@ -214,75 +208,3 @@ class SylviaChatbot extends React.Component {
   }
 }
 export default SylviaChatbot;
-
-// export default function Example() {
-//   const [messages, setMessages] = useState([]);
-//   const [reply, setReplies] = useState([]);
-
-//   useEffect(() => {
-//     setMessages([
-//       {
-//           _id: '1',
-//           text: "Hi! It's your girl, Sylvia from UST CICS. How may I help you? Type in your concerns and inquiries.",
-//           createdAt: new Date(),
-//           user: {
-//             _id: 2,
-//             name: 'React Native',
-//             avatar: require('../../assets/./chatbots/sylvia.png')
-//           },
-//       },
-//       ])
-
-//   }, [])
-
-//    const renderMessage = () => {
-
-//     return <Text>Hayop</Text>
-//   }
-
-//   const onSend = useCallback((messages = []) => {
-
-//     setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
-//     const { _id, createdAt, text, user,} = messages[0]
-//     console.log(_id, createdAt, text, user);
-
-//     if(text != null) {
-//         console.log(text, 'ok nice gumagana ata');
-//         // setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
-//     }
-
-//     // const { _id, createdAt, text, user,} = messages[0]
-//     // firestore().collection('allQuestions').add({ _id, createdAt,  text, user })
-//     }, []
-
-//   );
-
-//   // const onSensendBotResponse = useCallback((messages = []) => {
-
-//   //   setReplies(previousMessages => GiftedChat.append(previousMessages, messages))
-//   //   const { _id, createdAt, text, user,} = messages[0]
-//   //   console.log(_id, createdAt, text, user);
-
-//   //   if(text != null) {
-//   //       console.log('ok nice gumagana ata');
-//   //       sendBotResponse();
-//   //   }
-//   //   // const { _id, createdAt, text, user,} = messages[0]
-//   //   // firestore().collection('allQuestions').add({ _id, createdAt,  text, user })
-//   //   }, []
-
-//   // );
-
-//   return (
-
-//     <GiftedChat
-//       placeholder = 'Type your concerns and inquiries..'
-//       messages={messages}
-//       onSend={messages => onSend(messages)}
-//       // renderMessage={renderMessage}
-//       user={{
-//         _id: 1,
-//       }}
-//     />
-//   )
-// }
