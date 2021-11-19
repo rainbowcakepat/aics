@@ -103,9 +103,10 @@ class SylviaChatbot extends React.Component {
           isNotAWord = true;
           break;
         }
-      } else if (words == "ust" || words == "ust-cics" || words == "ust-iics" || words == "cics" || words == "cnag" || words == "tgs" || words == "pax"){
+      } else if (words.toLowerCase() == "ust" || words.toLowerCase() == "ust-cics" || words.toLowerCase() == "ust-iics" || words.toLowerCase() == "cics" || words.toLowerCase() == "iics" || words.toLowerCase() == "cnag" || words.toLowerCase() == "tgs" || words.toLowerCase() == "pax" ){
         isNotAWord = false;
-      }else {
+      }    
+      else {
         isNotAWord = true;
         break;
       }
